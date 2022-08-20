@@ -6,3 +6,36 @@
   margin: 0;
   padding: 0;
 }
+
+button{
+  @apply w-full;
+  font-family: Open-Sans-600;
+  font-size: 22px;
+  border-radius: 20px;
+  padding: 10px;
+} 
+
+@font-face {
+  font-family: 'Open-Sans-600';
+  src: url(./Assets/fonts/OpenSans-SemiBold.ttf);
+}
+
+@font-face {
+  font-family: 'Open-Sans-400';
+  src: url(./Assets/fonts/OpenSans-Regular.ttf);
+}
+
+@font-face {
+  font-family: 'Poppins-700';
+  src: url(./Assets/fonts/Poppins-Bold.ttf);
+}
+
+h1{
+  font-family:  Poppins-700; 
+  font-size: 38px;
+}
+
+p{
+  font-family: Open-Sans-400;
+  font-size: 16px;
+}
