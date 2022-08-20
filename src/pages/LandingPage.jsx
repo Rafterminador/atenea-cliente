@@ -1,17 +1,13 @@
 import React from "react";
-import ImagenPrincipal from "../Assets/images/landing.svg";
+import ImagenPrincipal from "../assets/images/landing.svg";
 
 const LandingPage = () => {
   return (
     <div className="mx-5 contenedor flex flex-col justify-between">
 
       <div className='bg-[#FCFBFF] bordeblur flex flex-col items-center'>
-            <div className=''>
-            <img  src={ImagenPrincipal}/>
-            </div>
-
-            </div>
-
+        <img src={ImagenPrincipal} alt='dashboard' />
+      </div>
 
       <div className="flex flex-col text-center">
         <div>
