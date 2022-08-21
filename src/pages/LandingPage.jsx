@@ -1,7 +1,12 @@
 import React from "react";
 import ImagenPrincipal from "../assets/images/landing.svg";
+import { useNavigate } from 'react-router-dom'
 
 const LandingPage = () => {
+  const navigate = useNavigate()
+  function handleLogin() {
+    navigate("login")
+  }
   return (
     <div className="mx-5 contenedor flex flex-col justify-between">
 
@@ -21,7 +26,7 @@ const LandingPage = () => {
       </div>
 
       <div className="">
-        <button className="mb-5 text-center min-w-full bg-transparent text-[#7064FF] border-2 border-[#7064FF]">
+        <button className="mb-5 text-center min-w-full bg-transparent text-[#7064FF] border-2 border-[#7064FF]" onClick={handleLogin}>
           Ingresar
         </button>
         <button className="mb-5 text-center min-w-full bg-[#7064FF] text-white">
