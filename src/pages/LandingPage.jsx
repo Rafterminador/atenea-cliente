@@ -7,6 +7,9 @@ const LandingPage = () => {
   function handleLogin() {
     navigate("login")
   }
+  function handleRegister() {
+    navigate("registro/usuario")
+  }
   return (
     <div className="mx-5 contenedor flex flex-col justify-between">
 
@@ -29,7 +32,7 @@ const LandingPage = () => {
         <button className="mb-5 text-center min-w-full bg-transparent text-[#7064FF] border-2 border-[#7064FF]" onClick={handleLogin}>
           Ingresar
         </button>
-        <button className="mb-5 text-center min-w-full bg-[#7064FF] text-white">
+        <button className="mb-5 text-center min-w-full bg-[#7064FF] text-white" onClick={handleRegister}>
           Registrarse
         </button>
       </div>
