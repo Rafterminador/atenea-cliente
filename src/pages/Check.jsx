@@ -1,23 +1,14 @@
 import React from "react";
-import { useState } from "react";
 import Logo from "../assets/images/logo.svg";
 import ImageLoginDesktop from "../assets/images/check.svg";
 const Check = () => {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+
 
   function handleSubmit(e) {
     e.preventDefault();
-    alert(username + " " + password);
+   
   }
 
-  function handleChangeUsername(e) {
-    setUsername(e.target.value);
-  }
-
-  function handleChangePassword(e) {
-    setPassword(e.target.value);
-  }
   return (
     <div className="contenedor md:px-16">
       <div className="hidden md:flex md:justify-center md:py-6 md:border-b-2 md:border-[#DBD8FF] md:h-[120px]">
