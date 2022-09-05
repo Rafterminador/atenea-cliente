@@ -3,13 +3,11 @@ import { useState } from "react";
 import Logo from "../assets/images/logo.svg";
 import ImageLoginDesktop from "../assets/images/recuperarPassword.svg";
 import { useNavigate } from 'react-router-dom';
-const Dashboard = () => {
-  const navigate = useNavigate()
+const OlvidePassword = () => {
+  const [username, setUsername] = useState("");
   const handleValidarCodigo = () => {
+    const navigate = useNavigate()
     navigate('/verificacion')
-  }
-  const OlvidePassword = () => {
-    const [username, setUsername] = useState("");
   }
 
   function handleSubmit(e) {
