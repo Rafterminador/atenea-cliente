@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import ImageLogin from "../assets/images/login-mobile.svg";
 import ImageLoginDesktop from "../assets/images/login-desktop.svg";
 import Logo from "../assets/images/logo.svg";
+import { Link } from 'react-router-dom'
 
 const Login = () => {
   const [username, setUsername] = useState("");
@@ -64,9 +65,9 @@ const Login = () => {
                   className="font-normal border-solid border-[1px] border-[#DBD8FF] rounded-[10px] py-2.5 px-2 focus:outline-2 focus:outline-[#A954FF]"
                   placeholder="Ingresar contraseña"
                 />
-                <a href="/olvide-password" className="self-end text-xs text-[#776694]">
+                <Link to='/olvide-password' className="self-end text-xs text-[#776694]">
                   Recuperar contraseña
-                </a>
+                </Link>
                 <button
                   type="submit"
                   className="bg-[#7064FF] text-white py-[15px] px-2.5"
