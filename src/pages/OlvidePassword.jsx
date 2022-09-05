@@ -5,8 +5,8 @@ import ImageLoginDesktop from "../assets/images/recuperarPassword.svg";
 import { useNavigate } from 'react-router-dom';
 const OlvidePassword = () => {
   const [username, setUsername] = useState("");
+  const navigate = useNavigate()
   const handleValidarCodigo = () => {
-    const navigate = useNavigate()
     navigate('/verificacion')
   }
 
