@@ -2,13 +2,19 @@ import React from "react";
 import { useState } from "react";
 import Logo from "../assets/images/logo.svg";
 import ImageLoginDesktop from "../assets/images/recuperarPassword.svg";
-const OlvidePassword = () => {
-  const [username, setUsername] = useState("");
-
+import { useNavigate } from 'react-router-dom';
+const Dashboard = () => {
+  const navigate = useNavigate()
+  const handleValidarCodigo = () => {
+    navigate('/verificacion')
+  }
+  const OlvidePassword = () => {
+    const [username, setUsername] = useState("");
+  }
 
   function handleSubmit(e) {
     e.preventDefault();
-    
+
   }
 
   function handleChangeUsername(e) {
@@ -54,6 +60,7 @@ const OlvidePassword = () => {
                 <button
                   type="submit"
                   className="bg-[#7064FF] text-white py-[15px] px-2.5 mt-14"
+                  onClick={handleValidarCodigo}
                 >
                   Enviar Código
                 </button>

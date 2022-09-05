@@ -1,12 +1,13 @@
 import React from "react";
 import Logo from "../assets/images/logo.svg";
 import ImageLoginDesktop from "../assets/images/check.svg";
+import { useNavigate } from 'react-router-dom'
 const Check = () => {
-
+  const navigate = useNavigate()
 
   function handleSubmit(e) {
     e.preventDefault();
-   
+    navigate("/restablecer-password")
   }
 
   return (
@@ -35,15 +36,15 @@ const Check = () => {
             <form onSubmit={handleSubmit}>
               <div className="flex flex-col text gap-2 text-[#4D3483] font-semibold">
                 <div className="flex justify-center md:justify-center sm:justify-center lg:justify-center">
-                <div className="space-x-6  ">
-                  <input placeholder="?" className="text-center font-normal border-solid border-[1px] w-[52px] h-[52px] py-2.5 px-2 focus:outline-[#A954FF] focus:outline-2 border-[#DBD8FF] rounded-[10px]" />
-                  <input placeholder="?" className="text-center font-normal border-solid border-[1px] w-[52px] h-[52px] py-2.5 px-2 focus:outline-[#A954FF] focus:outline-2 border-[#DBD8FF] rounded-[10px]" />
-                  <input placeholder="?" className="text-center font-normal border-solid border-[1px] w-[52px] h-[52px] py-2.5 px-2 focus:outline-[#A954FF] focus:outline-2 border-[#DBD8FF] rounded-[10px]" />
-                  <input placeholder="?" className="text-center font-normal border-solid border-[1px] w-[52px] h-[52px] py-2.5 px-2 focus:outline-[#A954FF] focus:outline-2 border-[#DBD8FF] rounded-[10px]" />
+                  <div className="space-x-6  ">
+                    <input placeholder="?" className="text-center font-normal border-solid border-[1px] w-[52px] h-[52px] py-2.5 px-2 focus:outline-[#A954FF] focus:outline-2 border-[#DBD8FF] rounded-[10px]" />
+                    <input placeholder="?" className="text-center font-normal border-solid border-[1px] w-[52px] h-[52px] py-2.5 px-2 focus:outline-[#A954FF] focus:outline-2 border-[#DBD8FF] rounded-[10px]" />
+                    <input placeholder="?" className="text-center font-normal border-solid border-[1px] w-[52px] h-[52px] py-2.5 px-2 focus:outline-[#A954FF] focus:outline-2 border-[#DBD8FF] rounded-[10px]" />
+                    <input placeholder="?" className="text-center font-normal border-solid border-[1px] w-[52px] h-[52px] py-2.5 px-2 focus:outline-[#A954FF] focus:outline-2 border-[#DBD8FF] rounded-[10px]" />
+                  </div>
+
                 </div>
-               
-                </div>
-               
+
                 <button
                   type="submit"
                   className="bg-[#7064FF] text-white py-[15px] px-2.5 mt-14"
