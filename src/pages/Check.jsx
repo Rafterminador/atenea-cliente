@@ -16,7 +16,7 @@ const Check = () => {
         <img src={Logo} alt="Logo" />
       </div>
       <div className="flex flex-col justify-between px-5 items-center md:grid md:grid-cols-12 md:gap-[30px] md:p-0 md:py-10">
-        <div className="bg-[#FCFBFF]  w-full flex justify-center md:col-span-6 ">
+        <div className="bg-[#FCFBFF] bordeblur w-full flex justify-center md:col-span-6 md:rounded-[20px]">
           <img src={ImageLoginDesktop} alt="Login" className="md:hidden" />
           <img
             src={ImageLoginDesktop}
@@ -37,10 +37,10 @@ const Check = () => {
               <div className="flex flex-col text gap-2 text-[#4D3483] font-semibold">
                 <div className="flex justify-center md:justify-center sm:justify-center lg:justify-center">
                   <div className="space-x-6  ">
-                    <input placeholder="?" className="text-center font-normal border-solid border-[1px] w-[52px] h-[52px] py-2.5 px-2 focus:outline-[#A954FF] focus:outline-2 border-[#DBD8FF] rounded-[10px]" />
-                    <input placeholder="?" className="text-center font-normal border-solid border-[1px] w-[52px] h-[52px] py-2.5 px-2 focus:outline-[#A954FF] focus:outline-2 border-[#DBD8FF] rounded-[10px]" />
-                    <input placeholder="?" className="text-center font-normal border-solid border-[1px] w-[52px] h-[52px] py-2.5 px-2 focus:outline-[#A954FF] focus:outline-2 border-[#DBD8FF] rounded-[10px]" />
-                    <input placeholder="?" className="text-center font-normal border-solid border-[1px] w-[52px] h-[52px] py-2.5 px-2 focus:outline-[#A954FF] focus:outline-2 border-[#DBD8FF] rounded-[10px]" />
+                    <input placeholder="?" className="text-center font-normal border-solid border-[1px] w-[52px] h-[52px] py-2.5 px-2 focus:outline-[#A954FF] focus:outline-2 border-[#DBD8FF] rounded-[10px] text-[21.33px]" />
+                    <input placeholder="?" className="text-center font-normal border-solid border-[1px] w-[52px] h-[52px] py-2.5 px-2 focus:outline-[#A954FF] focus:outline-2 border-[#DBD8FF] rounded-[10px] text-[21.33px]" />
+                    <input placeholder="?" className="text-center font-normal border-solid border-[1px] w-[52px] h-[52px] py-2.5 px-2 focus:outline-[#A954FF] focus:outline-2 border-[#DBD8FF] rounded-[10px] text-[21.33px]" />
+                    <input placeholder="?" className="text-center font-normal border-solid border-[1px] w-[52px] h-[52px] py-2.5 px-2 focus:outline-[#A954FF] focus:outline-2 border-[#DBD8FF] rounded-[10px] text-[21.33px]" />
                   </div>
 
                 </div>

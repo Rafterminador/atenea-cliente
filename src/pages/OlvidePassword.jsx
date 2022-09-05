@@ -25,7 +25,7 @@ const OlvidePassword = () => {
         <img src={Logo} alt="Logo" />
       </div>
       <div className="flex flex-col justify-between px-5 items-center md:grid md:grid-cols-12 md:gap-[30px] md:p-0 md:py-10">
-        <div className="bg-[#FCFBFF]  w-full flex justify-center md:col-span-6 ">
+        <div className="bg-[#FCFBFF] bordeblur w-full flex justify-center md:col-span-6 md:rounded-[20px]">
           <img src={ImageLoginDesktop} alt="Login" className="md:hidden" />
           <img
             src={ImageLoginDesktop}
