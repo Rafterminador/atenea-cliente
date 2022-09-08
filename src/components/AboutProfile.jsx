@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import Ghover from "../assets/images/githubhover.svg";
 
 const AboutProfile = ( props ) => {

@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import FirstImage from "../assets/images/about1.svg";
 import SecundImage from "../assets/images/about2.svg";
 import Profile from "../assets/images/profile.svg";
-import Ghover from "../assets/images/githubhover.svg";
 import AboutProfile from "../components/AboutProfile";
 
 const About = () => {
@@ -96,7 +95,7 @@ const About = () => {
         <div className="grid grid-cols-4 items-center gap-[40px]">
 
         <AboutProfile ruta={Profile} nombre = {"Kelvin Cano"} rol = {"Scrum Master & UI / UX Designer"} />
-        
+
         <AboutProfile ruta={Profile} nombre = {"Josué Méndez"} rol = {"Product Owner & Backend Developer"} /> 
         <AboutProfile ruta={Profile} nombre = {"Fernando Juárez"} rol = {"Frontend Manager"} /> 
         <AboutProfile ruta={Profile} nombre = {"Daniel Tistoj"} rol = {"Backend Manager"} />  
