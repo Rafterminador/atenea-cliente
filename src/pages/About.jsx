@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from 'react'
 import FirstImage from "../assets/images/about1.svg";
 import SecundImage from "../assets/images/about2.svg";
 import Profile from "../assets/images/profile.svg";
