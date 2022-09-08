@@ -14,7 +14,7 @@ const LandingPage = () => {
   return (
     <>
       <Navbar />
-      <div className="md:mx-16 h-full contenedor flex flex-col justify-between text-center items-center md:grid md:grid-cols-2">
+      <div className="mx-5 md:mx-16 h-full contenedor flex flex-col justify-between text-center items-center md:grid md:grid-cols-2">
         <div className="bg-[#FCFBFF] bordeblur w-full flex justify-center  md:rounded-[20px] md:mt-[40px]">
           <img src={ImagenPrincipal} alt="dashboard" />
         </div>
