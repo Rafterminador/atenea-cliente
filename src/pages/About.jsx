@@ -96,6 +96,7 @@ const About = () => {
         <div className="grid grid-cols-4 items-center gap-[40px]">
 
         <AboutProfile ruta={Profile} nombre = {"Kelvin Cano"} rol = {"Scrum Master & UI / UX Designer"} />
+        
         <AboutProfile ruta={Profile} nombre = {"Josué Méndez"} rol = {"Product Owner & Backend Developer"} /> 
         <AboutProfile ruta={Profile} nombre = {"Fernando Juárez"} rol = {"Frontend Manager"} /> 
         <AboutProfile ruta={Profile} nombre = {"Daniel Tistoj"} rol = {"Backend Manager"} />  
