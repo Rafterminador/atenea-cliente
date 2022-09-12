@@ -76,3 +76,16 @@ p {
 .cf img.top:hover {
   opacity: 0;
 }
+
+.alumnoborder {
+  border-radius: 10px 10px 10px 10px;
+}
+
+.addsearchradius {
+  border-radius: 15px 15px 15px 15px;
+}
+
+.sidebar {
+    position: sticky;
+    top: 0; 
+} 

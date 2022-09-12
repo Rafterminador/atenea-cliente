@@ -4,6 +4,7 @@ import { LandingPage } from "./pages/LandingPage";
 import { Login } from "./pages/login";
 import { RegistroUsuario } from "./pages/RegistroUsuario";
 import { About } from "./pages/About";
+import { VerAlumno } from "./pages/VerAlumno"
 import OlvidePassword from "./pages/OlvidePassword";
 import Check from "./pages/Check";
 import RestorePassword from "./pages/RestorePassword";
@@ -19,6 +20,7 @@ function App() {
         <Route path="/olvide-password" element={<OlvidePassword />} />
         <Route path="/verificacion" element={<Check />} />
         <Route path="/restablecer-password" element={<RestorePassword />} />
+        <Route path="/ver-alumno" element={<VerAlumno />} />
       </Routes>
     </BrowserRouter>
   );
