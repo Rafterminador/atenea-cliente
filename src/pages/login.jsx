@@ -3,13 +3,28 @@ import ImageLogin from "../assets/images/login-mobile.svg";
 import ImageLoginDesktop from "../assets/images/login-desktop.svg";
 import Logo from "../assets/images/logo.svg";
 import { Link } from 'react-router-dom'
+import { Firebase } from "../utils/Firebase";
+import { getAuth, signInWithEmailAndPassword } from 'firebase/auth'
 
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const firebase = new Firebase()
+  const app = firebase.appInitialize()
+  const auth = getAuth(app)
 
   function handleSubmit(e) {
     e.preventDefault();
+    signInWithEmailAndPassword(auth, username, password).then((userCredential) => {
+      // Signed in
+      const user = userCredential.user;
+      console.log(user)
+    })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(errorCode, errorMessage)
+      });
     alert(username + " " + password);
   }
 
