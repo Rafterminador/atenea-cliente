@@ -52,7 +52,7 @@ const Login = () => {
                   value={username}
                   name="username"
                   onChange={handleChangeUsername}
-                  className="font-normal border-solid border-[1px] border-[#DBD8FF] rounded-[10px] py-2.5 px-2 focus:outline-2 focus:outline-[#A954FF]"
+                  className="font-normal border-solid border-[1px] border-[#DBD8FF] rounded-[10px] py-2.5 px-2 focus:outline-2 focus:outline-[#A954FF] mb-2"
                   placeholder="Ingresar correo"
                   required
                 />
