@@ -81,7 +81,9 @@ const Login = () => {
           <div className="mt-3">
             <button className="text-[12.8px]">
               ¿No tiene una cuenta?{" "}
-              <span className="text-[#7064FF]">Registrarse ahora</span>
+              <Link to='/registro/usuario'>
+                <span className="text-[#7064FF]">Registrarse ahora</span>
+              </Link>
             </button>
           </div>
         </div>
