@@ -22,7 +22,7 @@ const Login = () => {
   }
 
   return (
-    <div className="contenedor md:px-16">
+    <div className="contenedor flex flex-row justify-between md:px-16">
       <div className="hidden md:flex md:justify-center md:py-6 md:border-b-2 md:border-[#DBD8FF] md:h-[120px]">
         <img src={Logo} alt="Logo" />
       </div>
@@ -48,12 +48,13 @@ const Login = () => {
                 <label htmlFor="username">Correo</label>
                 <input
                   id="username"
-                  type="text"
+                  type="email"
                   value={username}
                   name="username"
                   onChange={handleChangeUsername}
                   className="font-normal border-solid border-[1px] border-[#DBD8FF] rounded-[10px] py-2.5 px-2 focus:outline-2 focus:outline-[#A954FF]"
                   placeholder="Ingresar correo"
+                  required
                 />
                 <label htmlFor="password">Contraseña</label>
                 <input
@@ -64,13 +65,14 @@ const Login = () => {
                   onChange={handleChangePassword}
                   className="font-normal border-solid border-[1px] border-[#DBD8FF] rounded-[10px] py-2.5 px-2 focus:outline-2 focus:outline-[#A954FF]"
                   placeholder="Ingresar contraseña"
+                  required
                 />
                 <Link to='/olvide-password' className="self-end text-xs text-[#776694]">
                   Recuperar contraseña
                 </Link>
                 <button
                   type="submit"
-                  className="bg-[#7064FF] text-white py-[15px] px-2.5"
+                  className="bg-[#7064FF] text-white py-[15px] px-2.5 mt-8"
                 >
                   Ingresar
                 </button>
