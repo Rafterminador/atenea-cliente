@@ -37,7 +37,7 @@ const Login = () => {
         </div>
         <div className="md:flex md:flex-col md:col-span-6 md:col-start-8 md:col-end-12">
           <div className="text-center">
-            <h1 className="text-4xl font-bold mt-10">¡Hola de nuevo!</h1>
+            <h1>¡Hola de nuevo!</h1>
             <p className="text-center mt-4">
               ¿Como ha estado?, es un gusto volver a tenerlo por aca en Atenea
             </p>

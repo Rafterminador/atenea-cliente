@@ -33,6 +33,14 @@ button {
 h1 {
   font-family: Poppins-700;
   font-size: 38px;
+  @apply text-4xl font-bold mt-10;
+}
+
+h2 {
+  font-family: Poppins-700;
+  font-weight: 600;
+  text-align: center;
+  font-size: 22px;
 }
 
 p {

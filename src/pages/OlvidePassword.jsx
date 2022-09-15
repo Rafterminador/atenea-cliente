@@ -35,7 +35,7 @@ const OlvidePassword = () => {
         </div>
         <div className="md:flex md:flex-col md:col-span-6 md:col-start-8 md:col-end-12">
           <div className="text-center">
-            <h1 className="text-4xl font-bold mt-10">¿Olvido su contraseña?</h1>
+            <h2 className="mt-10">¿Olvido su contraseña?</h2>
             <p className="text-center mt-4">
               No se preocupe, suele pasar, Por Favor, ingrese su correo
               elctrónico asociado
@@ -57,7 +57,7 @@ const OlvidePassword = () => {
 
                 <button
                   type="submit"
-                  className="bg-[#7064FF] text-white py-[15px] px-2.5 mt-14"
+                  className="bg-[#7064FF] text-white py-[15px] px-2.5 mt-14 mb-5"
                   onClick={handleValidarCodigo}
                 >
                   Enviar Código
