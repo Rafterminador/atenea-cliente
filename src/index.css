@@ -14,15 +14,17 @@ button {
   border-radius: 20px;
   padding: 10px;
 }
-
+@font-face {
+  font-family: "Open-Sans-400";
+  src: url(./assets/fonts/OpenSans-Regular.ttf);
+}
 @font-face {
   font-family: "Open-Sans-600";
   src: url(./assets/fonts/OpenSans-SemiBold.ttf);
 }
-
 @font-face {
-  font-family: "Open-Sans-400";
-  src: url(./assets/fonts/OpenSans-Regular.ttf);
+  font-family: "Open-Sans-700";
+  src: url(./assets/fonts/OpenSans-Bold.ttf);
 }
 
 @font-face {
@@ -45,7 +47,7 @@ p {
 }
 
 .bordeblur {
-  box-shadow: 0px 0px 3px 3px #eeecff;
+  box-shadow: 0px 0px 8px rgba(112, 100, 255, 0.25);
   border-radius: 0px 0px 20px 20px;
 }
 
@@ -54,13 +56,10 @@ p {
   border-radius: 20px 20px 20px 20px;
 }
 
-
-
 .cf {
   position: relative;
   height: 281px;
   width: 450px;
-
 }
 
 .cf img {
@@ -75,4 +74,13 @@ p {
 
 .cf img.top:hover {
   opacity: 0;
+}
+/* Clases para botones */
+.btntxtsmdesk {
+  /* button-text-small-desktop */
+  font-size: 16px;
+  font-family: Open-Sans-700;
+}
+.text-bold {
+  font-family: Open-Sans-700;
 }
