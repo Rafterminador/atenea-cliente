@@ -84,3 +84,29 @@ p {
 .cf img.top:hover {
   opacity: 0;
 }
+
+.invalid {
+  border: 1px solid #FF5F5F;
+}
+
+.invalid-text {
+  color: #FF5F5F;
+}
+
+.invalid-text-small {
+  color: #FF5F5F;
+  font-size: 12px;
+  padding-left: 10px;
+}
+
+.login-wrapper {
+  position: relative;
+}
+
+#togglePassword {
+  cursor: pointer;
+  padding: 10px;
+  position: absolute;
+  top: 2px;
+  left: 80%;
+}
