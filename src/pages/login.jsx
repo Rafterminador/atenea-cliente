@@ -37,7 +37,7 @@ const Login = () => {
   }
 
   return (
-    <div className="contenedor md:px-16">
+    <div className="contenedor flex flex-row justify-between md:px-16">
       <div className="hidden md:flex md:justify-center md:py-6 md:border-b-2 md:border-[#DBD8FF] md:h-[120px]">
         <img src={Logo} alt="Logo" />
       </div>
@@ -52,7 +52,7 @@ const Login = () => {
         </div>
         <div className="md:flex md:flex-col md:col-span-6 md:col-start-8 md:col-end-12">
           <div className="text-center">
-            <h1 className="text-4xl font-bold mt-10">¡Hola de nuevo!</h1>
+            <h1>¡Hola de nuevo!</h1>
             <p className="text-center mt-4">
               ¿Como ha estado?, es un gusto volver a tenerlo por aca en Atenea
             </p>
@@ -63,12 +63,13 @@ const Login = () => {
                 <label htmlFor="username">Correo</label>
                 <input
                   id="username"
-                  type="text"
+                  type="email"
                   value={username}
                   name="username"
                   onChange={handleChangeUsername}
-                  className="font-normal border-solid border-[1px] border-[#DBD8FF] rounded-[10px] py-2.5 px-2 focus:outline-2 focus:outline-[#A954FF]"
+                  className="font-normal border-solid border-[1px] border-[#DBD8FF] rounded-[10px] py-2.5 px-2 focus:outline-2 focus:outline-[#A954FF] mb-2"
                   placeholder="Ingresar correo"
+                  required
                 />
                 <label htmlFor="password">Contraseña</label>
                 <input
@@ -79,13 +80,14 @@ const Login = () => {
                   onChange={handleChangePassword}
                   className="font-normal border-solid border-[1px] border-[#DBD8FF] rounded-[10px] py-2.5 px-2 focus:outline-2 focus:outline-[#A954FF]"
                   placeholder="Ingresar contraseña"
+                  required
                 />
                 <Link to='/olvide-password' className="self-end text-xs text-[#776694]">
                   Recuperar contraseña
                 </Link>
                 <button
                   type="submit"
-                  className="bg-[#7064FF] text-white py-[15px] px-2.5"
+                  className="bg-[#7064FF] text-white py-[15px] px-2.5 mt-8"
                 >
                   Ingresar
                 </button>
@@ -96,7 +98,9 @@ const Login = () => {
           <div className="mt-3">
             <button className="text-[12.8px]">
               ¿No tiene una cuenta?{" "}
-              <span className="text-[#7064FF]">Registrarse ahora</span>
+              <Link to='/registro/usuario'>
+                <span className="text-[#7064FF]">Registrarse ahora</span>
+              </Link>
             </button>
           </div>
         </div>

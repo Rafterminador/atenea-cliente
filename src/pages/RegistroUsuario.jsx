@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import ImageRegistro from "../assets/images/register.svg";
 import ImageRegistrod from "../assets/images/register-desktop.svg";
+import { Link } from 'react-router-dom'
 
 const RegistroUsuario = () => {
   const [username, setUsername] = useState("");
@@ -35,9 +36,9 @@ const RegistroUsuario = () => {
       </div>
 
       <div className="md:my-[220px] md:w-[576px] md:mr-[1128px]">
-        <div className="flex flex-col text-center md:my-[48px]">
-          <h1 className="md:my-[28px]" >Hola docente</h1>
-          <p>Es un gusto apoyar a una nueva persona</p>
+        <div className="flex flex-col text-center md:my-[48px] mt-4">
+          <h1 className="md:my-[28px]" >Empezemos</h1>
+          <p className="mt-2 mb-8">Está a unos pasos de descubrir una nueva forma de llevar sus labores académicas</p>
         </div>
 
         <form onSubmit={handleSubmit}>
@@ -49,7 +50,7 @@ const RegistroUsuario = () => {
               value={username}
               name="username"
               onChange={handleChangeUsername}
-              className="font-normal border-solid border-[1px] rounded-[10px] py-2.5 px-2 focus:outline-2 focus:outline-[#A954FF]"
+              className="font-normal border-solid border-[1px] rounded-[10px] py-2.5 px-2 focus:outline-2 focus:outline-[#A954FF] mb-2"
               placeholder="Ingresar nombre completo"
             />
             <label htmlFor="useremail">Correo</label>
@@ -59,7 +60,7 @@ const RegistroUsuario = () => {
               value={useremail}
               name="useremail"
               onChange={handleChangeEmail}
-              className="font-normal border-solid border-[1px] rounded-[10px] py-2.5 px-2 focus:outline-2 focus:outline-[#A954FF]"
+              className="font-normal border-solid border-[1px] rounded-[10px] py-2.5 px-2 focus:outline-2 focus:outline-[#A954FF] mb-2"
               placeholder="Ingresar correo"
             />
             <label htmlFor="password">Contraseña</label>
@@ -83,7 +84,9 @@ const RegistroUsuario = () => {
         </button>
         <button className="text-[12.8px]">
           ¿Ya tiene una cuenta?{" "}
-          <span className="text-[#7064FF]">Ingresar ahora</span>
+          <Link to='/login'>
+            <span className="text-[#7064FF]">Ingresar ahora</span>
+          </Link>
         </button>
       </div>
 
