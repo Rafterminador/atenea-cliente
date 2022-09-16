@@ -35,6 +35,14 @@ button {
 h1 {
   font-family: Poppins-700;
   font-size: 38px;
+  @apply text-4xl font-bold mt-10;
+}
+
+h2 {
+  font-family: Poppins-700;
+  font-weight: 600;
+  text-align: center;
+  font-size: 22px;
 }
 
 p {
@@ -94,4 +102,30 @@ p {
 }
 .arrow-animation:hover :first-child {
   transform: translateY(8px);
+}
+
+.invalid {
+  border: 1px solid #FF5F5F;
+}
+
+.invalid-text {
+  color: #FF5F5F;
+}
+
+.invalid-text-small {
+  color: #FF5F5F;
+  font-size: 12px;
+  padding-left: 10px;
+}
+
+.login-wrapper {
+  position: relative;
+}
+
+#togglePassword {
+  cursor: pointer;
+  padding: 10px;
+  position: absolute;
+  top: 2px;
+  left: 80%;
 }

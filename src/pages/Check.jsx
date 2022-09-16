@@ -26,7 +26,7 @@ const Check = () => {
         </div>
         <div className="md:flex md:flex-col md:col-span-6 md:col-start-8 md:col-end-12">
           <div className="text-center">
-            <h1 className="text-4xl font-bold mt-10">Verificación</h1>
+            <h2 className="mt-10">Verificación</h2>
             <p className="text-center mt-4">
               Hemos enviado un código de verificación a su correo, por favor
               revíselo e ingréselo
