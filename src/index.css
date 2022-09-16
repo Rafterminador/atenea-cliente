@@ -8,7 +8,6 @@
 }
 
 html {
-  
   scroll-behavior: smooth;
 }
 
@@ -65,7 +64,7 @@ p {
 }
 
 .bordeblurd {
-  box-shadow: 0px 0px 3px 3px #eeecff;
+  box-shadow: 0px 0px 8px rgba(112, 100, 255, 0.25);
   border-radius: 20px 20px 20px 20px;
 }
 
@@ -127,6 +126,9 @@ p {
   font-size: 3.157rem;
   font-family: Poppins-700;
 }
+.text-bold {
+  font-family: Open-Sans-700;
+}
 
 /* Clases para botones */
 .btntxtsmdesk {
@@ -134,9 +136,12 @@ p {
   font-size: 16px;
   font-family: Open-Sans-700;
 }
-.text-bold {
+.btntxtsmmobl {
+  /* button-text-small-mobile */
+  font-size: 12.8px;
   font-family: Open-Sans-700;
 }
+
 
 /* animaciones */
 .arrow-animation {
