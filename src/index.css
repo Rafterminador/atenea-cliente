@@ -7,6 +7,11 @@
   padding: 0;
 }
 
+html {
+  
+  scroll-behavior: smooth;
+}
+
 button {
   @apply w-full;
   font-family: Open-Sans-600;
@@ -117,10 +122,10 @@ p {
   font-family: Open-Sans-400;
 }
 
-.bigtitdesk{
+.bigtitdesk {
   /* bit title desktop */
   font-size: 3.157rem;
-  font-family:  Poppins-700;
+  font-family: Poppins-700;
 }
 
 /* Clases para botones */

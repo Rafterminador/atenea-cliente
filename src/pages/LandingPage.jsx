@@ -4,8 +4,9 @@ import DesktopImage from "../assets/images/go-to-phone.svg";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import ChevronDownIcon from "../assets/images/chevron_down.svg";
-import FirstImage from "../assets/images/about1.svg";
-import SecundImage from "../assets/images/about2.svg";
+import WhatIsImg from "../assets/images/aboutimg-what-is.svg";
+import ForWhomImg from "../assets/images/aboutimg-for-whom.svg";
+
 import Profile from "../assets/images/profile.svg";
 import AboutProfile from "../components/AboutProfile";
 import "../utils/Redirect";
@@ -73,7 +74,7 @@ const LandingPage = () => {
               puedas utilizar de forma completa nuestra plataforma web académica
             </p>
 
-            <button
+            {/* <button
               className="arrow-animation btntxtsmdesk text-[#4D3483] hover:text-[#FF54B0] w-40 h-11"
               onClick={handleAbout}
             >
@@ -83,12 +84,23 @@ const LandingPage = () => {
                 src={ChevronDownIcon}
                 alt="ChevronDownIcon"
               />
-            </button>
+            </button> */}
+            <a
+              href="#aboutInit"
+              className="arrow-animation btntxtsmdesk text-[#4D3483] hover:text-[#FF54B0] w-40 h-11"
+            >
+              Acerca de Atenea{" "}
+              <img
+                className="mx-auto mt-2"
+                src={ChevronDownIcon}
+                alt="ChevronDownIcon"
+              />
+            </a>
           </div>
         </div>
 
         {/* contenido del about */}
-        <div className="mb-20 mr-8">
+        <div className="mb-20 mr-8" id="aboutInit">
           <div className="mx-[9%] my-[30%]">
             <div className="mb-12 flex flex-row items-center gap-4">
               <h1 className="bigtitdesk m-auto">¿Qué es Atenea?</h1>
@@ -109,12 +121,11 @@ const LandingPage = () => {
         <div className="bg-[#FCFBFF] bordeblur  md:rounded-[20px] md:mb-20">
           <img
             className="hidden mx-auto md:flex"
-            src={FirstImage}
+            src={WhatIsImg}
             alt="firstimage"
           />
         </div>
 
-        
         {/* <div className="items-center">
           <div className="grid grid-cols-3">
             <div className="bg-[#DBD8FF]  h-[4px] w-[720px] mt-[115px] ml-[70px]"></div>
