@@ -110,6 +110,19 @@ p {
   left: 80%;
 }
 
+/* clases para las font */
+.normtxtdesk {
+  /* normal text dessktop */
+  font-size: 1.333rem;
+  font-family: Open-Sans-400;
+}
+
+.bigtitdesk{
+  /* bit title desktop */
+  font-size: 3.157rem;
+  font-family:  Poppins-700;
+}
+
 /* Clases para botones */
 .btntxtsmdesk {
   /* button-text-small-desktop */
