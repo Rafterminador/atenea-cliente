@@ -83,6 +83,33 @@ p {
 .cf img.top:hover {
   opacity: 0;
 }
+
+.invalid {
+  border: 1px solid #ff5f5f;
+}
+
+.invalid-text {
+  color: #ff5f5f;
+}
+
+.invalid-text-small {
+  color: #ff5f5f;
+  font-size: 12px;
+  padding-left: 10px;
+}
+
+.login-wrapper {
+  position: relative;
+}
+
+#togglePassword {
+  cursor: pointer;
+  padding: 10px;
+  position: absolute;
+  top: 2px;
+  left: 80%;
+}
+
 /* Clases para botones */
 .btntxtsmdesk {
   /* button-text-small-desktop */
@@ -102,30 +129,4 @@ p {
 }
 .arrow-animation:hover :first-child {
   transform: translateY(8px);
-}
-
-.invalid {
-  border: 1px solid #FF5F5F;
-}
-
-.invalid-text {
-  color: #FF5F5F;
-}
-
-.invalid-text-small {
-  color: #FF5F5F;
-  font-size: 12px;
-  padding-left: 10px;
-}
-
-.login-wrapper {
-  position: relative;
-}
-
-#togglePassword {
-  cursor: pointer;
-  padding: 10px;
-  position: absolute;
-  top: 2px;
-  left: 80%;
 }

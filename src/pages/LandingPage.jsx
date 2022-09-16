@@ -4,6 +4,7 @@ import DesktopImage from "../assets/images/go-to-phone.svg";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import ChevronDownIcon from "../assets/images/chevron_down.svg";
+import "../utils/Redirect";
 
 const LandingPage = () => {
   const navigate = useNavigate();
