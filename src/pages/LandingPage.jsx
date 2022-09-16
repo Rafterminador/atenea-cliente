@@ -67,11 +67,12 @@ const LandingPage = () => {
               únicamente mediante tu teléfono, por favor ve y hazlo para que
               puedas utilizar de forma completa nuestra plataforma web académica
             </p>
+
             <button
-              className="btntxtsmdesk text-[#4D3483]"
+              className="arrow-animation btntxtsmdesk text-[#4D3483] hover:text-[#8d7db0]"
               onClick={handleAbout}
             >
-              Acerca de Atenea{" "}
+              Acerca de Atenea
               <img
                 className="mx-auto mt-2"
                 src={ChevronDownIcon}

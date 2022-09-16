@@ -84,3 +84,12 @@ p {
 .text-bold {
   font-family: Open-Sans-700;
 }
+
+/* animaciones */
+.arrow-animation :first-child {
+  transition: transform 0.3s ease-out;
+}
+
+.arrow-animation:hover :first-child {
+  transform: translateY(8px);
+}
