@@ -86,10 +86,12 @@ p {
 }
 
 /* animaciones */
-.arrow-animation :first-child {
-  transition: transform 0.3s ease-out;
+.arrow-animation {
+  transition: transform 1000ms ease-out;
 }
-
+.arrow-animation :first-child {
+  transition: transform 400ms ease-out;
+}
 .arrow-animation:hover :first-child {
   transform: translateY(8px);
 }

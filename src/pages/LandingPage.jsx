@@ -69,7 +69,7 @@ const LandingPage = () => {
             </p>
 
             <button
-              className="arrow-animation btntxtsmdesk text-[#4D3483] hover:text-[#8d7db0]"
+              className="arrow-animation btntxtsmdesk text-[#4D3483] hover:text-[#FF54B0] w-40 h-11"
               onClick={handleAbout}
             >
               Acerca de Atenea
