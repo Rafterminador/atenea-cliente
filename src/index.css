@@ -14,15 +14,17 @@ button {
   border-radius: 20px;
   padding: 10px;
 }
-
+@font-face {
+  font-family: "Open-Sans-400";
+  src: url(./assets/fonts/OpenSans-Regular.ttf);
+}
 @font-face {
   font-family: "Open-Sans-600";
   src: url(./assets/fonts/OpenSans-SemiBold.ttf);
 }
-
 @font-face {
-  font-family: "Open-Sans-400";
-  src: url(./assets/fonts/OpenSans-Regular.ttf);
+  font-family: "Open-Sans-700";
+  src: url(./assets/fonts/OpenSans-Bold.ttf);
 }
 
 @font-face {
@@ -53,7 +55,7 @@ p {
 }
 
 .bordeblur {
-  box-shadow: 0px 0px 3px 3px #eeecff;
+  box-shadow: 0px 0px 8px rgba(112, 100, 255, 0.25);
   border-radius: 0px 0px 20px 20px;
 }
 
@@ -62,13 +64,10 @@ p {
   border-radius: 20px 20px 20px 20px;
 }
 
-
-
 .cf {
   position: relative;
   height: 281px;
   width: 450px;
-
 }
 
 .cf img {
@@ -86,15 +85,15 @@ p {
 }
 
 .invalid {
-  border: 1px solid #FF5F5F;
+  border: 1px solid #ff5f5f;
 }
 
 .invalid-text {
-  color: #FF5F5F;
+  color: #ff5f5f;
 }
 
 .invalid-text-small {
-  color: #FF5F5F;
+  color: #ff5f5f;
   font-size: 12px;
   padding-left: 10px;
 }
@@ -109,4 +108,25 @@ p {
   position: absolute;
   top: 2px;
   left: 80%;
+}
+
+/* Clases para botones */
+.btntxtsmdesk {
+  /* button-text-small-desktop */
+  font-size: 16px;
+  font-family: Open-Sans-700;
+}
+.text-bold {
+  font-family: Open-Sans-700;
+}
+
+/* animaciones */
+.arrow-animation {
+  transition: transform 1000ms ease-out;
+}
+.arrow-animation :first-child {
+  transition: transform 400ms ease-out;
+}
+.arrow-animation:hover :first-child {
+  transform: translateY(8px);
 }
