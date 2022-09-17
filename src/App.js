@@ -7,7 +7,8 @@ import { About } from "./pages/About";
 import OlvidePassword from "./pages/OlvidePassword";
 import Check from "./pages/Check";
 import RestorePassword from "./pages/RestorePassword";
-
+import Teachers from "./pages/Teachers";
+import AccountPage from "./components/AccountPage";
 function App() {
   return (
     <BrowserRouter>
@@ -19,6 +20,8 @@ function App() {
         <Route path="/olvide-password" element={<OlvidePassword />} />
         <Route path="/verificacion" element={<Check />} />
         <Route path="/restablecer-password" element={<RestorePassword />} />
+        <Route path="/docentes" element={<Teachers />} />
+        <Route path="/cuenta/docente" element={<AccountPage />} />
       </Routes>
     </BrowserRouter>
   );
