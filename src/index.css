@@ -132,7 +132,7 @@ p {
   font-family: Open-Sans-700;
 }
 
-.btnsmbold {
+.opensansbold {
   font-family: Open-Sans-700;
 }
 
@@ -154,7 +154,7 @@ p {
   transition: transform 400ms ease-out;
 }
 .arrowup-animation:hover :first-child {
-  transform: translateY(-8px);
+  transform: translateY(-4px);
 }
 
 .card {

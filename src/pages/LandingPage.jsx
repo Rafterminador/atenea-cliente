@@ -80,7 +80,7 @@ const LandingPage = () => {
           <div className="my-[270px] mx-[152px]">
             <h1 className="mb-10 bigtitdesk">Bienvenido a Atenea</h1>
             <p className="mb-10 normtxtdesk">
-              <span className="text-bold">¡Hola!, ¿Cómo estás?</span> <br />{" "}
+              <span className="opensansbold">¡Hola!, ¿Cómo estás?</span> <br />{" "}
               Actualmente Atenea está disponible para que puedas acceder
               únicamente mediante tu teléfono, por favor ve y hazlo para que
               puedas utilizar de forma completa nuestra plataforma web académica
@@ -278,7 +278,7 @@ const LandingPage = () => {
         </div>
         <a
           href="#hometop"
-          className="arrowup-animation btnsmbold text-[12.8px] text-[#4D3483] md:hover:text-[#FF54B0] flex flex-col items-center gap-1 md:gap-2 md:text-[16px]"
+          className="arrowup-animation opensansbold text-[12.8px] text-[#4D3483] md:hover:text-[#FF54B0] flex flex-col items-center gap-1 md:gap-2 md:text-[16px]"
         >
           <img className="" src={ChevronUpIcon} alt="ChevronUpIcon" />
           Volver al inicio{" "}
