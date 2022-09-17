@@ -222,12 +222,57 @@ const LandingPage = () => {
           </h1>
           <div className="bg-[#DBD8FF] h-[4px] flex-none order-2 grow rounded-sm"></div>
         </div>
-        <div className="grid  grid-cols-2 md:grid-cols-4 items-center">
-          {/* <div className="gap-[40px]"> */}
+        {/* <div className="grid grid-cols-2 md:grid-cols-4 items-center"> */}
+        {/* <div className="gap-[40px]"> */}
+        {/* <div className="flex flex-row items-center gap-8 p-0 justify-between flex-wrap"> */}
+        <div className="grid grid-cols-2 gap-x-3 gap-y-6 md:grid-cols-4 md:gap-x-8 md:gap-y-10">
           <AboutProfile
+            githublink={"https://github.com/Allecan"}
             img={ProfileImg}
-            nombre={"Kelvin Cano"}
+            name={"Kelvin Cano"}
             rol={"Scrum Master & UI / UX Designer"}
+          />
+          <AboutProfile
+            githublink={"https://github.com/Yossu502"}
+            img={ProfileImg}
+            name={"Josué Méndez "}
+            rol={"Product Owner & Backend Developer"}
+          />
+          <AboutProfile
+            githublink={"https://github.com/Rafterminador"}
+            img={ProfileImg}
+            name={"Fernando Juárez"}
+            rol={"Frontend Manager & Developer"}
+          />
+          <AboutProfile
+            githublink={"https://github.com/danieltistoj"}
+            img={ProfileImg}
+            name={"Daniel Tistoj"}
+            rol={"Backend Manager & Developer"}
+          />
+          <AboutProfile
+            githublink={"https://github.com/luisro30 "}
+            img={ProfileImg}
+            name={"Luis Rodríguez"}
+            rol={"Frontend Developer"}
+          />
+          <AboutProfile
+            githublink={"https://github.com/Aludor96"}
+            img={ProfileImg}
+            name={"Manuel Villagrán"}
+            rol={"Frontend Developer"}
+          />
+          <AboutProfile
+            githublink={"https://github.com/Fredy720"}
+            img={ProfileImg}
+            name={"Fredy Mateo"}
+            rol={"Frontend Developer"}
+          />
+          <AboutProfile
+            githublink={"https://github.com/JnyAlx100"}
+            img={ProfileImg}
+            name={"Jonathan Martínez"}
+            rol={"Backend Developer"}
           />
         </div>
       </div>
