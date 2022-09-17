@@ -1,13 +1,12 @@
-import React from 'react'
-import FirstImage from "../assets/images/about1.svg";
-import SecundImage from "../assets/images/about2.svg";
+import React from "react";
+
 import Profile from "../assets/images/profile.svg";
 import AboutProfile from "../components/AboutProfile";
 
 const About = () => {
   return (
     <div>
-      <div className="grid grid-cols-2 items-center">
+      {/* <div className="grid grid-cols-2 items-center">
         <div className="flex flex-col w-[880px] h-[880px] ml-[144px] ">
           <div className="grid grid-cols-2">
             <h1 className="text-[51px] font-bold mt-[260px]">
@@ -81,9 +80,9 @@ const About = () => {
         <div className="w-[880px] h-[880px] mt-[110px] bordeblurd">
           <img src={SecundImage} alt="firstimage" />
         </div>
-      </div>
+      </div> */}
 
-      <div className="items-center">
+      {/* <div className="items-center">
         <div className="grid grid-cols-3">
           <div className="bg-[#DBD8FF]  h-[4px] w-[720px] mt-[115px] ml-[70px]"></div>
           <h1 className="text-center font-bold text-[51px] my-[80px]">
@@ -92,20 +91,50 @@ const About = () => {
           <div className="bg-[#DBD8FF] h-[4px] w-[720px] mt-[116px] ml-[-175px]"></div>
         </div>
 
-        <div className="grid grid-cols-4 items-center gap-[40px]">
-
-        <AboutProfile ruta={Profile} nombre = {"Kelvin Cano"} rol = {"Scrum Master & UI / UX Designer"} />
-
-        <AboutProfile ruta={Profile} nombre = {"Josué Méndez"} rol = {"Product Owner & Backend Developer"} /> 
-        <AboutProfile ruta={Profile} nombre = {"Fernando Juárez"} rol = {"Frontend Manager"} /> 
-        <AboutProfile ruta={Profile} nombre = {"Daniel Tistoj"} rol = {"Backend Manager"} />  
-        <AboutProfile ruta={Profile} nombre = {"Luis Rodríguez"} rol = {"Frontend Developer"} /> 
-        <AboutProfile ruta={Profile} nombre = {"Manuel Villagrán"} rol = {"Frontend Developer"} /> 
-        <AboutProfile ruta={Profile} nombre = {"Fredy Mateo"} rol = {"Frontend Developer"} /> 
-        <AboutProfile ruta={Profile} nombre = {"Jonathan Martínez"} rol = {"Backend Developer"} /> 
-          
-        </div>
+        <AboutProfile
+          ruta={Profile}
+          nombre={"Josué Méndez"}
+          rol={"Product Owner & Backend Developer"}
+        />
+        <AboutProfile
+          ruta={Profile}
+          nombre={"Fernando Juárez"}
+          rol={"Frontend Manager"}
+        />
+        <AboutProfile
+          ruta={Profile}
+          nombre={"Daniel Tistoj"}
+          rol={"Backend Manager"}
+        />
+        <AboutProfile
+          ruta={Profile}
+          nombre={"Luis Rodríguez"}
+          rol={"Frontend Developer"}
+        />
+        <AboutProfile
+          ruta={Profile}
+          nombre={"Manuel Villagrán"}
+          rol={"Frontend Developer"}
+        />
+        <AboutProfile
+          ruta={Profile}
+          nombre={"Fredy Mateo"}
+          rol={"Frontend Developer"}
+        />
+        <AboutProfile
+          ruta={Profile}
+          nombre={"Jonathan Martínez"}
+          rol={"Backend Developer"}
+        />
+      </div> */}
+      <div>
+        
       </div>
+      <AboutProfile
+        img={Profile}
+        nombre={"Kelvin Cano"}
+        rol={"Scrum Master & UI / UX Designer"}
+      />
     </div>
   );
 };

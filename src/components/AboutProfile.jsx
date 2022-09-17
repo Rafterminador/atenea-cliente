@@ -1,29 +1,27 @@
-import React from 'react'
-import Ghover from "../assets/images/githubhover.svg";
+import React from "react";
+import GithubImage from "../assets/images/img-about-github.svg";
 
-const AboutProfile = ( props ) => {
-
-console.log (props.ruta)
+const AboutProfile = (props) => {
+  console.log(props.ruta);
 
   return (
-
-    <div className="flex flex-col items-center ml-[-14px]">
-    <div className="cf flex items-center">
-      <img className="bottom" src={Ghover} alt="git" />
-     <img className="top" src={props.ruta} alt="avatar" />
+    <div className="flex flex-col items-center gap-2 md:gap-6">
+      <div className="flex-grow-0 card">
+        <img className="img-top" src={props.img} alt="profile_image" />
+        <img className="img-back" src={GithubImage} alt="github" />
+      </div>
+      <div className="flex flex-col items-center order-1 self-stretch flex-grow-0 p-0">
+        <h1 className="text-base titlesemibold md:text-[1.777rem] md:leading-[43px]">
+          {props.nombre}
+        </h1>
+        <p className="smtxt text-center md:text-[21.33px] md:leading-[29px]">
+          {props.rol}
+        </p>
+      </div>
     </div>
-    <p className="font-bold text-[28.43px] mt-[20px]">{props.nombre}</p>
-    <p className="font-sans text-[21.33px]">
-    {props.rol}
-    </p>
-  </div>
+  );
+};
 
+AboutProfile.propTypes = {};
 
-
-
-  )
-}
-
-AboutProfile.propTypes = {}
-
-export default AboutProfile
+export default AboutProfile;

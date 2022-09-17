@@ -3,11 +3,11 @@ import ImagenPrincipal from "../assets/images/landing.svg";
 import DesktopImage from "../assets/images/go-to-phone.svg";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
-import ChevronDownIcon from "../assets/images/chevron_down.svg";
-import WhatIsImg from "../assets/images/aboutimg-what-is.svg";
-import ForWhomImg from "../assets/images/aboutimg-for-whom.svg";
+import ChevronDownIcon from "../assets/images/icon-chevrondown.svg";
+import WhatIsImg from "../assets/images/img-about-whatis.svg";
+import ForWhomImg from "../assets/images/img-about-forwhom.svg";
 
-import Profile from "../assets/images/profile.svg";
+import ProfileImg from "../assets/images/img-about-profile.svg";
 import AboutProfile from "../components/AboutProfile";
 import "../utils/Redirect";
 
@@ -18,9 +18,6 @@ const LandingPage = () => {
   }
   function handleRegister() {
     navigate("registro/usuario");
-  }
-  function handleAbout() {
-    navigate("about");
   }
   return (
     <>
@@ -123,7 +120,11 @@ const LandingPage = () => {
           </div>
         </div>
         <div className="bg-[#FCFBFF] bordeblurd mb-6 md:mb-0">
-          <img className="mx-auto md:flex" src={WhatIsImg} alt="WhatIsImg" />
+          <img
+            className="mx-auto -scale-x-100 md:flex md:scale-x-100"
+            src={WhatIsImg}
+            alt="WhatIsImg"
+          />
         </div>
         <p className="text-center md:hidden">
           Atenea es un proyecto social pensado y desarrollado para apoyar y
@@ -212,6 +213,23 @@ const LandingPage = () => {
           este proyecto con las personas de la Escuela a lo largo de 5 meses,
           los cuales dieron fruto a esta plataforma web.
         </p>
+      </div>
+      <div className="mx-5 flex flex-col md:mx-16 mb-8 md:mb-20">
+        <div className="mb-6 md:mb-12 flex flex-row items-center gap-4">
+          <div className="bg-[#DBD8FF] h-[4px] flex-none order-0 grow rounded-sm"></div>
+          <h1 className="m-auto text-[1.777rem] order-1 md:text-[3.157rem]">
+            El Equipo
+          </h1>
+          <div className="bg-[#DBD8FF] h-[4px] flex-none order-2 grow rounded-sm"></div>
+        </div>
+        <div className="grid  grid-cols-2 md:grid-cols-4 items-center">
+          {/* <div className="gap-[40px]"> */}
+          <AboutProfile
+            img={ProfileImg}
+            nombre={"Kelvin Cano"}
+            rol={"Scrum Master & UI / UX Designer"}
+          />
+        </div>
       </div>
     </>
   );
