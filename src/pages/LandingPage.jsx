@@ -1,15 +1,16 @@
 import React from "react";
-import ImagenPrincipal from "../assets/images/landing.svg";
-import DesktopImage from "../assets/images/go-to-phone.svg";
+import "../utils/Redirect";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
+import AboutProfile from "../components/AboutProfile";
+
 import ChevronDownIcon from "../assets/images/icon-chevrondown.svg";
+import ChevronUpIcon from "../assets/images/icon-chevronup.svg";
+import ImagenPrincipal from "../assets/images/landing.svg";
+import DesktopImage from "../assets/images/go-to-phone.svg";
 import WhatIsImg from "../assets/images/img-about-whatis.svg";
 import ForWhomImg from "../assets/images/img-about-forwhom.svg";
-
 import ProfileImg from "../assets/images/img-about-profile.svg";
-import AboutProfile from "../components/AboutProfile";
-import "../utils/Redirect";
 
 const LandingPage = () => {
   const navigate = useNavigate();
@@ -23,7 +24,10 @@ const LandingPage = () => {
     <>
       {" "}
       <Navbar />
-      <div className="mx-5 min-h-screen flex flex-col justify-between md:mx-16 md:grid md:grid-cols-2 md:mt-10">
+      <div
+        className="mx-5 min-h-screen flex flex-col justify-between md:mx-16 md:grid md:grid-cols-2 md:mt-10"
+        id="hometop"
+      >
         {/* div de la imagen */}
         <div className="bg-[#FCFBFF] bordeblur md:rounded-[20px] md:mb-20">
           <img
@@ -214,7 +218,7 @@ const LandingPage = () => {
           los cuales dieron fruto a esta plataforma web.
         </p>
       </div>
-      <div className="mx-5 flex flex-col md:mx-16 mb-8 md:mb-20">
+      <div className="mx-5 flex flex-col mb-5 md:mx-16 md:mb-10">
         <div className="mb-6 md:mb-12 flex flex-row items-center gap-4">
           <div className="bg-[#DBD8FF] h-[4px] flex-none order-0 grow rounded-sm"></div>
           <h1 className="m-auto text-[1.777rem] order-1 md:text-[3.157rem]">
@@ -222,10 +226,7 @@ const LandingPage = () => {
           </h1>
           <div className="bg-[#DBD8FF] h-[4px] flex-none order-2 grow rounded-sm"></div>
         </div>
-        {/* <div className="grid grid-cols-2 md:grid-cols-4 items-center"> */}
-        {/* <div className="gap-[40px]"> */}
-        {/* <div className="flex flex-row items-center gap-8 p-0 justify-between flex-wrap"> */}
-        <div className="grid grid-cols-2 gap-x-3 gap-y-6 md:grid-cols-4 md:gap-x-8 md:gap-y-10">
+        <div className="grid grid-cols-2 gap-x-3 gap-y-6 mb-6 md:grid-cols-4 md:gap-x-8 md:gap-y-10 md:mb-10">
           <AboutProfile
             githublink={"https://github.com/Allecan"}
             img={ProfileImg}
@@ -275,6 +276,13 @@ const LandingPage = () => {
             rol={"Backend Developer"}
           />
         </div>
+        <a
+          href="#hometop"
+          className="arrowup-animation btnsmbold text-[12.8px] text-[#4D3483] md:hover:text-[#FF54B0] flex flex-col items-center gap-1 md:gap-2 md:text-[16px]"
+        >
+          <img className="" src={ChevronUpIcon} alt="ChevronUpIcon" />
+          Volver al inicio{" "}
+        </a>
       </div>
     </>
   );

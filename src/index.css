@@ -72,8 +72,6 @@ p {
   border-radius: 20px 20px 20px 20px;
 }
 
-
-
 .invalid {
   border: 1px solid #ff5f5f;
 }
@@ -134,6 +132,10 @@ p {
   font-family: Open-Sans-700;
 }
 
+.btnsmbold {
+  font-family: Open-Sans-700;
+}
+
 /* animaciones */
 .arrow-animation {
   transition: transform 1000ms ease-out;
@@ -145,8 +147,18 @@ p {
   transform: translateY(8px);
 }
 
+.arrowup-animation {
+  transition: transform 1000ms ease-out;
+}
+.arrowup-animation :first-child {
+  transition: transform 400ms ease-out;
+}
+.arrowup-animation:hover :first-child {
+  transform: translateY(-8px);
+}
+
 .card {
-  position: relative; 
+  position: relative;
 }
 .card img.img-back {
   position: absolute;
