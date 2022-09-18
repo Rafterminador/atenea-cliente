@@ -110,3 +110,142 @@ p {
   top: 2px;
   left: 80%;
 }
+
+.contenedor-admin {
+  margin-top: 16px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.search-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 8px;
+  width: 40px;
+  height: 40px;
+  background: #DBD8FF;
+  border-radius: 15px 0px 0px 15px;
+  position: absolute;
+}
+
+.input-search-bar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 8px 16px 8px 48px;
+
+  background: #FFFFFF;
+
+  box-shadow: 0px 0px 8px rgba(112, 100, 255, 0.25);
+  border-radius: 15px;
+  @apply w-full;
+}
+
+.input-search-bar:focus {
+  outline-color: #A954FF;
+}
+
+.input-search-container:focus-within .search-container {
+  border-top: 1px solid #A954FF;
+  border-bottom: 1px solid #A954FF;
+  border-left: 1px solid #A954FF;
+  background-color: white;
+}
+
+.h1-administracion {
+  color: #4D3483;
+  font-size: 22px;
+  font-family: Poppins-700;
+  font-weight: 600;
+  @apply mt-0;
+  margin-top: 16px;
+}
+
+.p-bold-administracion {
+  font-family: Open-Sans-600;
+  font-size: 16px;
+}
+
+.p-info-administracion {
+  color: #9695A2;
+  font-size: 12px;
+  font-family: Open-Sans-400;
+}
+
+hr.administracion {
+  border: 1px solid #DBD8FF;
+  border-radius: 1px;
+  margin-top: 8px;
+}
+
+.grade-container {
+  margin-top: 8px;
+}
+
+.add-button {
+  background: #776694;
+  border-radius: 16px;
+  padding: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 48px;
+  height: 48px;
+  position: fixed;
+  bottom: 0px;
+  left: calc(100% - 60px);
+}
+
+.p-purple {
+  color: #7064FF;
+  font-size: 12px;
+}
+
+.label-purple {
+  font-family: Open-Sans-400;
+  font-size: 16px;
+  color: #4D3483;
+  margin-top: 16px;
+  display: inline-block;
+  margin-bottom: 8px;
+}
+
+.span-field {
+  color: #FF54B0;
+  margin-left: 4px;
+}
+
+
+.combo-box {
+  cursor: pointer;
+  @apply px-2 py-2.5;
+  outline: none;
+  outline-color: #A954FF;
+  outline-width: 2px;
+  border: solid 1px #DBD8FF;
+  border-radius: 10px;
+}
+
+.combo-box-active {
+  border-radius: 0;
+  border: 2px solid #A954FF;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.combo-box-container {
+  padding-top: 8px;
+  margin-top: -8px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  border: 2px solid #A954FF;
+  overflow-y: scroll;
+  height: 148px;
+}
+
+.button-purple {
+  color: #FFF;
+  background: #7064FF;
+}

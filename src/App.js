@@ -7,7 +7,8 @@ import { About } from "./pages/About";
 import OlvidePassword from "./pages/OlvidePassword";
 import Check from "./pages/Check";
 import RestorePassword from "./pages/RestorePassword";
-
+import Grades from "./pages/Grades";
+import NewGrade from "./pages/NewGrade";
 function App() {
   return (
     <BrowserRouter>
@@ -19,6 +20,8 @@ function App() {
         <Route path="/olvide-password" element={<OlvidePassword />} />
         <Route path="/verificacion" element={<Check />} />
         <Route path="/restablecer-password" element={<RestorePassword />} />
+        <Route path="/grades/" element={<Grades />} />
+        <Route path="/grades/create" element={<NewGrade />} />
       </Routes>
     </BrowserRouter>
   );
