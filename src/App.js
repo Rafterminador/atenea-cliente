@@ -7,8 +7,11 @@ import { About } from "./pages/About";
 import OlvidePassword from "./pages/OlvidePassword";
 import Check from "./pages/Check";
 import RestorePassword from "./pages/RestorePassword";
-import Teachers from "./pages/Teachers";
+import Teachers from "./pages/PanelTeachers";
 import AccountPage from "./components/AccountPage";
+import NuevosDocentes from "./pages/NewTeachers";
+import DocentesActivos from "./pages/DocentesActivos";
+import DocentesInactivos from "./pages/DocentesInactivos";
 function App() {
   return (
     <BrowserRouter>
@@ -22,6 +25,9 @@ function App() {
         <Route path="/restablecer-password" element={<RestorePassword />} />
         <Route path="/docentes" element={<Teachers />} />
         <Route path="/cuenta/docente" element={<AccountPage />} />
+        <Route path="/nuevos-docentes" element={<NuevosDocentes />} />
+        <Route path="/docentes-activos" element={<DocentesActivos />} />
+        <Route path="/docentes-inactivos" element={<DocentesInactivos />} />
       </Routes>
     </BrowserRouter>
   );

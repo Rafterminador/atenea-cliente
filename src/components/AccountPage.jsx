@@ -5,10 +5,10 @@ import Email from "../../src/assets/images/mail.svg";
 import Tel from "../../src/assets/images/tel.svg";
 import GradoIcon from "../../src/assets/images/classes.svg";
 
-const AccountPage = () => {
+const AccountPage = ({id, name, tel, grados}) => {
   return (
     <section className="h-screen">
-      <div className="m-6 p-4 flex justify-between border-b  border-b-[#DBD8FF]">
+      <div className="p-4 flex justify-between border-b  border-b-[#DBD8FF]">
         <Link to='/docentes'>
           <div className="flex space-x-2">
             <img src={arrowLeft} />
