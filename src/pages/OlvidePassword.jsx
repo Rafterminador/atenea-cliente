@@ -6,7 +6,7 @@ const OlvidePassword = () => {
   const [username, setUsername] = useState("");
   const navigate = useNavigate();
   const handleValidarCodigo = () => {
-    navigate("/check_email");
+    navigate("/check-email");
   };
 
   function handleSubmit(e) {

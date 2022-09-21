@@ -25,17 +25,10 @@ const LandingPage = () => {
     <>
       {" "}
       <Navbar />
-      <div
-        className="mx-5 min-h-screen flex flex-col justify-between md:mx-16 md:grid md:grid-cols-2 md:mt-10"
-        id="hometop"
-      >
+      <div className="mx-5 min-h-screen flex flex-col justify-between md:mx-16 md:grid md:grid-cols-2 md:mt-10"  id="hometop">
         {/* div de la imagen */}
         <div className="bg-[#FCFBFF] bordeblur md:rounded-[20px] md:mb-20">
-          <img
-            className="md:hidden mx-auto"
-            src={WelcomeImg}
-            alt="dashboard"
-          />
+          <img className="md:hidden mx-auto" src={WelcomeImg} alt="dashboard" />
           <img
             className="hidden mx-auto md:flex"
             src={GotophoneImage}

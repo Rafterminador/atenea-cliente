@@ -17,8 +17,8 @@ function App() {
         <Route path="/" element={<LandingPage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<RegistroUsuario />} />
-        <Route path="/reset_password" element={<OlvidePassword />} />
-        <Route path="/check_email" element={<Check />} />
+        <Route path="/reset-password" element={<OlvidePassword />} />
+        <Route path="/check-email" element={<Check />} />
 
         <Route path="/grades/" element={<Grades />} />
         <Route path="/grades/create" element={<NewGrade />} />
