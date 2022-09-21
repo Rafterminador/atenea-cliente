@@ -25,7 +25,7 @@ const RegistroUsuario = () => {
   }
 
   return (
-    <div className="mx-5 min-h-screen flex flex-col justify-between gap-8 md:hidden">
+    <div className="mx-5 min-h-screen flex flex-col justify-between gap-10 md:hidden">
       {/* div de la imagen */}
       <div className="bg-[#FCFBFF] bordeblur">
         <img className="mx-auto" src={ImageRegistro} alt="Registros" />
@@ -41,8 +41,7 @@ const RegistroUsuario = () => {
       </div>
 
       {/* div del formulario */}
-
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} id="register-form">
         <div className="flex flex-col gap-4">
           <div className="flex flex-col gap-2">
             <label className="text-[#4D3483] sml-title" htmlFor="username">
@@ -93,7 +92,8 @@ const RegistroUsuario = () => {
       <div className="flex flex-col gap-4 mb-5">
         <button
           type="submit"
-          className=" min-w-full bg-[#7064FF] text-white nrm-button "
+          form="register-form"
+          className="bg-[#7064FF] text-white nrm-button"
         >
           Registrarse
         </button>
