@@ -1,7 +1,7 @@
 ["DOMContentLoaded", "resize"].forEach((evt) =>
   window.addEventListener(evt, function () {
     let pathname = window.location.pathname;
-    if (pathname === "/registro/usuario") {
+    if (pathname === "/register") {
       if (window.innerWidth >= 768) {
         window.location.href = "/";
       }
@@ -9,15 +9,11 @@
       if (window.innerWidth >= 768) {
         window.location.href = "/";
       }
-    } else if (pathname === "/olvide-password") {
+    } else if (pathname === "/reset-password") {
       if (window.innerWidth >= 768) {
         window.location.href = "/";
       }
-    } else if (pathname === "/verificacion") {
-      if (window.innerWidth >= 768) {
-        window.location.href = "/";
-      }
-    } else if (pathname === "/restablecer-password") {
+    } else if (pathname === "/check-email") {
       if (window.innerWidth >= 768) {
         window.location.href = "/";
       }
