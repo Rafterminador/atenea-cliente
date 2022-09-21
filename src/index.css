@@ -18,14 +18,17 @@ button {
   border-radius: 20px;
   padding: 10px;
 }
+
 @font-face {
   font-family: "Open-Sans-400";
   src: url(./assets/fonts/OpenSans-Regular.ttf);
 }
+
 @font-face {
   font-family: "Open-Sans-600";
   src: url(./assets/fonts/OpenSans-SemiBold.ttf);
 }
+
 @font-face {
   font-family: "Open-Sans-700";
   src: url(./assets/fonts/OpenSans-Bold.ttf);
@@ -35,6 +38,7 @@ button {
   font-family: "Poppins-700";
   src: url(./assets/fonts/Poppins-Bold.ttf);
 }
+
 @font-face {
   font-family: "Poppins-600";
   src: url(./assets/fonts/Poppins-SemiBold.ttf);
@@ -98,6 +102,199 @@ p {
   left: 80%;
 }
 
+.contenedor-admin {
+  margin-top: 16px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.search-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 8px;
+  width: 40px;
+  height: 40px;
+  background: #DBD8FF;
+  border-radius: 15px 0px 0px 15px;
+  position: absolute;
+}
+
+.input-search-bar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 8px 16px 8px 48px;
+
+  background: #FFFFFF;
+
+  box-shadow: 0px 0px 8px rgba(112, 100, 255, 0.25);
+  border-radius: 15px;
+  @apply w-full;
+}
+
+.input-search-bar:focus {
+  outline-color: #A954FF;
+}
+
+.input-search-container:focus-within .search-container {
+  border-top: 1px solid #A954FF;
+  border-bottom: 1px solid #A954FF;
+  border-left: 1px solid #A954FF;
+  background-color: white;
+}
+
+.h1-administracion {
+  color: #4D3483;
+  font-size: 22px;
+  font-family: Poppins-700;
+  font-weight: 600;
+  @apply mt-0;
+  margin-top: 16px;
+}
+
+.p-bold-administracion {
+  font-family: Open-Sans-600;
+  font-size: 16px;
+}
+
+.p-info-administracion {
+  color: #9695A2;
+  font-size: 12px;
+  font-family: Open-Sans-400;
+}
+
+hr.administracion {
+  border: 1px solid #DBD8FF;
+  border-radius: 1px;
+  margin-top: 8px;
+}
+
+.grade-container {
+  margin-top: 8px;
+}
+
+.add-button {
+  background: #776694;
+  border-radius: 16px;
+  padding: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 48px;
+  height: 48px;
+  position: fixed;
+  bottom: 0px;
+  left: calc(100% - 60px);
+}
+
+.p-purple {
+  color: #7064FF;
+  font-size: 12px;
+}
+
+.label-purple {
+  font-size: 16px;
+  color: #4D3483;
+  margin-top: 16px;
+  display: inline-block;
+  margin-bottom: 8px;
+  font-family: Open-Sans-600;
+}
+
+.span-field {
+  color: #FF54B0;
+  margin-left: 4px;
+}
+
+
+.combo-box {
+  cursor: pointer;
+  @apply px-2 py-2.5;
+  outline: none;
+  outline-color: #A954FF;
+  outline-width: 2px;
+  border: solid 1px #DBD8FF;
+  border-radius: 10px;
+}
+
+.combo-box-active {
+  border-radius: 0;
+  border: 2px solid #A954FF;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.combo-box-container {
+  padding-top: 8px;
+  margin-top: -8px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  border: 2px solid #A954FF;
+  overflow-y: scroll;
+  height: 148px;
+}
+
+.button-purple {
+  color: #FFF;
+  background: #7064FF;
+}
+
+.no-border {
+  border: 0 !important;
+}
+
+.success {
+  background: #85ED61;
+}
+
+.container-grade {
+  box-shadow: 0px 0px 8px rgba(112, 100, 255, 0.25);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 16px;
+}
+
+.h2-administracion {
+  color: #4D3483;
+  font-size: 16px;
+  font-family: Open-Sans-600;
+}
+
+.delete-button {
+  background-color: #FFF;
+  color: #FF54B0;
+  border: 2px solid #FF54B0;
+}
+
+.sweet-cancel-button {
+  background: #FFFFFF;
+
+  border: 2px solid #7064FF;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 122px;
+}
+
+.sweet-confirmation-button {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  background: #7064FF;
+  border-radius: 10px;
+  width: 98px;
+  margin-right: 20px;
+}
+
 /* clases para las font */
 .normtxtdesk {
   /* normal text dessktop */
@@ -111,6 +308,7 @@ p {
   font-size: 3.157rem;
   font-family: Poppins-700;
 }
+
 .titlesemibold {
   font-family: Poppins-600;
 }
@@ -120,12 +318,14 @@ p {
   /* 12.00px */
   font-family: Open-Sans-400;
 }
+
 /* Clases para botones */
 .btntxtsmdesk {
   /* button-text-small-desktop */
   font-size: 16px;
   font-family: Open-Sans-700;
 }
+
 .btntxtsmmobl {
   /* button-text-small-mobile */
   font-size: 12.8px;
@@ -140,9 +340,11 @@ p {
 .arrow-animation {
   transition: transform 1000ms ease-out;
 }
+
 .arrow-animation :first-child {
   transition: transform 400ms ease-out;
 }
+
 .arrow-animation:hover :first-child {
   transform: translateY(8px);
 }
@@ -150,9 +352,11 @@ p {
 .arrowup-animation {
   transition: transform 1000ms ease-out;
 }
+
 .arrowup-animation :first-child {
   transition: transform 400ms ease-out;
 }
+
 .arrowup-animation:hover :first-child {
   transform: translateY(-4px);
 }
@@ -160,6 +364,7 @@ p {
 .card {
   position: relative;
 }
+
 .card img.img-back {
   position: absolute;
   top: 0;
@@ -171,6 +376,7 @@ p {
   background-color: white;
   transition: opacity 400ms ease-in-out;
 }
+
 .card:hover img.img-back {
   opacity: 1;
 }
