@@ -5,7 +5,7 @@ import { Login } from "./pages/login";
 import { RegistroUsuario } from "./pages/RegistroUsuario";
 import OlvidePassword from "./pages/OlvidePassword";
 import Check from "./pages/Check";
-import RestorePassword from "./pages/RestorePassword";
+// import RestorePassword from "./pages/RestorePassword";
 
 function App() {
   return (
@@ -13,10 +13,10 @@ function App() {
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/registro/usuario" element={<RegistroUsuario />} />      
-        <Route path="/olvide-password" element={<OlvidePassword />} />
-        <Route path="/verificacion" element={<Check />} />
-        <Route path="/restablecer-password" element={<RestorePassword />} />
+        <Route path="/register" element={<RegistroUsuario />} />      
+        <Route path="/reset_password" element={<OlvidePassword />} />
+        <Route path="/check_email" element={<Check />} />
+        {/* <Route path="/restablecer-password" element={<RestorePassword />} /> */}
       </Routes>
     </BrowserRouter>
   );

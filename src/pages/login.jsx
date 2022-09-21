@@ -3,8 +3,8 @@ import ImageLogin from "../assets/images/login-mobile.svg";
 import ImageLoginDesktop from "../assets/images/login-desktop.svg";
 import ImageLoginError from "../assets/images/login-error.svg"
 import ImageWarning from "../assets/images/warning.svg"
-import ImageShowPassword from "../assets/images/show-password.svg"
-import ImageHiddePassword from "../assets/images/hidde-password.svg"
+import ImageShowPassword from "../assets/images/icon-showpassword.svg"
+import ImageHiddePassword from "../assets/images/icon-hidepassword.svg"
 import Logo from "../assets/images/logo.svg";
 import { Link } from 'react-router-dom'
 import { Firebase } from "../utils/Firebase";
@@ -128,7 +128,7 @@ const Login = () => {
                   <img src={ImageWarning} alt="warning information" />
                   <p className="invalid-text-small ">Contraseña incorrecta, por favor intentelo de nuevo o recupere su contraseña</p>
                 </div>
-                <Link to='/olvide-password' className="self-end text-xs text-[#776694]">
+                <Link to='/reset_password' className="self-end text-xs text-[#776694]">
                   Recuperar contraseña
                 </Link>
                 <button
@@ -144,7 +144,7 @@ const Login = () => {
           <div className="mt-3">
             <button className="text-[12.8px]">
               ¿No tiene una cuenta?{" "}
-              <Link to='/registro/usuario'>
+              <Link to='/register'>
                 <span className="text-[#7064FF]">Registrarse ahora</span>
               </Link>
             </button>

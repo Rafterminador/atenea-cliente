@@ -19,7 +19,7 @@ const LandingPage = () => {
     navigate("login");
   }
   function handleRegister() {
-    navigate("registro/usuario");
+    navigate("register");
   }
   return (
     <>
