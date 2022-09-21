@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import ImageRegistro from "../assets/images/register.svg";
 import ImageRegistrod from "../assets/images/register-desktop.svg";
-import { Link } from 'react-router-dom'
+import { Link } from "react-router-dom";
 
 const RegistroUsuario = () => {
   const [username, setUsername] = useState("");
@@ -37,8 +37,11 @@ const RegistroUsuario = () => {
 
       <div className="md:my-[220px] md:w-[576px] md:mr-[1128px]">
         <div className="flex flex-col text-center md:my-[48px] mt-4">
-          <h1 className="md:my-[28px]" >Empezemos</h1>
-          <p className="mt-2 mb-8">Está a unos pasos de descubrir una nueva forma de llevar sus labores académicas</p>
+          <h1 className="md:my-[28px]">Empezemos</h1>
+          <p className="mt-2 mb-8">
+            Está a unos pasos de descubrir una nueva forma de llevar sus labores
+            académicas
+          </p>
         </div>
 
         <form onSubmit={handleSubmit}>
@@ -84,13 +87,11 @@ const RegistroUsuario = () => {
         </button>
         <button className="text-[12.8px]">
           ¿Ya tiene una cuenta?{" "}
-          <Link to='/login'>
+          <Link to="/login">
             <span className="text-[#7064FF]">Ingresar ahora</span>
           </Link>
         </button>
       </div>
-
-      <div></div>
     </div>
   );
 };
