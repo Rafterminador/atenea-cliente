@@ -204,12 +204,12 @@ hr.administracion {
 }
 
 .label-purple {
-  font-family: Open-Sans-400;
   font-size: 16px;
   color: #4D3483;
   margin-top: 16px;
   display: inline-block;
   margin-bottom: 8px;
+  font-family: Open-Sans-600;
 }
 
 .span-field {
@@ -248,4 +248,58 @@ hr.administracion {
 .button-purple {
   color: #FFF;
   background: #7064FF;
+}
+
+.no-border {
+  border: 0 !important;
+}
+
+.success {
+  background: #85ED61;
+}
+
+.container-grade {
+  box-shadow: 0px 0px 8px rgba(112, 100, 255, 0.25);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 16px;
+}
+
+.h2-administracion {
+  color: #4D3483;
+  font-size: 16px;
+  font-family: Open-Sans-600;
+}
+
+.delete-button {
+  background-color: #FFF;
+  color: #FF54B0;
+  border: 2px solid #FF54B0;
+}
+
+.sweet-cancel-button {
+  background: #FFFFFF;
+
+  border: 2px solid #7064FF;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 122px;
+}
+
+.sweet-confirmation-button {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  background: #7064FF;
+  border-radius: 10px;
+  width: 98px;
+  margin-right: 20px;
 }

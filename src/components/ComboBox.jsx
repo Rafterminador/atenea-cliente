@@ -8,10 +8,13 @@ const ComboBox = (props) => {
     const [active, setActive] = useState("")
     const [hidden, setHidden] = useState("hidden")
     const [dropImage, setDropImage] = useState(DropDown)
-    const [inputValue, setInputValue] = useState('')
+    const [inputValue, setInputValue] = useState(props.valueByDefault)
     const changeInputValue = (teacher) => {
         document.getElementById('teacher').placeholder = ''
         setInputValue(teacher)
+        setActive("")
+        setHidden("hidden")
+        setDropImage(DropDown)
     }
     const changeState = () => {
         if (active !== 'combo-box-active') {
