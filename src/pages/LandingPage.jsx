@@ -6,10 +6,11 @@ import AboutProfile from "../components/AboutProfile";
 
 import ChevronDownIcon from "../assets/images/icon-chevrondown.svg";
 import ChevronUpIcon from "../assets/images/icon-chevronup.svg";
-import ImagenPrincipal from "../assets/images/landing.svg";
-import DesktopImage from "../assets/images/go-to-phone.svg";
+import WelcomeImg from "../assets/images/img-home-welcome.svg";
+import GotophoneImage from "../assets/images/img-home-gotophone.svg";
 import WhatIsImg from "../assets/images/img-about-whatis.svg";
 import ForWhomImg from "../assets/images/img-about-forwhom.svg";
+import ByWhomImg from "../assets/images/img-about-bywhom.svg";
 import ProfileImg from "../assets/images/img-about-profile.svg";
 
 const LandingPage = () => {
@@ -18,26 +19,19 @@ const LandingPage = () => {
     navigate("login");
   }
   function handleRegister() {
-    navigate("registro/usuario");
+    navigate("register");
   }
   return (
     <>
       {" "}
       <Navbar />
-      <div
-        className="mx-5 min-h-screen flex flex-col justify-between md:mx-16 md:grid md:grid-cols-2 md:mt-10"
-        id="hometop"
-      >
+      <div className="mx-5 min-h-screen flex flex-col justify-between md:mx-16 md:grid md:grid-cols-2 md:mt-10"  id="hometop">
         {/* div de la imagen */}
         <div className="bg-[#FCFBFF] bordeblur md:rounded-[20px] md:mb-20">
-          <img
-            className="md:hidden mx-auto"
-            src={ImagenPrincipal}
-            alt="dashboard"
-          />
+          <img className="md:hidden mx-auto" src={WelcomeImg} alt="dashboard" />
           <img
             className="hidden mx-auto md:flex"
-            src={DesktopImage}
+            src={GotophoneImage}
             alt="dashboard"
           />
         </div>
@@ -204,7 +198,7 @@ const LandingPage = () => {
           </div>
         </div>
         <div className="bg-[#FCFBFF] bordeblurd mb-6 md:mb-0 md:h-[880px]">
-          <img className="mx-auto md:flex" src={ForWhomImg} alt="ByWhomImg" />
+          <img className="mx-auto md:flex" src={ByWhomImg} alt="ByWhomImg" />
         </div>
         <p className="text-center md:hidden">
           Atenea fue desarrollado por Equipo Xapps, un equipo conformado por
