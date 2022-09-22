@@ -128,7 +128,7 @@ const Login = () => {
                   <img src={ImageWarning} alt="warning information" />
                   <p className="invalid-text-small ">Contraseña incorrecta, por favor intentelo de nuevo o recupere su contraseña</p>
                 </div>
-                <Link to='/reset-password' className="self-end text-xs text-[#776694]">
+                <Link to='/restore/password' className="self-end text-xs text-[#776694]">
                   Recuperar contraseña
                 </Link>
                 <button
