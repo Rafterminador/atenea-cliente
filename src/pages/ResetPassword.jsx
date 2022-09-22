@@ -44,7 +44,7 @@ const ResetPassword = () => {
                 type="text"
                 value={newPassword}
                 name="email"
-                onChange={setNewPassword}
+                onChange={handleNewPassword}
                 className="nrm-text placeholder:text-[#7B7B7B] nrm-txtfld-border px-3 box-border h-[42px] focus:outline-2 focus:outline-[#A954FF]"
                 placeholder="Ingresar contraseña"
               />
@@ -56,7 +56,7 @@ const ResetPassword = () => {
               <input
                 id="email"
                 type="text"
-                value={confirmPassword}
+                value={handleConfirmPassword}
                 name="email"
                 onChange={setConfirmPassword}
                 className="nrm-text placeholder:text-[#7B7B7B] nrm-txtfld-border px-3 box-border h-[42px] focus:outline-2 focus:outline-[#A954FF]"
