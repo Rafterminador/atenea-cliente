@@ -19,9 +19,9 @@ function App() {
         <Route path="/" element={<LandingPage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<RegistroUsuario />} />
-        <Route path="/restore/forgot-password" element={<OlvidePassword />} />
-        <Route path="/restore/check-email" element={<Check />} />
-        <Route path="/restore/reset-password" element={<ResetPassword />} />
+        <Route path="/restore/password" element={<OlvidePassword />} />
+        <Route path="/restore/check/email" element={<Check />} />
+        <Route path="/reset/password" element={<ResetPassword />} />
 
         {/* rutas para la S02 - Administrativo */}
         <Route path="/grades/" element={<Grades />} />

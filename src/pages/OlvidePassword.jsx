@@ -6,7 +6,7 @@ const OlvidePassword = () => {
   const [email, setEmail] = useState("");
   const navigate = useNavigate();
   const handleValidarCodigo = () => {
-    navigate("/check-email");
+    navigate("/restore/check/email");
   };
 
   function handleSubmit(e) {
@@ -56,7 +56,7 @@ const OlvidePassword = () => {
       <div className="flex flex-col mb-5">
         <button
           type="submit"
-          form="resetpassword-form"        
+          form="resetpassword-form"
           className="bg-[#7064FF] text-white nrm-button"
           onClick={handleValidarCodigo}
         >
