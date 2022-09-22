@@ -9,10 +9,10 @@ const AboutProfile = (props) => {
         <img className="hidden md:block img-back" src={GithubImage} alt="github" />
       </a>
       <div className="flex flex-col items-center order-1 self-stretch flex-grow-0 p-0">
-        <h1 className="text-base titlesemibold md:text-[1.777rem] md:leading-[43px]">
+        <h1 className="nrm-text text-center titlesemibold md:text-[1.777rem] md:leading-[43px]">
           {props.name}
         </h1>
-        <p className="smtxt text-center md:text-[21.33px] md:leading-[29px]">
+        <p className="sml-text text-center md:text-[21.33px] md:leading-[29px]">
           {props.rol}
         </p>
       </div>

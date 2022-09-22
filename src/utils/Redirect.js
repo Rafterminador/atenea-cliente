@@ -9,11 +9,15 @@
       if (window.innerWidth >= 768) {
         window.location.href = "/";
       }
-    } else if (pathname === "/reset-password") {
+    } else if (pathname === "/restore/password") {
       if (window.innerWidth >= 768) {
         window.location.href = "/";
       }
-    } else if (pathname === "/check-email") {
+    } else if (pathname === "/restore/check/email") {
+      if (window.innerWidth >= 768) {
+        window.location.href = "/";
+      }
+    } else if (pathname === "/reset/password") {
       if (window.innerWidth >= 768) {
         window.location.href = "/";
       }
