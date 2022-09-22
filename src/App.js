@@ -5,6 +5,9 @@ import { Login } from "./pages/login";
 import { RegistroUsuario } from "./pages/RegistroUsuario";
 import { About } from "./pages/About";
 import { VerAlumno } from "./pages/VerAlumno"
+import { AlumnoAccount } from "./pages/AlumnoAccount";
+import { EditAlumnoAccount } from "./pages/EditAlumnoAccount";
+import AlumnoProfile from "./pages/AlumnoProfile";
 import OlvidePassword from "./pages/OlvidePassword";
 import Check from "./pages/Check";
 import RestorePassword from "./pages/RestorePassword";
@@ -20,7 +23,11 @@ function App() {
         <Route path="/olvide-password" element={<OlvidePassword />} />
         <Route path="/verificacion" element={<Check />} />
         <Route path="/restablecer-password" element={<RestorePassword />} />
-        <Route path="/ver-alumno" element={<VerAlumno />} />
+        <Route path="/ver/alumno" element={<VerAlumno />} />
+        <Route path="/cuenta/alumno" element={<AlumnoAccount />} />
+        <Route path="/editar/alumno" element={<EditAlumnoAccount />} />
+        <Route path="/perfil/alumno" element={<AlumnoProfile />} />
+
       </Routes>
     </BrowserRouter>
   );

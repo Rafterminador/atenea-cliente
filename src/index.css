@@ -89,3 +89,8 @@ p {
     position: sticky;
     top: 0; 
 } 
+
+.bordercard{
+  box-shadow: 0px 0px 8px rgba(112, 100, 255, 0.25);
+  border-radius: 10px 10px 10px 10px;
+}
