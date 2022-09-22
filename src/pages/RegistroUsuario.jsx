@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import ImageRegistro from "../assets/images/img-register-register.svg";
 import { Link } from "react-router-dom";
-import Endpoint from "../services/api/index";
-import axios from "axios";
+
 
 const RegistroUsuario = () => {
   const [displayName, setUsername] = useState("");
