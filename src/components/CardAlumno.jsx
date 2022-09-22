@@ -9,7 +9,7 @@ const CardAlumno = (props) => {
   console.log(props.ruta);
 
   return (
-    <div className="mr-[20px]">
+    <div className="">
       <div className="">
         <div className="bg-[#FFFFFF] bordercard my-6 mt-5 mb-5 ml-5 mr-5 pb-4 pt-4 pl-4 pr-4">
           <div className="">

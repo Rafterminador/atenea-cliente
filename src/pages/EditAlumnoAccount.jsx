@@ -70,6 +70,8 @@ const EditAlumnoAccount = () => {
           </div>
         </form>
 
+
+
 <div  className="m-5">
         <button
           type="submit"
