@@ -1,16 +1,37 @@
 import React, { useState } from "react";
 import ImageRegistro from "../assets/images/img-register-register.svg";
 import { Link } from "react-router-dom";
+import Endpoint from "../services/api/index";
+import axios from "axios";
 
 const RegistroUsuario = () => {
-  const [username, setUsername] = useState("");
-  const [useremail, setEmail] = useState("");
+  const [displayName, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [phoneNumber, setphoneNumber] = useState("+502 55899630");
+  const [disable, setdisable] = useState(false);
+  const [emailVerified, setemailVerified] = useState(false);
 
-  function handleSubmit(e) {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    alert(username + " " + password);
-  }
+
+    try {
+      const { data } = await axios.post(Endpoint.endpoint.auth.register.postRegister, {
+        email,
+        emailVerified,
+        phoneNumber,
+        password,
+        displayName,
+        disable
+      });
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+    }
+
+    
+    alert(displayName + " " + password);
+  };
 
   function handleChangeUsername(e) {
     setUsername(e.target.value);
@@ -50,11 +71,12 @@ const RegistroUsuario = () => {
             <input
               id="username"
               type="text"
-              value={username}
+              value={displayName}
               name="username"
               onChange={handleChangeUsername}
               className="nrm-text placeholder:text-[#7B7B7B] nrm-txtfld-border px-3 box-border h-[42px] focus:outline-2 focus:outline-[#A954FF]"
               placeholder="Ingresar nombre completo"
+              required
             />
           </div>
           <div className="flex flex-col gap-2">
@@ -64,11 +86,12 @@ const RegistroUsuario = () => {
             <input
               id="useremail"
               type="text"
-              value={useremail}
+              value={email}
               name="useremail"
               onChange={handleChangeEmail}
               className="nrm-text placeholder:text-[#7B7B7B] nrm-txtfld-border px-3 box-border h-[42px] focus:outline-2 focus:outline-[#A954FF]"
               placeholder="Ingresar correo"
+              required
             />
           </div>
           <div className="flex flex-col gap-2">
@@ -83,6 +106,7 @@ const RegistroUsuario = () => {
               onChange={handleChangePassword}
               className="nrm-text placeholder:text-[#7B7B7B] nrm-txtfld-border px-3 box-border h-[42px] focus:outline-2 focus:outline-[#A954FF]"
               placeholder="Ingresar contraseña"
+              required
             />
           </div>
         </div>
