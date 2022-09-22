@@ -5,6 +5,7 @@ import { Login } from "./pages/login";
 import { RegistroUsuario } from "./pages/RegistroUsuario";
 import OlvidePassword from "./pages/OlvidePassword";
 import Check from "./pages/Check";
+import ResetPassword from "./pages/ResetPassword";
 import Grades from "./pages/Grades";
 import NewGrade from "./pages/NewGrade";
 import UpdateGrade from "./pages/UpdateGrade";
@@ -14,12 +15,15 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
+        {/* rutas para la S01 - Autenticacion */}
         <Route path="/" element={<LandingPage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<RegistroUsuario />} />
-        <Route path="/reset-password" element={<OlvidePassword />} />
-        <Route path="/check-email" element={<Check />} />
+        <Route path="/restore/forgot-password" element={<OlvidePassword />} />
+        <Route path="/restore/check-email" element={<Check />} />
+        <Route path="/restore/reset-password" element={<ResetPassword />} />
 
+        {/* rutas para la S02 - Administrativo */}
         <Route path="/grades/" element={<Grades />} />
         <Route path="/grades/create" element={<NewGrade />} />
         <Route path="/grades/update/:id" element={<UpdateGrade />} />

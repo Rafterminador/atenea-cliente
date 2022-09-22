@@ -426,3 +426,8 @@ hr.administracion {
 .card:hover img.img-back {
   opacity: 1;
 }
+
+input[type="password"]::-ms-reveal,
+input[type="password"]::-ms-clear {
+  display: none;
+}
