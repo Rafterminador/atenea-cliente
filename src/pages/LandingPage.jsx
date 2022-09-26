@@ -272,7 +272,7 @@ const LandingPage = () => {
         </div>
         <a
           href="#hometop"
-          className="arrowup-animation opensansbold text-[12.8px] text-[#4D3483] md:hover:text-[#FF54B0] flex flex-col items-center gap-1 md:gap-2 md:text-[16px]"
+          className="md:arrowup-animation opensansbold text-[12.8px] text-[#4D3483] md:hover:text-[#FF54B0] flex flex-col items-center gap-1 md:gap-2 md:text-[16px]"
         >
           <img className="" src={ChevronUpIcon} alt="ChevronUpIcon" />
           Volver al inicio{" "}

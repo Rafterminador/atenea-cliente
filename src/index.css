@@ -395,16 +395,18 @@ hr.administracion {
   transform: translateY(8px);
 }
 
-.arrowup-animation {
-  transition: transform 1000ms ease-out;
-}
+@layer components {
+  .arrowup-animation {
+    transition: transform 1000ms ease-out;
+  }
 
-.arrowup-animation :first-child {
-  transition: transform 400ms ease-out;
-}
+  .arrowup-animation :first-child {
+    transition: transform 400ms ease-out;
+  }
 
-.arrowup-animation:hover :first-child {
-  transform: translateY(-4px);
+  .arrowup-animation:hover :first-child {
+    transform: translateY(-4px);
+  }
 }
 
 .card {
