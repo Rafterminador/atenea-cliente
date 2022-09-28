@@ -10,12 +10,17 @@ import { EditAlumnoAccount } from "./pages/EditAlumnoAccount";
 import AlumnoProfile from "./pages/AlumnoProfile";
 import OlvidePassword from "./pages/OlvidePassword";
 import Check from "./pages/Check";
-import RestorePassword from "./pages/RestorePassword";
+import ResetPassword from "./pages/ResetPassword";
+import Grades from "./pages/Grades";
+import NewGrade from "./pages/NewGrade";
+import UpdateGrade from "./pages/UpdateGrade";
+import EditGrade from "./pages/EditGrade";
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
+        {/* rutas para la S01 - Autenticacion */}
         <Route path="/" element={<LandingPage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/registro/usuario" element={<RegistroUsuario />} />
@@ -27,7 +32,15 @@ function App() {
         <Route path="/cuenta/alumno" element={<AlumnoAccount />} />
         <Route path="/editar/alumno" element={<EditAlumnoAccount />} />
         <Route path="/perfil/alumno" element={<AlumnoProfile />} />
-
+        <Route path="/register" element={<RegistroUsuario />} />
+        <Route path="/restore/password" element={<OlvidePassword />} />
+        <Route path="/restore/check/email" element={<Check />} />
+        <Route path="/reset/password" element={<ResetPassword />} />
+        {/* rutas para la S02 - Administrativo */}
+        <Route path="/grades/" element={<Grades />} />
+        <Route path="/grades/create" element={<NewGrade />} />
+        <Route path="/grades/update/:id" element={<UpdateGrade />} />
+        <Route path="/grades/update/:id/edit" element={<EditGrade />} />
       </Routes>
     </BrowserRouter>
   );

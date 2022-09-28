@@ -33,7 +33,7 @@ const RestorePassword = () => {
         </div>
         <div className="md:flex md:flex-col md:col-span-6 md:col-start-8 md:col-end-12">
           <div className="text-center">
-            <h1 className="text-4xl font-bold mt-10">Restablecer Contraseña</h1>
+            <h2 className="mt-10">Restablecer Contraseña</h2>
           </div>
           <div className="w-full mt-10 px-1 ">
             <form onSubmit={handleSubmit}>
@@ -45,8 +45,8 @@ const RestorePassword = () => {
                   value={username}
                   name="username"
                   onChange={handleChangeUsername}
-                  className="font-normal border-solid border-[1px] border-[#DBD8FF] rounded-[10px] py-2.5 px-2 focus:outline-2 focus:outline-[#A954FF]"
-                  placeholder="Ingresar correo"
+                  className="font-normal border-solid border-[1px] border-[#DBD8FF] rounded-[10px] py-2.5 px-2 focus:outline-2 focus:outline-[#A954FF]  mb-2"
+                  placeholder="Ingresar contraseña"
                 />
                 <label htmlFor="password">Repetir contraseña</label>
                 <input
@@ -61,7 +61,7 @@ const RestorePassword = () => {
 
                 <button
                   type="submit"
-                  className="bg-[#7064FF] text-white py-[15px] px-2.5 mt-20"
+                  className="bg-[#7064FF] text-white py-[15px] px-2.5 mt-20 mb-5"
                 >
                   Guardar Contraseña
                 </button>
