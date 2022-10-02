@@ -78,18 +78,24 @@ const Login = () => {
 
       {/* div del copy web */}
       <div className="text-center flex flex-col items-center gap-4">
-        <h1 className="m-0 big-title">¡Hola de nuevo!</h1>
-        <p className="nrm-text">
+        <h1 className={`m-0 big-title ${titleLoginH1}`}>¡Hola de nuevo!</h1>
+        <h2 className={`m-0 med-title ${titleLoginH2}`}>
+          Parece que algo salio mal
+        </h2>
+        <p className={`nrm-text ${titleLoginH1}`}>
           ¿Como ha estado?, es un gusto volver a tenerlo por aca en Atenea
         </p>
       </div>
 
       {/* div del formulario */}
-      <div>
+      <div className="flex flex-col gap-2">
         <form onSubmit={handleSubmit} id="login-form">
           <div className="flex flex-col gap-4">
             <div className="flex flex-col gap-2">
-              <label className="text-[#4D3483] sml-title" htmlFor="email">
+              <label
+                className={`text-[#4D3483] sml-title ${invalidText}`}
+                htmlFor="email"
+              >
                 Correo
               </label>
               <input
@@ -98,14 +104,23 @@ const Login = () => {
                 value={email}
                 name="email"
                 onChange={handleChangeUsername}
-                className="nrm-text placeholder:text-[#7B7B7B] nrm-txtfld-border px-3 box-border h-[42px] focus:outline-2 focus:outline-[#A954FF]"
+                className={`nrm-text placeholder:text-[#7B7B7B] nrm-txtfld-border px-3 box-border h-[42px] focus:outline-2 focus:outline-[#A954FF] ${invalid}`}
                 placeholder="Ingresar correo"
                 required
               />
+              <div className={`flex flex-row ${textBadEmail}`}>
+                <img src={IconWarning} alt="warning information" />
+                <p className="invalid-text-small">
+                  Cuenta no encontrada, porfavor intentelo de nuevo
+                </p>
+              </div>
             </div>
 
             <div className="flex flex-col gap-2">
-              <label className="text-[#4D3483] sml-title" htmlFor="password">
+              <label
+                className={`text-[#4D3483] sml-title ${invalidText}`}
+                htmlFor="password"
+              >
                 Contraseña
               </label>
               <div className="relative">
@@ -115,7 +130,7 @@ const Login = () => {
                   value={password}
                   name="password"
                   onChange={handleChangePassword}
-                  className="nrm-text placeholder:text-[#7B7B7B] nrm-txtfld-border px-3 box-border h-[42px] focus:outline-2 focus:outline-[#A954FF] w-full"
+                  className={`nrm-text placeholder:text-[#7B7B7B] nrm-txtfld-border px-3 box-border h-[42px] focus:outline-2 focus:outline-[#A954FF] w-full ${invalid}`}
                   placeholder="Ingresar contraseña"
                   required
                 />
@@ -126,9 +141,22 @@ const Login = () => {
                   alt="icon"
                 />
               </div>
+              <div className={`flex flex-row ${textBadPassword}`}>
+                <img src={IconWarning} alt="warning information" />
+                <p className="invalid-text-small">
+                  Contraseña incorrecta, por favor intentelo de nuevo o recupere
+                  su contraseña
+                </p>
+              </div>
             </div>
           </div>
         </form>
+        <Link
+          to="/restore/password"
+          className="sml-button self-end text-[#776694]"
+        >
+          Recuperar contraseña
+        </Link>
       </div>
 
       {/* div de los botones */}
