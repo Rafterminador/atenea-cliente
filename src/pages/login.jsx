@@ -9,6 +9,9 @@ import ImageLoginError from "../assets/images/img-login-error.svg";
 import IconWarning from "../assets/images/icon-warning.svg";
 import IconShowPassword from "../assets/images/icon-showpassword.svg";
 import IconHidePassword from "../assets/images/icon-hidepassword.svg";
+import Image from "../components/Image";
+import Button from "../components/Button";
+import Input from "../components/Input";
 
 const Login = () => {
   const firebase = new Firebase();
@@ -72,8 +75,8 @@ const Login = () => {
   return (
     <div className="mx-5 min-h-screen flex flex-col justify-between gap-10 md:hidden">
       {/* div de la imagen */}
-      <div className="bg-[#FCFBFF] bordeblur">
-        <img className="mx-auto" src={imageLogin} alt="ImgLogin" />
+      <div>
+        <Image image={imageLogin} alt="ImgLogin" className="mx-auto" type={1} />
       </div>
 
       {/* div del copy web */}
@@ -98,16 +101,7 @@ const Login = () => {
               >
                 Correo
               </label>
-              <input
-                id="email"
-                type="email"
-                value={email}
-                name="email"
-                onChange={handleChangeUsername}
-                className={`nrm-text placeholder:text-[#7B7B7B] nrm-txtfld-border px-3 box-border h-[42px] focus:outline-2 focus:outline-[#A954FF] ${invalid}`}
-                placeholder="Ingresar correo"
-                required
-              />
+              <Input id="email" type="email" name="email" onChange={handleChangeUsername} placeholder="Ingresar correo" className={`${invalid}`} required={1} />
               <div className={`flex flex-row ${textBadEmail}`}>
                 <img src={IconWarning} alt="warning information" />
                 <p className="invalid-text-small">
@@ -124,16 +118,7 @@ const Login = () => {
                 Contraseña
               </label>
               <div className="relative">
-                <input
-                  id="password"
-                  type={passwordVisibility ? "text" : "password"}
-                  value={password}
-                  name="password"
-                  onChange={handleChangePassword}
-                  className={`nrm-text placeholder:text-[#7B7B7B] nrm-txtfld-border px-3 box-border h-[42px] focus:outline-2 focus:outline-[#A954FF] w-full ${invalid}`}
-                  placeholder="Ingresar contraseña"
-                  required
-                />
+                <Input id="password" type={passwordVisibility ? "text" : "password"} name="password" onChange={handleChangePassword} placeholder="Ingresar contraseña" className={`w-full ${invalid}`} required={1} />
                 <img
                   className="shw-pass bg-white"
                   src={iconPassword}
@@ -161,13 +146,7 @@ const Login = () => {
 
       {/* div de los botones */}
       <div className="flex flex-col gap-4 mb-5">
-        <button
-          type="submit"
-          form="login-form"
-          className="bg-[#7064FF] text-white nrm-button"
-        >
-          Ingresar
-        </button>
+        <Button text="Ingresar" typeButton={"button-type-2"} className="" type="submit" form="login-form" />
         <button className="sml-button p-0">
           <span className="sml-text-2">¿No tiene una cuenta?</span>{" "}
           <Link to="/register">
