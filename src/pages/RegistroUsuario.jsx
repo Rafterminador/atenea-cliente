@@ -1,11 +1,18 @@
 import React, { useState } from "react";
 import ImageRegistro from "../assets/images/img-register-register.svg";
+import IconShowPassword from "../assets/images/icon-showpassword.svg";
+import IconHidePassword from "../assets/images/icon-hidepassword.svg";
 import { Link } from "react-router-dom";
+import Image from "../components/Image";
+import Button from "../components/Button";
+import Input from "../components/Input";
 
 const RegistroUsuario = () => {
   const [username, setUsername] = useState("");
   const [useremail, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [passwordVisibility, setPasswordVisibility] = useState(false);
+  const [iconPassword, setIconPassword] = useState(IconShowPassword);
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -24,11 +31,20 @@ const RegistroUsuario = () => {
     setPassword(e.target.value);
   }
 
+  const togglePassword = () => {
+    setPasswordVisibility(!passwordVisibility);
+    if (iconPassword === IconShowPassword) {
+      setIconPassword(IconHidePassword);
+    } else {
+      setIconPassword(IconShowPassword);
+    }
+  };
+
   return (
     <div className="mx-5 min-h-screen flex flex-col justify-between gap-10 md:hidden">
       {/* div de la imagen */}
-      <div className="bg-[#FCFBFF] bordeblur">
-        <img className="mx-auto" src={ImageRegistro} alt="Registros" />
+      <div>
+        <Image image={ImageRegistro} alt="Registros" className="mx-auto" type={1} />
       </div>
 
       {/* div del copy web */}
@@ -47,56 +63,34 @@ const RegistroUsuario = () => {
             <label className="text-[#4D3483] sml-title" htmlFor="username">
               Nombre
             </label>
-            <input
-              id="username"
-              type="text"
-              value={username}
-              name="username"
-              onChange={handleChangeUsername}
-              className="nrm-text placeholder:text-[#7B7B7B] nrm-txtfld-border px-3 box-border h-[42px] focus:outline-2 focus:outline-[#A954FF]"
-              placeholder="Ingresar nombre completo"
-            />
+            <Input id="username" type="text" name="username" onChange={handleChangeUsername} placeholder="Ingresar nombre completo" required={1} />
           </div>
           <div className="flex flex-col gap-2">
             <label className="text-[#4D3483] sml-title" htmlFor="useremail">
               Correo
             </label>
-            <input
-              id="useremail"
-              type="text"
-              value={useremail}
-              name="useremail"
-              onChange={handleChangeEmail}
-              className="nrm-text placeholder:text-[#7B7B7B] nrm-txtfld-border px-3 box-border h-[42px] focus:outline-2 focus:outline-[#A954FF]"
-              placeholder="Ingresar correo"
-            />
+            <Input id="useremail" type="text" name="useremail" onChange={handleChangeEmail} placeholder="Ingresar correo" required={1} />
           </div>
           <div className="flex flex-col gap-2">
             <label className="text-[#4D3483] sml-title" htmlFor="password">
               Contraseña
             </label>
-            <input
-              id="password"
-              type="password"
-              value={password}
-              name="password"
-              onChange={handleChangePassword}
-              className="nrm-text placeholder:text-[#7B7B7B] nrm-txtfld-border px-3 box-border h-[42px] focus:outline-2 focus:outline-[#A954FF]"
-              placeholder="Ingresar contraseña"
-            />
+            <div className="relative">
+              <Input id="password" type={passwordVisibility ? "text" : "password"} name="password" onChange={handleChangePassword} placeholder="Ingresar contraseña" className="w-full" required={1} />
+              <img
+                className="shw-pass bg-white"
+                src={iconPassword}
+                onClick={togglePassword}
+                alt="icon"
+              />
+            </div>
           </div>
         </div>
       </form>
 
       {/* div de los botones */}
       <div className="flex flex-col gap-4 mb-5">
-        <button
-          type="submit"
-          form="register-form"
-          className="bg-[#7064FF] text-white nrm-button"
-        >
-          Registrarse
-        </button>
+        <Button text="Registrarse" typeButton={"button-type-2"} className="" type="submit" form="register-form" />
         <button className="sml-button p-0">
           <span className="sml-text-2">¿Ya tiene una cuenta?</span>{" "}
           <Link to="/login">

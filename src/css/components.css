@@ -32,3 +32,13 @@
     border-radius: 20px;
     color: #FFFFFF;
 }
+
+.input {
+    box-sizing: border-box;
+    background: #FFFFFF;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 12px;
+}
