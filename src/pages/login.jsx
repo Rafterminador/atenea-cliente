@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import ImageLogin from "../assets/images/login-mobile.svg";
-import ImageLoginDesktop from "../assets/images/login-desktop.svg";
 import ImageLoginError from "../assets/images/login-error.svg"
 import ImageWarning from "../assets/images/warning.svg"
 import ImageShowPassword from "../assets/images/icon-showpassword.svg"
@@ -9,6 +8,8 @@ import Logo from "../assets/images/logo.svg";
 import { Link } from 'react-router-dom'
 import { Firebase } from "../utils/Firebase";
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth'
+import Image from "../components/Image";
+import Button from "../components/Button";
 
 const Login = () => {
   const [username, setUsername] = useState("");
@@ -76,13 +77,8 @@ const Login = () => {
         <img src={Logo} alt="Logo" />
       </div>
       <div className="flex flex-col justify-between px-5 items-center md:grid md:grid-cols-12 md:gap-[30px] md:p-0 md:py-10">
-        <div className="bg-[#FCFBFF] bordeblur w-full flex justify-center md:col-span-6 md:rounded-[20px]">
-          <img src={imageLogin} alt="Login" className="md:hidden" />
-          <img
-            src={ImageLoginDesktop}
-            alt="Login"
-            className="hidden md:block"
-          />
+        <div className="w-full flex justify-center mb-4">
+          <Image image={imageLogin} alt="Login" className="md:hidden" type={1} />
         </div>
         <div className="md:flex md:flex-col md:col-span-6 md:col-start-8 md:col-end-12">
           <div className="text-center">
@@ -131,6 +127,7 @@ const Login = () => {
                 <Link to='/restore/password' className="self-end text-xs text-[#776694]">
                   Recuperar contraseña
                 </Link>
+                <Button text="Ingresar" typeButton={"button-type-2"} className="my-5 min-w-full" type="submit" />
                 <button
                   type="submit"
                   className="bg-[#7064FF] text-white py-[15px] px-2.5 mt-8"
