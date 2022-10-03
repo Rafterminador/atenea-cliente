@@ -16,7 +16,7 @@ const RegistroUsuario = () => {
 
   function handleSubmit(e) {
     e.preventDefault();
-    alert(username + " " + password);
+    alert(username + " " + password + useremail);
   }
 
   function handleChangeUsername(e) {
