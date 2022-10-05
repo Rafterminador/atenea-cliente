@@ -51,7 +51,7 @@ const ResetPassword = () => {
             </div>
             <div className="flex flex-col gap-2">
               <label className="text-[#4D3483] sml-title" htmlFor="email">
-                Nueva contraseña
+                Repetir contraseña
               </label>
               <input
                 id="email"

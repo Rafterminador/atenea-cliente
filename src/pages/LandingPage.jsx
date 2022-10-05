@@ -12,6 +12,8 @@ import WhatIsImg from "../assets/images/img-about-whatis.svg";
 import ForWhomImg from "../assets/images/img-about-forwhom.svg";
 import ByWhomImg from "../assets/images/img-about-bywhom.svg";
 import ProfileImg from "../assets/images/img-about-profile.svg";
+import Image from "../components/Image";
+import Button from "../components/Button";
 
 const LandingPage = () => {
   const navigate = useNavigate();
@@ -25,15 +27,10 @@ const LandingPage = () => {
     <>
       {" "}
       <Navbar />
-      <div className="mx-5 min-h-screen flex flex-col justify-between md:mx-16 md:grid md:grid-cols-2 md:mt-10"  id="hometop">
-        {/* div de la imagen */}
-        <div className="bg-[#FCFBFF] bordeblur md:rounded-[20px] md:mb-20">
-          <img className="md:hidden mx-auto" src={WelcomeImg} alt="dashboard" />
-          <img
-            className="hidden mx-auto md:flex"
-            src={GotophoneImage}
-            alt="dashboard"
-          />
+      <div className="mx-5 min-h-screen flex flex-col justify-between md:mx-16 md:grid md:grid-cols-2 md:mt-10" id="hometop">
+        <div className="md:mb-20">
+          <Image image={WelcomeImg} alt="dashboard" className="md:hidden mx-auto mb-4" type={1} />
+          <Image image={GotophoneImage} alt="dashboard" className="hidden mx-auto md:flex" type={2} />
         </div>
         {/* contenido en mobile */}
         <div className="text-center flex flex-col items-center gap-5 md:hidden ">
@@ -44,18 +41,8 @@ const LandingPage = () => {
         </div>
 
         <div className="md:hidden">
-          <button
-            className="mb-5 text-center min-w-full bg-transparent text-[#7064FF] border-2 border-[#7064FF]"
-            onClick={handleLogin}
-          >
-            Ingresar
-          </button>
-          <button
-            className="mb-5 text-center min-w-full bg-[#7064FF] text-white"
-            onClick={handleRegister}
-          >
-            Registrarse
-          </button>
+          <Button text="Ingresar" typeButton={"button-type-1"} className="my-5 min-w-full" type="button" onClick={handleLogin} />
+          <Button text="Registrarse" typeButton={"button-type-2"} className="my-5 min-w-full" type="button" onClick={handleRegister} />
           <a
             href="#aboutInit"
             className="btntxtsmmobl text-[#4D3483] flex flex-col items-center mb-5"
@@ -117,12 +104,8 @@ const LandingPage = () => {
             </p>
           </div>
         </div>
-        <div className="bg-[#FCFBFF] bordeblurd mb-6 md:mb-0">
-          <img
-            className="mx-auto -scale-x-100 md:flex md:scale-x-100"
-            src={WhatIsImg}
-            alt="WhatIsImg"
-          />
+        <div className="mb-6 md:mb-0">
+          <Image image={WhatIsImg} alt="WhatIsImg" className="mx-auto -scale-x-100 md:flex md:scale-x-100" type={2} />
         </div>
         <p className="text-center md:hidden">
           Atenea es un proyecto social pensado y desarrollado para apoyar y
@@ -159,8 +142,8 @@ const LandingPage = () => {
             </p>
           </div>
         </div>
-        <div className="bg-[#FCFBFF] bordeblurd mb-6 md:mb-0 md:h-[880px] md:order-1">
-          <img className="mx-auto md:flex" src={ForWhomImg} alt="ForWhomImg" />
+        <div className="mb-6 md:mb-0 md:h-[880px] md:order-1">
+          <Image image={ForWhomImg} alt="ForWhomImg" className="mx-auto md:flex" type={2} />
         </div>
         <p className="text-center md:hidden">
           Atenea nació gracias a la colaboración entre Equipo Xapps y las
@@ -197,8 +180,8 @@ const LandingPage = () => {
             </p>
           </div>
         </div>
-        <div className="bg-[#FCFBFF] bordeblurd mb-6 md:mb-0 md:h-[880px]">
-          <img className="mx-auto md:flex" src={ByWhomImg} alt="ByWhomImg" />
+        <div className="mb-6 md:mb-0 md:h-[880px]">
+          <Image image={ByWhomImg} alt="ByWhomImg" className="mx-auto md:flex" type={2} />
         </div>
         <p className="text-center md:hidden">
           Atenea fue desarrollado por Equipo Xapps, un equipo conformado por
@@ -272,7 +255,7 @@ const LandingPage = () => {
         </div>
         <a
           href="#hometop"
-          className="arrowup-animation opensansbold text-[12.8px] text-[#4D3483] md:hover:text-[#FF54B0] flex flex-col items-center gap-1 md:gap-2 md:text-[16px]"
+          className="md:arrowup-animation opensansbold text-[12.8px] text-[#4D3483] md:hover:text-[#FF54B0] flex flex-col items-center gap-1 md:gap-2 md:text-[16px]"
         >
           <img className="" src={ChevronUpIcon} alt="ChevronUpIcon" />
           Volver al inicio{" "}
