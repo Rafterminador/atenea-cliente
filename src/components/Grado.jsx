@@ -1,7 +1,14 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
+
 const Grado = (props) => {
   console.log(props.ruta);
 
+  const navigate = useNavigate();
+
+  function handleMore() {
+    navigate("/alumnos/completos");
+  }  
   return (
     <div className="items-center ml-[20px] mr-[20px] min-w-min my-3">
 
@@ -19,7 +26,7 @@ const Grado = (props) => {
           </div>
 
        <div className="text-end">
-       <span className="text-[#776694] font-sans text-[12.8px]">
+       <span className="text-[#776694] font-sans text-[12.8px]" onClick={handleMore}>
             Ver más
           </span>
        </div>

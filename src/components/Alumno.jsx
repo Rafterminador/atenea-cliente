@@ -1,8 +1,15 @@
 import React from "react";
 import Arrow from "../assets/images/rightarrow.svg";
+import { useNavigate } from "react-router-dom";
+
 const Alumno = (props) => {
   console.log(props.ruta);
 
+  const navigate = useNavigate();
+
+  function handleProfile() {
+    navigate("/perfil/alumno");
+  }
   return (
     <div className="ml-[20px] mr-[20px] min-w-min my-1">
 
@@ -12,7 +19,7 @@ const Alumno = (props) => {
         </div>
 
         <div className="justify-self-end">
-          <img src={Arrow} alt="rarrow" />
+          <img src={Arrow} alt="rarrow" onClick={handleProfile} />
         </div>
       </div>
 

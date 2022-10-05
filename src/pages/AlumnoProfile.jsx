@@ -1,13 +1,25 @@
 import React from "react";
 import CardAlumno from "../components/CardAlumno";
 import bleft from "../assets/images/chevron_left.svg";
+import { useNavigate } from "react-router-dom";
 
-export default function AlumnoProfile() {
+const AlumnoProfile  = () => {
+
+  const navigate = useNavigate();
+
+  function handleBack() {
+    navigate("/ver/alumno");
+  }  
+
+  function handleEdit() {
+    navigate("/editar/alumno");
+  }  
+
   return (
     <div className="flex flex-col justify-between">
       <div className="flex m-5 text-center">
         <img src={bleft} alt="backleft" />
-        <p className="text-[13px] ml-[5px] mt-[2px] font-sans text-[#7064FF]">
+        <p className="text-[13px] ml-[5px] mt-[2px] font-sans text-[#7064FF]" onClick={handleBack}>
           Atrás
         </p>
         <p className="text-[16px] ml-[16px] font-semibold">
@@ -37,13 +49,13 @@ export default function AlumnoProfile() {
         </button>
 
         <button
-          className="min-w-full bg-[#7064FF] text-white mt-[20px] h-[49px] text-[21.33px]"
+          className="min-w-full bg-[#7064FF] text-white mt-[20px] h-[49px] text-[21.33px]" onClick={handleEdit}
         >
           Editar datos
         </button>
       </div>
     </div>
   );
-}
+};
 
-export { AlumnoProfile };
+export default AlumnoProfile;

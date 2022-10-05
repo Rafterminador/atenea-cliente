@@ -1,13 +1,19 @@
 import React from "react";
 import bleft from "../assets/images/chevron_left.svg"
+import ComboBox from "../components/ComboBox"
+import { useNavigate } from "react-router-dom";
 
 const EditAlumnoAccount = () => {
+  const navigate = useNavigate();
+  function handleBack() {
+    navigate("/perfil/alumno");
+  }
   return (
     <div>
 
 <div className="flex m-5 text-center">
     <img src={bleft} alt="backleft" />
-    <p className="text-[13px] ml-[5px] mt-[2px] font-sans text-[#7064FF]">Atrás</p>
+    <p className="text-[13px] ml-[5px] mt-[2px] font-sans text-[#7064FF]" onClick={handleBack}>Atrás</p>
     <p className="text-[16px] ml-[16px] font-semibold">Editar datos</p>
 </div>
 
@@ -41,14 +47,7 @@ const EditAlumnoAccount = () => {
               placeholder="Ingresar dirección"
             />
             <label htmlFor="username">Grado</label>
-            <input
-              id="username"
-              type="text"
-              list="value"
-              name="username"
-              className="font-normal border-solid border-[1px] rounded-[10px] py-2.5 px-2 focus:outline-2 focus:outline-[#A954FF] h-[42px]"
-              placeholder="Seleccionar grado"
-            />
+            <ComboBox teachers={['Primero', 'Segundo', 'Tercero', 'Cuarto', 'Quinto', 'Sexto']} valueByDefault={'Grado Actual'} />
             <label htmlFor="username">Nombre del encargado: <label className="text-[12px]">padre, madre u otro</label>  </label>
             <input
               id="username"
@@ -85,4 +84,4 @@ const EditAlumnoAccount = () => {
   );
 };
 
-export { EditAlumnoAccount };
+export default EditAlumnoAccount;
