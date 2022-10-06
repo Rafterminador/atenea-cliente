@@ -1,15 +1,18 @@
 import React, { useState } from "react";
 import ImageRegistro from "../assets/images/img-register-register.svg";
+import IconShowPassword from "../assets/images/icon-showpassword.svg";
+import IconHidePassword from "../assets/images/icon-hidepassword.svg";
 import { Link } from "react-router-dom";
-
+import Image from "../components/Image";
+import Button from "../components/Button";
+import Input from "../components/Input";
 
 const RegistroUsuario = () => {
   const [displayName, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [phoneNumber, setphoneNumber] = useState("+502 55899630");
-  const [disable, setdisable] = useState(false);
-  const [emailVerified, setemailVerified] = useState(false);
+  const [passwordVisibility, setPasswordVisibility] = useState(false);
+  const [iconPassword, setIconPassword] = useState(IconShowPassword);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -29,28 +32,31 @@ const RegistroUsuario = () => {
     // }
 
     let headersList = {
-      "Accept": "/",
+      Accept: "/",
       "User-Agent": "Thunder Client (https://www.thunderclient.com)",
-      "Content-Type": "application/json"
-     }
-     
-     let bodyContent = JSON.stringify({
-         "email": email,
-         "emailVerified": false,
-         "password": password,
-         "displayName": displayName,
-         "disable": false
-     });
-     
-     let response = await fetch("https://atenea-servicio.onrender.com/api/v1/user/create-user/", { 
-       method: "POST",
-       body: bodyContent,
-       headers: headersList
-     });
-     
-     let data = await response.text();
-     console.log(data);
-    
+      "Content-Type": "application/json",
+    };
+
+    let bodyContent = JSON.stringify({
+      email: email,
+      emailVerified: false,
+      password: password,
+      displayName: displayName,
+      disable: false,
+    });
+
+    let response = await fetch(
+      "https://atenea-servicio.onrender.com/api/v1/user/create-user/",
+      {
+        method: "POST",
+        body: bodyContent,
+        headers: headersList,
+      }
+    );
+
+    let data = await response.text();
+    console.log(data);
+
     alert(displayName + " " + password);
   };
 
@@ -66,11 +72,25 @@ const RegistroUsuario = () => {
     setPassword(e.target.value);
   }
 
+  const togglePassword = () => {
+    setPasswordVisibility(!passwordVisibility);
+    if (iconPassword === IconShowPassword) {
+      setIconPassword(IconHidePassword);
+    } else {
+      setIconPassword(IconShowPassword);
+    }
+  };
+
   return (
     <div className="mx-5 min-h-screen flex flex-col justify-between gap-10 md:hidden">
       {/* div de la imagen */}
-      <div className="bg-[#FCFBFF] bordeblur">
-        <img className="mx-auto" src={ImageRegistro} alt="Registros" />
+      <div>
+        <Image
+          image={ImageRegistro}
+          alt="Registros"
+          className="mx-auto"
+          type={1}
+        />
       </div>
 
       {/* div del copy web */}
@@ -89,59 +109,62 @@ const RegistroUsuario = () => {
             <label className="text-[#4D3483] sml-title" htmlFor="username">
               Nombre
             </label>
-            <input
+            <Input
               id="username"
               type="text"
-              value={displayName}
               name="username"
               onChange={handleChangeUsername}
-              className="nrm-text placeholder:text-[#7B7B7B] nrm-txtfld-border px-3 box-border h-[42px] focus:outline-2 focus:outline-[#A954FF]"
               placeholder="Ingresar nombre completo"
-              required
+              required={1}
             />
           </div>
           <div className="flex flex-col gap-2">
             <label className="text-[#4D3483] sml-title" htmlFor="useremail">
               Correo
             </label>
-            <input
+            <Input
               id="useremail"
               type="text"
-              value={email}
               name="useremail"
               onChange={handleChangeEmail}
-              className="nrm-text placeholder:text-[#7B7B7B] nrm-txtfld-border px-3 box-border h-[42px] focus:outline-2 focus:outline-[#A954FF]"
               placeholder="Ingresar correo"
-              required
+              required={1}
             />
           </div>
           <div className="flex flex-col gap-2">
             <label className="text-[#4D3483] sml-title" htmlFor="password">
               Contraseña
             </label>
-            <input
-              id="password"
-              type="password"
-              value={password}
-              name="password"
-              onChange={handleChangePassword}
-              className="nrm-text placeholder:text-[#7B7B7B] nrm-txtfld-border px-3 box-border h-[42px] focus:outline-2 focus:outline-[#A954FF]"
-              placeholder="Ingresar contraseña"
-              required
-            />
+            <div className="relative">
+              <Input
+                id="password"
+                type={passwordVisibility ? "text" : "password"}
+                name="password"
+                onChange={handleChangePassword}
+                placeholder="Ingresar contraseña"
+                className="w-full"
+                required={1}
+              />
+              <img
+                className="shw-pass bg-white"
+                src={iconPassword}
+                onClick={togglePassword}
+                alt="icon"
+              />
+            </div>
           </div>
         </div>
       </form>
 
       {/* div de los botones */}
       <div className="flex flex-col gap-4 mb-5">
-        <button
+        <Button
+          text="Registrarse"
+          typeButton={"button-type-2"}
+          className=""
           type="submit"
           form="register-form"
-          className="bg-[#7064FF] text-white nrm-button"
-        >
-          Registrarse
-        </button>
+        />
         <button className="sml-button p-0">
           <span className="sml-text-2">¿Ya tiene una cuenta?</span>{" "}
           <Link to="/login">

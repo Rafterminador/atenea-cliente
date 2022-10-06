@@ -5,6 +5,7 @@ import uuid from "react-uuid";
 import DropDown from "../assets/images/drop-down.svg";
 import DropUp from "../assets/images/drop-up.svg";
 import BoletinCard from "../components/BoletinCard";
+import Input from "../components/Input"
 
 const Notes = (props) => {
   const [active, setActive] = useState("");
@@ -36,14 +37,16 @@ const Notes = (props) => {
         style={{ position: "relative", cursor: "pointer" }}
         onClick={changeState}
       >
+
         <input
-          className={`font-normal w-full combo-box text-[#4D3483] my-2 bordercard ${active}`}
+          className={`font-normal w-full placeholder-[#4D3483] placeholder-[sml-title] combo-box my-2 bordercard ${active}`}
           placeholder={props.unidad}
           readOnly
           id="teacher"
           required
           value={inputValue}
         />
+        
         <img
           src={dropImage}
           alt="More information"

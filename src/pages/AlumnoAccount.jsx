@@ -2,6 +2,8 @@ import React from "react";
 import bleft from "../assets/images/chevron_left.svg"
 import ComboBox from "../components/ComboBox"
 import { useNavigate } from "react-router-dom";
+import Input from "../components/Input";
+import Button from "../components/Button";
 
 const AlumnoAccount = () => {
   const navigate = useNavigate();
@@ -23,7 +25,7 @@ const AlumnoAccount = () => {
         <form>
           <div className="flex flex-col text gap-2 text-[#4D3483] font-semibold text-start text-[16px] m-5">
             <label htmlFor="username">Nombre completo</label>
-            <input
+            <Input
               id="username"
               type="text"
               name="username"
@@ -31,7 +33,7 @@ const AlumnoAccount = () => {
               placeholder="Ingresar nombre completo"
             />
             <label htmlFor="useremail">Fecha de nacimiento</label>
-            <input
+            <Input
               id="useremail"
               type="date"
               name="useremail"
@@ -39,7 +41,7 @@ const AlumnoAccount = () => {
               placeholder="DD / MM / AAAA"
             />
             <label htmlFor="password">Dirección</label>
-            <input
+            <Input
               id="password"
               type="text"
               name="password"
@@ -49,7 +51,7 @@ const AlumnoAccount = () => {
             <label htmlFor="username">Grado</label>
             <ComboBox teachers={['Primero', 'Segundo', 'Tercero', 'Cuarto', 'Quinto', 'Sexto']} valueByDefault={'Seleccionar Grado'} />
             <label htmlFor="username">Nombre del encargado: <label className="text-[12px]">padre, madre u otro</label>  </label>
-            <input
+            <Input
               id="username"
               type="text"
               list="value"
@@ -58,7 +60,7 @@ const AlumnoAccount = () => {
               placeholder="Ingresar nombre completo"
             />
             <label htmlFor="username">Teléfono del encargado: <label className="text-[12px]">padre, madre u otro</label>  </label>
-            <input
+            <Input
               id="username"
               type="text"
               list="value"
@@ -69,14 +71,15 @@ const AlumnoAccount = () => {
           </div>
         </form>
 
-<div  className="m-5">
-        <button
+        <div className="fixed top-[720px] left-5 right-5">
+        <Button
+          text="Crear nuevo alumno"
+          typeButton={"button-type-2"}
+          className=""
           type="submit"
-          className="text-center min-w-full bg-[#7064FF] text-white mt-[32px] h-[49px] text-[21.33px]"
-        >
-          Crear nuevo alumno
-        </button>
-        </div>
+          form="register-form"
+        />
+      </div>
       </div>
     </div>
   );

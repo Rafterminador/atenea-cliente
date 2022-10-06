@@ -1,5 +1,6 @@
 import React from "react";
 import CursoNote from "./CursoNote";
+import Button from "./Button";
 
 const BoletinCard = (props) => {
   return (
@@ -27,8 +28,32 @@ const BoletinCard = (props) => {
             <CursoNote name={"Expresión Artística"} note={"100"} />
             <CursoNote name={"Educación Física"} note={"36"} />
           </div>
+
+<div className="grid grid-cols-2 ml-[80px]">
+    <p className="text-[16px] opensansbold">
+        Promedio 
+    </p>
+
+    <p className="ml-[40px]">
+            65pts
+        </p>
+
+<p className="text-[16px] opensansbold">
+    Inasistencias
+
+</p>
+
+<p className="ml-[50px]">
+        5
+    </p>
+
+</div>
+
         </div>
       </div>
+
+
+
     </div>
   );
 };

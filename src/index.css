@@ -76,10 +76,6 @@ p {
   border-radius: 20px 20px 20px 20px;
 }
 
-.invalid {
-  border: 1px solid #ff5f5f;
-}
-
 .invalid-text {
   color: #ff5f5f;
 }
@@ -392,6 +388,10 @@ hr.administracion {
   border: 1px solid #dbd8ff;
   border-radius: 10px;
 }
+.invalid {
+  border: 1px solid #ff5f5f;
+  border-radius: 10px;
+}
 /* animaciones */
 .arrow-animation {
   transition: transform 1000ms ease-out;
@@ -461,4 +461,13 @@ hr.administracion {
 input[type="password"]::-ms-reveal,
 input[type="password"]::-ms-clear {
   display: none;
+}
+
+.shw-pass {
+  /* content: url(assets/images/icon-showpassword.svg); */
+  height: 24px;
+  width: 24px;
+  position: absolute;
+  top: 10px;
+  right: 12px;
 }

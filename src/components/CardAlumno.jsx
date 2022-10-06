@@ -4,9 +4,14 @@ import Cake from "../assets/images/cake.svg";
 import Location from "../assets/images/location.svg";
 import School from "../assets/images/school.svg";
 import Cel from "../assets/images/cel.svg";
+import { useNavigate } from "react-router-dom";
 
 const CardAlumno = (props) => {
   console.log(props.ruta);
+  const navigate = useNavigate();
+  function handleBoletin() {
+    navigate("/boletin");
+  }
 
   return (
     <div className="">
@@ -39,7 +44,7 @@ const CardAlumno = (props) => {
               <img src={School} alt="School" />
               <p className="font-sans text-[16px] ml-[15px]">{props.grado}</p>
 
-              <span className=" text-[#7064FF] font-sans text-[12.8px] ml-[61px] w-[68px] h-[24px] mt-[1px]">
+              <span className=" text-[#7064FF] font-sans text-[12.8px] ml-[61px] w-[68px] h-[24px] mt-[1px]" onClick={handleBoletin}>
                 Ver boletin
               </span>
 
