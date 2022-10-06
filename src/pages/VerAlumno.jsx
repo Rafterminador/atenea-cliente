@@ -15,11 +15,11 @@ export default function VerAlumno() {
 
 
   return (
-    <div>
+    <div className="flex flex-col">
       <div className="m-5">
       <SearchBar/>
       </div>
-      <div className="my-[30px]">
+      <div className="my-[10px]">
         <Grado grado={"Primero primaria"} total={"15"} />
         <Alumno nombre={"Jeremías Mathyas Garrido Jara"} />
         <Alumno nombre={"Arely Andy Sepúlveda Ortega"} />
@@ -39,7 +39,7 @@ export default function VerAlumno() {
         <Alumno nombre={"Bastian Vincen Cárdenas Valenzuela"} />
       </div>
 
-      <div className="bg-white flex justify-end w-screen">
+      <div className="bg-white w-screen fixed top-[670px] left-[280px]">
         <div className="addsearchradius bg-[#776694] border-2 w-[42px] h-[40px] mx-4">
           <button>
             {" "}
