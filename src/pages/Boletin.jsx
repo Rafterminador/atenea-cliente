@@ -1,6 +1,7 @@
 import React from "react";
 import bleft from "../assets/images/chevron_left.svg";
 import Notes from "../components/Notes";
+import BoletinCard from "../components/BoletinCard";
 
 const Boletin = () => {
   return (
@@ -21,8 +22,24 @@ const Boletin = () => {
       <div className="bg-[#DBD8FF] h-[1px] my-0"></div>
 
       <div className="m-5">
-        <Notes/>
+        <Notes
+        unidad={"Primera unidad"}
+        />
+        <Notes
+        unidad={"Segunda unidad"}
+        />
+        <Notes
+        unidad={"Tercera unidad"}
+        />
+        <Notes
+        unidad={"Cuarta unidad"}
+        />
 
+      </div>
+
+      <div className="">
+        {/* <BoletinCard
+        /> */}
       </div>
     </div>
   );
