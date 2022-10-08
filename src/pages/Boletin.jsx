@@ -1,27 +1,14 @@
 import React from "react";
-import bleft from "../assets/images/chevron_left.svg";
 import Notes from "../components/Notes";
-import BoletinCard from "../components/BoletinCard";
-import { useNavigate } from "react-router-dom";
+// import BoletinCard from "../components/BoletinCard";
 import Button from "../components/Button";
+import Retroceder from '../components/Retroceder';
 
 const Boletin = () => {
 
-  const navigate = useNavigate();
-  function handleBack() {
-    navigate("/perfil/alumno");
-  }
   return (
     <div className="flex flex-col">
-      <div className="flex m-5 text-center">
-        <img src={bleft} alt="backleft" />
-        <p className="text-[13px] ml-[5px] mt-[2px] font-sans text-[#7064FF]" onClick={handleBack}>
-          Atrás
-        </p>
-        <p className="text-[16px] ml-[16px] font-sans">
-          Boletín de: Jeremías Garrido Jara
-        </p>
-      </div>
+      <Retroceder text="José Fernando Arredondo Aparicio" />
 
       <div className="bg-[#DBD8FF] h-[1px] my-0"></div>
 
