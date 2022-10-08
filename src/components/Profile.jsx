@@ -1,4 +1,6 @@
 import Eye from "../assets/images/eye.svg";
+import Image from "../components/Image";
+import Button from "../components/Button";
 
 export default function Profile({ handle }) {
   return (
@@ -15,16 +17,18 @@ export default function Profile({ handle }) {
           <p className="text-[#7B7B7B] font-normal text-base">
             • • • • • • • •
           </p>
-          <img src={Eye} alt="Eye" />
+          <Image className={"col-start-11"} type={0} image={Eye} alt={"Eye"} />
         </div>
       </div>
       <div className="mb-5">
-        <button
+        <Button
+          typeButton={2}
+          className={
+            "bg-[#7064FF] rounded-[20px] text-white font-semibold text-xl"
+          }
           onClick={handle}
-          className="bg-[#7064FF] rounded-[20px] text-white font-semibold text-xl"
-        >
-          Editar datos
-        </button>
+          text={"Editar datos"}
+        />
       </div>
     </div>
   );

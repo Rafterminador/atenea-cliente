@@ -1,4 +1,7 @@
 import Eye from "../assets/images/eye.svg";
+import Input from "../components/Input";
+import Button from "../components/Button";
+import Image from "../components/Image";
 
 export default function EditProfile({ handle }) {
   function handleEye(e) {
@@ -21,11 +24,15 @@ export default function EditProfile({ handle }) {
             >
               Usuario
             </label>
-            <input
-              type="text"
-              id="user"
-              name="user"
-              className="flex justify-between font-normal border-solid border-2 border-[#DBD8FF] rounded-[10px] py-2.5 px-2 focus:outline-2 focus:outline-[#A954FF]"
+            <Input
+              className={
+                "flex justify-between font-normal border-solid border-2 border-[#DBD8FF] rounded-[10px] py-2.5 px-2"
+              }
+              id={"user"}
+              type={"text"}
+              name={"user"}
+              disabled={false}
+              required={true}
             />
             <label
               htmlFor="email"
@@ -33,11 +40,15 @@ export default function EditProfile({ handle }) {
             >
               Correo
             </label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              className="flex justify-between font-normal border-solid border-2 border-[#DBD8FF] rounded-[10px] py-2.5 px-2 focus:outline-2 focus:outline-[#A954FF]"
+            <Input
+              className={
+                "flex justify-between font-normal border-solid border-2 border-[#DBD8FF] rounded-[10px] py-2.5 px-2"
+              }
+              id={"email"}
+              type={"email"}
+              name={"email"}
+              disabled={false}
+              required={true}
             />
             <label
               htmlFor="password"
@@ -46,15 +57,19 @@ export default function EditProfile({ handle }) {
               Contraseña
             </label>
             <div className="relative h-12">
-              <input
-                type="password"
-                id="password"
-                name="password"
-                className="w-full font-normal border-solid border-2 border-[#DBD8FF] rounded-[10px] py-2.5 px-2 focus:outline-2 focus:outline-[#A954FF]"
+              <Input
+                className={
+                  "flex justify-between font-normal border-solid border-2 border-[#DBD8FF] rounded-[10px] py-2.5 px-2"
+                }
+                id={"password"}
+                type={"password"}
+                name={"password"}
+                disabled={false}
+                required={true}
               />
               <div className="absolute right-2 top-1/2 -translate-y-1/2">
                 <button onClick={handleEye}>
-                  <img src={Eye} alt="Eye" />
+                  <Image type={0} image={Eye} alt={"Eye"} />
                 </button>
               </div>
             </div>
@@ -65,25 +80,38 @@ export default function EditProfile({ handle }) {
               Repetir contraseña
             </label>
             <div className="h-12">
-              <input
-                type="password"
-                name="password"
-                className="w-full flex justify-between font-normal border-solid border-2 border-[#DBD8FF] rounded-[10px] py-2.5 px-2 focus:outline-2 focus:outline-[#A954FF]"
+              <Input
+                className={
+                  "flex justify-between font-normal border-solid border-2 border-[#DBD8FF] rounded-[10px] py-2.5 px-2"
+                }
+                id={"repeatPassword"}
+                type={"password"}
+                name={"repeatPassword"}
+                disabled={false}
+                required={true}
               />
             </div>
           </div>
         </form>
       </div>
       <div className="mb-5">
-        <button
+        <Button
+          typeButton={1}
+          className={
+            "box-border border-2 border-solid border-[#7064FF] rounded-[20px] text-[#7064FF] font-semibold text-xl mb-5 h-[49px]"
+          }
+          type={"button"}
           onClick={handle}
-          className="box-border border-2 border-solid border-[#7064FF] rounded-[20px] text-[#7064FF] font-semibold text-xl mb-5 h-[49px]"
-        >
-          Cancelar
-        </button>
-        <button className="bg-[#7064FF] rounded-[20px] text-white font-semibold text-xl">
-          Actualizar datos
-        </button>
+          text={"Cancelar"}
+        />
+        <Button
+          typeButton={2}
+          className={
+            "box-border border-2 border-solid border-[#7064FF] rounded-[20px] text-[#7064FF] font-semibold text-xl mb-5 h-[49px]"
+          }
+          type={"button"}
+          text={"Actualizar datos"}
+        />
       </div>
     </div>
   );

@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import ArrowRight from "../assets/images/arrow_right.svg";
 import Download from "../assets/images/download.svg";
 import Logout from "../assets/images/logout.svg";
+import Image from "../components/Image";
 
 export default function Menu({ hidden, keyValue, animation }) {
   return (
@@ -16,10 +17,11 @@ export default function Menu({ hidden, keyValue, animation }) {
           <Link to="/cuenta">
             <div className="flex justify-between items-center shadow h-12 px-8">
               <p className="text-base font-semibold">Datos de la Cuenta</p>
-              <img
-                src={ArrowRight}
-                alt="Arrow Right"
-                className="col-start-11"
+              <Image
+                className={"col-start-11"}
+                type={0}
+                image={ArrowRight}
+                alt={"Arrow Right"}
               />
             </div>
           </Link>
@@ -28,10 +30,11 @@ export default function Menu({ hidden, keyValue, animation }) {
               <p className="text-base font-semibold col-start-2 col-span-4">
                 Videotutoriales
               </p>
-              <img
-                src={ArrowRight}
-                alt="Arrow Right"
-                className="col-start-11"
+              <Image
+                className={"col-start-11"}
+                type={0}
+                image={ArrowRight}
+                alt={"Arrow Right"}
               />
             </div>
           </Link>
@@ -40,7 +43,12 @@ export default function Menu({ hidden, keyValue, animation }) {
               <p className="text-base font-semibold col-start-2 col-span-5">
                 Descargar manuel
               </p>
-              <img src={Download} alt="Download" className="col-start-11" />
+              <Image
+                className={"col-start-11"}
+                type={0}
+                image={Download}
+                alt={"Download"}
+              />
             </div>
           </button>
           <button>
@@ -48,7 +56,12 @@ export default function Menu({ hidden, keyValue, animation }) {
               <p className="text-base font-semibold col-start-2 col-span-4 text-[#FF54B0]">
                 Cerrar sesion
               </p>
-              <img src={Logout} alt="Logout" className="col-start-11" />
+              <Image
+                className={"col-start-11"}
+                type={0}
+                image={Logout}
+                alt={"Logout"}
+              />
             </div>
           </button>
         </div>

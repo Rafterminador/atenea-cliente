@@ -4,6 +4,7 @@ import EditProfile from "../components/EditProfile";
 // import EditProfile from "../components/EditProfile";
 import Profile from "../components/Profile";
 import { Link } from "react-router-dom";
+import Image from "../components/Image";
 
 export default function Account() {
   const [change, setChange] = useState(true);
@@ -20,9 +21,12 @@ export default function Account() {
         >
           <Link to="/home">
             <div className="flex justify-center items-center">
-              <div className="w-8 h-8 flex justify-center items-center">
-                <img src={ArrowLeft} alt="Arrow Left" />
-              </div>
+              <Image
+                className={"w-8 h-8 flex justify-center items-center"}
+                type={0}
+                image={ArrowLeft}
+                alt={"Arrow Left"}
+              />
               Atras
             </div>
           </Link>

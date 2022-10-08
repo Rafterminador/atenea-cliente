@@ -6,6 +6,7 @@ import { ReactComponent as Students } from "../assets/images/students.svg";
 import { ReactComponent as Teachers } from "../assets/images/teachers.svg";
 import { ReactComponent as MenuImage } from "../assets/images/menu.svg";
 import Menu from "../components/Menu";
+import Image from "../components/Image";
 
 export default function Home() {
   const [hidden, setHidden] = useState("hidden");
@@ -44,9 +45,12 @@ export default function Home() {
   return (
     <div className="relative">
       <div className="home mx-5 text-center flex flex-col gap-32">
-        <div className="bordeblur overflow-hidden flex justify-center">
-          <img src={HomeImg} alt="Home" />
-        </div>
+        <Image
+          className={"bordeblur overflow-hidden flex justify-center"}
+          type={1}
+          image={HomeImg}
+          alt={"Home"}
+        />
         <div className=" flex flex-col gap-32 mb-4">
           <div className="flex flex-col gap-4">
             <h1>Bienvenido Director</h1>
@@ -55,9 +59,12 @@ export default function Home() {
               Atenea
             </p>
           </div>
-          <div className="w-full flex justify-center items-center">
-            <img src={ArrowDown} alt="Arrow Down" width={48} height={48} />
-          </div>
+          <Image
+            className={"w-full flex justify-center items-center"}
+            type={0}
+            image={ArrowDown}
+            alt={"Arrow Down"}
+          />
         </div>
       </div>
       <div className="fixed z-0 bottom-0 h-[70px] w-full flex justify-around items-center text-centers shadow">

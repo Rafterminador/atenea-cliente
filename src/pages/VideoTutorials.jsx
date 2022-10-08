@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
 import ArrowLeft from "../assets/images/arrow_left.svg";
 import Search from "../assets/images/search.svg";
+import Image from "../components/Image";
+import Input from "../components/Input";
 // import Video from "../assets/youtube2.mp4";
 
 export default function VideoTutorials() {
@@ -10,9 +12,12 @@ export default function VideoTutorials() {
         <div className="col-start-1 justify-self-start text-[#7064FF]">
           <Link to="/home">
             <div className="flex justify-center items-center">
-              <div className="w-8 h-8 flex justify-center items-center">
-                <img src={ArrowLeft} alt="Arrow Left" />
-              </div>
+              <Image
+                className={"w-8 h-8 flex justify-center items-center"}
+                type={0}
+                image={ArrowLeft}
+                alt={"Arrow Left"}
+              />
               Atras
             </div>
           </Link>
@@ -23,16 +28,25 @@ export default function VideoTutorials() {
       </div>
       <div className="mx-5 mt-4">
         <div className="relative h-12">
-          <input
-            type="text"
-            id="search"
-            name="search"
-            placeholder="Buscar un videotutorial"
-            className="h-10 w-full font-normal border-solid border-2 border-[#DBD8FF] rounded-[15px] py-2.5 px-12 focus:outline-2 focus:outline-[#A954FF]"
+          <Input
+            className={
+              "w-full font-normal border-solid border-2 border-[#DBD8FF] rounded-[15px] py-2.5 px-12"
+            }
+            id={"search"}
+            type={"text"}
+            name={"search"}
+            placeholder={"Buscar un videotutorial"}
+            disabled={false}
+            required={true}
           />
-          <div className="h-10 w-10 absolute left-0 top-0 bg-[#DBD8FF] flex justify-center items-center rounded-l-[15px] focus:bg-transparent">
-            <img src={Search} alt="Eye" />
-          </div>
+          <Image
+            className={
+              "h-10 w-10 absolute left-0 top-0 bg-[#DBD8FF] flex justify-center items-center rounded-l-[15px] focus:bg-transparent"
+            }
+            type={0}
+            image={Search}
+            alt={"Search"}
+          />
         </div>
         <div className="mt-6 text-center font-semibold text-base">
           <h2>¿Como crear un nuevo estudiante?</h2>
