@@ -19,7 +19,6 @@ const NewGrade = () => {
     return (
         <>
             <Retroceder text="Nuevo grado" />
-            <hr className='administracion' style={{ marginBottom: '8px' }} />
             <form className='contenedor-admin' onSubmit={handleGrade}>
                 <label htmlFor="grade" className='label-purple'>Nombre del grado<span className='span-field'>*</span></label>
                 <input

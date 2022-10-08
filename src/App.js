@@ -39,6 +39,10 @@ function App() {
         <Route path="/grades/update/:id" element={<UpdateGrade />} />
         <Route path="/grades/update/:id/edit" element={<EditGrade />} />
 
+        <Route path="/home" element={<Home />} />
+        <Route path="/cuenta" element={<Account />} />
+        <Route path="/videotutoriales" element={<VideoTutorials />} />
+
         <Route path="/ver/alumno" element={<VerAlumno />} />
         <Route path="/cuenta/alumno" element={<AlumnoAccount />} />
         <Route path="/editar/alumno" element={<EditAlumnoAccount />} />
