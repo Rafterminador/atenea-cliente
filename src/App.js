@@ -5,7 +5,6 @@ import { Login } from "./pages/Login";
 import { RegistroUsuario } from "./pages/RegistroUsuario";
 import OlvidePassword from "./pages/OlvidePassword";
 import Check from "./pages/Check";
-import RestorePassword from "./pages/RestorePassword";
 import Home from "./pages/Home";
 import Account from "./pages/Account";
 import VideoTutorials from "./pages/VideoTutorials";
