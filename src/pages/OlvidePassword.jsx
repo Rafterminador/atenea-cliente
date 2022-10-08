@@ -2,6 +2,10 @@ import React from "react";
 import { useState } from "react";
 import ImageLoginDesktop from "../assets/images/recuperarPassword.svg";
 import { useNavigate } from "react-router-dom";
+import Input from "../components/Input";
+import Button from "../components/Button";
+import Image from "../components/Image";
+
 const OlvidePassword = () => {
   const [email, setEmail] = useState("");
   const navigate = useNavigate();
@@ -20,17 +24,13 @@ const OlvidePassword = () => {
         .then((data) => console.log(data));
 
 
-        localStorage.setItem("email", email);
+      localStorage.setItem("email", email);
 
       navigate("/restore/check/email");
     } catch (error) {
       console.log(error);
     }
   };
-
-  function handleSubmit(e) {
-    e.preventDefault();
-  }
 
   function handleChangeEmail(e) {
     setEmail(e.target.value);
@@ -39,8 +39,8 @@ const OlvidePassword = () => {
   return (
     <div className="mx-5 min-h-screen flex flex-col justify-between md:hidden">
       {/* div de la imagen */}
-      <div className="bg-[#FCFBFF] bordeblur">
-        <img className="mx-auto" src={ImageLoginDesktop} alt="Registros" />
+      <div>
+        <Image image={ImageLoginDesktop} alt="Registros" className="mx-auto" type={1} />
       </div>
 
       {/* div del contenido */}
@@ -53,19 +53,19 @@ const OlvidePassword = () => {
             electrónico asociado
           </p>
         </div>
-        <form onSubmit={handleSubmit} id="resetpassword-form">
+        <form onSubmit={handleValidarCodigo} id="resetpassword-form">
           <div className="flex flex-col gap-2 min-w-full">
             {/* <label className="text-[#4D3483] sml-title" htmlFor="email">
               Correo
             </label> */}
-            <input
+            <Input
               id="email"
               type="text"
-              value={email}
               name="email"
               onChange={handleChangeEmail}
-              className="nrm-text placeholder:text-[#7B7B7B] nrm-txtfld-border px-3 box-border h-[42px] focus:outline-2 focus:outline-[#A954FF]"
               placeholder="Ingresar correo"
+              className="w-full"
+              required={1}
             />
           </div>
         </form>
@@ -73,14 +73,7 @@ const OlvidePassword = () => {
 
       {/* div de los botones */}
       <div className="flex flex-col mb-5">
-        <button
-          type="submit"
-          form="resetpassword-form"
-          className="bg-[#7064FF] text-white nrm-button"
-          onClick={handleValidarCodigo}
-        >
-          Continuar
-        </button>
+        <Button text="Ingresar" typeButton={"button-type-2"} className="" type="submit" form="resetpassword-form" />
       </div>
     </div>
   );
