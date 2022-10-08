@@ -2,7 +2,7 @@ import React from 'react'
 import Regresar from "../assets/images/regresar.svg";
 import { useNavigate } from 'react-router-dom'
 import ComboBox from '../components/ComboBox';
-import Success from "../assets/images/success.svg";
+import { AlertButton } from "../utils/AlertButton";
 const EditGrade = () => {
     let gradeJSON = localStorage.getItem('grade')
     let grade = (JSON.parse(gradeJSON))
@@ -14,16 +14,9 @@ const EditGrade = () => {
     const handleEdit = (e) => {
         e.preventDefault();
         document.getElementById('grade').value = ''
-        Swal.fire({
-            icon: 'question',
-            iconHtml: `<img src=${Success}>`,
-            title: `Datos actualizados`,
-            timer: 2000,
-            customClass: {
-                icon: 'no-border'
-            },
-            showConfirmButton: false
-        }).then(() => {
+        Swal.fire(
+            AlertButton.dataAlert('Datos actualizados')
+        ).then(() => {
             navigate('/grades')
         })
     }

@@ -12,6 +12,7 @@ const OlvidePassword = () => {
 
   const handleValidarCodigo = (e) => {
     e.preventDefault();
+    console.log("el email es ", email)
     navigate("/restore/check/email");
   };
 

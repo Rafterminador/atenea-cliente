@@ -2,7 +2,7 @@ import React from 'react'
 import Regresar from "../assets/images/regresar.svg";
 import { useNavigate } from 'react-router-dom'
 import ComboBox from '../components/ComboBox';
-import Success from "../assets/images/success.svg";
+import { AlertButton } from "../utils/AlertButton";
 
 const NewGrade = () => {
     const navigate = useNavigate()
@@ -13,16 +13,9 @@ const NewGrade = () => {
     const handleGrade = (e) => {
         e.preventDefault();
         document.getElementById('grade').value = ''
-        Swal.fire({
-            icon: 'question',
-            iconHtml: `<img src=${Success}>`,
-            title: `Grado creado`,
-            timer: 2000,
-            customClass: {
-                icon: 'no-border'
-            },
-            showConfirmButton: false
-        }).then(() => {
+        Swal.fire(
+            AlertButton.dataAlert('Grado creado')
+        ).then(() => {
             navigate('/grades')
         })
     }
