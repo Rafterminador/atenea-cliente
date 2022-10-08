@@ -19,21 +19,17 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        {/* rutas para la S01 - Autenticacion */}
+       {/* rutas para la S01 - Autenticacion */}
         <Route path="/" element={<LandingPage />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/registro/usuario" element={<RegistroUsuario />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/olvide-password" element={<OlvidePassword />} />
-        <Route path="/verificacion" element={<Check />} />
-        <Route path="/restablecer-password" element={<RestorePassword />} />
-        <Route path="/home" element={<Home />} />
-        <Route path="/cuenta" element={<Account />} />
-        <Route path="/videotutoriales" element={<VideoTutorials />} />
         <Route path="/register" element={<RegistroUsuario />} />
         <Route path="/restore/password" element={<OlvidePassword />} />
         <Route path="/restore/check/email" element={<Check />} />
         <Route path="/reset/password" element={<ResetPassword />} />
+        
+        <Route path="/home" element={<Home />} />
+        <Route path="/cuenta" element={<Account />} />
+        <Route path="/videotutoriales" element={<VideoTutorials />} />
 
         {/* rutas para la S02 - Administrativo */}
         <Route path="/grades/" element={<Grades />} />
