@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import ComboBox from '../components/ComboBox';
 import { AlertButton } from "../utils/AlertButton";
 import Retroceder from '../components/Retroceder';
+import Button from "../components/Button";
 
 const NewGrade = () => {
     const navigate = useNavigate()
@@ -19,7 +20,6 @@ const NewGrade = () => {
     return (
         <>
             <Retroceder text="Nuevo grado" />
-            <hr className='administracion' style={{ marginBottom: '8px' }} />
             <form className='contenedor-admin' onSubmit={handleGrade}>
                 <label htmlFor="grade" className='label-purple'>Nombre del grado<span className='span-field'>*</span></label>
                 <input
@@ -32,9 +32,13 @@ const NewGrade = () => {
                 <label htmlFor="grade" className='label-purple'>Docente a cargo<span className='span-field'>*</span></label>
                 <ComboBox teachers={['Rubén	Argüero	Sánchez Juanajatoja', 'Anastasia Madeline Orellana Álvarez', 'Sara Josthyn Gutiérrez Lagos',
                     'Cain Nehemias Orellana Valenzuela', 'Yonathan Fabio Aguilera Poblete']} valueByDefault="" />
-                <button className='button-purple' style={{ position: 'absolute', left: '0px', marginLeft: '20px', width: 'calc(100% - 40px)', bottom: '20px' }} type="submit">
-                    Crear nuevo grado
-                </button>
+                <Button
+                    text=" Crear nuevo grado"
+                    typeButton={"button-type-2"}
+                    className=""
+                    type="submit"
+                    style={{ position: 'absolute', left: '0px', marginLeft: '20px', width: 'calc(100% - 40px)', bottom: '20px' }}
+                />
             </form>
         </>
     )

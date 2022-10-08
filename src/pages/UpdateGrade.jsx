@@ -30,7 +30,6 @@ const UpdateGrade = () => {
     return (
         <>
             <Retroceder text={grade.curso} />
-            <hr className='administracion' />
             <div className='contenedor-admin'>
                 <div className='container-grade'>
                     <h2 className='h2-administracion' style={{ marginBottom: '16px' }}>

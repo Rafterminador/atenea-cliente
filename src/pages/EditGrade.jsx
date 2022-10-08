@@ -21,7 +21,6 @@ const EditGrade = () => {
     return (
         <>
             <Retroceder text="Editar datos" />
-            <hr className='administracion' />
             <div className='contenedor-admin'>
                 <label htmlFor="grade" className='label-purple'>Nombre del grado<span className='span-field'>*</span></label>
                 <input

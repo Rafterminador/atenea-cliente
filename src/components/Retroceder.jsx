@@ -8,15 +8,14 @@ const Retroceder = (props) => {
         navigate(-1)
     }
     return (
-        <div className='contenedor-admin'>
-            <div className='grid grid-cols-12 items-center'>
-                <button onClick={handleReturn}>
-                    <img src={Regresar} alt='Regresar' />
-                </button>
-                <p className='p-purple col-span-2'>Atrás</p>
-                <p className='p-bold-administracion col-span-9'>{props.text}</p>
-            </div>
-        </div>
+        <>
+            <div className="flex ml-5 mt-[21px] mb-[13px] items-cente" onClick={handleReturn}>
+                <img src={Regresar} alt="backleft" />
+                <p className="text-[13px] ml-[5px] mt-[2px] font-sans text-[#7064FF]"> Atrás</p>
+                <p className="ml-[16px] p-bold-administracion ">{props.text}</p>
+            </div >
+            <hr className='administracion' />
+        </>
     )
 }
 

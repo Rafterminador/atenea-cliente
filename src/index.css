@@ -177,25 +177,6 @@ hr.administracion {
   margin-top: 8px;
 }
 
-.add-button {
-  background: #776694;
-  border-radius: 16px;
-  padding: 12px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 48px;
-  height: 48px;
-  position: fixed;
-  bottom: 0px;
-  left: calc(100% - 60px);
-}
-
-.p-purple {
-  color: #7064ff;
-  font-size: 12px;
-}
-
 .label-purple {
   font-size: 16px;
   color: #4d3483;
@@ -235,6 +216,16 @@ hr.administracion {
   border: 2px solid #a954ff;
   overflow-y: scroll;
   height: 148px;
+}
+
+.combo-box-container-notes {
+  padding-top: 8px;
+  margin-top: -8px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  border: 2px solid #a954ff;
+  overflow-y: scroll;
+  height: auto;
 }
 
 .button-purple {
@@ -456,6 +447,25 @@ hr.administracion {
   transition: opacity 400ms ease-in-out;
 }
 
+.alumnoborder {
+  border-radius: 10px 10px 10px 10px;
+}
+
+.addsearchradius {
+  border-radius: 15px 15px 15px 15px;
+}
+
+.sidebar {
+  position: sticky;
+  top: 0;
+}
+
+.bordercard {
+  box-shadow: 0px 0px 8px rgba(112, 100, 255, 0.25);
+  border-radius: 10px 10px 10px 10px;
+}
+
+
 .card:hover img.img-back {
   opacity: 1;
 }
@@ -503,6 +513,7 @@ input[type="password"]::-ms-clear {
   from {
     top: 50%;
   }
+
   to {
     top: 0;
   }
@@ -512,6 +523,7 @@ input[type="password"]::-ms-clear {
   from {
     top: 0;
   }
+
   to {
     top: 50%;
   }
@@ -521,6 +533,7 @@ input[type="password"]::-ms-clear {
   from {
     opacity: 0;
   }
+
   to {
     opacity: 0.3;
   }
