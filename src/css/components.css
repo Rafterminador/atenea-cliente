@@ -19,6 +19,7 @@
     justify-content: center;
     align-items: center;
     padding: 10px 16px;
+    height: 52px;
 }
 
 .button-type-1 {
@@ -31,6 +32,12 @@
     background: #7064FF;
     border-radius: 20px;
     color: #FFFFFF;
+}
+
+.button-type-3 {
+    border: 2px solid #FF54B0;
+    border-radius: 20px;
+    color: #FF54B0;
 }
 
 .input {

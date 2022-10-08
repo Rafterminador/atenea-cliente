@@ -1,10 +1,15 @@
 import React from 'react'
 import SearchBar from '../components/SearchBar'
 import Grade from '../components/Grade'
-import AddGrade from '../components/AddGrade'
+import AddButton from '../components/AddButton'
+import { useNavigate } from 'react-router-dom'
 
 const Grades = () => {
   localStorage.clear()
+  const navigate = useNavigate()
+  const handleClick = () => {
+    navigate('/grades/create')
+  }
   return (
     <div className='contenedor contenedor-admin'>
       <SearchBar />
@@ -21,7 +26,7 @@ const Grades = () => {
       <Grade curso={"Sexto primaria"} encargado={"Cain Nehemias Orellana Valenzuela"} id={"9"} alumnos={0} />
       <h1 className='h1-administracion'>Otros</h1>
       <Grade curso={"Educación física"} encargado={"Yonathan Fabio Aguilera Poblete"} id={"10"} alumnos={0} />
-      <AddGrade />
+      <AddButton function={handleClick} />
     </div>
   )
 }

@@ -1,42 +1,24 @@
 import React from 'react'
-import Regresar from "../assets/images/regresar.svg";
 import { useNavigate } from 'react-router-dom'
 import ComboBox from '../components/ComboBox';
-import Success from "../assets/images/success.svg";
+import { AlertButton } from "../utils/AlertButton";
+import Retroceder from '../components/Retroceder';
 
 const NewGrade = () => {
     const navigate = useNavigate()
     const Swal = require('sweetalert2')
-    const handleReturn = () => {
-        navigate(-1)
-    }
     const handleGrade = (e) => {
         e.preventDefault();
         document.getElementById('grade').value = ''
-        Swal.fire({
-            icon: 'question',
-            iconHtml: `<img src=${Success}>`,
-            title: `Grado creado`,
-            timer: 2000,
-            customClass: {
-                icon: 'no-border'
-            },
-            showConfirmButton: false
-        }).then(() => {
+        Swal.fire(
+            AlertButton.dataAlertSuccess('Grado creado')
+        ).then(() => {
             navigate('/grades')
         })
     }
     return (
         <>
-            <div className='contenedor-admin'>
-                <div className='grid grid-cols-12 items-center'>
-                    <button onClick={handleReturn}>
-                        <img src={Regresar} alt='Regresar' />
-                    </button>
-                    <p className='p-purple col-span-2'>Atrás</p>
-                    <p className='p-bold-administracion col-span-9'>Nuevo grado</p>
-                </div>
-            </div>
+            <Retroceder text="Nuevo grado" />
             <hr className='administracion' style={{ marginBottom: '8px' }} />
             <form className='contenedor-admin' onSubmit={handleGrade}>
                 <label htmlFor="grade" className='label-purple'>Nombre del grado<span className='span-field'>*</span></label>

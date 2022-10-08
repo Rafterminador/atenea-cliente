@@ -1,10 +1,13 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { LandingPage } from "./pages/LandingPage";
-import { Login } from "./pages/login";
+import { Login } from "./pages/Login";
 import { RegistroUsuario } from "./pages/RegistroUsuario";
 import OlvidePassword from "./pages/OlvidePassword";
 import Check from "./pages/Check";
+import Home from "./pages/Home";
+import Account from "./pages/Account";
+import VideoTutorials from "./pages/VideoTutorials";
 import ResetPassword from "./pages/ResetPassword";
 import Grades from "./pages/Grades";
 import NewGrade from "./pages/NewGrade";
@@ -28,13 +31,14 @@ function App() {
         <Route path="/restore/password" element={<OlvidePassword />} />
         <Route path="/restore/check/email" element={<Check />} />
         <Route path="/reset/password" element={<ResetPassword />} />
-        
+
 
         {/* rutas para la S02 - Administrativo */}
         <Route path="/grades/" element={<Grades />} />
         <Route path="/grades/create" element={<NewGrade />} />
         <Route path="/grades/update/:id" element={<UpdateGrade />} />
         <Route path="/grades/update/:id/edit" element={<EditGrade />} />
+
         <Route path="/ver/alumno" element={<VerAlumno />} />
         <Route path="/cuenta/alumno" element={<AlumnoAccount />} />
         <Route path="/editar/alumno" element={<EditAlumnoAccount />} />
