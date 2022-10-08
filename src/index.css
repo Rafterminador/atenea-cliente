@@ -76,6 +76,12 @@ p {
   border-radius: 20px 20px 20px 20px;
 }
 
+.cf {
+  position: relative;
+  height: 281px;
+  width: 450px;
+}
+
 .invalid-text {
   color: #ff5f5f;
 }
@@ -466,4 +472,56 @@ input[type="password"]::-ms-clear {
   position: absolute;
   top: 10px;
   right: 12px;
+}
+
+.home {
+  height: calc(100vh - 70px);
+}
+
+.account {
+  height: calc(100vh - 64px);
+}
+
+.shadow {
+  box-shadow: 0px 0px 8px 0px #7064ff40;
+  border-radius: 10px;
+}
+
+.animation1 {
+  animation: showmenu 0.5s ease-in-out;
+}
+
+.animation2 {
+  animation: hiddenmenu 0.5s ease-in-out;
+}
+
+.animation3 {
+  animation: divopacity 0.5s ease-in-out;
+}
+
+@keyframes showmenu {
+  from {
+    top: 50%;
+  }
+  to {
+    top: 0;
+  }
+}
+
+@keyframes hiddenmenu {
+  from {
+    top: 0;
+  }
+  to {
+    top: 50%;
+  }
+}
+
+@keyframes divopacity {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 0.3;
+  }
 }

@@ -1,10 +1,13 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { LandingPage } from "./pages/LandingPage";
-import { Login } from "./pages/login";
+import { Login } from "./pages/Login";
 import { RegistroUsuario } from "./pages/RegistroUsuario";
 import OlvidePassword from "./pages/OlvidePassword";
 import Check from "./pages/Check";
+import Home from "./pages/Home";
+import Account from "./pages/Account";
+import VideoTutorials from "./pages/VideoTutorials";
 import ResetPassword from "./pages/ResetPassword";
 import Grades from "./pages/Grades";
 import NewGrade from "./pages/NewGrade";
@@ -15,13 +18,17 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        {/* rutas para la S01 - Autenticacion */}
+       {/* rutas para la S01 - Autenticacion */}
         <Route path="/" element={<LandingPage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<RegistroUsuario />} />
         <Route path="/restore/password" element={<OlvidePassword />} />
         <Route path="/restore/check/email" element={<Check />} />
         <Route path="/reset/password" element={<ResetPassword />} />
+        
+        <Route path="/home" element={<Home />} />
+        <Route path="/cuenta" element={<Account />} />
+        <Route path="/videotutoriales" element={<VideoTutorials />} />
 
         {/* rutas para la S02 - Administrativo */}
         <Route path="/grades/" element={<Grades />} />
