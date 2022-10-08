@@ -1,19 +1,17 @@
 import React from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
-import Regresar from "../assets/images/regresar.svg";
 import Student from "../assets/images/student.svg";
 import Grade from "../assets/images/grade.svg";
 import Teacher from "../assets/images/teacher.svg";
 import DeleteConfirmation from "../assets/images/delete-confirmation.svg";
+import Retroceder from '../components/Retroceder';
+
 const UpdateGrade = () => {
     const navigate = useNavigate()
     const params = useParams()
     const Swal = require('sweetalert2')
     let gradeJSON = localStorage.getItem('grade')
     let grade = (JSON.parse(gradeJSON))
-    const handleReturn = () => {
-        navigate(-1)
-    }
     const handleEdit = () => {
         navigate(`/grades/update/${params.id}/edit`)
     }
@@ -42,15 +40,7 @@ const UpdateGrade = () => {
     }
     return (
         <>
-            <div className='contenedor-admin'>
-                <div className='grid grid-cols-12 items-center'>
-                    <button onClick={handleReturn}>
-                        <img src={Regresar} alt='Regresar' />
-                    </button>
-                    <p className='p-purple col-span-2'>Atrás</p>
-                    <p className='p-bold-administracion col-span-9'>{grade.curso}</p>
-                </div>
-            </div>
+            <Retroceder text={grade.curso} />
             <hr className='administracion' />
             <div className='contenedor-admin'>
                 <div className='container-grade'>

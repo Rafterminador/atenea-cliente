@@ -1,16 +1,14 @@
 import React from 'react'
-import Regresar from "../assets/images/regresar.svg";
 import { useNavigate } from 'react-router-dom'
 import ComboBox from '../components/ComboBox';
 import { AlertButton } from "../utils/AlertButton";
+import Retroceder from '../components/Retroceder';
+
 const EditGrade = () => {
     let gradeJSON = localStorage.getItem('grade')
     let grade = (JSON.parse(gradeJSON))
     const navigate = useNavigate()
     const Swal = require('sweetalert2')
-    const handleReturn = () => {
-        navigate(-1)
-    }
     const handleEdit = (e) => {
         e.preventDefault();
         document.getElementById('grade').value = ''
@@ -22,15 +20,7 @@ const EditGrade = () => {
     }
     return (
         <>
-            <div className='contenedor-admin'>
-                <div className='grid grid-cols-12 items-center'>
-                    <button onClick={handleReturn}>
-                        <img src={Regresar} alt='Regresar' />
-                    </button>
-                    <p className='p-purple col-span-2'>Atrás</p>
-                    <p className='p-bold-administracion col-span-9'> Editar datos</p>
-                </div>
-            </div>
+            <Retroceder text="Editar datos" />
             <hr className='administracion' />
             <div className='contenedor-admin'>
                 <label htmlFor="grade" className='label-purple'>Nombre del grado<span className='span-field'>*</span></label>
