@@ -11,7 +11,7 @@ const Alumno = (props) => {
     navigate("/perfil/alumno");
   }
   return (
-    <div className="ml-[20px] mr-[20px] min-w-min my-1">
+    <div className="min-w-min my-1">
 
       <div className="grid grid-cols-2 items-center">
         <div className="w-[296px] h-[24px]">

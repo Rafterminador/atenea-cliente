@@ -177,20 +177,6 @@ hr.administracion {
   margin-top: 8px;
 }
 
-.add-button {
-  background: #776694;
-  border-radius: 16px;
-  padding: 12px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 48px;
-  height: 48px;
-  position: fixed;
-  bottom: 0px;
-  left: calc(100% - 60px);
-}
-
 .p-purple {
   color: #7064ff;
   font-size: 12px;
@@ -475,11 +461,11 @@ hr.administracion {
 }
 
 .sidebar {
-    position: sticky;
-    top: 0; 
-} 
+  position: sticky;
+  top: 0;
+}
 
-.bordercard{
+.bordercard {
   box-shadow: 0px 0px 8px rgba(112, 100, 255, 0.25);
   border-radius: 10px 10px 10px 10px;
 }
@@ -532,6 +518,7 @@ input[type="password"]::-ms-clear {
   from {
     top: 50%;
   }
+
   to {
     top: 0;
   }
@@ -541,6 +528,7 @@ input[type="password"]::-ms-clear {
   from {
     top: 0;
   }
+
   to {
     top: 50%;
   }
@@ -550,6 +538,7 @@ input[type="password"]::-ms-clear {
   from {
     opacity: 0;
   }
+
   to {
     opacity: 0.3;
   }

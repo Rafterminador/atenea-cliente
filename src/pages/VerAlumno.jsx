@@ -1,10 +1,9 @@
 import React from "react";
 import Alumno from "../components/Alumno";
 import Grado from "../components/Grado";
-import AddB from "../assets/images/add.svg";
 import SearchBar from "../components/SearchBar";
 import { useNavigate } from "react-router-dom";
-
+import AddButton from '../components/AddButton'
 
 
 export default function VerAlumno() {
@@ -15,10 +14,8 @@ export default function VerAlumno() {
 
 
   return (
-    <div className="flex flex-col">
-      <div className="m-5">
-      <SearchBar/>
-      </div>
+    <div className="contenedor contenedor-admin">
+      <SearchBar />
       <div className="my-[10px]">
         <Grado grado={"Primero primaria"} total={"15"} />
         <Alumno nombre={"Jeremías Mathyas Garrido Jara"} />
@@ -38,15 +35,7 @@ export default function VerAlumno() {
         <Alumno nombre={"Ema Ronal Rojas Farías"} />
         <Alumno nombre={"Bastian Vincen Cárdenas Valenzuela"} />
       </div>
-
-      <div className="bg-white w-screen fixed top-[670px] left-[280px]">
-        <div className="addsearchradius bg-[#776694] border-2 w-[42px] h-[40px] mx-4">
-          <button>
-            {" "}
-            <img src={AddB} alt="add" onClick={handleAdd}/> 
-          </button>
-        </div>
-      </div>
+      <AddButton function={handleAdd} />
     </div>
   );
 }

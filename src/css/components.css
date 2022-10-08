@@ -49,3 +49,17 @@
     align-items: center;
     padding: 10px 12px;
 }
+
+.add-button {
+    background: #776694;
+    border-radius: 16px;
+    padding: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 48px;
+    height: 48px;
+    position: fixed;
+    bottom: 0px;
+    left: calc(100% - 60px);
+}
