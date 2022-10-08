@@ -13,7 +13,7 @@ const EditGrade = () => {
         e.preventDefault();
         document.getElementById('grade').value = ''
         Swal.fire(
-            AlertButton.dataAlert('Datos actualizados')
+            AlertButton.dataAlertSuccess('Datos actualizados')
         ).then(() => {
             navigate('/grades')
         })

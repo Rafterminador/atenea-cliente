@@ -11,7 +11,7 @@ const NewGrade = () => {
         e.preventDefault();
         document.getElementById('grade').value = ''
         Swal.fire(
-            AlertButton.dataAlert('Grado creado')
+            AlertButton.dataAlertSuccess('Grado creado')
         ).then(() => {
             navigate('/grades')
         })

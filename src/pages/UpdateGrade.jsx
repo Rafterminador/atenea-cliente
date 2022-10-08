@@ -5,6 +5,7 @@ import Grade from "../assets/images/grade.svg";
 import Teacher from "../assets/images/teacher.svg";
 import DeleteConfirmation from "../assets/images/delete-confirmation.svg";
 import Retroceder from '../components/Retroceder';
+import { AlertButton } from "../utils/AlertButton";
 
 const UpdateGrade = () => {
     const navigate = useNavigate()
@@ -17,25 +18,13 @@ const UpdateGrade = () => {
     }
     const handleDelete = (e) => {
         e.preventDefault();
-        Swal.fire({
-            icon: 'question',
-            title: `¿Eliminar grado?`,
-            iconHtml: `<img src=${DeleteConfirmation}>`,
-            customClass: {
-                icon: 'no-border',
-                cancelButton: 'sweet-cancel-button',
-                confirmButton: 'sweet-confirmation-button'
-            },
-            buttonsStyling: false,
-            titleStyling: false,
-            showCancelButton: true,
-            cancelButtonText: 'cancelar',
-            confirmButtonText: 'Si',
-        }).then((result) => {
+        Swal.fire(
+            AlertButton.dataAlertUnBotonMorado('¿Eliminar grado?', 'Sí', 'Cancelar', DeleteConfirmation)
+        ).then((result) => {
             if (result.isConfirmed) {
+                navigate('/grades')
                 // Swal.fire('Saved!', '', 'success')
             }
-            navigate('/grades')
         })
     }
     return (
