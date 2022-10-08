@@ -1,10 +1,4 @@
 import React, { useState } from "react";
-<<<<<<< HEAD:src/pages/Login.jsx
-import ImageLogin from "../assets/images/login-mobile.svg";
-import ImageLoginDesktop from "../assets/images/login-desktop.svg";
-import Logo from "../assets/images/logo.svg";
-import { Link } from "react-router-dom";
-=======
 import { Link } from "react-router-dom";
 import { Firebase } from "../utils/Firebase";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
@@ -18,7 +12,6 @@ import IconHidePassword from "../assets/images/icon-hidepassword.svg";
 import Image from "../components/Image";
 import Button from "../components/Button";
 import Input from "../components/Input";
->>>>>>> develop:src/pages/login.jsx
 
 const Login = () => {
   const firebase = new Firebase();
@@ -85,63 +78,6 @@ const Login = () => {
       <div>
         <Image image={imageLogin} alt="ImgLogin" className="mx-auto" type={1} />
       </div>
-<<<<<<< HEAD:src/pages/Login.jsx
-      <div className="flex flex-col justify-between px-5 items-center md:grid md:grid-cols-12 md:gap-[30px] md:p-0 md:py-10">
-        <div className="bg-[#FCFBFF] bordeblur w-full flex justify-center md:col-span-6 md:rounded-[20px]">
-          <img src={ImageLogin} alt="Login" className="md:hidden" />
-          <img
-            src={ImageLoginDesktop}
-            alt="Login"
-            className="hidden md:block"
-          />
-        </div>
-        <div className="md:flex md:flex-col md:col-span-6 md:col-start-8 md:col-end-12">
-          <div className="text-center">
-            <h1 className="text-4xl font-bold mt-10">¡Hola de nuevo!</h1>
-            <p className="text-center mt-4">
-              ¿Como ha estado?, es un gusto volver a tenerlo por aca en Atenea
-            </p>
-          </div>
-          <div className="w-full mt-10 px-1 ">
-            <form onSubmit={handleSubmit}>
-              <div className="flex flex-col text gap-2 text-[#4D3483] font-semibold">
-                <label htmlFor="username">Correo</label>
-                <input
-                  id="username"
-                  type="text"
-                  value={username}
-                  name="username"
-                  onChange={handleChangeUsername}
-                  className="font-normal border-solid border-[1px] border-[#DBD8FF] rounded-[10px] py-2.5 px-2 focus:outline-2 focus:outline-[#A954FF]"
-                  placeholder="Ingresar correo"
-                />
-                <label htmlFor="password">Contraseña</label>
-                <input
-                  id="password"
-                  type="password"
-                  value={password}
-                  name="password"
-                  onChange={handleChangePassword}
-                  className="font-normal border-solid border-[1px] border-[#DBD8FF] rounded-[10px] py-2.5 px-2 focus:outline-2 focus:outline-[#A954FF]"
-                  placeholder="Ingresar contraseña"
-                />
-                <Link
-                  to="/olvide-password"
-                  className="self-end text-xs text-[#776694]"
-                >
-                  Recuperar contraseña
-                </Link>
-                <button
-                  type="submit"
-                  className="bg-[#7064FF] text-white py-[15px] px-2.5"
-                >
-                  Ingresar
-                </button>
-              </div>
-            </form>
-          </div>
-=======
->>>>>>> develop:src/pages/login.jsx
 
       {/* div del copy web */}
       <div className="text-center flex flex-col items-center gap-4">
