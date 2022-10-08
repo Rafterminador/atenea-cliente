@@ -333,43 +333,66 @@ hr.administracion {
 
 /* Clases para el texto */
 .big-title {
-  font-family: Poppins-700; /* Bold */
-  font-size: 2.369rem; /* 37.90px */
+  font-family: Poppins-700;
+  /* Bold */
+  font-size: 2.369rem;
+  /* 37.90px */
   line-height: 57px;
 }
+
 .med-title {
-  font-family: Poppins-600; /* Semi Bold */
-  font-size: 1.333rem; /* 21.33px */
+  font-family: Poppins-600;
+  /* Semi Bold */
+  font-size: 1.333rem;
+  /* 21.33px */
   line-height: 32px;
 }
+
 .sml-title {
-  font-family: Open-Sans-600; /* Semi Bold */
-  font-size: 1rem; /* 16px */
+  font-family: Open-Sans-600;
+  /* Semi Bold */
+  font-size: 1rem;
+  /* 16px */
   line-height: 22px;
 }
+
 .nrm-text {
-  font-family: Open-Sans-400; /* Regular */
-  font-size: 1rem; /* 16px */
+  font-family: Open-Sans-400;
+  /* Regular */
+  font-size: 1rem;
+  /* 16px */
   line-height: 22px;
 }
+
 .sml-text {
-  font-family: Open-Sans-400; /* Regular */
-  font-size: 0.75rem; /* 12px */
+  font-family: Open-Sans-400;
+  /* Regular */
+  font-size: 0.75rem;
+  /* 12px */
   line-height: 17px;
 }
+
 .sml-text-2 {
-  font-family: Open-Sans-400; /* Regular */
-  font-size: 0.8rem; /* 12.8px */
+  font-family: Open-Sans-400;
+  /* Regular */
+  font-size: 0.8rem;
+  /* 12.8px */
   line-height: 17px;
 }
+
 .nrm-button {
-  font-family: Open-Sans-600; /* Semi Bold */
-  font-size: 1.333rem; /* 21.33x */
+  font-family: Open-Sans-600;
+  /* Semi Bold */
+  font-size: 1.333rem;
+  /* 21.33x */
   line-height: 29px;
 }
+
 .sml-button {
-  font-family: Open-Sans-600; /* Semi Bold */
-  font-size: 0.8rem; /* 12.8px */
+  font-family: Open-Sans-600;
+  /* Semi Bold */
+  font-size: 0.8rem;
+  /* 12.8px */
   line-height: 17px;
 }
 
@@ -378,10 +401,12 @@ hr.administracion {
   border: 1px solid #dbd8ff;
   border-radius: 10px;
 }
+
 .invalid {
   border: 1px solid #ff5f5f;
   border-radius: 10px;
 }
+
 /* animaciones */
 .arrow-animation {
   transition: transform 1000ms ease-out;
