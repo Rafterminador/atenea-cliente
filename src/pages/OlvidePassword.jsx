@@ -5,8 +5,27 @@ import { useNavigate } from "react-router-dom";
 const OlvidePassword = () => {
   const [email, setEmail] = useState("");
   const navigate = useNavigate();
-  const handleValidarCodigo = () => {
-    navigate("/restore/check/email");
+
+  const handleValidarCodigo = async (e) => {
+    e.preventDefault();
+
+    try {
+      const message = await fetch(
+        `https://atenea-servicio.onrender.com/api/v1/user/reset-password/?email=${email}`,
+        {
+          method: "GET",
+        }
+      )
+        .then((response) => response.json())
+        .then((data) => console.log(data));
+
+
+        localStorage.setItem("email", email);
+
+      navigate("/restore/check/email");
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   function handleSubmit(e) {
