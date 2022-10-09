@@ -1,6 +1,9 @@
 import React, { useState } from "react";
+import IconShowPassword from "../assets/images/icon-showpassword.svg";
+import IconHidePassword from "../assets/images/icon-hidepassword.svg";
 import ImageForgotPassword from "../assets/images/img-restore-forgotpassword.svg";
 import { Firebase } from "../utils/Firebase";
+import Input from "../components/Input";
 import {
   verifyPasswordResetCode,
   confirmPasswordReset,
@@ -9,58 +12,66 @@ import {
 import { useNavigate } from "react-router-dom";
 
 const ResetPassword = () => {
-
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [passwordVisibility, setPasswordVisibility] = useState(false);
+  const [passwordVisibility2, setPasswordVisibility2] = useState(false);
+  const [iconPassword, setIconPassword] = useState(IconShowPassword);
+  const [iconPassword2, setIconPassword2] = useState(IconShowPassword);
 
   const firebase = new Firebase();
   const app = firebase.appInitialize();
   const auth = getAuth(app);
 
+  const togglePassword = () => {
+    setPasswordVisibility(!passwordVisibility);
+    if (iconPassword === IconShowPassword) {
+      setIconPassword(IconHidePassword);
+    } else {
+      setIconPassword(IconShowPassword);
+    }
+  };
+
+  const togglePassword2 = () => {
+    setPasswordVisibility2(!passwordVisibility2);
+    if (iconPassword2 === IconShowPassword) {
+      setIconPassword2(IconHidePassword);
+    } else {
+      setIconPassword2(IconShowPassword);
+    }
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (newPassword != confirmPassword) {
+    if (newPassword !== confirmPassword) {
       alert("Las constraseñas deben ser iguales");
       return;
     }
 
-    document.addEventListener(
-      "DOMContentLoaded",
-      () => {
-        // TODO: Implement getParameterByName()
+    let params = new URLSearchParams(document.location.search);
 
-        // Get the action to complete.
-        // const mode = getParameterByName("mode");
-        // Get the one-time code from the query parameter.
-        // const actionCode = getParameterByName("oobCode");
-        // (Optional) Get the continue URL from the query parameter if available.
-        // const continueUrl = getParameterByName("continueUrl");
-        // (Optional) Get the language code if available.
-        // const lang = getParameterByName("lang") || "en";
+    // TODO: Implement getParameterByName()
 
-        // Configure the Firebase SDK.
-        // This is the minimum configuration required for the API to be used.
-        // const config = {
-        //   apiKey: "YOU_API_KEY", // Copy this key from the web initialization
-        //   // snippet found in the Firebase console.
-        // };
-        // const app = initializeApp(config);
-        // const auth = getAuth(app);
+    // Get the action to complete.
+    let mode = params.get("mode");
+    // Get the one-time code from the query parameter.
+    const actionCode = params.get("oobCode");
+    // (Optional) Get the continue URL from the query parameter if available.
+    const continueUrl = params.get("");
+    // (Optional) Get the language code if available.
+    const lang = params.get("lang") || "en";
 
-        // Handle the user management action.
-        switch (mode) {
-          case "resetPassword":
-            // Display reset password handler and UI.
-            handleResetPassword(auth, actionCode, continueUrl, lang);
-            break;
-          default:
-          // Error: invalid mode.
-        }
-      },
-      false
-    );
+    // Handle the user management action.
+    switch (mode) {
+      case "resetPassword":
+        // Display reset password handler and UI.
+        handleResetPassword(auth, actionCode, continueUrl, lang);
+        break;
+      default:
+      // Error: invalid mode.
+    }
   };
 
   function handleResetPassword(auth, actionCode, continueUrl, lang) {
@@ -70,8 +81,6 @@ const ResetPassword = () => {
     // Verify the password reset code is valid.
     verifyPasswordResetCode(auth, actionCode)
       .then((email) => {
-        const accountEmail = email;
-
         // TODO: Show the reset screen with the user's email and ask the user for
         // the new password.
 
@@ -79,12 +88,8 @@ const ResetPassword = () => {
         confirmPasswordReset(auth, actionCode, newPassword)
           .then((resp) => {
             console.log(resp);
-            alert("cambiado correctamente")
+            alert("cambiado correctamente");
             navigate(`/login`);
-
-
-            
-
 
             // Password reset has been confirmed and new password updated.
 
@@ -139,29 +144,48 @@ const ResetPassword = () => {
               <label className="text-[#4D3483] sml-title" htmlFor="email">
                 Nueva contraseña
               </label>
-              <input
-                id="email"
-                type="text"
-                value={newPassword}
-                name="email"
-                onChange={handleNewPassword}
-                className="nrm-text placeholder:text-[#7B7B7B] nrm-txtfld-border px-3 box-border h-[42px] focus:outline-2 focus:outline-[#A954FF]"
-                placeholder="Ingresar contraseña"
-              />
+
+              <div className="relative">
+                <Input
+                  id="password"
+                  type={passwordVisibility ? "text" : "password"}
+                  name="password"
+                  onChange={handleNewPassword}
+                  placeholder="Ingresar contraseña"
+                  className={`w-full`}
+                  required={1}
+                />
+                <img
+                  className="shw-pass bg-white"
+                  src={iconPassword}
+                  onClick={togglePassword}
+                  alt="icon"
+                />
+              </div>
             </div>
             <div className="flex flex-col gap-2">
               <label className="text-[#4D3483] sml-title" htmlFor="email">
                 Repetir contraseña
               </label>
-              <input
-                id="email"
-                type="text"
-                value={confirmPassword}
-                name="email"
-                onChange={handleConfirmPassword}
-                className="nrm-text placeholder:text-[#7B7B7B] nrm-txtfld-border px-3 box-border h-[42px] focus:outline-2 focus:outline-[#A954FF]"
-                placeholder="Ingresar contraseña"
-              />
+
+              <div className="relative">
+                <Input
+                  id="newPassword"
+                  type={passwordVisibility2 ? "text" : "password"}
+                  name="password2"
+                  onChange={handleConfirmPassword}
+                  placeholder="Ingresar contraseña"
+                  className={`w-full`}
+                  required={1}
+                />
+
+                <img
+                  className="shw-pass bg-white"
+                  src={iconPassword2}
+                  onClick={togglePassword2}
+                  alt="icon"
+                />
+              </div>
             </div>
           </div>
         </form>
