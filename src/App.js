@@ -30,7 +30,7 @@ function App() {
         <Route path="/register" element={<RegistroUsuario />} />
         <Route path="/restore/password" element={<OlvidePassword />} />
         <Route path="/restore/check/email" element={<Check />} />
-        <Route path="/reset/password" element={<ResetPassword />} />
+        <Route path="/reset/password/*" element={<ResetPassword />} />
 
 
         {/* rutas para la S02 - Administrativo */}
