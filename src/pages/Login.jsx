@@ -14,7 +14,7 @@ import Button from "../components/Button";
 import Input from "../components/Input";
 
 //backend 
-import { login } from "../services/controller"
+import { login } from "../services/controllerUser"
 
 const Login = () => {
   const firebase = new Firebase();

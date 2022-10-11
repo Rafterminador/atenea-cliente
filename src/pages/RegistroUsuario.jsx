@@ -7,6 +7,9 @@ import Image from "../components/Image";
 import Button from "../components/Button";
 import Input from "../components/Input";
 
+//backend 
+import { registrarUsuario } from "../services/controllerUser"
+
 const RegistroUsuario = () => {
   const [displayName, setUsername] = useState("");
   const [email, setEmail] = useState("");
@@ -16,48 +19,15 @@ const RegistroUsuario = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    // try {
-    //   const { data } = await axios.post(Endpoint.endpoint.auth.register.postRegister, {
-    //     email,
-    //     emailVerified,
-    //     phoneNumber,
-    //     password,
-    //     displayName,
-    //     disable
-    //   });
-    //   console.log(data);
-    // } catch (error) {
-    //   console.log(error);
-    // }
-
-    let headersList = {
-      Accept: "/",
-      "User-Agent": "Thunder Client (https://www.thunderclient.com)",
-      "Content-Type": "application/json",
-    };
-
-    let bodyContent = JSON.stringify({
-      email: email,
-      emailVerified: false,
-      password: password,
-      displayName: displayName,
-      disable: false,
-    });
-
-    let response = await fetch(
-      "https://atenea-servicio.onrender.com/api/v1/user/create-user/",
-      {
-        method: "POST",
-        body: bodyContent,
-        headers: headersList,
-      }
-    );
-
-    let data = await response.text();
-    console.log(data);
-
-    alert(displayName + " " + password);
+    let response = await registrarUsuario(email, password, displayName)
+    console.log(response)
+    if (response.status === 201) {
+      console.log(response.body)
+      alert("Usuario guardado correctamente")
+    } else {
+      console.log(response.body)
+      alert(response.body)
+    }
   };
 
   function handleChangeUsername(e) {
