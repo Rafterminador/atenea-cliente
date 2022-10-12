@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import Image from "../components/Image";
 import Button from "../components/Button";
 import Input from "../components/Input";
+import { useNavigate } from "react-router-dom";
 
 //backend 
 import { registrarUsuario } from "../services/controllerUser"
@@ -16,6 +17,7 @@ const RegistroUsuario = () => {
   const [password, setPassword] = useState("");
   const [passwordVisibility, setPasswordVisibility] = useState(false);
   const [iconPassword, setIconPassword] = useState(IconShowPassword);
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -24,6 +26,7 @@ const RegistroUsuario = () => {
     if (response.status === 201) {
       console.log(response.body)
       alert("Usuario guardado correctamente")
+      navigate("/login");
     } else {
       console.log(response.body)
       alert(response.body)

@@ -43,4 +43,21 @@ const registrarUsuario = async (email, password, name) => {
     }
     return responseToReturn
 }
-export { login, registrarUsuario }
+
+const forgotPassword = async(email) => {
+    let responseToReturn
+    api.defaults.headers.common["Content-Type"] = "application/json"
+    await api.get(`/api/v1/user/reset-password/?email=${email}`)
+    .then((response) => {
+        responseToReturn = response
+    }).catch((error) => {
+        responseToReturn = error
+    });
+    if (responseToReturn.status === undefined) {
+        responseToReturn = responseToReturn.response.data
+    } else {
+        responseToReturn = responseToReturn.data
+    }
+    return responseToReturn
+}
+export { login, registrarUsuario, forgotPassword }
