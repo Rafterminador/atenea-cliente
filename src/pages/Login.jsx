@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Firebase } from "../utils/Firebase";
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { getAuth } from "firebase/auth";
 
 // assets imports
 import ImageLoginDefault from "../assets/images/img-login-default.svg";
@@ -12,6 +12,9 @@ import IconHidePassword from "../assets/images/icon-hidepassword.svg";
 import Image from "../components/Image";
 import Button from "../components/Button";
 import Input from "../components/Input";
+
+//backend 
+import { login } from "../services/controllerUser"
 
 const Login = () => {
   const firebase = new Firebase();
@@ -36,34 +39,27 @@ const Login = () => {
       setIconPassword(IconShowPassword);
     }
   };
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     setTextBadEmail("hidden");
     setTextBadPassword("hidden");
     e.preventDefault();
-    signInWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        // Signed in
-        const user = userCredential.user;
-        console.log(user);
-        alert("login success");
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        console.log(errorCode);
-        console.log(errorMessage);
-        setInvalid("invalid");
-        setInvalidText("invalid-text");
-        setImageLogin(ImageLoginError);
-        setTitleLoginH1("hidden");
-        setTitleLoginH2("");
-        if (errorCode !== null && errorCode === "auth/user-not-found") {
-          setTextBadEmail("");
-        } else if (errorCode !== null && errorCode === "auth/wrong-password") {
-          setTextBadPassword("");
-        }
-      });
-    // alert(email + " " + password);
+    let response = {}
+    response = await login(auth, email, password)
+    console.log(response)
+    if (response?.errorCode != null) {
+      setInvalid("invalid");
+      setInvalidText("invalid-text");
+      setImageLogin(ImageLoginError);
+      setTitleLoginH1("hidden");
+      setTitleLoginH2("");
+      if (response.errorCode !== null && response.errorCode === "auth/user-not-found") {
+        setTextBadEmail("");
+      } else if (response.errorCode !== null && response.errorCode === "auth/wrong-password") {
+        setTextBadPassword("");
+      }
+    } else {
+      alert("login success")
+    }
   }
   function handleChangeUsername(e) {
     setEmail(e.target.value);

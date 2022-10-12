@@ -2,29 +2,25 @@ import React from "react";
 import { useState } from "react";
 import ImageLoginDesktop from "../assets/images/recuperarPassword.svg";
 import { useNavigate } from "react-router-dom";
+
+//backend 
+import { forgotPassword } from "../services/controllerUser"
+
 const OlvidePassword = () => {
   const [email, setEmail] = useState("");
   const navigate = useNavigate();
 
   const handleValidarCodigo = async (e) => {
     e.preventDefault();
-
-    try {
-      await fetch(
-        `https://atenea-servicio.onrender.com/api/v1/user/reset-password/?email=${email}`,
-        {
-          method: "GET",
-        }
-      )
-        .then((response) => response.json())
-        .then((data) => console.log(data));
-
-
+    let response = await forgotPassword (email)
+    console.log(response)
+    if (response.status === 200) {
+      console.log(response.body)
       localStorage.setItem("email", email);
-
       navigate("/restore/check/email");
-    } catch (error) {
-      console.log(error);
+    } else {
+      console.log(response.body)
+      alert(response.body.message)
     }
   };
 
