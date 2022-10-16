@@ -19,6 +19,7 @@ import EditAlumnoAccount from "./pages/EditAlumnoAccount"
 import AlumnoProfile from "./pages/AlumnoProfile"
 import AllAlumnos from "./pages/AllAlumnos";
 import Boletin from "./pages/Boletin";
+import ControllerProving from "./pages/ControllerProving";
 
 function App() {
   return (
@@ -50,6 +51,7 @@ function App() {
         <Route path="/alumnos/completos" element={<AllAlumnos />} />
         <Route path="/boletin" element={<Boletin />} />
 
+        <Route path="/backend" element={<ControllerProving />} />
       </Routes>
     </BrowserRouter>
   );
