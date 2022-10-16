@@ -1,14 +1,13 @@
-import { useEffect, useRef, useState } from "react";
-import HomeImg from "../assets/images/home.svg";
-import ArrowDown from "../assets/images/arrow-down.svg";
+import { useRef, useState } from "react";
+import GradeAssigned from "../components/GradeAssigned";
 import { ReactComponent as Grade } from "../assets/images/grade.svg";
-import { ReactComponent as Students } from "../assets/images/students.svg";
-import { ReactComponent as Teachers } from "../assets/images/teachers.svg";
+import { ReactComponent as Grades } from "../assets/images/grades.svg";
+import { ReactComponent as Attendance } from "../assets/images/students.svg";
 import { ReactComponent as MenuImage } from "../assets/images/menu.svg";
 import Menu from "../components/Menu";
-import Image from "../components/Image";
+import { useEffect } from "react";
 
-export default function Home() {
+export default function GradesAssigned() {
   const [hidden, setHidden] = useState("hidden");
   const [animation, setAnimation] = useState("");
   const ref = useRef(null);
@@ -41,28 +40,11 @@ export default function Home() {
       document.removeEventListener("click", handleClickOutside);
     };
   }, [ref]);
-
   return (
     <div className="relative">
-      <div className="home mx-5 text-center flex flex-col gap-32">
-        <Image
-          className={"bordeblur overflow-hidden flex justify-center"}
-          type={1}
-          image={HomeImg}
-          alt={"Home"}
-        />
-        <div className=" flex flex-col gap-32 mb-4">
-          <div className="flex flex-col gap-4">
-            <h1>Bienvenido Director</h1>
-            <p>
-              Selecciona una de las opciones de abajo para empezar a utilizar
-              Atenea
-            </p>
-          </div>
-          <div className="w-full flex justify-center items-center">
-            <img src={ArrowDown} alt="Arrow Down" width={48} height={48} />
-          </div>
-        </div>
+      <div className="contenedor contenedor-admin">
+        <h1 className="h1-administracion">Mis Grados</h1>
+        <GradeAssigned grade="Primero Primaria" alumnos={2} id={1} />
       </div>
       <div className="fixed z-0 bottom-0 h-[70px] w-full flex justify-around items-center text-centers shadow">
         <div className="w-[90px] h-full">
@@ -74,7 +56,7 @@ export default function Home() {
             <div className="w-16 h-8 flex justify-center items-center rounded-[20px] py-2">
               <Grade />
             </div>
-            <p className="text-[12.8px] font-semibold">Grados</p>
+            <p className="text-[12.8px] font-semibold">Mis Grados</p>
           </button>
         </div>
         <div className="w-[90px] h-full">
@@ -84,9 +66,9 @@ export default function Home() {
             className="h-full rounded-none flex flex-col justify-center items-center gap-1"
           >
             <div className="w-16 h-8 flex justify-center items-center rounded-[20px] py-2">
-              <Students />
+              <Grades />
             </div>
-            <p className="text-[12.8px] font-semibold">Estudiantes</p>
+            <p className="text-[12.8px] font-semibold">Calificar</p>
           </button>
         </div>
         <div className="w-[90px] h-full">
@@ -96,9 +78,9 @@ export default function Home() {
             className="h-full rounded-none flex flex-col justify-center items-center gap-1"
           >
             <div className="w-16 h-8 flex justify-center items-center rounded-[20px] py-2">
-              <Teachers />
+              <Attendance />
             </div>
-            <p className="text-[12.8px] font-semibold">Docentes</p>
+            <p className="text-[12.8px] font-semibold">Asistencia</p>
           </button>
         </div>
         <div className="w-[90px] h-full">
@@ -109,7 +91,7 @@ export default function Home() {
             <div className="w-6 h-6 flex justify-center items-center">
               <MenuImage className="" />
             </div>
-            <p className="text-[12.8px] font-semibold">Menu</p>
+            <p className="text-[12.8px] font-semibold">Más</p>
           </button>
         </div>
       </div>

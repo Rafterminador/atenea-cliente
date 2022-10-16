@@ -59,7 +59,7 @@ export default function EditProfile({ handle }) {
             <div className="relative h-12">
               <Input
                 className={
-                  "flex justify-between font-normal border-solid border-2 border-[#DBD8FF] rounded-[10px] py-2.5 px-2"
+                  "w-full flex justify-between font-normal border-solid border-2 border-[#DBD8FF] rounded-[10px] py-2.5 px-2"
                 }
                 id={"password"}
                 type={"password"}
@@ -82,7 +82,7 @@ export default function EditProfile({ handle }) {
             <div className="h-12">
               <Input
                 className={
-                  "flex justify-between font-normal border-solid border-2 border-[#DBD8FF] rounded-[10px] py-2.5 px-2"
+                  "w-full flex justify-between font-normal border-solid border-2 border-[#DBD8FF] rounded-[10px] py-2.5 px-2"
                 }
                 id={"repeatPassword"}
                 type={"password"}
@@ -96,7 +96,7 @@ export default function EditProfile({ handle }) {
       </div>
       <div className="mb-5">
         <Button
-          typeButton={1}
+          typeButton={"button-type-1"}
           className={
             "box-border border-2 border-solid border-[#7064FF] rounded-[20px] text-[#7064FF] font-semibold text-xl mb-5 h-[49px]"
           }
@@ -105,7 +105,7 @@ export default function EditProfile({ handle }) {
           text={"Cancelar"}
         />
         <Button
-          typeButton={2}
+          typeButton={"button-type-2"}
           className={
             "box-border border-2 border-solid border-[#7064FF] rounded-[20px] text-[#7064FF] font-semibold text-xl mb-5 h-[49px]"
           }
