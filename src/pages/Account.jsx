@@ -1,10 +1,8 @@
 import { useState } from "react";
-import ArrowLeft from "../assets/images/arrow_left.svg";
 import EditProfile from "../components/EditProfile";
 // import EditProfile from "../components/EditProfile";
 import Profile from "../components/Profile";
-import { Link } from "react-router-dom";
-import Image from "../components/Image";
+import Retroceder from "../components/Retroceder";
 
 export default function Account() {
   const [change, setChange] = useState(true);
@@ -13,28 +11,16 @@ export default function Account() {
   }
   return (
     <div className="h-screen">
-      <div className="w-full h-16 grid grid-cols-3 place-items-center border-b-2">
-        <div
-          className={`${
-            change ? "block" : "hidden"
-          } col-start-1 justify-self-start text-[#7064FF]`}
-        >
-          <Link to="/home">
-            <div className="flex justify-center items-center">
-              <Image
-                className={"w-8 h-8 flex justify-center items-center"}
-                type={0}
-                image={ArrowLeft}
-                alt={"Arrow Left"}
-              />
-              Atras
-            </div>
-          </Link>
-        </div>
-        <div className="col-start-2 justify-self-center">
-          <h1 className="font-semibold text-2xl">Cuenta</h1>
-        </div>
-      </div>
+      {change ? (
+        <Retroceder text={"Cuenta"} />
+      ) : (
+        <>
+          <div className="flex ml-5 mt-[21px] mb-[13px] items-center">
+            <h1 className="font-semibold text-2xl">Cuenta</h1>
+          </div>
+          <hr className="administracion" />
+        </>
+      )}
       {change ? (
         <Profile handle={handleChange} />
       ) : (

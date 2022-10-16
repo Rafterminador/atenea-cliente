@@ -13,12 +13,16 @@ import Grades from "./pages/Grades";
 import NewGrade from "./pages/NewGrade";
 import UpdateGrade from "./pages/UpdateGrade";
 import EditGrade from "./pages/EditGrade";
-import VerAlumno from "./pages/VerAlumno"
-import AlumnoAccount from "./pages/AlumnoAccount"
-import EditAlumnoAccount from "./pages/EditAlumnoAccount"
-import AlumnoProfile from "./pages/AlumnoProfile"
+import VerAlumno from "./pages/VerAlumno";
+import AlumnoAccount from "./pages/AlumnoAccount";
+import EditAlumnoAccount from "./pages/EditAlumnoAccount";
+import AlumnoProfile from "./pages/AlumnoProfile";
 import AllAlumnos from "./pages/AllAlumnos";
 import Boletin from "./pages/Boletin";
+import GradesAssigned from "./pages/GradesAssigned";
+import Courses from "./pages/Courses";
+import Students from "./pages/Students";
+import Course from "./pages/Course";
 
 function App() {
   return (
@@ -32,7 +36,6 @@ function App() {
         <Route path="/restore/check/email" element={<Check />} />
         <Route path="/reset/password/*" element={<ResetPassword />} />
 
-
         {/* rutas para la S02 - Administrativo */}
         <Route path="/grades/" element={<Grades />} />
         <Route path="/grades/create" element={<NewGrade />} />
@@ -41,7 +44,7 @@ function App() {
 
         <Route path="/home" element={<Home />} />
         <Route path="/cuenta" element={<Account />} />
-        <Route path="/videotutoriales" element={<VideoTutorials />} />
+        <Route path="/tutoriales" element={<VideoTutorials />} />
 
         <Route path="/ver/alumno" element={<VerAlumno />} />
         <Route path="/cuenta/alumno" element={<AlumnoAccount />} />
@@ -50,13 +53,19 @@ function App() {
         <Route path="/alumnos/completos" element={<AllAlumnos />} />
         <Route path="/boletin" element={<Boletin />} />
 
+        <Route path="/grades/teacher/:id" element={<GradesAssigned />} />
+        <Route path="/grades/teacher/:id/courses" element={<Courses />} />
+        <Route
+          path="/grades/teacher/:id/courses/students"
+          element={<Students />}
+        />
+        <Route
+          path="/grades/teacher/:id/courses/:courseId"
+          element={<Course />}
+        />
       </Routes>
     </BrowserRouter>
   );
 }
-
-
-
-
 
 export default App;
