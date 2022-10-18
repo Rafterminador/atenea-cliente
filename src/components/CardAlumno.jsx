@@ -7,6 +7,8 @@ import Cel from "../assets/images/cel.svg";
 import { useNavigate } from "react-router-dom";
 
 const CardAlumno = (props) => {
+  let alumnJSON = localStorage.getItem('alumno')
+  let alumn = (JSON.parse(alumnJSON))
   console.log(props.ruta);
   const navigate = useNavigate();
   function handleBoletin() {
@@ -25,7 +27,7 @@ const CardAlumno = (props) => {
             <div className="flex my-2">
               <img src={Face} alt="Face" />
               <p className="font-sans text-[16px] ml-[18px] pr-4">
-                {props.nombre}
+                {alumn.nombre}
               </p>
             </div>
             <div className="flex my-2">

@@ -7,6 +7,7 @@ import AddButton from '../components/AddButton'
 
 
 export default function VerAlumno() {
+  localStorage.clear()
   const navigate = useNavigate();
   function handleAdd() {
     navigate("/cuenta/alumno");

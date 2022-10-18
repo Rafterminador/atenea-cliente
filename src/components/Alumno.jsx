@@ -8,7 +8,13 @@ const Alumno = (props) => {
   const navigate = useNavigate();
 
   function handleProfile() {
+    const alumnJSON = JSON.stringify(props)
+    localStorage.setItem('alumno', alumnJSON)
     navigate("/perfil/alumno");
+
+
+
+
   }
   return (
     <div className="min-w-min my-1">

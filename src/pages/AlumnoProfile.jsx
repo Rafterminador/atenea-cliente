@@ -6,6 +6,9 @@ import Retroceder from '../components/Retroceder';
 
 const AlumnoProfile = () => {
 
+  let alumnJSON = localStorage.getItem('alumno')
+  let alumn = (JSON.parse(alumnJSON))
+
   const navigate = useNavigate();
 
   function handleEliminar() {
@@ -18,12 +21,12 @@ const AlumnoProfile = () => {
 
   return (
     <div className="flex flex-col justify-between">
-      <Retroceder text="José Fernando Arredondo Aparicio" />
+      <Retroceder text={alumn.nombre} />
       <div className="bg-[#DBD8FF] h-[1px] my-0"></div>
 
       <div className="">
         <CardAlumno
-          nombre={"José Fernando Arredondo Aparicio"}
+          nombre={alumn.nombre}
           cumpleanios={"08 / 04 / 2008 - 14 años"}
           direccion={"Aldea Buenos Aires, Chiantla"}
           grado={"Sexto primaria"}

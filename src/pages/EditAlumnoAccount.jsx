@@ -5,6 +5,8 @@ import Input from "../components/Input";
 import Retroceder from '../components/Retroceder';
 
 const EditAlumnoAccount = () => {
+  let alumnJSON = localStorage.getItem('alumno')
+  let alumn = (JSON.parse(alumnJSON))
   return (
     <div>
       <Retroceder text="Editar datos" />
@@ -17,7 +19,7 @@ const EditAlumnoAccount = () => {
             type="text"
             name="username"
             className="font-normal border-solid border-[1px] rounded-[10px] py-2.5 px-2 focus:outline-2 focus:outline-[#A954FF] h-[42px]"
-            placeholder="Ingresar nombre completo"
+            placeholder={alumn.nombre}
           />
           <label htmlFor="useremail">Fecha de nacimiento</label>
           <Input
