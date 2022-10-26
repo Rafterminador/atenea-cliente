@@ -67,7 +67,7 @@ const CardAlumno = (props) => {
           </div>
           <div className="flex my-2">
             <img src={Cel} alt="Cel" />
-            <p className="font-sans text-[16px] ml-[18.03px]">1
+            <p className="font-sans text-[16px] ml-[18.03px]">
               {props.telefono}
             </p>
           </div>

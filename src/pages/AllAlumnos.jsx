@@ -5,9 +5,12 @@ import Retroceder from '../components/Retroceder';
 
 const AllAlumnos = () => {
   return (
-    <div>
-      <Retroceder text="José Fernando Arredondo Aparicio" />
-      <SearchBar />
+    <div className="contenedor contenedor-admin">
+      <Retroceder text="Primero Primaria" />
+
+      <div className="my-2"> 
+      <SearchBar/>
+      </div>
 
       <div className="text-start m-5">
         <label className="font-sans text-[16px]">
