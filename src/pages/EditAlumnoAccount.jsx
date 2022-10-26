@@ -6,7 +6,7 @@ import Retroceder from '../components/Retroceder';
 import { useNavigate } from "react-router-dom";
 
 import { updateStudent } from "../services/controllerDirector"
-import {getStudentByID} from '../services/controllerDirector'
+import { getStudentByID } from '../services/controllerDirector'
 
 const EditAlumnoAccount = () => {
   let alumnJSON = localStorage.getItem('alumno')
@@ -26,7 +26,7 @@ const EditAlumnoAccount = () => {
     e.preventDefault();
     let Student = {
       name_complete: username,
-      date_birth: birthdate,
+      date_birth: birthdate.toString(),
       direction: direction,
       gradeRef: "4ipYcYTWIx9IlnS11tmh",
       manager_name: nameencargado,
@@ -35,12 +35,12 @@ const EditAlumnoAccount = () => {
     }
     let response = await updateStudent(Student, alumn.uid)
     if (response.status === 201) {
-        console.log(response.body)
+      console.log(response.body)
     } else {
-        console.log(response.body)
+      console.log(response.body)
     }
-      alert("Datos actualizados correctamente")
-      navigate("/ver/alumno");
+    alert("Datos actualizados correctamente")
+    navigate("/ver/alumno");
   };
 
   function handleUsername(e) {
@@ -77,31 +77,32 @@ const EditAlumnoAccount = () => {
   // Similar to componentDidMount and componentDidUpdate:
   useEffect(() => {
     // Update the document title using the browser API
-    
-  const handleGetStudentData = async () => {
-let response = await getStudentByID(alumn.uid)
-if (response.status === 200) {
 
-      console.log(response.body)
+    const handleGetStudentData = async () => {
+      let response = await getStudentByID(alumn.uid)
+      if (response.status === 200) {
 
-      setManager_Name(response.body.manager_name)
-      setManage_Phone(response.body.manager_phone)
-      setDate_Brith(response.body.date_birth)
-      setDirectiona(response.body.direction)
-      setGradea(response.body.gradeRef)
+        console.log(response.body)
+
+        setManager_Name(response.body.manager_name)
+        setManage_Phone(response.body.manager_phone)
+        setDate_Brith(response.body.date_birth)
+        setDirectiona(response.body.direction)
+        setGradea(response.body.gradeRef)
 
 
-    } else {
-      console.log(response.body)
+      } else {
+        console.log(response.body)
       }
-  }
+    }
 
-  handleGetStudentData()
-  });
+    handleGetStudentData()
+  }, []);
+
   return (
     <div>
       <Retroceder text="Editar datos" />
-      <form>
+      <form onSubmit={handleSubmit} id="edit-form">
         <div className="flex flex-col text gap-2 text-[#4D3483] font-semibold text-start text-[16px] m-5">
           <label htmlFor="username">Nombre completo</label>
 
@@ -112,8 +113,7 @@ if (response.status === 200) {
             onChange={handleUsername}
             className="font-normal border-solid border-[1px] rounded-[10px] py-2.5 px-2 focus:outline-2 focus:outline-[#A954FF] h-[42px]"
             placeholder="Ingresar nombre completo"
-            value={alumn.nombre}
-            readOnly = {false}
+            defaultValue={alumn.nombre}
           />
           <label htmlFor="birthdate">Fecha de nacimiento</label>
           <Input
@@ -123,7 +123,7 @@ if (response.status === 200) {
             onChange={handleBirthDate}
             className="font-normal border-solid border-[1px] rounded-[10px] py-2.5 px-2 focus:outline-2 focus:outline-[#A954FF] h-[42px]"
             placeholder="DD / MM / AAAA"
-            value= {datebirth}
+            defaultValue={datebirth}
           />
           <label htmlFor="direction">Dirección</label>
           <Input
@@ -133,10 +133,10 @@ if (response.status === 200) {
             onChange={handleDirection}
             className="font-normal border-solid border-2 rounded-[10px] py-2.5 px-2 focus:outline-2 focus:outline-[#A954FF] h-[42px]"
             placeholder="Ingresar dirección"
-            value={directiona}
+            defaultValue={directiona}
           />
           <label htmlFor="grade">Grado</label>
-          <ComboBox teachers={['Primero', 'Segundo', 'Tercero', 'Cuarto', 'Quinto', 'Sexto']} valueByDefault={'Grado Actual'} />
+          <ComboBox teachers={['Primero', 'Segundo', 'Tercero', 'Cuarto', 'Quinto', 'Sexto']} defaultValue={'Grado Actual'} />
           <label htmlFor="nameencargado">Nombre del encargado: <label className="text-[12px]">padre, madre u otro</label>  </label>
           <Input
             id="nameencargado"
@@ -146,7 +146,7 @@ if (response.status === 200) {
             onChange={handleNameEncargado}
             className="font-normal border-solid border-[1px] rounded-[10px] py-2.5 px-2 focus:outline-2 focus:outline-[#A954FF] h-[42px]"
             placeholder="Ingresar nombre completo"
-            value = {managername}
+            defaultValue={managername}
           />
           <label htmlFor="celencargado">Teléfono del encargado: <label className="text-[12px]">padre, madre u otro</label>  </label>
           <Input
@@ -157,7 +157,7 @@ if (response.status === 200) {
             onChange={handleCelencargado}
             className="font-normal border-solid border-[1px] rounded-[10px] py-2.5 px-2 focus:outline-2 focus:outline-[#A954FF] h-[42px]"
             placeholder="Ingresar número telefónico"
-            value={managerphone}
+            defaultValue={managerphone}
           />
         </div>
       </form>
@@ -170,7 +170,7 @@ if (response.status === 200) {
           typeButton={"button-type-2"}
           className=""
           type="submit"
-          form="register-form"
+          form="edit-form"
         />
       </div>
     </div>
