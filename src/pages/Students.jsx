@@ -11,7 +11,10 @@ export default function Students() {
         <p className="mt-5 mb-7">
           Cantidad de alumnos en el grado <span className="font-bold">38</span>
         </p>
-        <StudentCourse value="Nombre" />
+        <StudentCourse
+          value="Nombre"
+          url="/grades/teacher/:id/courses/students/:id"
+        />
       </div>
     </div>
   );
