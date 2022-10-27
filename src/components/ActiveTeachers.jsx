@@ -8,7 +8,7 @@ const ActiveTeachers = ({ id, name, grado }) => {
       <div className="flex justify-between">
         <p className="font-bold">{name}</p>
         <Link to="/cuenta/docente">
-          <img className="mt-3 cursor-pointer" src={Arrow} />
+          <img className="mt-3 cursor-pointer" src={Arrow} alt ="teacher" />
         </Link>
       </div>
 
