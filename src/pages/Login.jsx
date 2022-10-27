@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Firebase } from "../utils/Firebase";
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { getAuth } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
 
 // assets imports
 import ImageLoginDefault from "../assets/images/img-login-default.svg";
@@ -13,10 +14,14 @@ import Image from "../components/Image";
 import Button from "../components/Button";
 import Input from "../components/Input";
 
+//backend 
+import { login } from "../services/controllerUser"
+
 const Login = () => {
   const firebase = new Firebase();
   const app = firebase.appInitialize();
   const auth = getAuth(app);
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [invalid, setInvalid] = useState("");
@@ -36,34 +41,32 @@ const Login = () => {
       setIconPassword(IconShowPassword);
     }
   };
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     setTextBadEmail("hidden");
     setTextBadPassword("hidden");
     e.preventDefault();
-    signInWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        // Signed in
-        const user = userCredential.user;
-        console.log(user);
-        alert("login success");
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        console.log(errorCode);
-        console.log(errorMessage);
-        setInvalid("invalid");
-        setInvalidText("invalid-text");
-        setImageLogin(ImageLoginError);
-        setTitleLoginH1("hidden");
-        setTitleLoginH2("");
-        if (errorCode !== null && errorCode === "auth/user-not-found") {
-          setTextBadEmail("");
-        } else if (errorCode !== null && errorCode === "auth/wrong-password") {
-          setTextBadPassword("");
-        }
-      });
-    // alert(email + " " + password);
+    let response = {}
+    response = await login(auth, email, password)
+    if (response?.errorCode != null) {
+      setInvalid("invalid");
+      setInvalidText("invalid-text");
+      setImageLogin(ImageLoginError);
+      setTitleLoginH1("hidden");
+      setTitleLoginH2("");
+      if (response.errorCode !== null && response.errorCode === "auth/user-not-found") {
+        setTextBadEmail("");
+      } else if (response.errorCode !== null && response.errorCode === "auth/wrong-password") {
+        setTextBadPassword("");
+      }
+    } else {
+      const userJSON = JSON.stringify(response)
+      localStorage.setItem('usuario', userJSON)
+      if (response?.role === "director") {
+        navigate("/home");
+      } else {
+        alert("bienvenido maestro")
+      }
+    }
   }
   function handleChangeUsername(e) {
     setEmail(e.target.value);
