@@ -26,6 +26,7 @@ import Course from "./pages/Course";
 import Student from "./pages/Student";
 import NewActivity from "./pages/NewActivity";
 import EditActividy from "./pages/EditActivity";
+import Notes from "./pages/Notes";
 
 function App() {
   return (
@@ -65,6 +66,10 @@ function App() {
         <Route
           path="/grades/teacher/:id/courses/students/:id"
           element={<Student />}
+        />
+        <Route
+          path="/grades/teacher/:id/courses/students/:id/notes"
+          element={<Notes />}
         />
         <Route
           path="/grades/teacher/:id/courses/:courseId"
