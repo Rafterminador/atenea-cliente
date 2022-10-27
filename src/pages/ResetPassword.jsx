@@ -11,6 +11,7 @@ import {
   getAuth,
 } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
+import { AlertButton } from "../utils/AlertButton";
 
 const ResetPassword = () => {
   const navigate = useNavigate();
@@ -25,6 +26,7 @@ const ResetPassword = () => {
   const [iconPassword, setIconPassword] = useState(IconShowPassword);
   const [iconPassword2, setIconPassword2] = useState(IconShowPassword);
 
+  const Swal = require('sweetalert2')
   const firebase = new Firebase();
   const app = firebase.appInitialize();
   const auth = getAuth(app);
@@ -150,9 +152,11 @@ const ResetPassword = () => {
         // Save the new password.
         confirmPasswordReset(auth, actionCode, newPassword)
           .then((resp) => {
-            console.log(resp);
-            alert("cambiado correctamente");
-            navigate(`/login`);
+            Swal.fire(
+              AlertButton.dataAlertSuccess('Contraseña cambiada correctamente')
+          ).then(() => {
+              navigate('/login')
+          })
 
             // Password reset has been confirmed and new password updated.
 

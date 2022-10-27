@@ -20,26 +20,27 @@ const OlvidePassword = () => {
   const handleValidarCodigo = async (e) => {
     setTextBadEmail("hidden");
     e.preventDefault();
+    
+    if(email === ''){
+      setInvalid("invalid");
+      setTextResponse("Porfavor ingresar un correo");
+      setTextBadEmail("");
+      return
+    }
+
     setCargando(true);
     let response = await forgotPassword(email);
     console.log(response);
-    if (response.body.code === "auth/email-not-found") {
-      console.log(response.body);
-      setInvalid("invalid");
-      setTextResponse("Correo electrónico no encontrado, porfavor intentelo de nuevo")
-      setCargando(false);
-      setTextBadEmail("");
-    } else if (response.body.code === "auth/invalid-email") {
-      setInvalid("invalid");
-      setCargando(false);
-      setTextResponse("Ingrese un correo válido")
-      setTextBadEmail("");
-    } else {
-      console.log(response.body);
+    if (response.status === 200) {
       setInvalid("");
       localStorage.setItem("email", email);
       setCargando(false);
       navigate("/restore/check/email");
+    } else {
+      setInvalid("invalid");
+      setCargando(false);
+      setTextResponse("Ingrese un correo válido");
+      setTextBadEmail("");
     }
   };
 
@@ -89,9 +90,7 @@ const OlvidePassword = () => {
               />
               <div className={`flex flex-row ${textBadEmail}`}>
                 <img src={IconWarning} alt="warning information" />
-                <p className="invalid-text-small">
-                  {textResponse}
-                </p>
+                <p className="invalid-text-small">{textResponse}</p>
               </div>
             </div>
           </form>
