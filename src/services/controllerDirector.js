@@ -181,4 +181,29 @@ const getInformation = (responseToReturn) => {
     }
     return responseToReturn
 }
-export { getAllTeachers, getUserByID, disableTeacher, enableTeacher, updateRol, getAllStudents, getStudentsByGrade, getStudentByID, createStudent, updateStudent, disableStudent, enableStudent, getAllBoletines }
+
+const getEnabledTeachers = async () => {
+    let responseToReturn
+    api.defaults.headers.common["Content-Type"] = "application/json"
+    await api.get("api/v1/user/get-enabled-teachers")
+        .then((response) => {
+            responseToReturn = response
+        }).catch((error) => {
+            responseToReturn = error
+        });
+    return getInformation(responseToReturn)
+}
+
+
+const getdisableTeachers = async () => {
+    let responseToReturn
+    api.defaults.headers.common["Content-Type"] = "application/json"
+    await api.get("api/v1/user/get-disabled-teachers")
+        .then((response) => {
+            responseToReturn = response
+        }).catch((error) => {
+            responseToReturn = error
+        });
+    return getInformation(responseToReturn)
+}
+export { getAllTeachers, getUserByID, disableTeacher, enableTeacher, updateRol, getAllStudents, getStudentsByGrade, getStudentByID, createStudent, updateStudent, disableStudent, enableStudent, getAllBoletines, getEnabledTeachers, getdisableTeachers }
