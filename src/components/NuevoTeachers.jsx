@@ -5,7 +5,7 @@ const NewTeachers = ({ id, name, date }) => {
     <>
       <div className="flex justify-between">
         <p className="font-bold">{name}</p>
-        <img className="mt-3 cursor-pointer" src={Arrow} />
+        <img className="mt-3 cursor-pointer" src={Arrow} alt ="img" />
       </div>
 
       <div className="flex  space-x-2 mt-1 mb-2 ">

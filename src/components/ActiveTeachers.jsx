@@ -1,7 +1,7 @@
 import React from "react";
 import Arrow from "../../src/assets/images/arrow_right.svg";
 import { Link } from "react-router-dom";
-import AccountPage from "./AccountPage";
+
 const ActiveTeachers = ({ id, name, grado }) => {
   return (
     <>
