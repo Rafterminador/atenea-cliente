@@ -54,7 +54,7 @@ if (response.status === 200) {
   }
 
   handleGetStudentData()
-  });
+  },[]);
 
   return (
     <div className="flex flex-col justify-between">
