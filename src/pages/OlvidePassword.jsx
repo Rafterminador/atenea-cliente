@@ -1,71 +1,112 @@
 import React from "react";
 import { useState } from "react";
-import Logo from "../assets/images/logo.svg";
 import ImageLoginDesktop from "../assets/images/recuperarPassword.svg";
-import { useNavigate } from 'react-router-dom';
+import IconWarning from "../assets/images/icon-warning.svg";
+import { useNavigate } from "react-router-dom";
+import Input from "../components/Input";
+import Spinner from "../components/Spinner";
+
+//backend
+import { forgotPassword } from "../services/controllerUser";
+
 const OlvidePassword = () => {
-  const [username, setUsername] = useState("");
-  const navigate = useNavigate()
-  const handleValidarCodigo = () => {
-    navigate('/verificacion')
-  }
+  const [email, setEmail] = useState("");
+  const [cargando, setCargando] = useState(false);
+  const [invalid, setInvalid] = useState("");
+  const [textResponse, setTextResponse] = useState("");
+  const [textBadEmail, setTextBadEmail] = useState("hidden");
+  const navigate = useNavigate();
+
+  const handleValidarCodigo = async (e) => {
+    setTextBadEmail("hidden");
+    e.preventDefault();
+    
+    if(email === ''){
+      setInvalid("invalid");
+      setTextResponse("Porfavor ingresar un correo");
+      setTextBadEmail("");
+      return
+    }
+
+    setCargando(true);
+    let response = await forgotPassword(email);
+    console.log(response);
+    if (response.status === 200) {
+      setInvalid("");
+      localStorage.setItem("email", email);
+      setCargando(false);
+      navigate("/restore/check/email");
+    } else {
+      setInvalid("invalid");
+      setCargando(false);
+      setTextResponse("Ingrese un correo válido");
+      setTextBadEmail("");
+    }
+  };
 
   function handleSubmit(e) {
     e.preventDefault();
-
   }
 
-  function handleChangeUsername(e) {
-    setUsername(e.target.value);
+  function handleChangeEmail(e) {
+    setEmail(e.target.value);
   }
 
   return (
-    <div className="contenedor md:px-16">
-      <div className="hidden md:flex md:justify-center md:py-6 md:border-b-2 md:border-[#DBD8FF] md:h-[120px]">
-        <img src={Logo} alt="Logo" />
+    <div className="mx-5 min-h-screen flex flex-col justify-between md:hidden">
+      {/* div de la imagen */}
+      <div className="bg-[#FCFBFF] bordeblur">
+        <img className="mx-auto" src={ImageLoginDesktop} alt="Registros" />
       </div>
-      <div className="flex flex-col justify-between px-5 items-center md:grid md:grid-cols-12 md:gap-[30px] md:p-0 md:py-10">
-        <div className="bg-[#FCFBFF] bordeblur w-full flex justify-center md:col-span-6 md:rounded-[20px]">
-          <img src={ImageLoginDesktop} alt="Login" className="md:hidden" />
-          <img
-            src={ImageLoginDesktop}
-            alt="Login"
-            className="hidden md:block"
-          />
-        </div>
-        <div className="md:flex md:flex-col md:col-span-6 md:col-start-8 md:col-end-12">
-          <div className="text-center">
-            <h1 className="text-4xl font-bold mt-10">¿Olvido su contraseña?</h1>
-            <p className="text-center mt-4">
-              No se preocupe, suele pasar, Por Favor, ingrese su correo
-              elctrónico asociado
-            </p>
-          </div>
-          <div className="w-full mt-10 px-1 ">
-            <form onSubmit={handleSubmit}>
-              <div className="flex flex-col text gap-2 text-[#4D3483] font-semibold">
-                <label htmlFor="username">Correo</label>
-                <input
-                  id="username"
-                  type="text"
-                  value={username}
-                  name="username"
-                  onChange={handleChangeUsername}
-                  className="font-normal border-solid border-[1px] border-[#DBD8FF] rounded-[10px] py-2.5 px-2 focus:outline-2 focus:outline-[#A954FF]"
-                  placeholder="Ingresar correo"
-                />
 
-                <button
-                  type="submit"
-                  className="bg-[#7064FF] text-white py-[15px] px-2.5 mt-14"
-                  onClick={handleValidarCodigo}
-                >
-                  Enviar Código
-                </button>
-              </div>
-            </form>
-          </div>
+      {/* div del contenido */}
+      <div className="flex flex-col gap-6">
+        {/* div del copy web */}
+        <div className="text-center flex flex-col items-center gap-10">
+          <h1 className="m-0 med-title">¿Olvido su contraseña?</h1>
+          <p className="nrm-text">
+            No se preocupe, suele pasar. Por favor, ingrese su correo
+            electrónico asociado
+          </p>
         </div>
+
+        {cargando ? (
+          <Spinner />
+        ) : (
+          <form onSubmit={handleSubmit} id="resetpassword-form">
+            <div className="flex flex-col gap-2 min-w-full">
+              {/* <label className="text-[#4D3483] sml-title" htmlFor="email">
+              Correo
+            </label> */}
+              <Input
+                id="email-olvidePassword"
+                type="email"
+                value={email}
+                name="email"
+                onChange={handleChangeEmail}
+                className={`${invalid}`}
+                required={1}
+                placeholder="Ingresar correo"
+              />
+              <div className={`flex flex-row ${textBadEmail}`}>
+                <img src={IconWarning} alt="warning information" />
+                <p className="invalid-text-small">{textResponse}</p>
+              </div>
+            </div>
+          </form>
+        )}
+      </div>
+
+      {/* div de los botones */}
+      <div className="flex flex-col mb-5">
+        <button
+          type="submit"
+          form="resetpassword-form"
+          className="bg-[#7064FF] text-white nrm-button"
+          onClick={handleValidarCodigo}
+        >
+          Continuar
+        </button>
       </div>
     </div>
   );

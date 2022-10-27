@@ -1,16 +1,37 @@
 import React, { useState } from "react";
-import ImageRegistro from "../assets/images/register.svg";
-import ImageRegistrod from "../assets/images/register-desktop.svg";
+import ImageRegistro from "../assets/images/img-register-register.svg";
+import IconShowPassword from "../assets/images/icon-showpassword.svg";
+import IconHidePassword from "../assets/images/icon-hidepassword.svg";
+import { Link } from "react-router-dom";
+import Image from "../components/Image";
+import Button from "../components/Button";
+import Input from "../components/Input";
+import { useNavigate } from "react-router-dom";
+
+//backend 
+import { registrarUsuario } from "../services/controllerUser"
 
 const RegistroUsuario = () => {
-  const [username, setUsername] = useState("");
-  const [useremail, setEmail] = useState("");
+  const [displayName, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [passwordVisibility, setPasswordVisibility] = useState(false);
+  const [iconPassword, setIconPassword] = useState(IconShowPassword);
+  const navigate = useNavigate();
 
-  function handleSubmit(e) {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    alert(username + " " + password);
-  }
+    let response = await registrarUsuario(email, password, displayName)
+    console.log(response)
+    if (response.status === 201) {
+      console.log(response.body)
+      alert("Usuario guardado correctamente")
+      navigate("/login");
+    } else {
+      console.log(response.body)
+      alert(response.body)
+    }
+  };
 
   function handleChangeUsername(e) {
     setUsername(e.target.value);
@@ -24,70 +45,106 @@ const RegistroUsuario = () => {
     setPassword(e.target.value);
   }
 
+  const togglePassword = () => {
+    setPasswordVisibility(!passwordVisibility);
+    if (iconPassword === IconShowPassword) {
+      setIconPassword(IconHidePassword);
+    } else {
+      setIconPassword(IconShowPassword);
+    }
+  };
+
   return (
-    <div className="mx-5 h-full contenedor flex flex-col justify-between text-center items-center md:grid md:grid-cols-2 md:gap-[30px] md:p-0 md:py-10">
-      <div className="bg-[#FCFBFF] bordeblur flex flex-col items-center md:hidden">
-        <img src={ImageRegistro} alt="Registros" />
+    <div className="mx-5 min-h-screen flex flex-col justify-between gap-10 md:hidden">
+      {/* div de la imagen */}
+      <div>
+        <Image
+          image={ImageRegistro}
+          alt="Registros"
+          className="mx-auto"
+          type={1}
+        />
       </div>
 
-      <div className="bg-[#FCFBFF] bordeblurd items-center md:block hidden md:ml-[65px]">
-        <img src={ImageRegistrod} alt="Registrosd" />
+      {/* div del copy web */}
+      <div className="text-center flex flex-col items-center gap-4">
+        <h1 className="m-0 big-title">Empezemos</h1>
+        <p className="nrm-text">
+          Está a unos pasos de descubrir una nueva forma de llevar sus labores
+          académicas
+        </p>
       </div>
 
-      <div className="md:my-[220px] md:w-[576px] md:mr-[1128px]">
-        <div className="flex flex-col text-center md:my-[48px]">
-          <h1 className="md:my-[28px]" >Hola docente</h1>
-          <p>Es un gusto apoyar a una nueva persona</p>
-        </div>
-
-        <form onSubmit={handleSubmit}>
-          <div className="flex flex-col text gap-2 text-[#4D3483] font-semibold text-start">
-            <label htmlFor="username">Nombre</label>
-            <input
+      {/* div del formulario */}
+      <form onSubmit={handleSubmit} id="register-form">
+        <div className="flex flex-col gap-4">
+          <div className="flex flex-col gap-2">
+            <label className="text-[#4D3483] sml-title" htmlFor="username">
+              Nombre
+            </label>
+            <Input
               id="username"
               type="text"
-              value={username}
               name="username"
               onChange={handleChangeUsername}
-              className="font-normal border-solid border-[1px] rounded-[10px] py-2.5 px-2 focus:outline-2 focus:outline-[#A954FF]"
               placeholder="Ingresar nombre completo"
-            />
-            <label htmlFor="useremail">Correo</label>
-            <input
-              id="useremail"
-              type="text"
-              value={useremail}
-              name="useremail"
-              onChange={handleChangeEmail}
-              className="font-normal border-solid border-[1px] rounded-[10px] py-2.5 px-2 focus:outline-2 focus:outline-[#A954FF]"
-              placeholder="Ingresar correo"
-            />
-            <label htmlFor="password">Contraseña</label>
-            <input
-              id="password"
-              type="password"
-              value={password}
-              name="password"
-              onChange={handleChangePassword}
-              className="font-normal border-solid border-2 rounded-[10px] py-2.5 px-2 focus:outline-2 focus:outline-[#A954FF]"
-              placeholder="Ingresar contraseña"
+              required={1}
             />
           </div>
-        </form>
+          <div className="flex flex-col gap-2">
+            <label className="text-[#4D3483] sml-title" htmlFor="useremail">
+              Correo
+            </label>
+            <Input
+              id="useremail"
+              type="text"
+              name="useremail"
+              onChange={handleChangeEmail}
+              placeholder="Ingresar correo"
+              required={1}
+            />
+          </div>
+          <div className="flex flex-col gap-2">
+            <label className="text-[#4D3483] sml-title" htmlFor="password">
+              Contraseña
+            </label>
+            <div className="relative">
+              <Input
+                id="password"
+                type={passwordVisibility ? "text" : "password"}
+                name="password"
+                onChange={handleChangePassword}
+                placeholder="Ingresar contraseña"
+                className="w-full"
+                required={1}
+              />
+              <img
+                className="shw-pass bg-white"
+                src={iconPassword}
+                onClick={togglePassword}
+                alt="icon"
+              />
+            </div>
+          </div>
+        </div>
+      </form>
 
-        <button
+      {/* div de los botones */}
+      <div className="flex flex-col gap-4 mb-5">
+        <Button
+          text="Registrarse"
+          typeButton={"button-type-2"}
+          className=""
           type="submit"
-          className="mtext-center min-w-full bg-[#7064FF] text-white mt-[32px]"
-        >
-          Registrarse
-        </button>
-        <button className="text-[12.8px]">
-          ¿Ya tiene una cuenta?{" "}
-          <span className="text-[#7064FF]">Ingresar ahora</span>
+          form="register-form"
+        />
+        <button className="sml-button p-0">
+          <span className="sml-text-2">¿Ya tiene una cuenta?</span>{" "}
+          <Link to="/login">
+            <span className="text-[#7064FF]">Ingresar ahora</span>
+          </Link>
         </button>
       </div>
-
-      <div></div>
     </div>
   );
 };
