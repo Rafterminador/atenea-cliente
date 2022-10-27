@@ -23,6 +23,9 @@ import GradesAssigned from "./pages/GradesAssigned";
 import Courses from "./pages/Courses";
 import Students from "./pages/Students";
 import Course from "./pages/Course";
+import Student from "./pages/Student";
+import NewActivity from "./pages/NewActivity";
+import EditActividy from "./pages/EditActivity";
 
 function App() {
   return (
@@ -60,8 +63,20 @@ function App() {
           element={<Students />}
         />
         <Route
+          path="/grades/teacher/:id/courses/students/:id"
+          element={<Student />}
+        />
+        <Route
           path="/grades/teacher/:id/courses/:courseId"
           element={<Course />}
+        />
+        <Route
+          path="/grades/teacher/:id/courses/:courseId/new/activity"
+          element={<NewActivity />}
+        />
+        <Route
+          path="/grades/teacher/:id/courses/:courseId/activity/edit"
+          element={<EditActividy />}
         />
       </Routes>
     </BrowserRouter>
