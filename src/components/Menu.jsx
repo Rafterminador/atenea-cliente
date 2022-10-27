@@ -2,8 +2,13 @@ import { Link } from "react-router-dom";
 import ArrowRight from "../assets/images/arrow_right.svg";
 import Download from "../assets/images/download.svg";
 import Logout from "../assets/images/logout.svg";
+import { useNavigate } from "react-router-dom";
 
 export default function Menu({ hidden, keyValue, animation }) {
+  const navigate = useNavigate();
+  const handleLogOut = () => {
+    navigate("/")
+  }
   return (
     <div
       ref={keyValue}
@@ -43,7 +48,7 @@ export default function Menu({ hidden, keyValue, animation }) {
               <img className="col-start-11" src={Download} alt="Download" />
             </div>
           </button>
-          <button>
+          <button onClick={handleLogOut}>
             <div className="flex justify-between items-center shadow h-12 px-8">
               <p className="text-base font-semibold col-start-2 col-span-4 text-[#FF54B0]">
                 Cerrar sesion

@@ -24,6 +24,7 @@ import GradesAssigned from "./pages/GradesAssigned";
 import Courses from "./pages/Courses";
 import Students from "./pages/Students";
 import Course from "./pages/Course";
+import PrivateRouteDirector from "./utils/PrivateRouteDirector";
 
 function App() {
   return (
@@ -37,36 +38,41 @@ function App() {
         <Route path="/restore/check/email" element={<Check />} />
         <Route path="/reset/password/*" element={<ResetPassword />} />
 
-        {/* rutas para la S02 - Administrativo */}
-        <Route path="/grades/" element={<Grades />} />
-        <Route path="/grades/create" element={<NewGrade />} />
-        <Route path="/grades/update/:id" element={<UpdateGrade />} />
-        <Route path="/grades/update/:id/edit" element={<EditGrade />} />
+        <Route element={<PrivateRouteDirector />}>
 
-        <Route path="/home" element={<Home />} />
-        <Route path="/cuenta" element={<Account />} />
-        <Route path="/tutoriales" element={<VideoTutorials />} />
+          {/* rutas para la S02 - Administrativo */}
+          <Route path="/grades/" element={<Grades />} />
+          <Route path="/grades/create" element={<NewGrade />} />
+          <Route path="/grades/update/:id" element={<UpdateGrade />} />
+          <Route path="/grades/update/:id/edit" element={<EditGrade />} />
 
-        <Route path="/ver/alumno" element={<VerAlumno />} />
-        <Route path="/cuenta/alumno" element={<AlumnoAccount />} />
-        <Route path="/editar/alumno" element={<EditAlumnoAccount />} />
-        <Route path="/perfil/alumno" element={<AlumnoProfile />} />
-        <Route path="/alumnos/completos" element={<AllAlumnos />} />
-        <Route path="/boletin" element={<Boletin />} />
+          <Route path="/home" element={<Home />} />
+          <Route path="/cuenta" element={<Account />} />
+          <Route path="/tutoriales" element={<VideoTutorials />} />
 
-        <Route path="/backend" element={<ControllerProving />} />
-        <Route path="/grades/teacher/:id" element={<GradesAssigned />} />
-        <Route path="/grades/teacher/:id/courses" element={<Courses />} />
-        <Route
-          path="/grades/teacher/:id/courses/students"
-          element={<Students />}
-        />
-        <Route
-          path="/grades/teacher/:id/courses/:courseId"
-          element={<Course />}
-        />
+          <Route path="/ver/alumno" element={<VerAlumno />} />
+          <Route path="/cuenta/alumno" element={<AlumnoAccount />} />
+          <Route path="/editar/alumno" element={<EditAlumnoAccount />} />
+          <Route path="/perfil/alumno" element={<AlumnoProfile />} />
+          <Route path="/alumnos/completos" element={<AllAlumnos />} />
+          <Route path="/boletin" element={<Boletin />} />
+
+          <Route path="/backend" element={<ControllerProving />} />
+          <Route path="/grades/teacher/:id" element={<GradesAssigned />} />
+          <Route path="/grades/teacher/:id/courses" element={<Courses />} />
+          <Route
+            path="/grades/teacher/:id/courses/students"
+            element={<Students />}
+          />
+          <Route
+            path="/grades/teacher/:id/courses/:courseId"
+            element={<Course />}
+          />
+
+        </ Route >
+
       </Routes>
-    </BrowserRouter>
+    </BrowserRouter >
   );
 }
 

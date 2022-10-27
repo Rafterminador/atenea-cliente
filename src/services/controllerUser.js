@@ -10,8 +10,10 @@ const login = async (auth, email, password) => {
     let response = null
     response = await signInWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
+            console.log(userCredential)
             response = userCredential.user;
-            response = { uid: response.uid, email: response.email, name: response.displayName }
+            let roleObject = JSON.parse(response.reloadUserInfo.customAttributes)
+            response = { uid: response.uid, email: response.email, name: response.displayName, role: roleObject.rol }
             return response
         })
         .catch((error) => {
@@ -44,15 +46,15 @@ const registrarUsuario = async (email, password, name) => {
     return responseToReturn
 }
 
-const forgotPassword = async(email) => {
+const forgotPassword = async (email) => {
     let responseToReturn
     api.defaults.headers.common["Content-Type"] = "application/json"
     await api.get(`/api/v1/user/reset-password/?email=${email}`)
-    .then((response) => {
-        responseToReturn = response
-    }).catch((error) => {
-        responseToReturn = error
-    });
+        .then((response) => {
+            responseToReturn = response
+        }).catch((error) => {
+            responseToReturn = error
+        });
     if (responseToReturn.status === undefined) {
         responseToReturn = responseToReturn.response.data
     } else {

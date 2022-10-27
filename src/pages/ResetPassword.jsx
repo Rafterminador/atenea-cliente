@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import IconShowPassword from "../assets/images/icon-showpassword.svg";
 import IconHidePassword from "../assets/images/icon-hidepassword.svg";
+import IconWarning from "../assets/images/icon-warning.svg";
 import ImageForgotPassword from "../assets/images/img-restore-forgotpassword.svg";
 import { Firebase } from "../utils/Firebase";
 import Input from "../components/Input";
@@ -10,16 +11,22 @@ import {
   getAuth,
 } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
+import { AlertButton } from "../utils/AlertButton";
 
 const ResetPassword = () => {
   const navigate = useNavigate();
   const [newPassword, setNewPassword] = useState("");
+  const [invalid, setInvalid] = useState("");
+  const [textBadPassword, setTextBadPassword] = useState("hidden");
+  const [invalidText, setInvalidText] = useState("");
+  const [textResponse, setTextResponse] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [passwordVisibility, setPasswordVisibility] = useState(false);
   const [passwordVisibility2, setPasswordVisibility2] = useState(false);
   const [iconPassword, setIconPassword] = useState(IconShowPassword);
   const [iconPassword2, setIconPassword2] = useState(IconShowPassword);
 
+  const Swal = require('sweetalert2')
   const firebase = new Firebase();
   const app = firebase.appInitialize();
   const auth = getAuth(app);
@@ -44,34 +51,92 @@ const ResetPassword = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
+    setInvalidText("");
     if (newPassword !== confirmPassword) {
-      alert("Las constraseñas deben ser iguales");
+      setInvalid("invalid");
+      setInvalidText("invalid-text");
+      setTextBadPassword("");
+      setTextResponse("Las contraseñas no coinciden");
+      return;
+    }
+    if (newPassword === "" || confirmPassword === "") {
+      setInvalid("invalid");
+      //setInvalidText("invalid-text");
+      setTextBadPassword("");
+      setTextResponse("Todos los campos son obligatorios");
+      return;
+    }
+    if (newPassword.length < 8 && confirmPassword.length < 8) {
+      setInvalid("invalid");
+      setInvalidText("invalid-text");
+      setTextBadPassword("");
+      setTextResponse(
+        "Ingrese una contraseña de al menos 8 caracteres. Esta debe contener al menos una Mayúscula, Minúscula y un número"
+      );
       return;
     }
 
+
     let params = new URLSearchParams(document.location.search);
 
-    // TODO: Implement getParameterByName()
+      // TODO: Implement getParameterByName()
 
-    // Get the action to complete.
-    let mode = params.get("mode");
-    // Get the one-time code from the query parameter.
-    const actionCode = params.get("oobCode");
-    // (Optional) Get the continue URL from the query parameter if available.
-    const continueUrl = params.get("");
-    // (Optional) Get the language code if available.
-    const lang = params.get("lang") || "en";
+      // Get the action to complete.
+      let mode = params.get("mode");
+      // Get the one-time code from the query parameter.
+      const actionCode = params.get("oobCode");
+      // (Optional) Get the continue URL from the query parameter if available.
+      const continueUrl = params.get("");
+      // (Optional) Get the language code if available.
+      const lang = params.get("lang") || "en";
 
-    // Handle the user management action.
-    switch (mode) {
-      case "resetPassword":
-        // Display reset password handler and UI.
-        handleResetPassword(auth, actionCode, continueUrl, lang);
-        break;
-      default:
-      // Error: invalid mode.
-    }
+      // Handle the user management action.
+      switch (mode) {
+        case "resetPassword":
+          // Display reset password handler and UI.
+          handleResetPassword(auth, actionCode, continueUrl, lang);
+          break;
+        default:
+        // Error: invalid mode.
+      }
+
+    //validar letra
+    // if (
+    //   newPassword.match(/^[a-zA-Z0-9]$/) &&
+    //   confirmPassword.match(/^[a-zA-Z0-9]$/)
+    // ) {
+      
+    // } else {
+    //   setInvalid("invalid");
+    //   setInvalidText("invalid-text");
+    //   setTextBadPassword("");
+    //   setTextResponse(
+    //     "Ingrese una contraseña de al menos 8 caracteres. Esta debe contener al menos una Mayúscula, Minúscula y un número"
+    //   );
+    //   return;
+    // }
+
+    // //validar letra mayúscula
+    // if (newPassword.match(/[A-Z]/) && confirmPassword.match(/[A-Z]/) ) {
+    //   setInvalid("invalid");
+    //   setInvalidText("invalid-text");
+    //   setTextBadPassword("");
+    //   setTextResponse(
+    //     "Ingrese una contraseña de al menos 8 caracteres. Esta debe contener al menos una Mayúscula, Minúscula y un número"
+    //   );
+    //   return;
+    // }
+
+    // //validar numero
+    // if (newPassword.match(/\d/) && confirmPassword.match(/\d/)) {
+    //   setInvalid("invalid");
+    //   setInvalidText("invalid-text");
+    //   setTextBadPassword("");
+    //   setTextResponse(
+    //     "Ingrese una contraseña de al menos 8 caracteres. Esta debe contener al menos una Mayúscula, Minúscula y un número"
+    //   );
+    //   return;
+    // }
   };
 
   function handleResetPassword(auth, actionCode, continueUrl, lang) {
@@ -87,9 +152,11 @@ const ResetPassword = () => {
         // Save the new password.
         confirmPasswordReset(auth, actionCode, newPassword)
           .then((resp) => {
-            console.log(resp);
-            alert("cambiado correctamente");
-            navigate(`/login`);
+            Swal.fire(
+              AlertButton.dataAlertSuccess('Contraseña cambiada correctamente')
+          ).then(() => {
+              navigate('/login')
+          })
 
             // Password reset has been confirmed and new password updated.
 
@@ -141,7 +208,10 @@ const ResetPassword = () => {
         <form onSubmit={handleSubmit} id="resetpassword-form">
           <div className="flex flex-col gap-4">
             <div className="flex flex-col gap-2">
-              <label className="text-[#4D3483] sml-title" htmlFor="email">
+              <label
+                className={`text-[#4D3483] sml-title ${invalidText}`}
+                htmlFor="email"
+              >
                 Nueva contraseña
               </label>
 
@@ -152,7 +222,7 @@ const ResetPassword = () => {
                   name="password"
                   onChange={handleNewPassword}
                   placeholder="Ingresar contraseña"
-                  className={`w-full`}
+                  className={`w-full ${invalid}`}
                   required={1}
                 />
                 <img
@@ -164,7 +234,10 @@ const ResetPassword = () => {
               </div>
             </div>
             <div className="flex flex-col gap-2">
-              <label className="text-[#4D3483] sml-title" htmlFor="email">
+              <label
+                className={`text-[#4D3483] sml-title ${invalidText}`}
+                htmlFor="email"
+              >
                 Repetir contraseña
               </label>
 
@@ -175,7 +248,7 @@ const ResetPassword = () => {
                   name="password2"
                   onChange={handleConfirmPassword}
                   placeholder="Ingresar contraseña"
-                  className={`w-full`}
+                  className={`w-full ${invalid}`}
                   required={1}
                 />
 
@@ -185,6 +258,10 @@ const ResetPassword = () => {
                   onClick={togglePassword2}
                   alt="icon"
                 />
+                <div className={`flex flex-row ${textBadPassword}`}>
+                  <img src={IconWarning} alt="warning information" />
+                  <p className="invalid-text-small">{textResponse}</p>
+                </div>
               </div>
             </div>
           </div>
