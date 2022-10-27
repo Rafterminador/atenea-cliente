@@ -39,6 +39,12 @@
     border-radius: 20px;
     color: #FF54B0;
 }
+.button-type-4 {
+    border: 2px solid #DEFFE4;
+    background-color: #DEFFE4;
+    border-radius: 20px;
+    color: #0B7F14    ;
+}
 
 .input {
     box-sizing: border-box;

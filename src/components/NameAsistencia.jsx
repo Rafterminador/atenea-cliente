@@ -1,7 +1,16 @@
 import React from 'react'
+import { useState } from 'react'
 import Button from './Button'
 
 const NameAsistencia = () => {
+  const [hidden, setHidden] = useState('hidden')
+  const [presente, setPresente] = useState('')
+
+  const hladleHidden = () => {
+    setHidden('')
+    setPresente('hidden')
+  }
+
   return (
     <>
     <div className="contenedor-admin ">
@@ -12,10 +21,10 @@ const NameAsistencia = () => {
                 <p className="text-[28px] text-end  font-[1100]">?</p>
               </div>
 
-              <div className="flex justify-between mt-28">
+              <div className={`flex justify-between mt-28 ${presente}`}>
                 <div>
                   <Button
-                    // onClick={handleEliminar}
+                    onClick={hladleHidden}
                     text="Presente"
                     typeButton={"button-type-2"}
                     className="my-5"
@@ -32,6 +41,17 @@ const NameAsistencia = () => {
                     type="button"
                   />
                 </div>
+              </div>
+
+              <div className={`${hidden}`}>
+              <Button
+                    // onClick={handleEliminar}
+                    text="Presente"
+                    typeButton={"button-type-4"}
+                    className="my-5"
+                    type="button"
+                  />
+
               </div>
             </div>
           </div>
