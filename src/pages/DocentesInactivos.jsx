@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import arrowLeft from "../../src/assets/images/chevron_left.svg";
+
 import InactiveTeachers from "../components/InactiveTeachers";
 import Retroceder from "../components/Retroceder";
 import SearchBar from "../components/SearchBar";

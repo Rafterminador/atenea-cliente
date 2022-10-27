@@ -1,6 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import arrowLeft from "../../src/assets/images/chevron_left.svg";
+
 import NewTeachers from "../components/NuevoTeachers";
 import Retroceder from "../components/Retroceder";
 import SearchBar from "../components/SearchBar";
