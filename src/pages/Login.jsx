@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Firebase } from "../utils/Firebase";
 import { getAuth } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
 
 // assets imports
 import ImageLoginDefault from "../assets/images/img-login-default.svg";
@@ -20,6 +21,7 @@ const Login = () => {
   const firebase = new Firebase();
   const app = firebase.appInitialize();
   const auth = getAuth(app);
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [invalid, setInvalid] = useState("");
@@ -45,7 +47,6 @@ const Login = () => {
     e.preventDefault();
     let response = {}
     response = await login(auth, email, password)
-    console.log(response)
     if (response?.errorCode != null) {
       setInvalid("invalid");
       setInvalidText("invalid-text");
@@ -58,7 +59,13 @@ const Login = () => {
         setTextBadPassword("");
       }
     } else {
-      alert("login success")
+      const userJSON = JSON.stringify(response)
+      localStorage.setItem('usuario', userJSON)
+      if (response?.role === "director") {
+        navigate("/home");
+      } else {
+        alert("bienvenido maestro")
+      }
     }
   }
   function handleChangeUsername(e) {
