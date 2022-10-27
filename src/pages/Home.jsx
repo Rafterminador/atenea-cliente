@@ -64,6 +64,8 @@ export default function Home() {
           </div>
         </div>
       </div>
+
+      {/* NabBAR initial */}
       <div className="fixed z-0 bottom-0 h-[70px] w-full flex justify-around items-center text-centers shadow">
         <div className="w-[90px] h-full">
           <button

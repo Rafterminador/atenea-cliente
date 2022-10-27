@@ -24,6 +24,8 @@ import GradesAssigned from "./pages/GradesAssigned";
 import Courses from "./pages/Courses";
 import Students from "./pages/Students";
 import Course from "./pages/Course";
+import Asistencia from "./pages/Asistencia";
+import TomarAsistencia from "./components/TomarAsistencia";
 
 function App() {
   return (
@@ -53,6 +55,10 @@ function App() {
         <Route path="/perfil/alumno" element={<AlumnoProfile />} />
         <Route path="/alumnos/completos" element={<AllAlumnos />} />
         <Route path="/boletin" element={<Boletin />} />
+
+        {/* Pagina asistencia */}
+        <Route path="/asistencia" element={<Asistencia />} />
+        <Route path="/asistencia/tomar-asistencia" element={<TomarAsistencia />} />
 
         <Route path="/backend" element={<ControllerProving />} />
         <Route path="/grades/teacher/:id" element={<GradesAssigned />} />
