@@ -13,19 +13,26 @@ const EditAlumnoAccount = () => {
   let alumn = (JSON.parse(alumnJSON))
 
 
-  const [username, setUsername] = useState("");
-  const [birthdate, setBirthDate] = useState("");
-  const [direction, setDirection] = useState("");
+  const [username, setUsername] = useState();
+  const [birthdate, setBirthDate] = useState();
+  const [direction, setDirection] = useState();
   const [grade, setGrade] = useState("4ipYcYTWIx9IlnS11tmh");
-  const [nameencargado, setNameEncargado] = useState("");
-  const [celencargado, setCelencargado] = useState("");
+  const [nameencargado, setNameEncargado] = useState();
+  const [celencargado, setCelencargado] = useState();
   const [enable, setEnable] = useState(true);
   const navigate = useNavigate();
+
+  const [alumnname, setAlumn_Name] = useState();
+  const [managername, setManager_Name] = useState();
+  const [managerphone, setManage_Phone] = useState();
+  const [datebirth, setDate_Brith] = useState();
+  const [directiona, setDirectiona] = useState();
+  const [gradea, setGradea] = useState();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     let Student = {
-      name_complete: username,
+      name_complete: alumn.nombre,
       date_birth: birthdate.toString(),
       direction: direction,
       gradeRef: "4ipYcYTWIx9IlnS11tmh",
@@ -33,6 +40,7 @@ const EditAlumnoAccount = () => {
       manager_phone: celencargado,
       enable: true
     }
+    
     let response = await updateStudent(Student, alumn.uid)
     if (response.status === 201) {
       console.log(response.body)
@@ -67,11 +75,7 @@ const EditAlumnoAccount = () => {
     setCelencargado(e.target.value);
   }
 
-  const [managername, setManager_Name] = useState();
-  const [managerphone, setManage_Phone] = useState();
-  const [datebirth, setDate_Brith] = useState();
-  const [directiona, setDirectiona] = useState();
-  const [gradea, setGradea] = useState();
+
 
 
   // Similar to componentDidMount and componentDidUpdate:
@@ -118,7 +122,7 @@ const EditAlumnoAccount = () => {
           <label htmlFor="birthdate">Fecha de nacimiento</label>
           <Input
             id="birthdate"
-            type="date"
+            type="text"
             name="birthdate"
             onChange={handleBirthDate}
             className="font-normal border-solid border-[1px] rounded-[10px] py-2.5 px-2 focus:outline-2 focus:outline-[#A954FF] h-[42px]"
