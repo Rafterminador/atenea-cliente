@@ -118,7 +118,7 @@ const EditAlumnoAccount = () => {
           <label htmlFor="birthdate">Fecha de nacimiento</label>
           <Input
             id="birthdate"
-            type="text"
+            type="date"
             name="birthdate"
             onChange={handleBirthDate}
             className="font-normal border-solid border-[1px] rounded-[10px] py-2.5 px-2 focus:outline-2 focus:outline-[#A954FF] h-[42px]"
