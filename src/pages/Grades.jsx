@@ -5,7 +5,7 @@ import AddButton from '../components/AddButton'
 import { useNavigate } from 'react-router-dom'
 
 const Grades = () => {
-  localStorage.clear()
+  localStorage.removeItem("grade")
   const navigate = useNavigate()
   const handleClick = () => {
     navigate('/grades/create')
