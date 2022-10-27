@@ -24,6 +24,10 @@ import GradesAssigned from "./pages/GradesAssigned";
 import Courses from "./pages/Courses";
 import Students from "./pages/Students";
 import Course from "./pages/Course";
+import Student from "./pages/Student";
+import NewActivity from "./pages/NewActivity";
+import EditActividy from "./pages/EditActivity";
+import Notes from "./pages/Notes";
 import PrivateRouteDirector from "./utils/PrivateRouteDirector";
 
 function App() {
@@ -71,6 +75,32 @@ function App() {
 
         </ Route >
 
+        <Route path="/grades/teacher/:id" element={<GradesAssigned />} />
+        <Route path="/grades/teacher/:id/courses" element={<Courses />} />
+        <Route
+          path="/grades/teacher/:id/courses/students"
+          element={<Students />}
+        />
+        <Route
+          path="/grades/teacher/:id/courses/students/:id"
+          element={<Student />}
+        />
+        <Route
+          path="/grades/teacher/:id/courses/students/:id/notes"
+          element={<Notes />}
+        />
+        <Route
+          path="/grades/teacher/:id/courses/:courseId"
+          element={<Course />}
+        />
+        <Route
+          path="/grades/teacher/:id/courses/:courseId/new/activity"
+          element={<NewActivity />}
+        />
+        <Route
+          path="/grades/teacher/:id/courses/:courseId/activity/edit"
+          element={<EditActividy />}
+        />
       </Routes>
     </BrowserRouter >
   );

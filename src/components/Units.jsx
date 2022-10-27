@@ -2,9 +2,9 @@ import React from "react";
 import { useState } from "react";
 import DropDown from "../assets/images/drop-down.svg";
 import DropUp from "../assets/images/drop-up.svg";
-import BoletinCard from "../components/BoletinCard";
+import Activities from "./Activities";
 
-const Notes = (props) => {
+const Units = (props) => {
   const [active, setActive] = useState("");
   const [hidden, setHidden] = useState("hidden");
   const [dropImage, setDropImage] = useState(DropDown);
@@ -33,26 +33,36 @@ const Notes = (props) => {
           id="teacher"
           required
         />
-
-        <img
-          src={dropImage}
-          alt="More information"
+        <div
           style={{
             position: "absolute",
             top: "0",
             bottom: "0",
             margin: "auto 0",
             right: "20px",
+            display: "flex",
+            alignItems: "center",
+            gap: "12px",
           }}
-        />
+        >
+          <span
+            style={{
+              fontSize: "16px",
+              fontWeight: "600",
+            }}
+          >{`${props.count} Act.`}</span>
+          <img
+            style={{ display: "inline" }}
+            src={dropImage}
+            alt="More information"
+          />
+        </div>
       </div>
       <div className={`${hidden}`}>
-        <div className="combo-box-container-notes">
-          {<BoletinCard link={props.link} />}
-        </div>
+        <div className="combo-box-container-notes">{<Activities />}</div>
       </div>
     </>
   );
 };
 
-export default Notes;
+export default Units;
