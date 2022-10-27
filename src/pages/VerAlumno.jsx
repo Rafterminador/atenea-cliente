@@ -57,7 +57,7 @@ export default function VerAlumno() {
     <div className="contenedor contenedor-admin">
       <SearchBar />
       <div className="my-[10px]">
-        <Grado grado={"PreKinder"} total={prePrimariaPreKinder.length} />
+        <Grado grado={"PreKinder"} total={prePrimariaPreKinder.length}/>
 
         {prePrimariaPreKinder.slice(0, 4).map((estudiante) => (
           <Alumno
@@ -76,7 +76,7 @@ export default function VerAlumno() {
           />
         ))}
 
-        <Grado grado={"Párvulos"} total={prePrimariaParvulos.length} />
+        <Grado grado={"Parvulos"} total={prePrimariaParvulos.length} />
         {prePrimariaParvulos.slice(0, 4).map((estudiante) => (
           <Alumno
             nombre={estudiante.name}
