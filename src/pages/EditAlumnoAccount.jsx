@@ -80,7 +80,7 @@ const EditAlumnoAccount = () => {
         console.log(response.body.date_birth);
         setBirthDate(response.body.date_birth.substring(0, 10));
         setDirection(response.body.direction);
-        setGrade(response.body.gradeRef);
+        // setGrade(response.body.gradeRef);
       } else {
         console.log(response.body);
       }
