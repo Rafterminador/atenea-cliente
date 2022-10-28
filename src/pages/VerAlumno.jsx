@@ -7,8 +7,7 @@ import AddButton from "../components/AddButton";
 
 import { getAllStudents } from "../services/controllerDirector";
 
-const ControllerProving = () => {};
-export default function VerAlumno() {
+const VerAlumno = () => {
   localStorage.clear();
   const navigate = useNavigate();
   function handleAdd() {
@@ -138,4 +137,4 @@ export default function VerAlumno() {
   );
 }
 
-export { VerAlumno };
+export default VerAlumno;

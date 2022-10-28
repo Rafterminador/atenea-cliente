@@ -20,7 +20,7 @@ const AllAlumnos = () => {
       if (response.status === 200) {
         console.log(response.body);
 
-        {
+        
           if (seteargrado.grado === "PreKinder") {
             setActual(response.body.prePrimaria.preKinder.data);
           }
@@ -47,7 +47,7 @@ const AllAlumnos = () => {
           }
           if (seteargrado.grado === "Sexto primaria") {
             setActual(response.body.primaria.sexto.data);
-          }
+          
         }
       } else {
         console.log(response.body);
