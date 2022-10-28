@@ -19,15 +19,7 @@ const EditAlumnoAccount = () => {
   const [grade, setGrade] = useState("4ipYcYTWIx9IlnS11tmh");
   const [nameencargado, setNameEncargado] = useState();
   const [celencargado, setCelencargado] = useState();
-  const [enable, setEnable] = useState(true);
   const navigate = useNavigate();
-
-  const [alumnname, setAlumn_Name] = useState();
-  const [managername, setManager_Name] = useState();
-  const [managerphone, setManage_Phone] = useState();
-  const [datebirth, setDate_Brith] = useState();
-  const [directiona, setDirectiona] = useState();
-  const [gradea, setGradea] = useState();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -40,7 +32,7 @@ const EditAlumnoAccount = () => {
       manager_phone: celencargado,
       enable: true
     }
-    
+
     let response = await updateStudent(Student, alumn.uid)
     if (response.status === 201) {
       console.log(response.body)
@@ -88,11 +80,12 @@ const EditAlumnoAccount = () => {
 
         console.log(response.body)
 
-        setManager_Name(response.body.manager_name)
-        setManage_Phone(response.body.manager_phone)
-        setDate_Brith(response.body.date_birth)
-        setDirectiona(response.body.direction)
-        setGradea(response.body.gradeRef)
+        setNameEncargado(response.body.manager_name)
+        setCelencargado(response.body.manager_phone)
+        console.log(response.body.date_birth)
+        setBirthDate(response.body.date_birth.substring(0,10))
+        setDirection(response.body.direction)
+        setGrade(response.body.gradeRef)
 
 
       } else {
@@ -127,7 +120,8 @@ const EditAlumnoAccount = () => {
             onChange={handleBirthDate}
             className="font-normal border-solid border-[1px] rounded-[10px] py-2.5 px-2 focus:outline-2 focus:outline-[#A954FF] h-[42px]"
             placeholder="DD / MM / AAAA"
-            defaultValue={datebirth}
+            defaultValue={birthdate}
+            disabled={true}
           />
           <label htmlFor="direction">Dirección</label>
           <Input
@@ -137,7 +131,7 @@ const EditAlumnoAccount = () => {
             onChange={handleDirection}
             className="font-normal border-solid border-2 rounded-[10px] py-2.5 px-2 focus:outline-2 focus:outline-[#A954FF] h-[42px]"
             placeholder="Ingresar dirección"
-            defaultValue={directiona}
+            defaultValue={direction}
           />
           <label htmlFor="grade">Grado</label>
           <ComboBox teachers={['Primero', 'Segundo', 'Tercero', 'Cuarto', 'Quinto', 'Sexto']} defaultValue={'Grado Actual'} />
@@ -150,7 +144,7 @@ const EditAlumnoAccount = () => {
             onChange={handleNameEncargado}
             className="font-normal border-solid border-[1px] rounded-[10px] py-2.5 px-2 focus:outline-2 focus:outline-[#A954FF] h-[42px]"
             placeholder="Ingresar nombre completo"
-            defaultValue={managername}
+            defaultValue={nameencargado}
           />
           <label htmlFor="celencargado">Teléfono del encargado: <label className="text-[12px]">padre, madre u otro</label>  </label>
           <Input
@@ -161,7 +155,7 @@ const EditAlumnoAccount = () => {
             onChange={handleCelencargado}
             className="font-normal border-solid border-[1px] rounded-[10px] py-2.5 px-2 focus:outline-2 focus:outline-[#A954FF] h-[42px]"
             placeholder="Ingresar número telefónico"
-            defaultValue={managerphone}
+            defaultValue={celencargado}
           />
         </div>
       </form>
