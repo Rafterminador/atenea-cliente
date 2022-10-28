@@ -69,6 +69,8 @@ const EditAlumnoAccount = () => {
   // Similar to componentDidMount and componentDidUpdate:
   useEffect(() => {
     // Update the document title using the browser API
+    let alumnJSON = localStorage.getItem("alumno");
+    let alumn = JSON.parse(alumnJSON);
 
     const handleGetStudentData = async () => {
       let response = await getStudentByID(alumn.uid);
