@@ -50,9 +50,9 @@ const AlumnoAccount = () => {
     setDirection(e.target.value);
   }
 
-  function handleGrade(e) {
-    setGrade(e.target.value);
-  }
+  // function handleGrade(e) {
+  //   setGrade(e.target.value);
+  // }
 
   function handleNameEncargado(e) {
     setNameEncargado(e.target.value);

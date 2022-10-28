@@ -100,7 +100,7 @@ const EditAlumnoAccount = () => {
             id="username"
             type="text"
             name="username"
-            onChange={handleUsername}
+            // onChange={handleUsername}
             className="font-normal border-solid border-[1px] rounded-[10px] py-2.5 px-2 focus:outline-2 focus:outline-[#A954FF] h-[42px]"
             placeholder="Ingresar nombre completo"
             defaultValue={alumn.nombre}
