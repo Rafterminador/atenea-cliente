@@ -1,19 +1,18 @@
-import React, { useState, useEffect } from 'react';
-import ComboBox from "../components/ComboBox"
+import React, { useState, useEffect } from "react";
+import ComboBox from "../components/ComboBox";
 import Button from "../components/Button";
 import Input from "../components/Input";
-import Retroceder from '../components/Retroceder';
+import Retroceder from "../components/Retroceder";
 import { useNavigate } from "react-router-dom";
 
-import { updateStudent } from "../services/controllerDirector"
-import { getStudentByID } from '../services/controllerDirector'
+import { updateStudent } from "../services/controllerDirector";
+import { getStudentByID } from "../services/controllerDirector";
 
 const EditAlumnoAccount = () => {
-  let alumnJSON = localStorage.getItem('alumno')
-  let alumn = (JSON.parse(alumnJSON))
+  let alumnJSON = localStorage.getItem("alumno");
+  let alumn = JSON.parse(alumnJSON);
 
-
-  const [username, setUsername] = useState();
+  // const [username, setUsername] = useState();
   const [birthdate, setBirthDate] = useState();
   const [direction, setDirection] = useState();
   // const [grade, setGrade] = useState("4ipYcYTWIx9IlnS11tmh");
@@ -30,22 +29,22 @@ const EditAlumnoAccount = () => {
       gradeRef: "4ipYcYTWIx9IlnS11tmh",
       manager_name: nameencargado,
       manager_phone: celencargado,
-      enable: true
-    }
+      enable: true,
+    };
 
-    let response = await updateStudent(Student, alumn.uid)
+    let response = await updateStudent(Student, alumn.uid);
     if (response.status === 201) {
-      console.log(response.body)
+      console.log(response.body);
     } else {
-      console.log(response.body)
+      console.log(response.body);
     }
-    alert("Datos actualizados correctamente")
+    alert("Datos actualizados correctamente");
     navigate("/ver/alumno");
   };
 
-  function handleUsername(e) {
-    setUsername(e.target.value);
-  }
+  // function handleUsername(e) {
+  //   setUsername(e.target.value);
+  // }
 
   function handleBirthDate(e) {
     setBirthDate(e.target.value);
@@ -67,33 +66,27 @@ const EditAlumnoAccount = () => {
     setCelencargado(e.target.value);
   }
 
-
-
-
   // Similar to componentDidMount and componentDidUpdate:
   useEffect(() => {
     // Update the document title using the browser API
 
     const handleGetStudentData = async () => {
-      let response = await getStudentByID(alumn.uid)
+      let response = await getStudentByID(alumn.uid);
       if (response.status === 200) {
+        console.log(response.body);
 
-        console.log(response.body)
-
-        setNameEncargado(response.body.manager_name)
-        setCelencargado(response.body.manager_phone)
-        console.log(response.body.date_birth)
-        setBirthDate(response.body.date_birth.substring(0,10))
-        setDirection(response.body.direction)
-        setGrade(response.body.gradeRef)
-
-
+        setNameEncargado(response.body.manager_name);
+        setCelencargado(response.body.manager_phone);
+        console.log(response.body.date_birth);
+        setBirthDate(response.body.date_birth.substring(0, 10));
+        setDirection(response.body.direction);
+        setGrade(response.body.gradeRef);
       } else {
-        console.log(response.body)
+        console.log(response.body);
       }
-    }
+    };
 
-    handleGetStudentData()
+    handleGetStudentData();
   }, []);
 
   return (
@@ -134,8 +127,21 @@ const EditAlumnoAccount = () => {
             defaultValue={direction}
           />
           <label htmlFor="grade">Grado</label>
-          <ComboBox teachers={['Primero', 'Segundo', 'Tercero', 'Cuarto', 'Quinto', 'Sexto']} defaultValue={'Grado Actual'} />
-          <label htmlFor="nameencargado">Nombre del encargado: <label className="text-[12px]">padre, madre u otro</label>  </label>
+          <ComboBox
+            teachers={[
+              "Primero",
+              "Segundo",
+              "Tercero",
+              "Cuarto",
+              "Quinto",
+              "Sexto",
+            ]}
+            defaultValue={"Grado Actual"}
+          />
+          <label htmlFor="nameencargado">
+            Nombre del encargado:{" "}
+            <label className="text-[12px]">padre, madre u otro</label>{" "}
+          </label>
           <Input
             id="nameencargado"
             type="text"
@@ -146,7 +152,10 @@ const EditAlumnoAccount = () => {
             placeholder="Ingresar nombre completo"
             defaultValue={nameencargado}
           />
-          <label htmlFor="celencargado">Teléfono del encargado: <label className="text-[12px]">padre, madre u otro</label>  </label>
+          <label htmlFor="celencargado">
+            Teléfono del encargado:{" "}
+            <label className="text-[12px]">padre, madre u otro</label>{" "}
+          </label>
           <Input
             id="celencargado"
             type="text"
@@ -159,8 +168,6 @@ const EditAlumnoAccount = () => {
           />
         </div>
       </form>
-
-
 
       <div className="fixed top-[720px] left-5 right-5">
         <Button

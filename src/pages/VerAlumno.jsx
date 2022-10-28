@@ -43,21 +43,19 @@ export default function VerAlumno() {
         setPrimariaCuarto(response.body.primaria.cuarto.data);
         setPrimariaQuinto(response.body.primaria.quinto.data);
         setPrimariaSexto(response.body.primaria.sexto.data);
-
-        console.log(prePrimariaPreKinder);
       } else {
         console.log(response.body);
       }
     };
 
     handleGetAllStudents();
-  },[]);
+  }, []);
 
   return (
     <div className="contenedor contenedor-admin">
       <SearchBar />
       <div className="my-[10px]">
-        <Grado grado={"PreKinder"} total={prePrimariaPreKinder.length}/>
+        <Grado grado={"PreKinder"} total={prePrimariaPreKinder.length} />
 
         {prePrimariaPreKinder.slice(0, 4).map((estudiante) => (
           <Alumno

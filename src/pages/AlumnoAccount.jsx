@@ -1,15 +1,13 @@
 import React, { useState } from "react";
-import ComboBox from "../components/ComboBox"
+import ComboBox from "../components/ComboBox";
 import Input from "../components/Input";
 import Button from "../components/Button";
-import Retroceder from '../components/Retroceder';
+import Retroceder from "../components/Retroceder";
 import { useNavigate } from "react-router-dom";
 
-
-import { createStudent } from "../services/controllerDirector"
+import { createStudent } from "../services/controllerDirector";
 
 const AlumnoAccount = () => {
-  
   const [username, setUsername] = useState("");
   const [birthdate, setBirthDate] = useState("");
   const [direction, setDirection] = useState("");
@@ -28,16 +26,16 @@ const AlumnoAccount = () => {
       gradeRef: "4ipYcYTWIx9IlnS11tmh",
       manager_name: nameencargado,
       manager_phone: celencargado,
-      enable: true
-    }
-    let response = await createStudent(newStudent)
+      enable: true,
+    };
+    let response = await createStudent(newStudent);
     if (response.status === 201) {
-        console.log(response.body)
+      console.log(response.body);
     } else {
-        console.log(response.body)
+      console.log(response.body);
     }
-      alert("Alumno guardado correctamente")
-      navigate("/ver/alumno");
+    alert("Alumno guardado correctamente");
+    navigate("/ver/alumno");
   };
 
   function handleUsername(e) {
@@ -96,8 +94,21 @@ const AlumnoAccount = () => {
             placeholder="Ingresar dirección"
           />
           <label htmlFor="grade">Grado</label>
-          <ComboBox teachers={['Primero', 'Segundo', 'Tercero', 'Cuarto', 'Quinto', 'Sexto']} valueByDefault={'Seleccionar Grado'} />
-          <label htmlFor="nameencargado">Nombre del encargado: <label className="text-[12px]">padre, madre u otro</label>  </label>
+          <ComboBox
+            teachers={[
+              "Primero",
+              "Segundo",
+              "Tercero",
+              "Cuarto",
+              "Quinto",
+              "Sexto",
+            ]}
+            valueByDefault={"Seleccionar Grado"}
+          />
+          <label htmlFor="nameencargado">
+            Nombre del encargado:{" "}
+            <label className="text-[12px]">padre, madre u otro</label>{" "}
+          </label>
           <Input
             id="nameencargado"
             type="text"
@@ -107,7 +118,10 @@ const AlumnoAccount = () => {
             className="font-normal border-solid border-[1px] rounded-[10px] py-2.5 px-2 focus:outline-2 focus:outline-[#A954FF] h-[42px]"
             placeholder="Ingresar nombre completo"
           />
-          <label htmlFor="celencargado">Teléfono del encargado: <label className="text-[12px]">padre, madre u otro</label>  </label>
+          <label htmlFor="celencargado">
+            Teléfono del encargado:{" "}
+            <label className="text-[12px]">padre, madre u otro</label>{" "}
+          </label>
           <Input
             id="celencargado"
             type="text"

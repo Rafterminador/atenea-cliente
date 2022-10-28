@@ -1,20 +1,19 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 import CardAlumno from "../components/CardAlumno";
 import { useNavigate } from "react-router-dom";
 import Button from "../components/Button";
-import Retroceder from '../components/Retroceder';
+import Retroceder from "../components/Retroceder";
 
-import {getStudentByID} from '../services/controllerDirector'
+import { getStudentByID } from "../services/controllerDirector";
 
 const AlumnoProfile = () => {
-
-  let alumnJSON = localStorage.getItem('alumno')
-  let alumn = (JSON.parse(alumnJSON))
+  let alumnJSON = localStorage.getItem("alumno");
+  let alumn = JSON.parse(alumnJSON);
 
   const navigate = useNavigate();
 
   function handleEliminar() {
-    alert("eliminandoo")
+    alert("eliminandoo");
   }
 
   function handleEdit() {
@@ -27,34 +26,27 @@ const AlumnoProfile = () => {
   const [direction, setDirection] = useState();
   const [grade, setGrade] = useState();
 
-
   // Similar to componentDidMount and componentDidUpdate:
   useEffect(() => {
     // Update the document title using the browser API
-    
-  const handleGetStudentData = async () => {
-let response = await getStudentByID(alumn.uid)
-if (response.status === 200) {
 
-      console.log(response.body)
+    const handleGetStudentData = async () => {
+      let response = await getStudentByID(alumn.uid);
+      if (response.status === 200) {
+        console.log(response.body);
 
-      setManager_Name(response.body.manager_name)
-      setManager_Phone(response.body.manager_phone)
-      setDate_Brith(response.body.date_birth)
-      setDirection(response.body.direction)
-      setGrade(response.body.gradeRef)
-
-
-      console.log(nameencargado)
-
-
-    } else {
-      console.log(response.body)
+        setManager_Name(response.body.manager_name);
+        setManager_Phone(response.body.manager_phone);
+        setDate_Brith(response.body.date_birth);
+        setDirection(response.body.direction);
+        setGrade(response.body.gradeRef);
+      } else {
+        console.log(response.body);
       }
-  }
+    };
 
-  handleGetStudentData()
-  },[]);
+    handleGetStudentData();
+  }, []);
 
   return (
     <div className="flex flex-col justify-between">
@@ -70,7 +62,6 @@ if (response.status === 200) {
           telefono={celencargado}
         />
       </div>
-
 
       <div className="fixed top-[620px] left-5 right-5">
         <Button
