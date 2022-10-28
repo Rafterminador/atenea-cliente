@@ -13,10 +13,10 @@ const AlumnoAccount = () => {
   const [username, setUsername] = useState("");
   const [birthdate, setBirthDate] = useState("");
   const [direction, setDirection] = useState("");
-  const [grade, setGrade] = useState("4ipYcYTWIx9IlnS11tmh");
+  // const [grade, setGrade] = useState("4ipYcYTWIx9IlnS11tmh");
   const [nameencargado, setNameEncargado] = useState("");
   const [celencargado, setCelencargado] = useState("");
-  const [enable, setEnable] = useState(true);
+  // const [enable, setEnable] = useState(true);
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {

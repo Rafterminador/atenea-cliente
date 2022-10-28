@@ -16,7 +16,7 @@ const EditAlumnoAccount = () => {
   const [username, setUsername] = useState();
   const [birthdate, setBirthDate] = useState();
   const [direction, setDirection] = useState();
-  const [grade, setGrade] = useState("4ipYcYTWIx9IlnS11tmh");
+  // const [grade, setGrade] = useState("4ipYcYTWIx9IlnS11tmh");
   const [nameencargado, setNameEncargado] = useState();
   const [celencargado, setCelencargado] = useState();
   const navigate = useNavigate();
@@ -55,9 +55,9 @@ const EditAlumnoAccount = () => {
     setDirection(e.target.value);
   }
 
-  function handleGrade(e) {
-    setGrade(e.target.value);
-  }
+  // function handleGrade(e) {
+  //   setGrade(e.target.value);
+  // }
 
   function handleNameEncargado(e) {
     setNameEncargado(e.target.value);

@@ -12,15 +12,7 @@ const AllAlumnos = () => {
   let seteargrado = (JSON.parse(gradoJSON))
 
 
-  const [prePrimariaPreKinder, setPrePrimariaPreKinder] = useState([]);
-  const [prePrimariaKinder, setPrePrimariaKinder] = useState([]);
-  const [prePrimariaParvulos, setPrePrimariaParvulos] = useState([]);
-  const [primariaPrimero, setPrimariaPrimero] = useState([]);
-  const [primariaSegundo, setPrimariaSegundo] = useState([]);
-  const [primariaTercero, setPrimariaTerecero] = useState([]);
-  const [primariaCuarto, setPrimariaCuarto] = useState([]);
-  const [primariaQuinto, setPrimariaQuinto] = useState([]);
-  const [primariaSexto, setPrimariaSexto] = useState([]);
+
   const [actual, setActual] = useState([]);
 
   // Similar to componentDidMount and componentDidUpdate:
