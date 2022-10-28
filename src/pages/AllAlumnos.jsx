@@ -55,7 +55,7 @@ const AllAlumnos = () => {
     };
 
     handleGetAllStudents();
-  }, [seteargrado.grado]);
+  }, []);
 
   return (
     <div className="contenedor contenedor-admin">
