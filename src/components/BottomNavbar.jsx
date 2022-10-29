@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { ReactComponent as Grade } from "../assets/images/grade.svg";
 import { ReactComponent as Students } from "../assets/images/students.svg";
 import { ReactComponent as Teachers } from "../assets/images/teachers.svg";
@@ -8,6 +9,7 @@ import Menu from "../components/Menu";
 const BottomNavbar = () => {
     const [hidden, setHidden] = useState("hidden");
     const [animation, setAnimation] = useState("");
+    const navigate = useNavigate();
     const ref = useRef(null);
 
     function handleClick(e) {
@@ -15,7 +17,22 @@ const BottomNavbar = () => {
         setAnimation("animation1");
     }
 
-    function handleBtns(e) {
+    const handleBtnGrade = (e) => {
+        StyleItemClicked(e)
+        navigate("/grades");
+    }
+
+    const handleBtnStudents = (e) => {
+        StyleItemClicked(e)
+        navigate("/ver/alumno");
+    }
+
+    const handleBtnTeachers = (e) => {
+        StyleItemClicked(e)
+        navigate("/docentes");
+    }
+
+    const StyleItemClicked = (e) => {
         ["#grade", "#students", "#teachers"].forEach((item) => {
             document.querySelector(item).children[0].classList.remove("bg-[#A954FF]");
             document
@@ -41,11 +58,11 @@ const BottomNavbar = () => {
 
     return (
         <>
-            <div className="fixed z-0 bottom-0 h-[70px] w-full flex justify-around items-center text-centers shadow">
+            <div className="fixed z-0 bottom-0 h-[70px] w-full flex justify-around items-center text-centers shadow bg-white">
                 <div className="w-[90px] h-full">
                     <button
                         id="grade"
-                        onClick={handleBtns}
+                        onClick={handleBtnGrade}
                         className="h-full rounded-none flex flex-col justify-center items-center gap-1"
                     >
                         <div className="w-16 h-8 flex justify-center items-center rounded-[20px] py-2">
@@ -57,7 +74,7 @@ const BottomNavbar = () => {
                 <div className="w-[90px] h-full">
                     <button
                         id="students"
-                        onClick={handleBtns}
+                        onClick={handleBtnStudents}
                         className="h-full rounded-none flex flex-col justify-center items-center gap-1"
                     >
                         <div className="w-16 h-8 flex justify-center items-center rounded-[20px] py-2">
@@ -69,7 +86,7 @@ const BottomNavbar = () => {
                 <div className="w-[90px] h-full">
                     <button
                         id="teachers"
-                        onClick={handleBtns}
+                        onClick={handleBtnTeachers}
                         className="h-full rounded-none flex flex-col justify-center items-center gap-1"
                     >
                         <div className="w-16 h-8 flex justify-center items-center rounded-[20px] py-2">
