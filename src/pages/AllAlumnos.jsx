@@ -58,7 +58,7 @@ const AllAlumnos = () => {
   }, []);
 
   return (
-    <div className="contenedor contenedor-admin">
+    <div className="contenedor contenedor-admin mb-[80px]">
       <Retroceder text={seteargrado.grado} />
 
       <div className="my-2">
