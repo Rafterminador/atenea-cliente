@@ -4,7 +4,6 @@ import Grade from '../components/Grade'
 import AddButton from '../components/AddButton'
 import { useNavigate } from 'react-router-dom'
 import BottomNavbar from "../components/BottomNavbar";
-import { getAllGrades } from "../services/controllerDirector";
 const Grades = () => {
   localStorage.removeItem("grade")
   const navigate = useNavigate()
@@ -13,17 +12,9 @@ const Grades = () => {
     navigate('/grades/create')
   }
   useEffect(() => {
-    const getAllGradesBackend = async () => {
-      let response = await getAllGrades();
-      if (response.status === 200) {
-        console.log(response.body);
-        setGrades(response.body)
-      } else {
-        console.log(response.body);
-      }
-    };
-
-    getAllGradesBackend();
+    const gradeJSON = localStorage.getItem('grades')
+    const grade = JSON.parse(gradeJSON)
+    setGrades(grade)
   }, []);
   const getGrades = grades.map((levelGrade) =>
     levelGrade.grades.map((grade) =>

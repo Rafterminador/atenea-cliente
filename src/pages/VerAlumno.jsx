@@ -8,7 +8,8 @@ import AddButton from "../components/AddButton";
 import { getAllStudents } from "../services/controllerDirector";
 
 const VerAlumno = () => {
-  localStorage.clear();
+  // localStorage.clear();
+  localStorage.removeItem("alumno")
   const navigate = useNavigate();
   function handleAdd() {
     navigate("/cuenta/alumno");
