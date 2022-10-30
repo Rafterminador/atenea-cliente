@@ -12,7 +12,7 @@ const Grade = (props) => {
         <div className='grade-container' onClick={handleClick} >
             <p className='p-bold-administracion'>{props.curso}</p>
             <div className='flex justify-between'>
-                <p className='p-info-administracion'>A cargo de: {props.encargado}</p>
+                <p className='p-info-administracion'>A cargo de: <span className='grade-props-data'>{props.encargado}</span></p>
                 <img src={Arrow} alt='More information' />
             </div>
             <hr className='administracion' />
