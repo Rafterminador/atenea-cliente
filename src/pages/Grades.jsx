@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom'
 import BottomNavbar from "../components/BottomNavbar";
 import { getEnabledTeachers } from "../services/controllerDirector";
 import uuid from 'react-uuid'
+import { searchGrades } from '../utils/FunctionUtils';
 
 const Grades = () => {
   localStorage.removeItem("grade")
@@ -23,6 +24,13 @@ const Grades = () => {
     }
     navigate('/grades/create')
   }
+  const handleSearchGrades = (e) => {
+    const gradeJSON = localStorage.getItem('grades')
+    const grade = JSON.parse(gradeJSON)
+    console.log(e.target.value)
+    // console.log(searchGrades(grades, e.target.value))
+    setGrades(searchGrades(grade, e.target.value))
+  }
   useEffect(() => {
     const gradeJSON = localStorage.getItem('grades')
     const grade = JSON.parse(gradeJSON)
@@ -39,7 +47,7 @@ const Grades = () => {
   return (
     <>
       <div className='contenedor contenedor-admin mb-[80px]'>
-        <SearchBar />
+        <SearchBar onChange={handleSearchGrades} placeholder="Buscar un grado" />
         {getGrades}
         <AddButton function={handleClick} />
       </div>

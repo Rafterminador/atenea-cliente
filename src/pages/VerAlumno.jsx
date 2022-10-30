@@ -9,7 +9,6 @@ import BottomNavbar from "../components/BottomNavbar";
 import { getAllStudents } from "../services/controllerDirector";
 
 const VerAlumno = () => {
-  // localStorage.clear();
   localStorage.removeItem("alumno")
   const navigate = useNavigate();
   function handleAdd() {
