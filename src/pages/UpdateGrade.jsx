@@ -6,7 +6,7 @@ import Teacher from "../assets/images/teacher.svg";
 import DeleteConfirmation from "../assets/images/delete-confirmation.svg";
 import Retroceder from '../components/Retroceder';
 import { AlertButton } from "../utils/AlertButton";
-import { getEnabledTeachers } from "../services/controllerDirector";
+import { getEnabledTeachers, getAllGrades, deleteGrade } from "../services/controllerDirector";
 
 const UpdateGrade = () => {
     const navigate = useNavigate()
@@ -21,12 +21,31 @@ const UpdateGrade = () => {
         e.preventDefault();
         Swal.fire(
             AlertButton.dataAlertUnBotonMorado('¿Eliminar grado?', 'Sí', 'Cancelar', DeleteConfirmation)
-        ).then((result) => {
+        ).then(async (result) => {
             if (result.isConfirmed) {
-                navigate('/grades')
-                // Swal.fire('Saved!', '', 'success')
+                let response = await deleteGrade(grade.id);
+                if (response.status === 200) {
+                    console.log(response.body);
+                    Swal.fire(
+                        AlertButton.dataAlertSuccess('Se a eliminado correctamente')
+                    ).then(async () => {
+                        let response = await getAllGrades()
+                        if (response.status === 200) {
+                            console.log(response.body);
+                            const userJSON = JSON.stringify(response.body)
+                            localStorage.setItem('grades', userJSON)
+                        } else {
+                            console.log(response.body);
+                        }
+                        navigate('/grades')
+                    })
+                } else {
+                    console.log(response.body);
+                }
             }
         })
+
+
     }
     useEffect(() => {
         const getEnabledTeachersBackend = async () => {

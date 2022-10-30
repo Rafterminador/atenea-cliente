@@ -251,7 +251,20 @@ const updateGrade = async (gradeNameInput, teacherRefInput, levelRefInput, idGra
     return getInformation(responseToReturn)
 }
 
+const deleteGrade = async (idGrade) => {
+    let responseToReturn
+    api.defaults.headers.common["Content-Type"] = "application/json"
+    await api.put(`api/v1/grade/delete-grade/${idGrade}`)
+        .then((response) => {
+            responseToReturn = response
+        }).catch((error) => {
+            responseToReturn = error
+        });
+    return getInformation(responseToReturn)
+}
+
+
 export {
     getAllTeachers, getUserByID, disableTeacher, enableTeacher, updateRol, getAllStudents, getStudentsByGrade, getStudentByID, createStudent, updateStudent, disableStudent,
-    enableStudent, getAllBoletines, getEnabledTeachers, getdisableTeachers, getAllGrades, createGrade, updateGrade
+    enableStudent, getAllBoletines, getEnabledTeachers, getdisableTeachers, getAllGrades, createGrade, updateGrade, deleteGrade
 }
