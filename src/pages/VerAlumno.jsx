@@ -4,6 +4,7 @@ import Grado from "../components/Grado";
 import SearchBar from "../components/SearchBar";
 import { useNavigate } from "react-router-dom";
 import AddButton from "../components/AddButton";
+import BottomNavbar from "../components/BottomNavbar";
 
 import { getAllStudents } from "../services/controllerDirector";
 
@@ -51,90 +52,93 @@ const VerAlumno = () => {
   }, []);
 
   return (
-    <div className="contenedor contenedor-admin">
-      <SearchBar />
-      <div className="my-[10px]">
-        <Grado grado={"PreKinder"} total={prePrimariaPreKinder.length} />
+    <>
+      <div className="contenedor contenedor-admin mb-[80px]">
+        <SearchBar />
+        <div className="my-[10px]">
+          <Grado grado={"PreKinder"} total={prePrimariaPreKinder.length} />
 
-        {prePrimariaPreKinder.slice(0, 4).map((estudiante) => (
-          <Alumno
-            nombre={estudiante.name}
-            uid={estudiante.uid}
-            key={estudiante.uid}
-          />
-        ))}
+          {prePrimariaPreKinder.slice(0, 4).map((estudiante) => (
+            <Alumno
+              nombre={estudiante.name}
+              uid={estudiante.uid}
+              key={estudiante.uid}
+            />
+          ))}
 
-        <Grado grado={"Kinder"} total={prePrimariaKinder.length} />
-        {prePrimariaKinder.slice(0, 4).map((estudiante) => (
-          <Alumno
-            nombre={estudiante.name}
-            uid={estudiante.uid}
-            key={estudiante.uid}
-          />
-        ))}
+          <Grado grado={"Kinder"} total={prePrimariaKinder.length} />
+          {prePrimariaKinder.slice(0, 4).map((estudiante) => (
+            <Alumno
+              nombre={estudiante.name}
+              uid={estudiante.uid}
+              key={estudiante.uid}
+            />
+          ))}
 
-        <Grado grado={"Parvulos"} total={prePrimariaParvulos.length} />
-        {prePrimariaParvulos.slice(0, 4).map((estudiante) => (
-          <Alumno
-            nombre={estudiante.name}
-            uid={estudiante.uid}
-            key={estudiante.uid}
-          />
-        ))}
+          <Grado grado={"Parvulos"} total={prePrimariaParvulos.length} />
+          {prePrimariaParvulos.slice(0, 4).map((estudiante) => (
+            <Alumno
+              nombre={estudiante.name}
+              uid={estudiante.uid}
+              key={estudiante.uid}
+            />
+          ))}
 
-        <Grado grado={"Primero primaria"} total={primariaPrimero.length} />
-        {primariaPrimero.slice(0, 4).map((estudiante) => (
-          <Alumno
-            nombre={estudiante.name}
-            uid={estudiante.uid}
-            key={estudiante.uid}
-          />
-        ))}
-        <Grado grado={"Segundo primaria"} total={primariaSegundo.length} />
-        {primariaSegundo.slice(0, 4).map((estudiante) => (
-          <Alumno
-            nombre={estudiante.name}
-            uid={estudiante.uid}
-            key={estudiante.uid}
-          />
-        ))}
-        <Grado grado={"Tercero primaria"} total={primariaTercero.length} />
-        {primariaTercero.slice(0, 4).map((estudiante) => (
-          <Alumno
-            nombre={estudiante.name}
-            uid={estudiante.uid}
-            key={estudiante.uid}
-          />
-        ))}
-        <Grado grado={"Cuarto primaria"} total={primariaCuarto.length} />
-        {primariaCuarto.slice(0, 4).map((estudiante) => (
-          <Alumno
-            nombre={estudiante.name}
-            uid={estudiante.uid}
-            key={estudiante.uid}
-          />
-        ))}
-        <Grado grado={"Quinto primaria"} total={primariaQuinto.length} />
-        {primariaQuinto.slice(0, 4).map((estudiante) => (
-          <Alumno
-            nombre={estudiante.name}
-            uid={estudiante.uid}
-            key={estudiante.uid}
-          />
-        ))}
+          <Grado grado={"Primero primaria"} total={primariaPrimero.length} />
+          {primariaPrimero.slice(0, 4).map((estudiante) => (
+            <Alumno
+              nombre={estudiante.name}
+              uid={estudiante.uid}
+              key={estudiante.uid}
+            />
+          ))}
+          <Grado grado={"Segundo primaria"} total={primariaSegundo.length} />
+          {primariaSegundo.slice(0, 4).map((estudiante) => (
+            <Alumno
+              nombre={estudiante.name}
+              uid={estudiante.uid}
+              key={estudiante.uid}
+            />
+          ))}
+          <Grado grado={"Tercero primaria"} total={primariaTercero.length} />
+          {primariaTercero.slice(0, 4).map((estudiante) => (
+            <Alumno
+              nombre={estudiante.name}
+              uid={estudiante.uid}
+              key={estudiante.uid}
+            />
+          ))}
+          <Grado grado={"Cuarto primaria"} total={primariaCuarto.length} />
+          {primariaCuarto.slice(0, 4).map((estudiante) => (
+            <Alumno
+              nombre={estudiante.name}
+              uid={estudiante.uid}
+              key={estudiante.uid}
+            />
+          ))}
+          <Grado grado={"Quinto primaria"} total={primariaQuinto.length} />
+          {primariaQuinto.slice(0, 4).map((estudiante) => (
+            <Alumno
+              nombre={estudiante.name}
+              uid={estudiante.uid}
+              key={estudiante.uid}
+            />
+          ))}
 
-        <Grado grado={"Sexto primaria"} total={primariaSexto.length} />
-        {primariaSexto.slice(0, 4).map((estudiante) => (
-          <Alumno
-            nombre={estudiante.name}
-            uid={estudiante.uid}
-            key={estudiante.uid}
-          />
-        ))}
+          <Grado grado={"Sexto primaria"} total={primariaSexto.length} />
+          {primariaSexto.slice(0, 4).map((estudiante) => (
+            <Alumno
+              nombre={estudiante.name}
+              uid={estudiante.uid}
+              key={estudiante.uid}
+            />
+          ))}
+        </div>
+        <AddButton function={handleAdd} />
       </div>
-      <AddButton function={handleAdd} />
-    </div>
+      <BottomNavbar />
+    </>
   );
-}
+};
 
 export default VerAlumno;
