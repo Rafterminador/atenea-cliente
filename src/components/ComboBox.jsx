@@ -41,14 +41,13 @@ const ComboBox = (props) => {
     );
     return (
         <>
-            {inputValue}
             <div style={{ position: 'relative', cursor: 'pointer' }} onClick={changeState}>
                 <input className={`font-normal w-full combo-box ${active}`}
                     placeholder={props.placeholder}
-                    readOnly
+                    data-readonly
                     id='teacher'
                     required
-                    value={inputValue}
+                    defaultValue={inputValue}
                 />
                 <img src={dropImage} alt='More information' style={{ position: 'absolute', top: '0', bottom: '0', margin: 'auto 0', right: '20px' }} />
             </div>

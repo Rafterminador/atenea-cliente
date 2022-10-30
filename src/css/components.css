@@ -63,3 +63,7 @@
     bottom: 80px;
     left: calc(100% - 60px);
 }
+
+input[data-readonly] {
+    pointer-events: none;
+}
