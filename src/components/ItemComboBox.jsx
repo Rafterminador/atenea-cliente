@@ -2,7 +2,7 @@ import React from 'react'
 
 const ItemComboBox = (props) => {
     const getValue = (e) => {
-        console.log(e.target.textContent)
+        // console.log(e.target.textContent)
         props.function(e.target.textContent)
     }
     return (

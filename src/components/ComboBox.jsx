@@ -8,10 +8,16 @@ const ComboBox = (props) => {
     const [active, setActive] = useState("")
     const [hidden, setHidden] = useState("hidden")
     const [dropImage, setDropImage] = useState(DropDown)
-    const [inputValue, setInputValue] = useState(props.valueByDefault)
+    const [inputValue, setInputValue] = useState(() => {
+        return props.valueByDefault === undefined ? "" : props.valueByDefault
+    })
     const changeInputValue = (teacher) => {
         document.getElementById('teacher').placeholder = ''
         setInputValue(teacher)
+        //por si no se envia la función para que no de error
+        if (props.function !== undefined) {
+            props.function(teacher)
+        }
         setActive("")
         setHidden("hidden")
         setDropImage(DropDown)
@@ -35,9 +41,10 @@ const ComboBox = (props) => {
     );
     return (
         <>
+            {inputValue}
             <div style={{ position: 'relative', cursor: 'pointer' }} onClick={changeState}>
                 <input className={`font-normal w-full combo-box ${active}`}
-                    placeholder='Seleccionar docente'
+                    placeholder={props.placeholder}
                     readOnly
                     id='teacher'
                     required

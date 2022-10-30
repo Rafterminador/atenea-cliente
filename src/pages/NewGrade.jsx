@@ -6,6 +6,10 @@ import Retroceder from '../components/Retroceder';
 import Button from "../components/Button";
 
 const NewGrade = () => {
+    const navigate = useNavigate()
+    const Swal = require('sweetalert2')
+    const [levelGrade, setLevelGrade] = useState("")
+    const [teacher, setTeacher] = useState("")
     const [teachersNames] = useState(() => {
         const teachersJSON = localStorage.getItem('teachers')
         const teachers = JSON.parse(teachersJSON)
@@ -13,19 +17,35 @@ const NewGrade = () => {
         teachers.forEach((value) => {
             teachersNamesAux.push(value.displayName)
         })
-        console.log(teachersNamesAux[0])
         return teachersNamesAux
     });
-    const navigate = useNavigate()
-    const Swal = require('sweetalert2')
+    //son los niveles pre-primario, nivel primario u otros (donde entran cursos como educación física)
+    const [levelNames] = useState(() => {
+        const gradesJSON = localStorage.getItem('grades')
+        const grades = JSON.parse(gradesJSON)
+        let levelNamesAux = []
+        grades.forEach((value) => {
+            levelNamesAux.push(value.level_name)
+        })
+        return levelNamesAux
+    });
+    const handleGetTeacher = (e) => {
+        console.log(e)
+        setTeacher(e)
+    }
+    const handleGetLevelName = (e) => {
+        console.log(e)
+        setLevelGrade(e)
+    }
     const handleGrade = (e) => {
         e.preventDefault();
         document.getElementById('grade').value = ''
-        Swal.fire(
-            AlertButton.dataAlertSuccess('Grado creado')
-        ).then(() => {
-            navigate('/grades')
-        })
+        console.log("creado")
+        // Swal.fire(
+        //     AlertButton.dataAlertSuccess('Grado creado')
+        // ).then(() => {
+        //     navigate('/grades')
+        // })
     }
     return (
         <>
@@ -39,8 +59,10 @@ const NewGrade = () => {
                     placeholder="Ingresar nombre del grado"
                     required
                 />
+                <label htmlFor="grade" className='label-purple'>Nivel del grado<span className='span-field'>*</span></label>
+                <ComboBox teachers={teachersNames} placeholder="seleccionar nivel" function={handleGetTeacher} />
                 <label htmlFor="grade" className='label-purple'>Docente a cargo<span className='span-field'>*</span></label>
-                <ComboBox teachers={teachersNames} valueByDefault="" />
+                <ComboBox teachers={levelNames} placeholder='Seleccionar docente' function={handleGetLevelName} />
                 <Button
                     text=" Crear nuevo grado"
                     typeButton={"button-type-2"}
