@@ -218,4 +218,7 @@ const getAllGrades = async () => {
         });
     return getInformation(responseToReturn)
 }
-export { getAllTeachers, getUserByID, disableTeacher, enableTeacher, updateRol, getAllStudents, getStudentsByGrade, getStudentByID, createStudent, updateStudent, disableStudent, enableStudent, getAllBoletines, getEnabledTeachers, getdisableTeachers, getAllGrades }
+export {
+    getAllTeachers, getUserByID, disableTeacher, enableTeacher, updateRol, getAllStudents, getStudentsByGrade, getStudentByID, createStudent, updateStudent, disableStudent,
+    enableStudent, getAllBoletines, getEnabledTeachers, getdisableTeachers, getAllGrades
+}

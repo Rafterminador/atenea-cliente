@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import ComboBox from '../components/ComboBox';
 import { AlertButton } from "../utils/AlertButton";
@@ -6,6 +6,16 @@ import Retroceder from '../components/Retroceder';
 import Button from "../components/Button";
 
 const NewGrade = () => {
+    const [teachersNames] = useState(() => {
+        const teachersJSON = localStorage.getItem('teachers')
+        const teachers = JSON.parse(teachersJSON)
+        let teachersNamesAux = []
+        teachers.forEach((value) => {
+            teachersNamesAux.push(value.displayName)
+        })
+        console.log(teachersNamesAux[0])
+        return teachersNamesAux
+    });
     const navigate = useNavigate()
     const Swal = require('sweetalert2')
     const handleGrade = (e) => {
@@ -30,8 +40,7 @@ const NewGrade = () => {
                     required
                 />
                 <label htmlFor="grade" className='label-purple'>Docente a cargo<span className='span-field'>*</span></label>
-                <ComboBox teachers={['Rubén	Argüero	Sánchez Juanajatoja', 'Anastasia Madeline Orellana Álvarez', 'Sara Josthyn Gutiérrez Lagos',
-                    'Cain Nehemias Orellana Valenzuela', 'Yonathan Fabio Aguilera Poblete']} valueByDefault="" />
+                <ComboBox teachers={teachersNames} valueByDefault="" />
                 <Button
                     text=" Crear nuevo grado"
                     typeButton={"button-type-2"}
