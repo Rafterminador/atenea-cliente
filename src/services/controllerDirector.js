@@ -206,4 +206,65 @@ const getdisableTeachers = async () => {
         });
     return getInformation(responseToReturn)
 }
-export { getAllTeachers, getUserByID, disableTeacher, enableTeacher, updateRol, getAllStudents, getStudentsByGrade, getStudentByID, createStudent, updateStudent, disableStudent, enableStudent, getAllBoletines, getEnabledTeachers, getdisableTeachers }
+
+const getAllGrades = async () => {
+    let responseToReturn
+    api.defaults.headers.common["Content-Type"] = "application/json"
+    await api.get("api/v1/grade/getall-grades")
+        .then((response) => {
+            responseToReturn = response
+        }).catch((error) => {
+            responseToReturn = error
+        });
+    return getInformation(responseToReturn)
+}
+
+const createGrade = async (gradeNameInput, teacherRefInput, levelRefInput) => {
+    let responseToReturn
+    api.defaults.headers.common["Content-Type"] = "application/json"
+    await api.post("api/v1/grade/add-grade", {
+        grade_name: gradeNameInput,
+        teacherRef: teacherRefInput,
+        levelRef: levelRefInput
+    })
+        .then((response) => {
+            responseToReturn = response
+        }).catch((error) => {
+            responseToReturn = error
+        });
+    return getInformation(responseToReturn)
+}
+
+const updateGrade = async (gradeNameInput, teacherRefInput, levelRefInput, idGrade) => {
+    let responseToReturn
+    api.defaults.headers.common["Content-Type"] = "application/json"
+    await api.put(`api/v1/grade/update-grade/${idGrade}`, {
+        grade_name: gradeNameInput,
+        teacherRef: teacherRefInput,
+        levelRef: levelRefInput
+    })
+        .then((response) => {
+            responseToReturn = response
+        }).catch((error) => {
+            responseToReturn = error
+        });
+    return getInformation(responseToReturn)
+}
+
+const deleteGrade = async (idGrade) => {
+    let responseToReturn
+    api.defaults.headers.common["Content-Type"] = "application/json"
+    await api.put(`api/v1/grade/delete-grade/${idGrade}`)
+        .then((response) => {
+            responseToReturn = response
+        }).catch((error) => {
+            responseToReturn = error
+        });
+    return getInformation(responseToReturn)
+}
+
+
+export {
+    getAllTeachers, getUserByID, disableTeacher, enableTeacher, updateRol, getAllStudents, getStudentsByGrade, getStudentByID, createStudent, updateStudent, disableStudent,
+    enableStudent, getAllBoletines, getEnabledTeachers, getdisableTeachers, getAllGrades, createGrade, updateGrade, deleteGrade
+}

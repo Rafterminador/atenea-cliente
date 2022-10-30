@@ -28,7 +28,7 @@ export default function NewActivity() {
                 "Tercera unidad",
                 "Cuarta unidad",
               ]}
-              valueByDefault={"Seleccionar Grado"}
+              placeholder={"Seleccionar Grado"}
             />
             <label htmlFor="name">Nombre</label>
             <Input

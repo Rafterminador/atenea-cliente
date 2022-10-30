@@ -63,3 +63,11 @@
     bottom: 80px;
     left: calc(100% - 60px);
 }
+
+input[data-readonly] {
+    pointer-events: none;
+}
+
+.grade-props-data {
+    color: #615F6D;
+}

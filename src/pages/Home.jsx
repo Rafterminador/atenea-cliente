@@ -5,7 +5,7 @@ import Image from "../components/Image";
 import BottomNavbar from "../components/BottomNavbar";
 
 export default function Home() {
-
+  document.body.classList.remove("stop-scrolling");
   return (
     <div className="relative">
       <div className="home mx-5 text-center flex flex-col gap-32">
