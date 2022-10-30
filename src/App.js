@@ -67,14 +67,13 @@ function App() {
           <Route path="/boletin" element={<Boletin />} />
 
           {/* Docentes */}
-    
+
           <Route path="/docentes" element={<Teachers />} />
           <Route path="/cuenta/docente" element={<AccountPage />} />
           <Route path="/nuevos-docentes" element={<NuevosDocentes />} />
           <Route path="/docentes-activos" element={<DocentesActivos />} />
           <Route path="/docentes-inactivos" element={<DocentesInactivos />} />
 
-          <Route path="/backend" element={<ControllerProving />} />
           <Route path="/grades/teacher/:id" element={<GradesAssigned />} />
           <Route path="/grades/teacher/:id/courses" element={<Courses />} />
           <Route
@@ -114,6 +113,7 @@ function App() {
           path="/grades/teacher/:id/courses/:courseId/activity/edit"
           element={<EditActividy />}
         />
+        <Route path="/backend" element={<ControllerProving />} />
       </Routes>
     </BrowserRouter>
   );
