@@ -509,6 +509,11 @@ input[type="password"]::-ms-clear {
   animation: divopacity 0.5s ease-in-out;
 }
 
+.stop-scrolling {
+  height: 100%;
+  overflow: hidden;
+}
+
 @keyframes showmenu {
   from {
     top: 50%;

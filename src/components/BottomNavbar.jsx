@@ -14,7 +14,13 @@ const BottomNavbar = () => {
 
     function handleClick(e) {
         setHidden("");
+        window.scroll({
+            top: 0,
+            left: 0,
+            behavior: 'smooth'
+        });
         setAnimation("animation1");
+        document.body.classList.add("stop-scrolling");
     }
 
     const handleBtnGrade = (e) => {
@@ -48,6 +54,7 @@ const BottomNavbar = () => {
             if (event.target.id === "menu") {
                 setHidden("hidden");
                 setAnimation("animation2");
+                document.body.classList.remove("stop-scrolling");
             }
         }
         document.addEventListener("click", handleClickOutside);
