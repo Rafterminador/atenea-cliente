@@ -67,3 +67,7 @@
 input[data-readonly] {
     pointer-events: none;
 }
+
+.grade-props-data {
+    color: #615F6D;
+}

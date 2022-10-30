@@ -32,7 +32,7 @@ const Grades = () => {
     levelGrade.grades.map((grade) =>
       <div key={uuid()}>
         {grade.position === 0 ? <h1 className='h1-administracion' key={levelGrade.id}>{levelGrade.level_name}</h1> : ""}
-        <Grade key={grade.id} curso={grade.grade_name} encargado={grade.teacherRef.displayName} id={grade.id} alumnos={grade.totalStudents} />
+        <Grade key={grade.id} curso={grade.grade_name} encargado={grade.teacherRef.displayName} id={grade.id} alumnos={grade.totalStudents} levelRef={levelGrade.id} />
       </div>
     )
   )

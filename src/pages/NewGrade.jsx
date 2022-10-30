@@ -77,13 +77,6 @@ const NewGrade = () => {
             <Retroceder text="Nuevo grado" />
             <form className='contenedor-admin' onSubmit={handleGrade}>
                 <label htmlFor="grade" className='label-purple'>Nombre del grado<span className='span-field'>*</span></label>
-                {/* <input
-                    id="grade"
-                    name="grade"
-                    className={`font-normal border-solid border-[1px] border-[#DBD8FF] rounded-[10px] py-2.5 px-2 focus:outline-2 focus:outline-[#A954FF] w-full`}
-                    placeholder="Ingresar nombre del grado"
-                    required
-                /> */}
                 <Input id="grade" type="text" name="grade" onChange={handleChangeGradeName} placeholder="Ingresar nombre del grado" required={1} className="w-full" />
                 <label htmlFor="grade" className='label-purple'>Nivel del grado<span className='span-field'>*</span></label>
                 <ComboBox teachers={teachersNames} placeholder="seleccionar nivel" function={handleGetTeacher} />

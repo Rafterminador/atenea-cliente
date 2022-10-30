@@ -14,6 +14,7 @@ const ComboBox = (props) => {
     const changeInputValue = (teacher) => {
         document.getElementById('teacher').placeholder = ''
         setInputValue(teacher)
+        console.log(teacher)
         //por si no se envia la función para que no de error
         if (props.function !== undefined) {
             props.function(teacher)
@@ -48,6 +49,7 @@ const ComboBox = (props) => {
                     id='teacher'
                     required
                     defaultValue={inputValue}
+                    key={inputValue}
                 />
                 <img src={dropImage} alt='More information' style={{ position: 'absolute', top: '0', bottom: '0', margin: 'auto 0', right: '20px' }} />
             </div>

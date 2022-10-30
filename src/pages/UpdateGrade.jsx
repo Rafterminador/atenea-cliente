@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import Student from "../assets/images/student.svg";
 import Grade from "../assets/images/grade.svg";
@@ -6,6 +6,7 @@ import Teacher from "../assets/images/teacher.svg";
 import DeleteConfirmation from "../assets/images/delete-confirmation.svg";
 import Retroceder from '../components/Retroceder';
 import { AlertButton } from "../utils/AlertButton";
+import { getEnabledTeachers } from "../services/controllerDirector";
 
 const UpdateGrade = () => {
     const navigate = useNavigate()
@@ -27,6 +28,19 @@ const UpdateGrade = () => {
             }
         })
     }
+    useEffect(() => {
+        const getEnabledTeachersBackend = async () => {
+            let response = await getEnabledTeachers();
+            if (response.status === 200) {
+                console.log(response.body);
+                const teachersJSON = JSON.stringify(response.body)
+                localStorage.setItem('teachers', teachersJSON)
+            } else {
+                console.log(response.body);
+            }
+        }
+        getEnabledTeachersBackend()
+    }, []);
     return (
         <>
             <Retroceder text={grade.curso} />
