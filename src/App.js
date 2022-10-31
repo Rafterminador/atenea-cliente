@@ -73,18 +73,6 @@ function App() {
           <Route path="/nuevos-docentes" element={<NuevosDocentes />} />
           <Route path="/docentes-activos" element={<DocentesActivos />} />
           <Route path="/docentes-inactivos" element={<DocentesInactivos />} />
-
-          <Route path="/grades/teacher/:id" element={<GradesAssigned />} />
-          <Route path="/grades/teacher/:id/courses" element={<Courses />} />
-          <Route
-            path="/grades/teacher/:id/courses/students"
-            element={<Students />}
-          />
-          <Route
-            path="/grades/teacher/:id/courses/:courseId"
-            element={<Course />}
-          />
-
         </ Route >
 
         <Route path="/grades/teacher/:id" element={<GradesAssigned />} />
