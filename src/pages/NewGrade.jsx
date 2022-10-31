@@ -79,9 +79,9 @@ const NewGrade = () => {
                 <label htmlFor="grade" className='label-purple'>Nombre del grado<span className='span-field'>*</span></label>
                 <Input id="grade" type="text" name="grade" onChange={handleChangeGradeName} placeholder="Ingresar nombre del grado" required={1} className="w-full" />
                 <label htmlFor="grade" className='label-purple'>Nivel del grado<span className='span-field'>*</span></label>
-                <ComboBox teachers={teachersNames} placeholder="seleccionar nivel" function={handleGetTeacher} />
-                <label htmlFor="grade" className='label-purple'>Docente a cargo<span className='span-field'>*</span></label>
                 <ComboBox teachers={levelNames} placeholder='Seleccionar docente' function={handleGetLevelName} />
+                <label htmlFor="grade" className='label-purple'>Docente a cargo<span className='span-field'>*</span></label>
+                <ComboBox teachers={teachersNames} placeholder="seleccionar nivel" function={handleGetTeacher} />
                 <Button
                     text=" Crear nuevo grado"
                     typeButton={"button-type-2"}

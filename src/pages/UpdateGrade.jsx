@@ -83,10 +83,10 @@ const UpdateGrade = () => {
                 </div>
             </div>
             <button className='delete-button' style={{ position: 'absolute', left: '0px', marginLeft: '20px', width: 'calc(100% - 40px)', bottom: '90px' }} onClick={handleDelete}>
-                Eliminar datos
+                Eliminar grado
             </button>
             <button className='button-purple' style={{ position: 'absolute', left: '0px', marginLeft: '20px', width: 'calc(100% - 40px)', bottom: '20px' }} onClick={handleEdit}>
-                Editar datos
+                Editar grado
             </button>
         </>
     )
