@@ -7,11 +7,15 @@ import { ReactComponent as MenuImage } from "../assets/images/menu.svg";
 import Menu from "../components/Menu";
 
 const BottomNavbar = () => {
-    const [hidden, setHidden] = useState("hidden");
-    const [animation, setAnimation] = useState("");
     const navigate = useNavigate();
     const ref = useRef(null);
-
+    const [hidden, setHidden] = useState("hidden");
+    const [animation, setAnimation] = useState("");
+    const [urls] = useState(() => {
+        const userJSON = localStorage.getItem('usuario')
+        const usuario = JSON.parse(userJSON)
+        return usuario?.role === "director" || usuario?.role === "admin" ? ["/grades", "/ver/alumno", "/docentes"] : ["#", "#", "#"]
+    });
     function handleClick(e) {
         setHidden("");
         window.scroll({
@@ -25,17 +29,17 @@ const BottomNavbar = () => {
 
     const handleBtnGrade = (e) => {
         StyleItemClicked(e)
-        navigate("/grades");
+        navigate(urls[0]);
     }
 
     const handleBtnStudents = (e) => {
         StyleItemClicked(e)
-        navigate("/ver/alumno");
+        navigate(urls[1]);
     }
 
     const handleBtnTeachers = (e) => {
         StyleItemClicked(e)
-        navigate("/docentes");
+        navigate(urls[2]);
     }
 
     const StyleItemClicked = (e) => {
