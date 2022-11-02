@@ -8,7 +8,7 @@ const PrivateRouteDirector = () => {
     // console.log(usuario)
     // console.log("usuario logeado")
     // console.log(usuario?.role)
-    usuario?.role === "director" ? auth.token = true : auth.token = false
+    usuario?.role === "director" || usuario?.role === "admin" ? auth.token = true : auth.token = false
     // console.log("director logeado ", auth)
     return (
         auth.token ? <Outlet /> : < Navigate to="/" />
