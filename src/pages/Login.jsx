@@ -62,7 +62,7 @@ const Login = () => {
     } else {
       const userJSON = JSON.stringify(response)
       localStorage.setItem('usuario', userJSON)
-      if (response?.role === "director") {
+      if (response?.role === "director" || response?.role === "admin") {
         const getAllGradesBackend = async () => {
           let response = await getAllGrades();
           if (response.status === 200) {
@@ -76,7 +76,7 @@ const Login = () => {
         getAllGradesBackend();
         navigate("/home");
       } else {
-        alert("bienvenido maestro")
+        navigate("/home/docente")
       }
     }
   }
