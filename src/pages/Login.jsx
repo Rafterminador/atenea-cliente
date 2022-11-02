@@ -76,8 +76,7 @@ const Login = () => {
         getAllGradesBackend();
         navigate("/home");
       } else {
-        alert("bienvenido maestro")
-        navigate("/backend")
+        navigate("/home/docente")
       }
     }
   }
