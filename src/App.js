@@ -69,7 +69,7 @@ function App() {
           {/* Docentes */}
     
           <Route path="/docentes" element={<Teachers />} />
-          <Route path="/cuenta/docente" element={<AccountPage />} />
+          <Route path="/cuenta/docente/:id" element={<AccountPage />} />
           <Route path="/nuevos-docentes" element={<NuevosDocentes />} />
           <Route path="/docentes-activos" element={<DocentesActivos />} />
           <Route path="/docentes-inactivos" element={<DocentesInactivos />} />

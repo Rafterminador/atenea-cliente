@@ -9,46 +9,30 @@ import { ReactComponent as TeachersIcon } from "../assets/images/teachers.svg";
 import { ReactComponent as MenuImage } from "../assets/images/menu.svg";
 import SearchBar from "../components/SearchBar";
 import { useEffect } from "react";
-import { getEnabledTeachers, getdisableTeachers } from "../services/controllerDirector";
+import { getAllTeachers } from "../services/controllerDirector";
 import { useState } from "react";
+import Spinner from "../components/Spinner";
 const Teachers = () => {
-
+  const [newUsers, setNewUsers] = useState([]);
   const [enableTeacher, setenableTeacher] = useState([]);
   const [disabledTeacher, setdisabledTeacher] = useState([]);
-
-
+  const [cargando, setCargando] = useState(true);
   useEffect(() => {
-
-    const handlegetEnabledTeachers = async () => {
-
+    const handlegetAllTeacher = async () => {
       try {
-        let response = await getEnabledTeachers();
-        console.log(response)
-        setenableTeacher(response.body)
-      } catch (error) {
-        
-      }
-     
-    }
+        let response = await getAllTeachers();
+        console.log(response);
+        setNewUsers(response.body.newUsers.data);
+        setenableTeacher(response.body.activeUsers.data);
+        setdisabledTeacher(response.body.inactiveUsers.data);
+        setCargando(false);
+      } catch (error) {}
+    };
 
+    handlegetAllTeacher();
+  }, []);
 
-    const handlegetDisableTeachers = async () => {
-
-      try {
-        let response = await getdisableTeachers();
-        console.log(response)
-        setdisabledTeacher(response.body)
-      } catch (error) {
-        
-      }
-     
-    }
-
-    handlegetEnabledTeachers()
-    handlegetDisableTeachers()
-
-  }, [])
-
+  console.log(enableTeacher);
 
   return (
     <>
@@ -61,7 +45,9 @@ const Teachers = () => {
           <div className="flex justify-between">
             <div className="flex space-x-5 text-center font-bold ">
               <p className="text-xl text-[#A954FF]">Nuevos docentes</p>
-              <p className="bg-[#DBD8FF] rounded-xl px-3 py-1 text-sm">1</p>
+              <p className="bg-[#DBD8FF] rounded-xl px-3 py-1 text-sm">
+                {newUsers.length}
+              </p>
             </div>
 
             <div>
@@ -72,30 +58,20 @@ const Teachers = () => {
               </Link>
             </div>
           </div>
-          <NewTeachers
-            id={1}
-            key={1}
-            name="Naomi Segundo Perez Paredes"
-            date="12 de Agosto del 2022"
-          />
-          <NewTeachers
-            id={2}
-            key={2}
-            name="Naomi Segundo Perez Paredes"
-            date="12 de Agosto del 2022"
-          />
-          <NewTeachers
-            id={3}
-            key={3}
-            name="Naomi Segundo Perez Paredes"
-            date="12 de Agosto del 2022"
-          />
-          <NewTeachers
-            id={4}
-            key={4}
-            name="Naomi Segundo Perez Paredes"
-            date="12 de Agosto del 2022"
-          />
+          {!cargando ? (
+            newUsers
+              .slice(0, 4)
+              .map((user) => (
+                <NewTeachers
+                  id={user.uid}
+                  key={user.uid}
+                  name={user.displayName}
+                  date={user.date}
+                />
+              ))
+          ) : (
+            <Spinner />
+          )}
         </section>
 
         {/* DOCENTES ACTIVOS */}
@@ -103,7 +79,9 @@ const Teachers = () => {
           <div className="flex justify-between">
             <div className="flex space-x-5 text-center font-bold ">
               <p className="text-xl text-[#4D3483]">Docentes activos</p>
-              <p className="bg-[#DBD8FF] rounded-xl px-3 py-1 text-sm">{enableTeacher.length}</p>
+              <p className="bg-[#DBD8FF] rounded-xl px-3 py-1 text-sm">
+                {enableTeacher.length}
+              </p>
             </div>
             <div>
               <Link to="/docentes-activos">
@@ -113,12 +91,20 @@ const Teachers = () => {
               </Link>
             </div>
           </div>
-
-
-          {enableTeacher.slice(0,4).map((docente) => (
-            <ActiveTeachers key={docente.id}  name={docente.displayName} grado="Primero Primaria"/>
-          ))}
-        
+          {!cargando ? (
+            enableTeacher
+              .slice(0, 4)
+              .map((docente) => (
+                <ActiveTeachers
+                  key={docente.uid}
+                  name={docente.displayName}
+                  uid={docente.uid}
+                  grado={docente?.grade.grade_name}
+                />
+              ))
+          ) : (
+            <Spinner />
+          )}
         </section>
 
         {/* DOCENTES INACTIVOS */}
@@ -126,7 +112,9 @@ const Teachers = () => {
           <div className="flex justify-between">
             <div className="flex space-x-5 text-center font-bold ">
               <p className="text-xl text-[#4D3483]">Docentes Inactivos</p>
-              <p className="bg-[#DBD8FF] rounded-xl px-3 py-1 text-sm">{disabledTeacher.length}</p>
+              <p className="bg-[#DBD8FF] rounded-xl px-3 py-1 text-sm">
+                {disabledTeacher.length}
+              </p>
             </div>
             <div>
               <Link to="/docentes-inactivos">
@@ -137,10 +125,20 @@ const Teachers = () => {
             </div>
           </div>
 
-          {disabledTeacher.slice(0,4).map((docente) => (
-            <InactiveTeachers key={docente.id} name={docente.displayName} grado="Ningun grado" />
-          ))}
-
+          {!cargando ? (
+            disabledTeacher
+              .slice(0, 4)
+              .map((docente) => (
+                <InactiveTeachers
+                  key={docente.uid}
+                  uid={docente.uid}
+                  name={docente.displayName}
+                  grado={docente?.grade.grade_name}
+                />
+              ))
+          ) : (
+            <Spinner />
+          )}
         </section>
       </div>
 

@@ -1,9 +1,30 @@
-import React from "react";
+import { async } from "@firebase/util";
+import React, { useState } from "react";
+import { useEffect } from "react";
 
 import NewTeachers from "../components/NuevoTeachers";
 import Retroceder from "../components/Retroceder";
 import SearchBar from "../components/SearchBar";
+import Spinner from "../components/Spinner";
+import { getAllTeachers } from "../services/controllerDirector";
 const NuevosDocentes = () => {
+  const [newUsers, setNewUsers] = useState([]);
+  const [cargando, setCargando] = useState(true);
+
+  useEffect(() => {
+    const getAllUser = async () => {
+      try {
+        let response = await getAllTeachers();
+        setNewUsers(response.body.newUsers.data);
+        setCargando(false)
+      
+      } catch (error) {
+     
+      }
+    };
+
+    getAllUser();
+  }, []);
   return (
     <>
       <Retroceder text={"Nuevos docentes"} />
@@ -16,33 +37,19 @@ const NuevosDocentes = () => {
 
           <p className="text-[#A954FF] font-bold">nuevos:</p>
 
-          <p className="font-extrabold">4</p>
+          <p className="font-extrabold">{newUsers.length}</p>
         </div>
 
-        <NewTeachers
-          id={1}
-          key={1}
-          name="Naomi Segundo Perez Paredes"
-          date="12 de Agosto del 2022"
-        />
-        <NewTeachers
-          id={2}
-          key={2}
-          name="Naomi Segundo Perez Paredes"
-          date="12 de Agosto del 2022"
-        />
-        <NewTeachers
-          id={3}
-          key={3}
-          name="Naomi Segundo Perez Paredes"
-          date="12 de Agosto del 2022"
-        />
-        <NewTeachers
-          id={4}
-          key={4}
-          name="Naomi Segundo Perez Paredes"
-          date="12 de Agosto del 2022"
-        />
+        {
+        !cargando ? 
+        newUsers.map((docente) => (
+          <NewTeachers
+            id={docente.uid}
+            key={docente.uid}
+            name={docente.displayName}
+            date={docente.date}
+          />
+        )) :  <Spinner />}
       </div>
     </>
   );

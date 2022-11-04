@@ -4,16 +4,16 @@ import ActiveTeachers from "../components/ActiveTeachers";
 import Retroceder from "../components/Retroceder";
 import SearchBar from "../components/SearchBar";
 import { useEffect } from "react";
-import { getEnabledTeachers } from "../services/controllerDirector";
+import { getAllTeachers } from "../services/controllerDirector";
 
 const DocentesActivos = () => {
   const [enableTeacher, setenableTeacher] = useState([]);
   useEffect(() => {
     const getEnableTeacher = async () => {
       try {
-        let response = await getEnabledTeachers();
+        let response = await getAllTeachers();
         console.log(response);
-        setenableTeacher(response.body);
+        setenableTeacher(response.body.activeUsers.data);
       } catch (error) {}
     };
     getEnableTeacher();
@@ -35,9 +35,10 @@ const DocentesActivos = () => {
 
         {enableTeacher.map((docente) => (
           <ActiveTeachers
-            key={docente.id}
+            key={docente.uid}
+            uid={docente.uid}
             name={docente.displayName}
-            grado="Primero Primaria"
+            grado={docente?.grade.grade_name}
           />
         ))}
       </div>

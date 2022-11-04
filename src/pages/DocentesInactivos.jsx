@@ -3,17 +3,16 @@ import React, { useEffect, useState } from "react";
 import InactiveTeachers from "../components/InactiveTeachers";
 import Retroceder from "../components/Retroceder";
 import SearchBar from "../components/SearchBar";
-import { getdisableTeachers } from "../services/controllerDirector";
+import { getAllTeachers } from "../services/controllerDirector";
 
 const DocentesInactivos = () => {
-
   const [disabledTeacher, setdisabledTeacher] = useState([]);
   useEffect(() => {
     const getdisabledTeacher = async () => {
       try {
-        let response = await getdisableTeachers();
+        let response = await getAllTeachers();
         console.log(response);
-        setdisabledTeacher(response.body);
+        setdisabledTeacher(response.body.inactiveUsers.data);
       } catch (error) {}
     };
     getdisabledTeacher();
@@ -23,8 +22,6 @@ const DocentesInactivos = () => {
       <Retroceder text={"Docentes inactivos"} />
 
       <div className="contenedor-admin">
-
-       
         <SearchBar />
 
         <div className="flex  space-x-2 mt-4 mb-4">
@@ -36,10 +33,13 @@ const DocentesInactivos = () => {
         </div>
 
         {disabledTeacher.map((docente) => (
-          <InactiveTeachers key={docente.id} name={docente.displayName} grado="Ningun grado"/>
+          <InactiveTeachers
+            key={docente.uid}
+            uid={docente.uid}
+            name={docente.displayName}
+            grado={docente?.grade.grade_name}
+          />
         ))}
-
-    
       </div>
     </>
   );

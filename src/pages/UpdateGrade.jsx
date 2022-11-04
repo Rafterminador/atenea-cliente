@@ -21,11 +21,17 @@ const UpdateGrade = () => {
         Swal.fire(
             AlertButton.dataAlertUnBotonMorado('¿Eliminar grado?', 'Sí', 'Cancelar', DeleteConfirmation)
         ).then((result) => {
+            
             if (result.isConfirmed) {
                 navigate('/grades')
                 // Swal.fire('Saved!', '', 'success')
+            } else {
+                console.log("xdxdxd")
             }
         })
+
+
+        
     }
     return (
         <>
