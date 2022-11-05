@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Firebase } from "../utils/Firebase";
 import { getAuth } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
 
 // assets imports
 import ImageLoginDefault from "../assets/images/img-login-default.svg";
@@ -15,11 +16,13 @@ import Input from "../components/Input";
 
 //backend 
 import { login } from "../services/controllerUser"
+import { getAllGrades } from "../services/controllerDirector";
 
 const Login = () => {
   const firebase = new Firebase();
   const app = firebase.appInitialize();
   const auth = getAuth(app);
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [invalid, setInvalid] = useState("");
@@ -45,7 +48,6 @@ const Login = () => {
     e.preventDefault();
     let response = {}
     response = await login(auth, email, password)
-    console.log(response)
     if (response?.errorCode != null) {
       setInvalid("invalid");
       setInvalidText("invalid-text");
@@ -58,7 +60,24 @@ const Login = () => {
         setTextBadPassword("");
       }
     } else {
-      alert("login success")
+      const userJSON = JSON.stringify(response)
+      localStorage.setItem('usuario', userJSON)
+      if (response?.role === "director" || response?.role === "admin") {
+        const getAllGradesBackend = async () => {
+          let response = await getAllGrades();
+          if (response.status === 200) {
+            console.log(response.body);
+            const userJSON = JSON.stringify(response.body)
+            localStorage.setItem('grades', userJSON)
+          } else {
+            console.log(response.body);
+          }
+        };
+        getAllGradesBackend();
+        navigate("/home");
+      } else {
+        navigate("/home/docente")
+      }
     }
   }
   function handleChangeUsername(e) {

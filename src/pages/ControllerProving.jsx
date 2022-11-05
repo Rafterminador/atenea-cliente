@@ -65,7 +65,7 @@ const ControllerProving = () => {
         }
     }
     const handleGetStudentByID = async () => {
-        let response = await getStudentByID("0IJiGbxqgIOpSP4yc2sC")
+        let response = await getStudentByID("NrbX7ltacDhMkNubAiPo")
         if (response.status === 201) {
             console.log(response.body)
         } else {

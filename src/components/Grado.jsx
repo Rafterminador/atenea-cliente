@@ -2,14 +2,19 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import Badge from "./Badge";
 
+
+
 const Grado = (props) => {
   console.log(props.ruta);
 
   const navigate = useNavigate();
 
   function handleMore() {
+    const gradoJSON = JSON.stringify(props)
+    localStorage.setItem('seteargrado', gradoJSON)
     navigate("/alumnos/completos");
   }
+
   return (
     <div className="items-center min-w-min my-3">
 

@@ -1,26 +1,46 @@
 import React from "react";
 import { useState } from "react";
 import ImageLoginDesktop from "../assets/images/recuperarPassword.svg";
+import IconWarning from "../assets/images/icon-warning.svg";
 import { useNavigate } from "react-router-dom";
+import Input from "../components/Input";
+import Spinner from "../components/Spinner";
 
-//backend 
-import { forgotPassword } from "../services/controllerUser"
+//backend
+import { forgotPassword } from "../services/controllerUser";
 
 const OlvidePassword = () => {
   const [email, setEmail] = useState("");
+  const [cargando, setCargando] = useState(false);
+  const [invalid, setInvalid] = useState("");
+  const [textResponse, setTextResponse] = useState("");
+  const [textBadEmail, setTextBadEmail] = useState("hidden");
   const navigate = useNavigate();
 
   const handleValidarCodigo = async (e) => {
+    setTextBadEmail("hidden");
     e.preventDefault();
-    let response = await forgotPassword (email)
-    console.log(response)
+    
+    if(email === ''){
+      setInvalid("invalid");
+      setTextResponse("Porfavor ingresar un correo");
+      setTextBadEmail("");
+      return
+    }
+
+    setCargando(true);
+    let response = await forgotPassword(email);
+    console.log(response);
     if (response.status === 200) {
-      console.log(response.body)
+      setInvalid("");
       localStorage.setItem("email", email);
+      setCargando(false);
       navigate("/restore/check/email");
     } else {
-      console.log(response.body)
-      alert(response.body.message)
+      setInvalid("invalid");
+      setCargando(false);
+      setTextResponse("Ingrese un correo válido");
+      setTextBadEmail("");
     }
   };
 
@@ -49,22 +69,32 @@ const OlvidePassword = () => {
             electrónico asociado
           </p>
         </div>
-        <form onSubmit={handleSubmit} id="resetpassword-form">
-          <div className="flex flex-col gap-2 min-w-full">
-            {/* <label className="text-[#4D3483] sml-title" htmlFor="email">
+
+        {cargando ? (
+          <Spinner />
+        ) : (
+          <form onSubmit={handleSubmit} id="resetpassword-form">
+            <div className="flex flex-col gap-2 min-w-full">
+              {/* <label className="text-[#4D3483] sml-title" htmlFor="email">
               Correo
             </label> */}
-            <input
-              id="email"
-              type="text"
-              value={email}
-              name="email"
-              onChange={handleChangeEmail}
-              className="nrm-text placeholder:text-[#7B7B7B] nrm-txtfld-border px-3 box-border h-[42px] focus:outline-2 focus:outline-[#A954FF]"
-              placeholder="Ingresar correo"
-            />
-          </div>
-        </form>
+              <Input
+                id="email-olvidePassword"
+                type="email"
+                value={email}
+                name="email"
+                onChange={handleChangeEmail}
+                className={`${invalid}`}
+                required={1}
+                placeholder="Ingresar correo"
+              />
+              <div className={`flex flex-row ${textBadEmail}`}>
+                <img src={IconWarning} alt="warning information" />
+                <p className="invalid-text-small">{textResponse}</p>
+              </div>
+            </div>
+          </form>
+        )}
       </div>
 
       {/* div de los botones */}

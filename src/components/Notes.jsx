@@ -26,7 +26,6 @@ const Notes = (props) => {
         style={{ position: "relative", cursor: "pointer" }}
         onClick={changeState}
       >
-
         <input
           className={`font-normal w-full placeholder-[#4D3483] placeholder-[sml-title] combo-box my-2 bordercard ${active}`}
           placeholder={props.unidad}
@@ -48,7 +47,9 @@ const Notes = (props) => {
         />
       </div>
       <div className={`${hidden}`}>
-        <div className="combo-box-container-notes">{<BoletinCard />}</div>
+        <div className="combo-box-container-notes">
+          {<BoletinCard link={props.link} />}
+        </div>
       </div>
     </>
   );

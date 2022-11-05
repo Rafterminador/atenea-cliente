@@ -7,8 +7,9 @@ const api = axios.create({
 const getAllTeachers = async () => {
     let responseToReturn
     api.defaults.headers.common["Content-Type"] = "application/json"
-    await api.get("api/v1/user/get-users/")
+    await api.get("api/v1/user/get-teachers/")
         .then((response) => {
+            console.log(response.data)
             responseToReturn = response
         }).catch((error) => {
             responseToReturn = error
@@ -60,6 +61,7 @@ const enableTeacher = async (teacher) => {
 
 //Los roles son: admin, docente, director
 const updateRol = async (teacher, rol) => {
+    console.log(teacher, rol)
     let responseToReturn
     api.defaults.headers.common["Content-Type"] = "application/json"
     await api.put(`api/v1/user/update-user-rol/?id=${teacher}&type=${rol}`)
@@ -181,4 +183,126 @@ const getInformation = (responseToReturn) => {
     }
     return responseToReturn
 }
-export { getAllTeachers, getUserByID, disableTeacher, enableTeacher, updateRol, getAllStudents, getStudentsByGrade, getStudentByID, createStudent, updateStudent, disableStudent, enableStudent, getAllBoletines }
+
+const getEnabledTeachers = async () => {
+    let responseToReturn
+    api.defaults.headers.common["Content-Type"] = "application/json"
+    await api.get("api/v1/user/get-enabled-teachers")
+        .then((response) => {
+            responseToReturn = response
+        }).catch((error) => {
+            responseToReturn = error
+        });
+    return getInformation(responseToReturn)
+}
+
+
+const getdisableTeachers = async () => {
+    let responseToReturn
+    api.defaults.headers.common["Content-Type"] = "application/json"
+    await api.get("api/v1/user/get-disabled-teachers")
+        .then((response) => {
+            responseToReturn = response
+        }).catch((error) => {
+            responseToReturn = error
+        });
+    return getInformation(responseToReturn)
+}
+
+const getAllGrades = async () => {
+    let responseToReturn
+    api.defaults.headers.common["Content-Type"] = "application/json"
+    await api.get("api/v1/grade/getall-grades")
+        .then((response) => {
+            responseToReturn = response
+        }).catch((error) => {
+            responseToReturn = error
+        });
+    return getInformation(responseToReturn)
+}
+
+const createGrade = async (gradeNameInput, teacherRefInput, levelRefInput) => {
+    let responseToReturn
+    api.defaults.headers.common["Content-Type"] = "application/json"
+    await api.post("api/v1/grade/add-grade", {
+        grade_name: gradeNameInput,
+        teacherRef: teacherRefInput,
+        levelRef: levelRefInput
+    })
+        .then((response) => {
+            responseToReturn = response
+        }).catch((error) => {
+            responseToReturn = error
+        });
+    return getInformation(responseToReturn)
+}
+
+const updateGrade = async (gradeNameInput, teacherRefInput, levelRefInput, idGrade) => {
+    let responseToReturn
+    api.defaults.headers.common["Content-Type"] = "application/json"
+    await api.put(`api/v1/grade/update-grade/${idGrade}`, {
+        grade_name: gradeNameInput,
+        teacherRef: teacherRefInput,
+        levelRef: levelRefInput
+    })
+        .then((response) => {
+            responseToReturn = response
+        }).catch((error) => {
+            responseToReturn = error
+        });
+    return getInformation(responseToReturn)
+}
+
+const deleteGrade = async (idGrade) => {
+    let responseToReturn
+    api.defaults.headers.common["Content-Type"] = "application/json"
+    await api.put(`api/v1/grade/delete-grade/${idGrade}`)
+        .then((response) => {
+            responseToReturn = response
+        }).catch((error) => {
+            responseToReturn = error
+        });
+    return getInformation(responseToReturn)
+}
+
+const GetOneTeacherByID = async (idTeacher) => {
+    let responseToReturn
+    api.defaults.headers.common["Content-Type"] = "application/json"
+    await api.get(`api/v1/user/get-teacher/${idTeacher}`)
+        .then((response) => {
+            responseToReturn = response
+        }).catch((error) => {
+            responseToReturn = error
+        });
+    return getInformation(responseToReturn)
+}
+
+const DisableTeacher = async (idTeacher) => {
+    let responseToReturn
+    api.defaults.headers.common["Content-Type"] = "application/json"
+    await api.put(`api/v1/user/disable-teacher/${idTeacher}`)
+        .then((response) => {
+            responseToReturn = response
+        }).catch((error) => {
+            responseToReturn = error
+        });
+    return getInformation(responseToReturn)
+}
+
+const EnableTeacher = async (idTeacher) => {
+    let responseToReturn
+    api.defaults.headers.common["Content-Type"] = "application/json"
+    await api.put(`api/v1/user/enable-teacher/${idTeacher}`)
+        .then((response) => {
+            responseToReturn = response
+        }).catch((error) => {
+            responseToReturn = error
+        });
+    return getInformation(responseToReturn)
+
+}
+
+export {
+    EnableTeacher, DisableTeacher, GetOneTeacherByID, getAllTeachers, getUserByID, disableTeacher, enableTeacher, updateRol, getAllStudents, getStudentsByGrade, getStudentByID, createStudent, updateStudent, disableStudent,
+    enableStudent, getAllBoletines, getEnabledTeachers, getdisableTeachers, getAllGrades, createGrade, updateGrade, deleteGrade
+}

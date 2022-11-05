@@ -17,6 +17,7 @@ import Button from "../components/Button";
 
 const LandingPage = () => {
   const navigate = useNavigate();
+  localStorage.clear()
   function handleLogin() {
     navigate("login");
   }

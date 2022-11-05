@@ -2,10 +2,9 @@ import React from "react";
 import Notes from "../components/Notes";
 // import BoletinCard from "../components/BoletinCard";
 import Button from "../components/Button";
-import Retroceder from '../components/Retroceder';
+import Retroceder from "../components/Retroceder";
 
-const Boletin = () => {
-
+const Boletin = (props) => {
   return (
     <div className="flex flex-col">
       <Retroceder text="José Fernando Arredondo Aparicio" />
@@ -13,10 +12,22 @@ const Boletin = () => {
       <div className="bg-[#DBD8FF] h-[1px] my-0"></div>
 
       <div className="m-5">
-        <Notes unidad={"Primera unidad"} />
-        <Notes unidad={"Segunda unidad"} />
-        <Notes unidad={"Tercera unidad"} />
-        <Notes unidad={"Cuarta unidad"} />
+        <Notes
+          unidad={"Primera unidad"}
+          link={"/grades/teacher/:id/courses/students/:id/notes"}
+        />
+        <Notes
+          unidad={"Segunda unidad"}
+          link={"/grades/teacher/:id/courses/students/:id/notes"}
+        />
+        <Notes
+          unidad={"Tercera unidad"}
+          link={"/grades/teacher/:id/courses/students/:id/notes"}
+        />
+        <Notes
+          unidad={"Cuarta unidad"}
+          link={"/grades/teacher/:id/courses/students/:id/notes"}
+        />
       </div>
 
       <div className="">

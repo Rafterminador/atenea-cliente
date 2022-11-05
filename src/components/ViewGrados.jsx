@@ -7,7 +7,7 @@ const ViewGrados = ({name, lengtAlumnos}) => {
       <div className="flex justify-between">
         <p className="font-bold text-[16px]">{name}</p>
         <Link to="/asistencia/tomar-asistencia">
-          <img className="mt-3 cursor-pointer" src={Arrow} />
+          <img className="mt-3 cursor-pointer" src={Arrow} alt="grados"/>
         </Link>
       </div>
 

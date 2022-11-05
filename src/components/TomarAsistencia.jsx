@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import arrowLeft from "../../src/assets/images/arrow_left.svg";
-import { Link } from "react-router-dom";
+
 import Button from "./Button";
 import Retroceder from "./Retroceder";
 import { AlertButton } from "../utils/AlertButton";
 import DeleteConfirmation from "../assets/images/confirmarAlumno.svg";
-import { motion } from "framer-motion";
+
 import NameAsistencia from "./NameAsistencia";
 const TomarAsistencia = () => {
   const [x, setX] = useState(0);
