@@ -1,7 +1,6 @@
 import React from "react";
 import Email from "../../src/assets/images/mail.svg";
 import Tel from "../../src/assets/images/tel.svg";
-import GradoIcon from "../../src/assets/images/classes.svg";
 import Confirmation from "../assets/images/confirmar-docente.svg";
 import Deshabilitar from "../assets/images/deshabilitar-docente.svg";
 import { useEffect } from "react";

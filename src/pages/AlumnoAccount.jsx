@@ -103,7 +103,7 @@ const AlumnoAccount = () => {
               "Quinto",
               "Sexto",
             ]}
-            valueByDefault={"Seleccionar Grado"}
+            placeholder={"Seleccionar Grado"}
           />
           <label htmlFor="nameencargado">
             Nombre del encargado:{" "}

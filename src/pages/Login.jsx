@@ -16,6 +16,7 @@ import Input from "../components/Input";
 
 //backend 
 import { login } from "../services/controllerUser"
+import { getAllGrades } from "../services/controllerDirector";
 
 const Login = () => {
   const firebase = new Firebase();
@@ -61,10 +62,21 @@ const Login = () => {
     } else {
       const userJSON = JSON.stringify(response)
       localStorage.setItem('usuario', userJSON)
-      if (response?.role === "director") {
+      if (response?.role === "director" || response?.role === "admin") {
+        const getAllGradesBackend = async () => {
+          let response = await getAllGrades();
+          if (response.status === 200) {
+            console.log(response.body);
+            const userJSON = JSON.stringify(response.body)
+            localStorage.setItem('grades', userJSON)
+          } else {
+            console.log(response.body);
+          }
+        };
+        getAllGradesBackend();
         navigate("/home");
       } else {
-        alert("bienvenido maestro")
+        navigate("/home/docente")
       }
     }
   }
