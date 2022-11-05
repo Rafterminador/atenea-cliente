@@ -88,7 +88,7 @@ const AccountPage = () => {
     console.log("entro en updateRolDocente");
     await DisableTeacher(params.id);
 
-    Swal.fire(AlertButton.dataAlertSuccess("docente confirmado"));
+    Swal.fire(AlertButton.dataAlertSuccess("docente deshabilitado"));
   };
 
   const InableDocente = async (e) => {
@@ -114,7 +114,7 @@ const AccountPage = () => {
     console.log("entro en updateRolDocente");
     await EnableTeacher(params.id);
 
-    Swal.fire(AlertButton.dataAlertSuccess("docente confirmado"));
+    Swal.fire(AlertButton.dataAlertSuccess("docente habilitado"));
   };
 
   return (
