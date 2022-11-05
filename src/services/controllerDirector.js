@@ -234,4 +234,18 @@ const DisableTeacher = async (idTeacher) => {
     return getInformation(responseToReturn)
     
 }
-export {DisableTeacher, GetOneTeacherByID, getAllTeachers, getUserByID, disableTeacher, enableTeacher, updateRol, getAllStudents, getStudentsByGrade, getStudentByID, createStudent, updateStudent, disableStudent, enableStudent, getAllBoletines, getEnabledTeachers, getdisableTeachers }
+
+
+const EnableTeacher = async (idTeacher) => {
+    let responseToReturn
+    api.defaults.headers.common["Content-Type"] = "application/json"
+    await api.put(`api/v1/user/enable-teacher/${idTeacher}`)
+        .then((response) => {
+            responseToReturn = response
+        }).catch((error) => {
+            responseToReturn = error
+        });
+    return getInformation(responseToReturn)
+    
+}
+export {EnableTeacher, DisableTeacher, GetOneTeacherByID, getAllTeachers, getUserByID, disableTeacher, enableTeacher, updateRol, getAllStudents, getStudentsByGrade, getStudentByID, createStudent, updateStudent, disableStudent, enableStudent, getAllBoletines, getEnabledTeachers, getdisableTeachers }

@@ -7,7 +7,7 @@ import Deshabilitar from "../assets/images/deshabilitar-docente.svg";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { AlertButton } from "../utils/AlertButton";
-import { GetOneTeacherByID, updateRol,DisableTeacher } from "../services/controllerDirector";
+import { GetOneTeacherByID, updateRol,DisableTeacher, EnableTeacher } from "../services/controllerDirector";
 import { useState } from "react";
 import Retroceder from "./Retroceder";
 import Grades from "./Grades";
@@ -92,6 +92,32 @@ const AccountPage = () => {
     Swal.fire(AlertButton.dataAlertSuccess("docente confirmado"));
   };
 
+  const InableDocente = async (e) => {
+    e.preventDefault();
+    Swal.fire(
+      AlertButton.dataAlertUnBotonMorado(
+        "¿Habilitar docente?",
+        "Sí",
+        "Cancelar",
+        Confirmation
+      )
+    ).then((result) => {
+      if (result.isConfirmed) {
+        HabilitarDocente();
+
+        // navigate('/grades')
+        // Swal.fire('Saved!', '', 'success')
+      }
+    });
+  };
+
+  const HabilitarDocente = async () => {
+    console.log("entro en updateRolDocente");
+    await EnableTeacher(params.id);
+
+    Swal.fire(AlertButton.dataAlertSuccess("docente confirmado"));
+  };
+
   return (
     <>
       <Retroceder text={teacher.displayName} />
@@ -159,7 +185,7 @@ const AccountPage = () => {
                 />
               ) : (
                 <Button
-                  //onClick={handleEdit}
+                  onClick={InableDocente}
                   text="Habilitar docente"
                   typeButton={"button-type-2"}
                   className="my-5"

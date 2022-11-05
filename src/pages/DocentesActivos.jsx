@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import Spinner from "../components/Spinner";
 import ActiveTeachers from "../components/ActiveTeachers";
 import Retroceder from "../components/Retroceder";
 import SearchBar from "../components/SearchBar";
@@ -8,13 +8,17 @@ import { getAllTeachers } from "../services/controllerDirector";
 
 const DocentesActivos = () => {
   const [enableTeacher, setenableTeacher] = useState([]);
+  const [cargando, setCargando] = useState(true);
   useEffect(() => {
     const getEnableTeacher = async () => {
       try {
         let response = await getAllTeachers();
         console.log(response);
         setenableTeacher(response.body.activeUsers.data);
-      } catch (error) {}
+        setCargando(false);
+      } catch (error) {
+        console.log(error);
+      }
     };
     getEnableTeacher();
   }, []);
@@ -25,22 +29,29 @@ const DocentesActivos = () => {
 
       <div className="contenedor-admin">
         <SearchBar />
-        <div className="flex space-x-2 mt-4 mb-4">
-          <p>Número de docentes</p>
 
-          <p className="text-[#A954FF] font-bold">activos:</p>
+        {!cargando ? (
+          <>
+            <div className="flex space-x-2 mt-4 mb-4">
+              <p>Número de docentes</p>
 
-          <p className="font-extrabold">{enableTeacher.length}</p>
-        </div>
+              <p className="text-[#A954FF] font-bold">activos:</p>
 
-        {enableTeacher.map((docente) => (
-          <ActiveTeachers
-            key={docente.uid}
-            uid={docente.uid}
-            name={docente.displayName}
-            grado={docente?.grade.grade_name}
-          />
-        ))}
+              <p className="font-extrabold">{enableTeacher.length}</p>
+            </div>
+
+            {enableTeacher.map((docente) => (
+              <ActiveTeachers
+                key={docente.uid}
+                uid={docente.uid}
+                name={docente.displayName}
+                grado={docente?.grade.grade_name}
+              />
+            ))}
+          </>
+        ) : (
+          <Spinner />
+        )}
       </div>
     </>
   );

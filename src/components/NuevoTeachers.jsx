@@ -13,7 +13,7 @@ const NewTeachers = ({ id, name, date }) => {
 
       <div className="flex  space-x-2 mt-1 mb-2 ">
         <p className="text-xs">Se unió el: </p>
-        <p className="text-xs font-bold">{date}</p>
+        <p className="text-xs font-bold">{date.substring(0, date.indexOf("a las"))}</p>
       </div>
       <hr className="bg-[#DBD8FF]" />
     </>
