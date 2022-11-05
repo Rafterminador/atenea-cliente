@@ -8,6 +8,7 @@ import { useEffect } from "react";
 import { getAllTeachers } from "../services/controllerDirector";
 import { useState } from "react";
 import Spinner from "../components/Spinner";
+import BottomNavbar from "../components/BottomNavbar";
 const Teachers = () => {
   const [newUsers, setNewUsers] = useState([]);
   const [enableTeacher, setenableTeacher] = useState([]);
@@ -137,6 +138,8 @@ const Teachers = () => {
           )}
         </section>
       </div>
+
+      <BottomNavbar />
 
      
     </>
