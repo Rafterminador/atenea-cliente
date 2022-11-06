@@ -82,7 +82,7 @@ const BottomNavbar = () => {
         return () => {
             document.removeEventListener("click", handleClickOutside);
         };
-    }, [ref]);
+    }, [ref, location.pathname]);
 
     return (
         <>

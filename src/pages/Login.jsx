@@ -34,6 +34,8 @@ const Login = () => {
   const [textBadPassword, setTextBadPassword] = useState("hidden");
   const [passwordVisibility, setPasswordVisibility] = useState(false);
   const [iconPassword, setIconPassword] = useState(IconShowPassword);
+  const [badEmailMessage, setBadEmailMessage] = useState("Cuenta no encontrada, porfavor intentelo de nuevo");
+
   const togglePassword = () => {
     setPasswordVisibility(!passwordVisibility);
     if (iconPassword === IconShowPassword) {
@@ -84,16 +86,24 @@ const Login = () => {
             } else {
               console.log(response.body);
             }
-            
-          } catch (error) { 
+
+          } catch (error) {
             console.log(error)
           }
         };
         getAllGradesBackend();
         handlegetAllTeacher();
         navigate("/home");
-      } else {
+      } else if (response?.role === "docente") {
         navigate("/home/docente")
+      } else {
+        setBadEmailMessage("El docente no a sido confirmado")
+        setInvalid("invalid");
+        setTextBadEmail("");
+        setInvalidText("invalid-text");
+        setImageLogin(ImageLoginError);
+        setTitleLoginH1("hidden");
+        setTitleLoginH2("");
       }
     }
   }
@@ -137,7 +147,7 @@ const Login = () => {
               <div className={`flex flex-row ${textBadEmail}`}>
                 <img src={IconWarning} alt="warning information" />
                 <p className="invalid-text-small">
-                  Cuenta no encontrada, porfavor intentelo de nuevo
+                  {badEmailMessage}
                 </p>
               </div>
             </div>
