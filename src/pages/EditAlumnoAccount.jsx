@@ -46,7 +46,7 @@ const EditAlumnoAccount = () => {
     let graderefid;
     console.log(gradeid)
     for (let index = 0; index < gradesNames.length; index++) {
-      if(grades==gradesNames[index]){
+      if(grades===gradesNames[index]){
 
         console.log("hubo coincidencia", gradeid[index])
         graderefid = gradeid[index]
