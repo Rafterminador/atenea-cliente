@@ -11,4 +11,18 @@ const getInformation = (responseToReturn) => {
     }
     return responseToReturn
 }
-export { }
+
+
+const GetMyStudents = async (idTeacher) => {
+    let responseToReturn
+    api.defaults.headers.common["Content-Type"] = "application/json"
+    await api.get(`api/v1/attendence/get-mystudents/${idTeacher}`)
+        .then((response) => {
+            responseToReturn = response
+        }).catch((error) => {
+            responseToReturn = error
+        });
+    return getInformation(responseToReturn)
+}
+
+export { GetMyStudents }

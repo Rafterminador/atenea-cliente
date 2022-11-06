@@ -1,7 +1,36 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import ViewGrados from "../components/ViewGrados";
 import BottomNavbar from "../components/BottomNavbar";
+import { GetMyStudents } from "../services/controllerDocentes";
 const Asistencia = () => {
+  const [idDocente, setIdDocente] = useState({});
+
+  const [grades, setGrades] = useState([]);
+
+  useEffect(() => {
+
+    const usuarioJSON = localStorage.getItem('usuario')
+    const usuario = JSON.parse(usuarioJSON)
+
+    setIdDocente(usuario.uid)
+
+    console.log("xdxd")
+
+    const getOneTeacherByID = async () => {
+      try {
+        let response = await GetMyStudents(usuario.uid);
+        console.log(response)
+        setGrades(response.body);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    getOneTeacherByID();
+  }, [idDocente])
+
+ 
+
   return (
     <>
       <div className="m-6">
@@ -9,13 +38,11 @@ const Asistencia = () => {
           Tomar asistencia de
         </p>
 
-        <ViewGrados name={"Primero Primaria"} lengtAlumnos={"38"} />
-        <ViewGrados name={"Primero Primaria"} lengtAlumnos={"38"} />
-        <ViewGrados name={"Primero Primaria"} lengtAlumnos={"38"} />
-        <ViewGrados name={"Primero Primaria"} lengtAlumnos={"38"} />
-        <ViewGrados name={"Primero Primaria"} lengtAlumnos={"38"} />
-        <ViewGrados name={"Primero Primaria"} lengtAlumnos={"38"} />
-        <ViewGrados name={"Primero Primaria"} lengtAlumnos={"38"} />
+
+        {grades.map((grade) => (
+          <ViewGrados key={grade.id} name={grade.grade_name} lengtAlumnos={grade.size} />
+
+        ))} 
       </div>
 
       {/* NabBAR initial */}

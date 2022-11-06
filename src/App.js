@@ -76,9 +76,7 @@ function App() {
           <Route path="/docentes-activos" element={<DocentesActivos />} />
           <Route path="/docentes-inactivos" element={<DocentesInactivos />} />
 
-          {/* Pagina asistencia */}
-          <Route path="/asistencia" element={<Asistencia />} />
-          <Route path="/asistencia/tomar-asistencia" element={<TomarAsistencia />} />
+          
 
           <Route path="/backend" element={<ControllerProving />} />
           <Route path="/grades/teacher/:id" element={<GradesAssigned />} />
@@ -94,6 +92,13 @@ function App() {
         </ Route >
 
         <Route element={<PrivateRouteDocente />}>
+
+
+          {/* Pagina asistencia */}
+          <Route path="/asistencia" element={<Asistencia />} />
+          <Route path="/asistencia/tomar-asistencia" element={<TomarAsistencia />} />
+
+          
           {/* rutas para la S03 - Área para docente */}
           <Route path="/home/docente" element={<Home />} />
           <Route path="/grades/teacher/:id" element={<GradesAssigned />} />
