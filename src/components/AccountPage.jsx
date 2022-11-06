@@ -15,20 +15,20 @@ import Spinner from "./Spinner";
 const Swal = require("sweetalert2");
 
 const AccountPage = () => {
-  const params = useParams();
+  const {id} = useParams();
   const [cargando, setCargando] = useState(true);
   const [teacher, setTeacher] = useState({});
   const [grades, setGrades] = useState([]);
   const [rol, setRol] = useState("hidden");
   const [visibleButtom, setVisibleButtom] = useState("");
   useEffect(() => {
-    
+    console.log("xd")
     getOneTeacherByID();
-  },[]);
+  },[id]);
 
   const getOneTeacherByID = async () => {
     try {
-      let response = await GetOneTeacherByID(params.id);
+      let response = await GetOneTeacherByID(id);
       setTeacher(response.body);
       setGrades(response.body.grades);
       if (response.body.rol === "") {
@@ -64,7 +64,7 @@ const AccountPage = () => {
 
   const UpdateRolDocente = async () => {
     console.log("entro en updateRolDocente");
-    await updateRol(params.id, "docente");
+    await updateRol(id, "docente");
     let response = await getAllTeachers();
 
     if (response.status === 200) {
@@ -101,7 +101,7 @@ const AccountPage = () => {
 
   const DeshabilitarDocente = async () => {
     console.log("entro en updateRolDocente");
-    await DisableTeacher(params.id);
+    await DisableTeacher(id);
 
     let response = await getAllTeachers();
 
@@ -139,7 +139,7 @@ const AccountPage = () => {
 
   const HabilitarDocente = async () => {
     console.log("entro en updateRolDocente");
-    await EnableTeacher(params.id);
+    await EnableTeacher(id);
     let response = await getAllTeachers();
 
     if (response.status === 200) {
