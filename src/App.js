@@ -84,7 +84,9 @@ function App() {
 
         <Route element={<PrivateRouteDocente />}>
           {/* rutas para la S03 - Área para docente */}
-          <Route path="/home/docente" element={<Home />} />
+          <Route element={<BottomNavbarDirector />}>
+            <Route path="/home/docente" element={<Home />} />
+          </Route>
           <Route path="/grades/teacher/:id" element={<GradesAssigned />} />
           <Route path="/grades/teacher/:id/courses" element={<Courses />} />
           <Route
