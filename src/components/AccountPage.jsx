@@ -4,7 +4,6 @@ import Tel from "../../src/assets/images/tel.svg";
 import Confirmation from "../assets/images/confirmar-docente.svg";
 import Deshabilitar from "../assets/images/deshabilitar-docente.svg";
 import { useEffect } from "react";
-import { useParams } from "react-router-dom";
 import { AlertButton } from "../utils/AlertButton";
 import { GetOneTeacherByID, updateRol, DisableTeacher, EnableTeacher, getAllTeachers } from "../services/controllerDirector";
 import { useState } from "react";
@@ -15,16 +14,56 @@ import Spinner from "./Spinner";
 const Swal = require("sweetalert2");
 
 const AccountPage = () => {
-  const {id} = useParams();
   const [cargando, setCargando] = useState(true);
   const [teacher, setTeacher] = useState({});
   const [grades, setGrades] = useState([]);
   const [rol, setRol] = useState("hidden");
   const [visibleButtom, setVisibleButtom] = useState("");
+  const [id, setId] = useState({});
+
+
+
   useEffect(() => {
-    console.log("xd")
+
+    // let gradoJSON = localStorage.getItem("docente");
+    // let seteargrado = JSON.parse(gradoJSON);
+    // setId(teachersName)
+    // setCargando(false)
+    // console.log(id)
+
+
+    let gradoJSON = localStorage.getItem("docente");
+    let seteargrado = JSON.parse(gradoJSON);
+    console.log(seteargrado)
+    setId(seteargrado)
+
+    console.log(id)
+
+    const getOneTeacherByID = async () => {
+      try {
+        let response = await GetOneTeacherByID(seteargrado);
+        setTeacher(response.body);
+        setGrades(response.body.grades);
+        if (response.body.rol === "") {
+          setRol("");
+          setVisibleButtom("hidden");
+        }
+        setCargando(false);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
     getOneTeacherByID();
-  },[id]);
+  
+  },[]);
+
+
+
+
+  // useEffect(() => {
+  //   getOneTeacherByID();
+  // }, [])
 
   const getOneTeacherByID = async () => {
     try {
