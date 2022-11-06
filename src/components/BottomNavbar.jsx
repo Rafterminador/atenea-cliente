@@ -49,6 +49,7 @@ const BottomNavbar = () => {
                 .querySelector(item)
                 .children[0].children[0].classList.remove("fill-white");
         });
+        // console.log(e.currentTarget.children[0].classList.togl)
         e.currentTarget.children[0].classList.toggle("bg-[#A954FF]");
         e.currentTarget.children[0].children[0].classList.toggle("fill-white");
     }
