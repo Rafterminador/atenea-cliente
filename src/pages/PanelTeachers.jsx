@@ -3,196 +3,195 @@ import { Link } from "react-router-dom";
 import NewTeachers from "../components/NuevoTeachers";
 import ActiveTeachers from "../components/ActiveTeachers";
 import InactiveTeachers from "../components/InactiveTeachers";
-import { ReactComponent as Grade } from "../assets/images/grade.svg";
-import { ReactComponent as Students } from "../assets/images/students.svg";
-import { ReactComponent as TeachersIcon } from "../assets/images/teachers.svg";
-import { ReactComponent as MenuImage } from "../assets/images/menu.svg";
 import SearchBar from "../components/SearchBar";
 import { useEffect } from "react";
-import { getEnabledTeachers, getdisableTeachers } from "../services/controllerDirector";
 import { useState } from "react";
+import Spinner from "../components/Spinner";
+import { searchByTeacherName } from "../utils/FunctionUtils";
 const Teachers = () => {
-
+  const [newUsers, setNewUsers] = useState([]);
   const [enableTeacher, setenableTeacher] = useState([]);
   const [disabledTeacher, setdisabledTeacher] = useState([]);
+  const [filtrado, setFiltrado] = useState([]);
+  const [ocultar, setOcultar] = useState("");
+  const [mostrar, setMostrar] = useState("hidden");
 
+  const [cargando, setCargando] = useState(true);
+
+  const handleSearchTeacher = (e) => {
+    // const gradeJSON = localStorage.getItem('grades')
+    // const grade = JSON.parse(gradeJSON)
+    console.log(e.target.value);
+    console.log(e.target.value);
+    const array = newUsers.concat(enableTeacher).concat(disabledTeacher);
+    console.log(array);
+    // console.log(searchGrades(grades, e.target.value))
+    setFiltrado(searchByTeacherName(array, e.target.value));
+
+    console.log("esto es el filtrado", filtrado);
+
+    if (e.target.value === "") {
+      setOcultar("");
+      setMostrar("hidden");
+    } else {
+      setOcultar("hidden");
+      setMostrar("");
+    }
+  };
 
   useEffect(() => {
+    // const handlegetAllTeacher = async () => {
+    //   try {
+    //     let response = await getAllTeachers();
+    //     console.log(response);
+    //     setNewUsers(response.body.newUsers.data);
+    //     setenableTeacher(response.body.activeUsers.data);
+    //     setdisabledTeacher(response.body.inactiveUsers.data);
+    //     setCargando(false);
+    //   } catch (error) { }
+    // };
 
-    const handlegetEnabledTeachers = async () => {
+    //handlegetAllTeacher();
+    const teacherJSON = localStorage.getItem('docentes');
+    const docente = JSON.parse(teacherJSON);
+    console.log(docente);
+    setNewUsers(docente.newUsers.data);
+    setenableTeacher(docente.activeUsers.data);
+    setdisabledTeacher(docente.inactiveUsers.data);
+    setCargando(false);
+  }, []);
 
-      try {
-        let response = await getEnabledTeachers();
-        console.log(response)
-        setenableTeacher(response.body)
-      } catch (error) {
-        
-      }
-     
-    }
-
-
-    const handlegetDisableTeachers = async () => {
-
-      try {
-        let response = await getdisableTeachers();
-        console.log(response)
-        setdisabledTeacher(response.body)
-      } catch (error) {
-        
-      }
-     
-    }
-
-    handlegetEnabledTeachers()
-    handlegetDisableTeachers()
-
-  }, [])
-
+  console.log(enableTeacher);
 
   return (
     <>
-      <div className="contenedor contenedor-admin">
-        <SearchBar />
+      <div className="contenedor contenedor-admin mb-[50px]">
+        <SearchBar
+          onChange={handleSearchTeacher}
+          placeholder="Buscar a un docente"
+        />
 
-        {/* NUEVOS DOCENTES */}
-
-        <section className="my-[10px]">
-          <div className="flex justify-between">
-            <div className="flex space-x-5 text-center font-bold ">
-              <p className="text-xl text-[#A954FF]">Nuevos docentes</p>
-              <p className="bg-[#DBD8FF] rounded-xl px-3 py-1 text-sm">1</p>
-            </div>
-
-            <div>
-              <Link to="/nuevos-docentes">
-                <p className="text-[#776694] text-xs font-bold cursor-pointer">
-                  Ver mas
-                </p>
-              </Link>
-            </div>
+        <section className={`${mostrar} my-[10px] mb-[80px]`}>
+          <div className="flex space-x-5 text-center font-bold ">
+            <p className="text-xl text-[#A954FF]">Búsqueda</p>
+            <p className="bg-[#DBD8FF] rounded-xl px-3 py-1 text-sm">
+              {filtrado.length}
+            </p>
           </div>
-          <NewTeachers
-            id={1}
-            key={1}
-            name="Naomi Segundo Perez Paredes"
-            date="12 de Agosto del 2022"
-          />
-          <NewTeachers
-            id={2}
-            key={2}
-            name="Naomi Segundo Perez Paredes"
-            date="12 de Agosto del 2022"
-          />
-          <NewTeachers
-            id={3}
-            key={3}
-            name="Naomi Segundo Perez Paredes"
-            date="12 de Agosto del 2022"
-          />
-          <NewTeachers
-            id={4}
-            key={4}
-            name="Naomi Segundo Perez Paredes"
-            date="12 de Agosto del 2022"
-          />
+          {filtrado.map((docente) => (
+            <NewTeachers
+              id={docente.uid}
+              key={docente.uid}
+              name={docente.displayName}
+              date={docente.date}
+            />
+          ))}
         </section>
 
-        {/* DOCENTES ACTIVOS */}
-        <section className="my-[10px]">
-          <div className="flex justify-between">
-            <div className="flex space-x-5 text-center font-bold ">
-              <p className="text-xl text-[#4D3483]">Docentes activos</p>
-              <p className="bg-[#DBD8FF] rounded-xl px-3 py-1 text-sm">{enableTeacher.length}</p>
-            </div>
-            <div>
-              <Link to="/docentes-activos">
-                <p className="text-[#776694] text-xs font-bold cursor-pointer">
-                  Ver mas
+        <section className={`${ocultar}`}>
+          {/* NUEVOS DOCENTES */}
+          <section className="my-[10px]">
+            <div className="flex justify-between">
+              <div className="flex space-x-5 text-center font-bold ">
+                <p className="text-xl text-[#A954FF]">Nuevos docentes</p>
+                <p className="bg-[#DBD8FF] rounded-xl px-3 py-1 text-sm">
+                  {newUsers.length}
                 </p>
-              </Link>
+              </div>
+
+              <div>
+                <Link to="/nuevos-docentes">
+                  <p className="text-[#776694] text-xs font-bold cursor-pointer">
+                    Ver mas
+                  </p>
+                </Link>
+              </div>
             </div>
-          </div>
+            {!cargando ? (
+              newUsers
+                .slice(0, 4)
+                .map((user) => (
+                  <NewTeachers
+                    id={user.uid}
+                    key={user.uid}
+                    name={user.displayName}
+                    date={user.date}
+                  />
+                ))
+            ) : (
+              <Spinner />
+            )}
+          </section>
 
-
-          {enableTeacher.slice(0,4).map((docente) => (
-            <ActiveTeachers key={docente.id}  name={docente.displayName} grado="Primero Primaria"/>
-          ))}
-        
-        </section>
-
-        {/* DOCENTES INACTIVOS */}
-        <section className="my-[10px]">
-          <div className="flex justify-between">
-            <div className="flex space-x-5 text-center font-bold ">
-              <p className="text-xl text-[#4D3483]">Docentes Inactivos</p>
-              <p className="bg-[#DBD8FF] rounded-xl px-3 py-1 text-sm">{disabledTeacher.length}</p>
-            </div>
-            <div>
-              <Link to="/docentes-inactivos">
-                <p className="text-[#776694] text-xs font-bold cursor-pointer">
-                  Ver mas
+          {/* DOCENTES ACTIVOS */}
+          <section className="my-[10px]">
+            <div className="flex justify-between">
+              <div className="flex space-x-5 text-center font-bold ">
+                <p className="text-xl text-[#4D3483]">Docentes activos</p>
+                <p className="bg-[#DBD8FF] rounded-xl px-3 py-1 text-sm">
+                  {enableTeacher.length}
                 </p>
-              </Link>
+              </div>
+              <div>
+                <Link to="/docentes-activos">
+                  <p className="text-[#776694] text-xs font-bold cursor-pointer">
+                    Ver mas
+                  </p>
+                </Link>
+              </div>
             </div>
-          </div>
+            {!cargando ? (
+              enableTeacher
+                .slice(0, 4)
+                .map((docente) => (
+                  <ActiveTeachers
+                    key={docente.uid}
+                    name={docente.displayName}
+                    uid={docente.uid}
+                    grado={docente?.grade.grade_name}
+                  />
+                ))
+            ) : (
+              <Spinner />
+            )}
+          </section>
 
-          {disabledTeacher.slice(0,4).map((docente) => (
-            <InactiveTeachers key={docente.id} name={docente.displayName} grado="Ningun grado" />
-          ))}
+          {/* DOCENTES INACTIVOS */}
+          <section className="my-[10px]">
+            <div className="flex justify-between">
+              <div className="flex space-x-5 text-center font-bold ">
+                <p className="text-xl text-[#4D3483]">Docentes Inactivos</p>
+                <p className="bg-[#DBD8FF] rounded-xl px-3 py-1 text-sm">
+                  {disabledTeacher.length}
+                </p>
+              </div>
+              <div>
+                <Link to="/docentes-inactivos">
+                  <p className="text-[#776694] text-xs font-bold cursor-pointer">
+                    Ver mas
+                  </p>
+                </Link>
+              </div>
+            </div>
 
+            {!cargando ? (
+              disabledTeacher
+                .slice(0, 4)
+                .map((docente) => (
+                  <InactiveTeachers
+                    key={docente.uid}
+                    uid={docente.uid}
+                    name={docente.displayName}
+                    grado={docente?.grade.grade_name}
+                  />
+                ))
+            ) : (
+              <Spinner />
+            )}
+          </section>
         </section>
       </div>
 
-      <div className="fixed z-0 bottom-0 h-[70px] w-full flex justify-around items-center text-centers shadow">
-        <div className="w-[90px] h-full">
-          <button
-            id="grade"
-            // onClick={handleBtns}
-            className="h-full rounded-none flex flex-col justify-center items-center gap-1"
-          >
-            <div className="w-16 h-8 flex justify-center items-center rounded-[20px] py-2">
-              <Grade />
-            </div>
-            <p className="text-[12.8px] font-semibold">Grados</p>
-          </button>
-        </div>
-        <div className="w-[90px] h-full">
-          <button
-            id="students"
-            // onClick={handleBtns}
-            className="h-full rounded-none flex flex-col justify-center items-center gap-1"
-          >
-            <div className="w-16 h-8 flex justify-center items-center rounded-[20px] py-2">
-              <Students />
-            </div>
-            <p className="text-[12.8px] font-semibold">Estudiantes</p>
-          </button>
-        </div>
-        <div className="w-[90px] h-full">
-          <button
-            id="teachers"
-            // onClick={handleBtns}
-            className="h-full rounded-none flex flex-col justify-center items-center gap-1"
-          >
-            <div className="w-16 h-8 flex justify-center items-center rounded-[20px] py-2">
-              <TeachersIcon />
-            </div>
-            <p className="text-[12.8px] font-semibold">Docentes</p>
-          </button>
-        </div>
-        <div className="w-[90px] h-full">
-          <button
-            // onClick={handleClick}
-            className="h-full rounded-none flex flex-col justify-center items-center gap-1"
-          >
-            <div className="w-6 h-6 flex justify-center items-center">
-              <MenuImage className="" />
-            </div>
-            <p className="text-[12.8px] font-semibold">Menu</p>
-          </button>
-        </div>
-      </div>
     </>
   );
 };

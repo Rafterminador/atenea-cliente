@@ -5,6 +5,7 @@ import Button from "../components/Button";
 import Retroceder from "../components/Retroceder";
 
 import { getStudentByID } from "../services/controllerDirector";
+import { disableStudent } from "../services/controllerDirector";
 
 const AlumnoProfile = () => {
   let alumnJSON = localStorage.getItem("alumno");
@@ -12,13 +13,20 @@ const AlumnoProfile = () => {
 
   const navigate = useNavigate();
 
-  function handleEliminar() {
-    alert("eliminandoo");
-  }
-
   function handleEdit() {
     navigate("/editar/alumno");
   }
+
+  const handleEliminar = async () => {
+    let response = await disableStudent(alumn.uid)
+    if (response.status === 201) {
+        console.log(response.body)
+    } else {
+        console.log(response.body)
+    }
+    alert("eliminandoo");
+    navigate("/ver/alumno");
+}
 
   const [nameencargado, setManager_Name] = useState();
   const [celencargado, setManager_Phone] = useState();
