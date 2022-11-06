@@ -12,21 +12,55 @@ const EditAlumnoAccount = () => {
   let alumnJSON = localStorage.getItem("alumno");
   let alumn = JSON.parse(alumnJSON);
 
-  // const [username, setUsername] = useState();
   const [birthdate, setBirthDate] = useState();
   const [direction, setDirection] = useState();
-  // const [grade, setGrade] = useState("4ipYcYTWIx9IlnS11tmh");
   const [nameencargado, setNameEncargado] = useState();
   const [celencargado, setCelencargado] = useState();
+  const [gradoactual, setGradoActual]= useState();
   const navigate = useNavigate();
+  const [grades, setGrade] = useState("");
+  const [gradeid, setGradeid] = useState([]);
+
+  let gradeJSON = localStorage.getItem("grades");
+  let grade = JSON.parse(gradeJSON);
+
+  const [gradesNames] = useState(() => {
+    let gradesNamesAux = [];
+    let gradesIdAux = [];
+    grade.forEach((value) => {
+      console.log(value.grades);
+      value.grades.forEach((grado) => {
+        if (grado != null) {
+          console.log(grado.grade_name);
+          gradesNamesAux.push(grado.grade_name)
+          gradesIdAux.push(grado.id)
+        }
+      });
+    });
+    setGradeid(gradesIdAux)
+    return gradesNamesAux;
+  });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    let graderefid;
+    console.log(gradeid)
+    for (let index = 0; index < gradesNames.length; index++) {
+      if(grades===gradesNames[index]){
+
+        console.log("hubo coincidencia", gradeid[index])
+        graderefid = gradeid[index]
+        
+        break
+      }
+      console.log("no coincide");
+      console.log(graderefid)
+    }
     let Student = {
       name_complete: alumn.nombre,
       date_birth: birthdate.toString(),
       direction: direction,
-      gradeRef: "4ipYcYTWIx9IlnS11tmh",
+      gradeRef: graderefid,
       manager_name: nameencargado,
       manager_phone: celencargado,
       enable: true,
@@ -42,10 +76,6 @@ const EditAlumnoAccount = () => {
     navigate("/ver/alumno");
   };
 
-  // function handleUsername(e) {
-  //   setUsername(e.target.value);
-  // }
-
   function handleBirthDate(e) {
     setBirthDate(e.target.value);
   }
@@ -54,9 +84,6 @@ const EditAlumnoAccount = () => {
     setDirection(e.target.value);
   }
 
-  // function handleGrade(e) {
-  //   setGrade(e.target.value);
-  // }
 
   function handleNameEncargado(e) {
     setNameEncargado(e.target.value);
@@ -66,9 +93,13 @@ const EditAlumnoAccount = () => {
     setCelencargado(e.target.value);
   }
 
-  // Similar to componentDidMount and componentDidUpdate:
+  const handleGetGrade = (e) => {
+    console.log(e);
+    setGrade(e);
+  };
+
   useEffect(() => {
-    // Update the document title using the browser API
+
     let alumnJSON = localStorage.getItem("alumno");
     let alumn = JSON.parse(alumnJSON);
 
@@ -82,7 +113,9 @@ const EditAlumnoAccount = () => {
         console.log(response.body.date_birth);
         setBirthDate(response.body.date_birth.substring(0, 10));
         setDirection(response.body.direction);
-        // setGrade(response.body.gradeRef);
+        console.log("vergrado", response.body.gradeRef)
+        setGradoActual(response.body.gradeRef)
+
       } else {
         console.log(response.body);
       }
@@ -102,7 +135,6 @@ const EditAlumnoAccount = () => {
             id="username"
             type="text"
             name="username"
-            // onChange={handleUsername}
             className="font-normal border-solid border-[1px] rounded-[10px] py-2.5 px-2 focus:outline-2 focus:outline-[#A954FF] h-[42px]"
             placeholder="Ingresar nombre completo"
             defaultValue={alumn.nombre}
@@ -130,15 +162,10 @@ const EditAlumnoAccount = () => {
           />
           <label htmlFor="grade">Grado</label>
           <ComboBox
-            teachers={[
-              "Primero",
-              "Segundo",
-              "Tercero",
-              "Cuarto",
-              "Quinto",
-              "Sexto",
-            ]}
-            defaultValue={"Grado Actual"}
+            teachers={gradesNames}
+            valueByDefault={gradoactual}
+            function={handleGetGrade}
+            placeholder={gradoactual}
           />
           <label htmlFor="nameencargado">
             Nombre del encargado:{" "}
