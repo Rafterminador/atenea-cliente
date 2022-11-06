@@ -3,7 +3,6 @@ import SearchBar from '../components/SearchBar'
 import Grade from '../components/Grade'
 import AddButton from '../components/AddButton'
 import { useNavigate } from 'react-router-dom'
-import BottomNavbar from "../components/BottomNavbar";
 import { getEnabledTeachers } from "../services/controllerDirector";
 import uuid from 'react-uuid'
 import { searchGrades } from '../utils/FunctionUtils';
@@ -51,7 +50,6 @@ const Grades = () => {
         {getGrades}
         <AddButton function={handleClick} />
       </div>
-      <BottomNavbar />
     </>
   )
 }

@@ -2,7 +2,6 @@ import React from 'react'
 import HomeImg from "../assets/images/home.svg";
 import ArrowDown from "../assets/images/arrow-down.svg";
 import Image from "../components/Image";
-import BottomNavbar from "../components/BottomNavbar";
 
 export default function Home() {
   document.body.classList.remove("stop-scrolling");
@@ -30,7 +29,6 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <BottomNavbar />
     </div>
   );
 }

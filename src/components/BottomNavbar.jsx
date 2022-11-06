@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { ReactComponent as Grade } from "../assets/images/grade.svg";
 import { ReactComponent as Students } from "../assets/images/students.svg";
 import { ReactComponent as Teachers } from "../assets/images/teachers.svg";
@@ -8,6 +8,7 @@ import Menu from "../components/Menu";
 
 const BottomNavbar = () => {
     const navigate = useNavigate();
+    const location = useLocation();
     const ref = useRef(null);
     const [hidden, setHidden] = useState("hidden");
     const [animation, setAnimation] = useState("");
@@ -55,6 +56,17 @@ const BottomNavbar = () => {
     }
 
     useEffect(() => {
+        console.log('pathname', location.pathname);
+        if (location.pathname === "/grades") {
+            document.getElementById("grade").children[0].classList.add("bg-[#A954FF]")
+            document.getElementById("grade").children[0].children[0].classList.add("fill-white");
+        } else if (location.pathname === "/ver/alumno") {
+            document.getElementById("students").children[0].classList.add("bg-[#A954FF]")
+            document.getElementById("students").children[0].children[0].classList.add("fill-white");
+        } else if (location.pathname === "/docentes") {
+            document.getElementById("teachers").children[0].classList.add("bg-[#A954FF]")
+            document.getElementById("teachers").children[0].children[0].classList.add("fill-white");
+        }
         function handleClickOutside(event) {
             if (event.target.id === "menu") {
                 setHidden("hidden");
