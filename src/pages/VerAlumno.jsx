@@ -7,9 +7,10 @@ import AddButton from "../components/AddButton";
 import BottomNavbar from "../components/BottomNavbar";
 
 import { getAllStudents } from "../services/controllerDirector";
+import { searchByStudentName } from "../utils/FunctionUtils";
 
 const VerAlumno = () => {
-  localStorage.removeItem("alumno")
+  localStorage.removeItem("alumno");
   const navigate = useNavigate();
   function handleAdd() {
     navigate("/cuenta/alumno");
@@ -24,6 +25,8 @@ const VerAlumno = () => {
   const [primariaCuarto, setPrimariaCuarto] = useState([]);
   const [primariaQuinto, setPrimariaQuinto] = useState([]);
   const [primariaSexto, setPrimariaSexto] = useState([]);
+  const [hidden, setHidden] = useState("my-[10px]");
+  let [allStudents, setAllStudents] = useState([]);
 
   // Similar to componentDidMount and componentDidUpdate:
   useEffect(() => {
@@ -51,11 +54,37 @@ const VerAlumno = () => {
     handleGetAllStudents();
   }, []);
 
+  const handleSearchAlumno = (e) => {
+    if (e.target.value === "") {
+      setHidden("my-[10px]");
+    } else {
+      setHidden("my-[10px] hidden");
+      let arrayAux = prePrimariaPreKinder
+        .concat(prePrimariaKinder)
+        .concat(prePrimariaParvulos)
+        .concat(primariaPrimero)
+        .concat(primariaSegundo)
+        .concat(primariaTercero)
+        .concat(primariaCuarto)
+        .concat(primariaQuinto)
+        .concat(primariaSexto);
+      setAllStudents(arrayAux);
+      // console.log("Concatenados", arrayAux);
+      console.log("AllStudents", allStudents);
+      allStudents = searchByStudentName(arrayAux, e.target.value);
+      setAllStudents(allStudents);
+      console.log("AllStudents", allStudents);
+    }
+  };
+
   return (
     <>
       <div className="contenedor contenedor-admin mb-[80px]">
-        <SearchBar />
-        <div className="my-[10px]">
+        <SearchBar
+          onChange={handleSearchAlumno}
+          placeholder="Buscar un Alumno"
+        />
+        <div className={hidden}>
           <Grado grado={"PreKinder"} total={prePrimariaPreKinder.length} />
 
           {prePrimariaPreKinder.slice(0, 4).map((estudiante) => (
@@ -127,6 +156,15 @@ const VerAlumno = () => {
 
           <Grado grado={"Sexto primaria"} total={primariaSexto.length} />
           {primariaSexto.slice(0, 4).map((estudiante) => (
+            <Alumno
+              nombre={estudiante.name}
+              uid={estudiante.uid}
+              key={estudiante.uid}
+            />
+          ))}
+        </div>
+        <div className="my-[10px]">
+          {allStudents.map((estudiante) => (
             <Alumno
               nombre={estudiante.name}
               uid={estudiante.uid}

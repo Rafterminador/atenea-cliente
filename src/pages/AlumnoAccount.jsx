@@ -11,24 +11,65 @@ const AlumnoAccount = () => {
   const [username, setUsername] = useState("");
   const [birthdate, setBirthDate] = useState("");
   const [direction, setDirection] = useState("");
-  // const [grade, setGrade] = useState("4ipYcYTWIx9IlnS11tmh");
   const [nameencargado, setNameEncargado] = useState("");
   const [celencargado, setCelencargado] = useState("");
-  // const [enable, setEnable] = useState(true);
   const navigate = useNavigate();
+  const [grades, setGrade] = useState("");
+  const [gradeid, setGradeid] = useState([]);
+
+  let gradeJSON = localStorage.getItem("grades");
+  let grade = JSON.parse(gradeJSON);
+
+  const [gradesNames] = useState(() => {
+    let gradesNamesAux = [];
+    let gradesIdAux = [];
+    grade.forEach((value) => {
+      console.log(value.grades);
+      value.grades.forEach((grado) => {
+        if (grado != null) {
+          console.log(grado.grade_name);
+          gradesNamesAux.push(grado.grade_name)
+          gradesIdAux.push(grado.id)
+        }
+      });
+    });
+    setGradeid(gradesIdAux)
+    return gradesNamesAux;
+  });
+
+    
+
+  const handleGetGrade = (e) => {
+    console.log(e);
+    setGrade(e);
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    let graderefid;
+    console.log(gradeid)
+    for (let index = 0; index < gradesNames.length; index++) {
+      if(grades===gradesNames[index]){
+
+        console.log("hubo coincidencia", gradeid[index])
+        graderefid = gradeid[index]
+        
+        break
+      }
+      console.log("no coincide");
+      console.log(graderefid)
+    }
     let newStudent = {
       name_complete: username,
       date_birth: birthdate,
       direction: direction,
-      gradeRef: "4ipYcYTWIx9IlnS11tmh",
+      gradeRef: graderefid,
       manager_name: nameencargado,
       manager_phone: celencargado,
       enable: true,
     };
     let response = await createStudent(newStudent);
+    console.log(response)
     if (response.status === 201) {
       console.log(response.body);
     } else {
@@ -49,10 +90,6 @@ const AlumnoAccount = () => {
   function handleDirection(e) {
     setDirection(e.target.value);
   }
-
-  // function handleGrade(e) {
-  //   setGrade(e.target.value);
-  // }
 
   function handleNameEncargado(e) {
     setNameEncargado(e.target.value);
@@ -95,16 +132,12 @@ const AlumnoAccount = () => {
           />
           <label htmlFor="grade">Grado</label>
           <ComboBox
-            teachers={[
-              "Primero",
-              "Segundo",
-              "Tercero",
-              "Cuarto",
-              "Quinto",
-              "Sexto",
-            ]}
-            placeholder={"Seleccionar Grado"}
+            teachers={gradesNames}
+            valueByDefault={""}
+            function={handleGetGrade}
+            placeholder="Seleccionar Grado"
           />
+
           <label htmlFor="nameencargado">
             Nombre del encargado:{" "}
             <label className="text-[12px]">padre, madre u otro</label>{" "}
