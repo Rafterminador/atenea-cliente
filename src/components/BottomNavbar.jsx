@@ -1,20 +1,26 @@
 import { useEffect, useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { ReactComponent as Grade } from "../assets/images/grade.svg";
 import { ReactComponent as Students } from "../assets/images/students.svg";
 import { ReactComponent as Teachers } from "../assets/images/teachers.svg";
 import { ReactComponent as MenuImage } from "../assets/images/menu.svg";
+import { ReactComponent as Qualify } from "../assets/images/grades.svg";
+import { ReactComponent as Attendance } from "../assets/images/students.svg";
 import Menu from "../components/Menu";
 
 const BottomNavbar = () => {
     const navigate = useNavigate();
+    const location = useLocation();
     const ref = useRef(null);
     const [hidden, setHidden] = useState("hidden");
     const [animation, setAnimation] = useState("");
+    const userJSON = localStorage.getItem('usuario')
+    const usuario = JSON.parse(userJSON)
+    const valueByDefault = (valueRolDirector, valueRolTeacher) => {
+        return usuario?.role === "director" || usuario?.role === "admin" ? valueRolDirector : valueRolTeacher
+    }
     const [urls] = useState(() => {
-        const userJSON = localStorage.getItem('usuario')
-        const usuario = JSON.parse(userJSON)
-        return usuario?.role === "director" || usuario?.role === "admin" ? ["/grades", "/ver/alumno", "/docentes"] : ["#", "#", "#"]
+        return valueByDefault(["/grades", "/ver/alumno", "/docentes"], ["#", "#", "#"])
     });
     function handleClick(e) {
         setHidden("");
@@ -54,6 +60,17 @@ const BottomNavbar = () => {
     }
 
     useEffect(() => {
+        console.log('pathname', location.pathname);
+        if (location.pathname === "/grades") {
+            document.getElementById("grade").children[0].classList.add("bg-[#A954FF]")
+            document.getElementById("grade").children[0].children[0].classList.add("fill-white");
+        } else if (location.pathname === "/ver/alumno") {
+            document.getElementById("students").children[0].classList.add("bg-[#A954FF]")
+            document.getElementById("students").children[0].children[0].classList.add("fill-white");
+        } else if (location.pathname === "/docentes") {
+            document.getElementById("teachers").children[0].classList.add("bg-[#A954FF]")
+            document.getElementById("teachers").children[0].children[0].classList.add("fill-white");
+        }
         function handleClickOutside(event) {
             if (event.target.id === "menu") {
                 setHidden("hidden");
@@ -65,7 +82,7 @@ const BottomNavbar = () => {
         return () => {
             document.removeEventListener("click", handleClickOutside);
         };
-    }, [ref]);
+    }, [ref, location.pathname]);
 
     return (
         <>
@@ -79,7 +96,7 @@ const BottomNavbar = () => {
                         <div className="w-16 h-8 flex justify-center items-center rounded-[20px] py-2">
                             <Grade />
                         </div>
-                        <p className="text-[12.8px] font-semibold">Grados</p>
+                        <p className="text-[12.8px] font-semibold">{valueByDefault("Grados", "Mis Grados")}</p>
                     </button>
                 </div>
                 <div className="w-[90px] h-full">
@@ -89,9 +106,10 @@ const BottomNavbar = () => {
                         className="h-full rounded-none flex flex-col justify-center items-center gap-1"
                     >
                         <div className="w-16 h-8 flex justify-center items-center rounded-[20px] py-2">
-                            <Students />
+                            {/* <Students /> */}
+                            {valueByDefault(<Students />, <Qualify />)}
                         </div>
-                        <p className="text-[12.8px] font-semibold">Estudiantes</p>
+                        <p className="text-[12.8px] font-semibold">{valueByDefault("Estudiantes", "Calificar")}</p>
                     </button>
                 </div>
                 <div className="w-[90px] h-full">
@@ -101,9 +119,10 @@ const BottomNavbar = () => {
                         className="h-full rounded-none flex flex-col justify-center items-center gap-1"
                     >
                         <div className="w-16 h-8 flex justify-center items-center rounded-[20px] py-2">
-                            <Teachers />
+                            {/* <Teachers /> */}
+                            {valueByDefault(<Teachers />, <Attendance />)}
                         </div>
-                        <p className="text-[12.8px] font-semibold">Docentes</p>
+                        <p className="text-[12.8px] font-semibold">{valueByDefault("Docentes", "Asistencia")}</p>
                     </button>
                 </div>
                 <div className="w-[90px] h-full">
@@ -114,7 +133,7 @@ const BottomNavbar = () => {
                         <div className="w-6 h-6 flex justify-center items-center">
                             <MenuImage className="" />
                         </div>
-                        <p className="text-[12.8px] font-semibold">Menu</p>
+                        <p className="text-[12.8px] font-semibold">{valueByDefault("Menu", "Más")}</p>
                     </button>
                 </div>
             </div>

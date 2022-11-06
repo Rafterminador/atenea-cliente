@@ -5,6 +5,7 @@ import IconWarning from "../assets/images/icon-warning.svg";
 import { useNavigate } from "react-router-dom";
 import Input from "../components/Input";
 import Spinner from "../components/Spinner";
+import Button from "../components/Button";
 
 //backend
 import { forgotPassword } from "../services/controllerUser";
@@ -20,8 +21,8 @@ const OlvidePassword = () => {
   const handleValidarCodigo = async (e) => {
     setTextBadEmail("hidden");
     e.preventDefault();
-    
-    if(email === ''){
+
+    if (email === '') {
       setInvalid("invalid");
       setTextResponse("Porfavor ingresar un correo");
       setTextBadEmail("");
@@ -99,14 +100,7 @@ const OlvidePassword = () => {
 
       {/* div de los botones */}
       <div className="flex flex-col mb-5">
-        <button
-          type="submit"
-          form="resetpassword-form"
-          className="bg-[#7064FF] text-white nrm-button"
-          onClick={handleValidarCodigo}
-        >
-          Continuar
-        </button>
+        <Button text="Continuar" typeButton={"button-type-2"} className="" type="submit" form="resetpassword-form" onClick={handleValidarCodigo} disabled={cargando ? 1 : 0} />
       </div>
     </div>
   );

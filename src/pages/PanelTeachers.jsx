@@ -7,7 +7,6 @@ import SearchBar from "../components/SearchBar";
 import { useEffect } from "react";
 import { useState } from "react";
 import Spinner from "../components/Spinner";
-import BottomNavbar from "../components/BottomNavbar";
 import { searchByTeacherName } from "../utils/FunctionUtils";
 const Teachers = () => {
   const [newUsers, setNewUsers] = useState([]);
@@ -193,7 +192,6 @@ const Teachers = () => {
         </section>
       </div>
 
-      <BottomNavbar />
     </>
   );
 };
