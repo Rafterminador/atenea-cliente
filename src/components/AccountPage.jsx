@@ -4,9 +4,8 @@ import Tel from "../../src/assets/images/tel.svg";
 import Confirmation from "../assets/images/confirmar-docente.svg";
 import Deshabilitar from "../assets/images/deshabilitar-docente.svg";
 import { useEffect } from "react";
-import { useParams } from "react-router-dom";
 import { AlertButton } from "../utils/AlertButton";
-import { GetOneTeacherByID, updateRol, DisableTeacher, EnableTeacher } from "../services/controllerDirector";
+import { GetOneTeacherByID, updateRol, DisableTeacher, EnableTeacher, getAllTeachers } from "../services/controllerDirector";
 import { useState } from "react";
 import Retroceder from "./Retroceder";
 import Grades from "./Grades";
@@ -15,16 +14,23 @@ import Spinner from "./Spinner";
 const Swal = require("sweetalert2");
 
 const AccountPage = () => {
-  const params = useParams();
   const [cargando, setCargando] = useState(true);
   const [teacher, setTeacher] = useState({});
   const [grades, setGrades] = useState([]);
   const [rol, setRol] = useState("hidden");
   const [visibleButtom, setVisibleButtom] = useState("");
+  const [id, setId] = useState({});
+
+
+
   useEffect(() => {
+    let gradoJSON = localStorage.getItem("docente");
+    let seteargrado = JSON.parse(gradoJSON);
+    console.log(seteargrado)
+    setId(seteargrado)
     const getOneTeacherByID = async () => {
       try {
-        let response = await GetOneTeacherByID(params.id);
+        let response = await GetOneTeacherByID(seteargrado);
         setTeacher(response.body);
         setGrades(response.body.grades);
         if (response.body.rol === "") {
@@ -36,11 +42,30 @@ const AccountPage = () => {
         console.log(error);
       }
     };
+
     getOneTeacherByID();
-  });
+  
+  },[id]);
+
+  const getOneTeacherByID = async () => {
+    try {
+      let response = await GetOneTeacherByID(id);
+      setTeacher(response.body);
+      setGrades(response.body.grades);
+      if (response.body.rol === "") {
+        setRol("");
+        setVisibleButtom("hidden");
+      }
+      setCargando(false);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const handleEdit = async (e) => {
     e.preventDefault();
+
+    
     Swal.fire(
       AlertButton.dataAlertUnBotonMorado(
         "¿Confirmar docente?",
@@ -60,9 +85,20 @@ const AccountPage = () => {
 
   const UpdateRolDocente = async () => {
     console.log("entro en updateRolDocente");
-    await updateRol(params.id, "docente");
+    await updateRol(id, "docente");
+    let response = await getAllTeachers();
 
-    Swal.fire(AlertButton.dataAlertSuccess("docente confirmado"));
+    if (response.status === 200) {
+      console.log(response.body);
+      const teacherJSON = JSON.stringify(response.body)
+      localStorage.setItem('docentes', teacherJSON)
+      Swal.fire(AlertButton.dataAlertSuccess("docente confirmado"));
+      getOneTeacherByID();
+    } else {
+      console.log(response.body);
+    }
+
+    
   };
 
   const EnableDocente = async (e) => {
@@ -86,9 +122,21 @@ const AccountPage = () => {
 
   const DeshabilitarDocente = async () => {
     console.log("entro en updateRolDocente");
-    await DisableTeacher(params.id);
+    await DisableTeacher(id);
 
-    Swal.fire(AlertButton.dataAlertSuccess("docente deshabilitado"));
+    let response = await getAllTeachers();
+
+    if (response.status === 200) {
+      console.log(response.body);
+      const teacherJSON = JSON.stringify(response.body)
+      localStorage.setItem('docentes', teacherJSON)
+      Swal.fire(AlertButton.dataAlertSuccess("docente deshabilitado"));
+      getOneTeacherByID();
+    } else {
+      console.log(response.body);
+    }
+
+    
   };
 
   const InableDocente = async (e) => {
@@ -112,9 +160,20 @@ const AccountPage = () => {
 
   const HabilitarDocente = async () => {
     console.log("entro en updateRolDocente");
-    await EnableTeacher(params.id);
+    await EnableTeacher(id);
+    let response = await getAllTeachers();
 
-    Swal.fire(AlertButton.dataAlertSuccess("docente habilitado"));
+    if (response.status === 200) {
+      console.log(response.body);
+      const teacherJSON = JSON.stringify(response.body)
+      localStorage.setItem('docentes', teacherJSON)
+      Swal.fire(AlertButton.dataAlertSuccess("docente habilitado"));
+      getOneTeacherByID();
+    } else {
+      console.log(response.body);
+    }
+
+    
   };
 
   return (
