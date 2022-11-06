@@ -35,7 +35,7 @@ import AccountPage from "./components/AccountPage";
 import NuevosDocentes from "./pages/NewTeachers";
 import DocentesActivos from "./pages/DocentesActivos";
 import DocentesInactivos from "./pages/DocentesInactivos";
-
+import BottomNavbarDirector from "./utils/BottomNavbarDirector";
 
 function App() {
   return (
@@ -51,16 +51,22 @@ function App() {
 
         <Route element={<PrivateRouteDirector />}>
           {/* rutas para la S02 - Administrativo */}
-          <Route path="/grades/" element={<Grades />} />
+          <Route element={<BottomNavbarDirector />}>
+            <Route path="/home" element={<Home />} />
+            <Route path="/grades/" element={<Grades />} />
+            <Route path="/ver/alumno" element={<VerAlumno />} />
+            <Route path="/docentes" element={<Teachers />} />
+          </Route>
+
+
           <Route path="/grades/create" element={<NewGrade />} />
           <Route path="/grades/update/:id" element={<UpdateGrade />} />
           <Route path="/grades/update/:id/edit" element={<EditGrade />} />
 
-          <Route path="/home" element={<Home />} />
           <Route path="/cuenta" element={<Account />} />
           <Route path="/tutoriales" element={<VideoTutorials />} />
 
-          <Route path="/ver/alumno" element={<VerAlumno />} />
+
           <Route path="/cuenta/alumno" element={<AlumnoAccount />} />
           <Route path="/editar/alumno" element={<EditAlumnoAccount />} />
           <Route path="/perfil/alumno" element={<AlumnoProfile />} />
@@ -69,7 +75,7 @@ function App() {
 
           {/* Docentes */}
 
-          <Route path="/docentes" element={<Teachers />} />
+
           <Route path="/cuenta/docente/:id" element={<AccountPage />} />
           <Route path="/nuevos-docentes" element={<NuevosDocentes />} />
           <Route path="/docentes-activos" element={<DocentesActivos />} />
@@ -78,7 +84,9 @@ function App() {
 
         <Route element={<PrivateRouteDocente />}>
           {/* rutas para la S03 - Área para docente */}
-          <Route path="/home/docente" element={<Home />} />
+          <Route element={<BottomNavbarDirector />}>
+            <Route path="/home/docente" element={<Home />} />
+          </Route>
           <Route path="/grades/teacher/:id" element={<GradesAssigned />} />
           <Route path="/grades/teacher/:id/courses" element={<Courses />} />
           <Route

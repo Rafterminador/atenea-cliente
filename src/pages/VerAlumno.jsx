@@ -4,7 +4,6 @@ import Grado from "../components/Grado";
 import SearchBar from "../components/SearchBar";
 import { useNavigate } from "react-router-dom";
 import AddButton from "../components/AddButton";
-import BottomNavbar from "../components/BottomNavbar";
 
 import { getAllStudents } from "../services/controllerDirector";
 import { searchByStudentName } from "../utils/FunctionUtils";
@@ -174,7 +173,6 @@ const VerAlumno = () => {
         </div>
         <AddButton function={handleAdd} />
       </div>
-      <BottomNavbar />
     </>
   );
 };
