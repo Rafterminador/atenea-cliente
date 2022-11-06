@@ -24,21 +24,10 @@ const AccountPage = () => {
 
 
   useEffect(() => {
-
-    // let gradoJSON = localStorage.getItem("docente");
-    // let seteargrado = JSON.parse(gradoJSON);
-    // setId(teachersName)
-    // setCargando(false)
-    // console.log(id)
-
-
     let gradoJSON = localStorage.getItem("docente");
     let seteargrado = JSON.parse(gradoJSON);
     console.log(seteargrado)
     setId(seteargrado)
-
-    console.log(id)
-
     const getOneTeacherByID = async () => {
       try {
         let response = await GetOneTeacherByID(seteargrado);
@@ -56,14 +45,7 @@ const AccountPage = () => {
 
     getOneTeacherByID();
   
-  },[]);
-
-
-
-
-  // useEffect(() => {
-  //   getOneTeacherByID();
-  // }, [])
+  },[id]);
 
   const getOneTeacherByID = async () => {
     try {

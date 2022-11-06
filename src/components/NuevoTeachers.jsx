@@ -5,8 +5,8 @@ const NewTeachers = ({ id, name, date }) => {
   const handleClick = () => {
     const gradeJSON = JSON.stringify(id)
     localStorage.setItem('docente', gradeJSON)
-  
-}
+
+  }
   return (
     <>
       <div className="flex justify-between">
