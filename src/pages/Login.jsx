@@ -16,7 +16,7 @@ import Input from "../components/Input";
 
 //backend 
 import { login } from "../services/controllerUser"
-import { getAllGrades } from "../services/controllerDirector";
+import { getAllGrades, getAllTeachers } from "../services/controllerDirector";
 
 const Login = () => {
   const firebase = new Firebase();
@@ -73,7 +73,24 @@ const Login = () => {
             console.log(response.body);
           }
         };
+        const handlegetAllTeacher = async () => {
+          try {
+            let response = await getAllTeachers();
+
+            if (response.status === 200) {
+              console.log(response.body);
+              const teacherJSON = JSON.stringify(response.body)
+              localStorage.setItem('docentes', teacherJSON)
+            } else {
+              console.log(response.body);
+            }
+            
+          } catch (error) { 
+            console.log(error)
+          }
+        };
         getAllGradesBackend();
+        handlegetAllTeacher();
         navigate("/home");
       } else {
         navigate("/home/docente")
