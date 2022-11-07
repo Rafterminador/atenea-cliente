@@ -4,10 +4,13 @@ import Notes from "../components/Notes";
 import Button from "../components/Button";
 import Retroceder from "../components/Retroceder";
 
+let alumnJSON = localStorage.getItem('alumno')
+let alumn = (JSON.parse(alumnJSON))
+
 const Boletin = (props) => {
   return (
     <div className="flex flex-col">
-      <Retroceder text="José Fernando Arredondo Aparicio" />
+      <Retroceder text={alumn.nombre} />
 
       <div className="bg-[#DBD8FF] h-[1px] my-0"></div>
 

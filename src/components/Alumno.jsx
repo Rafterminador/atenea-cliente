@@ -10,7 +10,16 @@ const Alumno = (props) => {
   function handleProfile() {
     const alumnJSON = JSON.stringify(props)
     localStorage.setItem('alumno', alumnJSON)
-    navigate("/perfil/alumno");
+    let userJSON = localStorage.getItem("usuario");
+    let useUser = JSON.parse(userJSON);
+
+    if (useUser.role === "director"){
+      navigate("/perfil/alumno");
+    }
+    
+    if (useUser.role === "docente"){
+      navigate("/profile/alumno");
+    }
 
 
 

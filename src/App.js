@@ -58,14 +58,12 @@ function App() {
             <Route path="/docentes" element={<Teachers />} />
           </Route>
 
-
           <Route path="/grades/create" element={<NewGrade />} />
           <Route path="/grades/update/:id" element={<UpdateGrade />} />
           <Route path="/grades/update/:id/edit" element={<EditGrade />} />
 
           <Route path="/cuenta" element={<Account />} />
           <Route path="/tutoriales" element={<VideoTutorials />} />
-
 
           <Route path="/cuenta/alumno" element={<AlumnoAccount />} />
           <Route path="/editar/alumno" element={<EditAlumnoAccount />} />
@@ -75,18 +73,20 @@ function App() {
 
           {/* Docentes */}
 
-
           <Route path="/cuenta/docente/:id" element={<AccountPage />} />
           <Route path="/nuevos-docentes" element={<NuevosDocentes />} />
           <Route path="/docentes-activos" element={<DocentesActivos />} />
           <Route path="/docentes-inactivos" element={<DocentesInactivos />} />
-        </ Route >
+        </Route>
 
         <Route element={<PrivateRouteDocente />}>
           {/* rutas para la S03 - Área para docente */}
           <Route element={<BottomNavbarDirector />}>
             <Route path="/home/docente" element={<Home />} />
           </Route>
+          <Route path="/todos/alumnos" element={<AllAlumnos />} />
+          <Route path="/profile/alumno" element={<AlumnoProfile />} />
+          <Route path="/boletin/docentes" element={<Boletin />} />
           <Route path="/grades/teacher/:id" element={<GradesAssigned />} />
           <Route path="/grades/teacher/:id/courses" element={<Courses />} />
           <Route

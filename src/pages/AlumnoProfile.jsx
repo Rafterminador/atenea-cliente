@@ -18,21 +18,36 @@ const AlumnoProfile = () => {
   }
 
   const handleEliminar = async () => {
-    let response = await disableStudent(alumn.uid)
+    let response = await disableStudent(alumn.uid);
     if (response.status === 201) {
-        console.log(response.body)
+      console.log(response.body);
     } else {
-        console.log(response.body)
+      console.log(response.body);
     }
     alert("eliminandoo");
     navigate("/ver/alumno");
-}
+  };
 
   const [nameencargado, setManager_Name] = useState();
   const [celencargado, setManager_Phone] = useState();
   const [datebirth, setDate_Brith] = useState();
   const [direction, setDirection] = useState();
   const [grade, setGrade] = useState();
+  const [hidden, setHidden] = useState("");
+
+
+  useEffect(() => {
+    let userJSON = localStorage.getItem("usuario");
+    let useUser = JSON.parse(userJSON);
+    
+    if (useUser.role === "docente") {
+      setHidden("hidden fixed top-[620px] left-5 right-5");
+    }
+
+    if (useUser.role === "director") {
+      setHidden("fixed top-[620px] left-5 right-5");
+    }
+  }, []);
 
   // Similar to componentDidMount and componentDidUpdate:
   useEffect(() => {
@@ -73,7 +88,7 @@ const AlumnoProfile = () => {
         />
       </div>
 
-      <div className="fixed top-[620px] left-5 right-5">
+      <div className={hidden}>
         <Button
           onClick={handleEliminar}
           text="Eliminar alumno"

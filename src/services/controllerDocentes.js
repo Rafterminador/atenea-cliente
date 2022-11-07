@@ -11,4 +11,17 @@ const getInformation = (responseToReturn) => {
     }
     return responseToReturn
 }
+
+
+const GetOneTeacherByID = async (idTeacher) => {
+    let responseToReturn
+    api.defaults.headers.common["Content-Type"] = "application/json"
+    await api.get(`api/v1/user/get-teacher/${idTeacher}`)
+        .then((response) => {
+            responseToReturn = response
+        }).catch((error) => {
+            responseToReturn = error
+        });
+    return getInformation(responseToReturn)
+}
 export { }
