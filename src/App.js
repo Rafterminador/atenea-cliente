@@ -36,6 +36,8 @@ import NuevosDocentes from "./pages/NewTeachers";
 import DocentesActivos from "./pages/DocentesActivos";
 import DocentesInactivos from "./pages/DocentesInactivos";
 import BottomNavbarDirector from "./utils/BottomNavbarDirector";
+import Asistencia from "./pages/Asistencia";
+import TomarAsistencia from "./components/TomarAsistencia";
 
 function App() {
   return (
@@ -80,9 +82,25 @@ function App() {
           <Route path="/nuevos-docentes" element={<NuevosDocentes />} />
           <Route path="/docentes-activos" element={<DocentesActivos />} />
           <Route path="/docentes-inactivos" element={<DocentesInactivos />} />
+
+
+
+          <Route path="/backend" element={<ControllerProving />} />
+          <Route path="/grades/teacher/:id" element={<GradesAssigned />} />
+          <Route path="/grades/teacher/:id/courses" element={<Courses />} />
+          <Route
+            path="/grades/teacher/:id/courses/students"
+            element={<Students />}
+          />
+          <Route
+            path="/grades/teacher/:id/courses/:courseId"
+            element={<Course />}
+          />
         </ Route >
 
         <Route element={<PrivateRouteDocente />}>
+
+
           {/* rutas para la S03 - Área para docente */}
           <Route element={<BottomNavbarDirector />}>
             <Route path="/home/docente" element={<Home />} />
@@ -115,6 +133,10 @@ function App() {
           />
           <Route path="/backend" element={<ControllerProving />} />
           {/* Aquí termina la ruta para la S03 - Área para docente */}
+
+          {/* Pagina asistencia */}
+          <Route path="/asistencia" element={<Asistencia />} />
+          <Route path="/asistencia/tomar-asistencia/:id" element={<TomarAsistencia />} />
         </Route>
       </Routes>
     </BrowserRouter>

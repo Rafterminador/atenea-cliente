@@ -20,7 +20,7 @@ const BottomNavbar = () => {
         return usuario?.role === "director" || usuario?.role === "admin" ? valueRolDirector : valueRolTeacher
     }
     const [urls] = useState(() => {
-        return valueByDefault(["/grades", "/ver/alumno", "/docentes"], ["#", "#", "#"])
+        return valueByDefault(["/grades", "/ver/alumno", "/docentes"], ["#", "#", "/asistencia"])
     });
     function handleClick(e) {
         setHidden("");
