@@ -269,6 +269,12 @@ hr.administracion {
   border: 2px solid #ff54b0;
 }
 
+.confirmar-button {
+  background-color: #fff;
+  color: #7064FF;
+  border: 2px solid #DBD8FF;
+}
+
 .sweet-cancel-button {
   background: #ffffff;
 

@@ -83,7 +83,7 @@ function App() {
           <Route path="/docentes-activos" element={<DocentesActivos />} />
           <Route path="/docentes-inactivos" element={<DocentesInactivos />} />
 
-          
+
 
           <Route path="/backend" element={<ControllerProving />} />
           <Route path="/grades/teacher/:id" element={<GradesAssigned />} />
@@ -101,11 +101,6 @@ function App() {
         <Route element={<PrivateRouteDocente />}>
 
 
-          {/* Pagina asistencia */}
-          <Route path="/asistencia" element={<Asistencia />} />
-          <Route path="/asistencia/tomar-asistencia" element={<TomarAsistencia />} />
-
-          
           {/* rutas para la S03 - Área para docente */}
           <Route element={<BottomNavbarDirector />}>
             <Route path="/home/docente" element={<Home />} />
@@ -138,6 +133,10 @@ function App() {
           />
           <Route path="/backend" element={<ControllerProving />} />
           {/* Aquí termina la ruta para la S03 - Área para docente */}
+
+          {/* Pagina asistencia */}
+          <Route path="/asistencia" element={<Asistencia />} />
+          <Route path="/asistencia/tomar-asistencia/:id" element={<TomarAsistencia />} />
         </Route>
       </Routes>
     </BrowserRouter>

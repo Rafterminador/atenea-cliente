@@ -46,6 +46,13 @@
     color: #0B7F14    ;
 }
 
+.button-type-5 {
+    border: 2px solid #FFF0DE;
+    background-color: #FFF0DE;
+    border-radius: 20px;
+    color: #B74D00    ;
+}
+
 .input {
     box-sizing: border-box;
     background: #FFFFFF;

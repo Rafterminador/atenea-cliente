@@ -1,35 +1,28 @@
 import React, { useEffect, useState } from "react";
 import ViewGrados from "../components/ViewGrados";
 import BottomNavbar from "../components/BottomNavbar";
-import { GetMyStudents } from "../services/controllerDocentes";
 const Asistencia = () => {
-  const [idDocente, setIdDocente] = useState({});
 
   const [grades, setGrades] = useState([]);
+  const [vacio, setVacio] = useState(false);
 
   useEffect(() => {
 
-    const usuarioJSON = localStorage.getItem('usuario')
-    const usuario = JSON.parse(usuarioJSON)
+    const gradosJSON = localStorage.getItem('grados')
+    const grados = JSON.parse(gradosJSON)
 
-    setIdDocente(usuario.uid)
 
-    console.log("xdxd")
+    setGrades(grados)
+    if (grados === "No hay grados a cargo del docente por el momento") {
+      setVacio(false)
 
-    const getOneTeacherByID = async () => {
-      try {
-        let response = await GetMyStudents(usuario.uid);
-        console.log(response)
-        setGrades(response.body);
-      } catch (error) {
-        console.log(error);
-      }
-    };
+    } else {
+      setVacio(true)
+    }
+    
+  }, [])
 
-    getOneTeacherByID();
-  }, [idDocente])
 
- 
 
   return (
     <>
@@ -38,11 +31,14 @@ const Asistencia = () => {
           Tomar asistencia de
         </p>
 
+        {vacio ? (
+          grades.map((grade) => (
+            <ViewGrados key={grade.id} id={grade.id} name={grade.grade_name} lengtAlumnos={grade.size} students={grade.students} />
 
-        {grades.map((grade) => (
-          <ViewGrados key={grade.id} name={grade.grade_name} lengtAlumnos={grade.size} />
+          ))
+        ) : (<p>{grades}</p>)}
 
-        ))} 
+
       </div>
 
       {/* NabBAR initial */}
