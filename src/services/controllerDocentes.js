@@ -54,4 +54,28 @@ const postScores = async (info) => {
   return getInformation(responseToReturn);
 };
 
-export { getGrades, getAreas, postScores };
+const GetMyStudents = async (idTeacher) => {
+    let responseToReturn
+    api.defaults.headers.common["Content-Type"] = "application/json"
+    await api.get(`api/v1/attendence/get-mystudents/${idTeacher}`)
+        .then((response) => {
+            responseToReturn = response
+        }).catch((error) => {
+            responseToReturn = error
+        });
+    return getInformation(responseToReturn)
+}
+
+const newAttendence = async (data) => {
+    let responseToReturn
+    api.defaults.headers.common["Content-Type"] = "application/json"
+    await api.post(`api/v1/attendence/new-attendence`, data)
+        .then((response) => {
+            responseToReturn = response
+        }).catch((error) => {
+            responseToReturn = error
+        });
+    return getInformation(responseToReturn)
+}
+
+export { GetMyStudents, newAttendence, getGrades, getAreas, postScores };

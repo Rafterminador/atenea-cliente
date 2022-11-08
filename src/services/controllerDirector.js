@@ -7,8 +7,9 @@ const api = axios.create({
 const getAllTeachers = async () => {
     let responseToReturn
     api.defaults.headers.common["Content-Type"] = "application/json"
-    await api.get("api/v1/user/get-users/")
+    await api.get("api/v1/user/get-teachers/")
         .then((response) => {
+            console.log(response.data)
             responseToReturn = response
         }).catch((error) => {
             responseToReturn = error
@@ -60,6 +61,7 @@ const enableTeacher = async (teacher) => {
 
 //Los roles son: admin, docente, director
 const updateRol = async (teacher, rol) => {
+    console.log(teacher, rol)
     let responseToReturn
     api.defaults.headers.common["Content-Type"] = "application/json"
     await api.put(`api/v1/user/update-user-rol/?id=${teacher}&type=${rol}`)
@@ -263,8 +265,44 @@ const deleteGrade = async (idGrade) => {
     return getInformation(responseToReturn)
 }
 
+const GetOneTeacherByID = async (idTeacher) => {
+    let responseToReturn
+    api.defaults.headers.common["Content-Type"] = "application/json"
+    await api.get(`api/v1/user/get-teacher/${idTeacher}`)
+        .then((response) => {
+            responseToReturn = response
+        }).catch((error) => {
+            responseToReturn = error
+        });
+    return getInformation(responseToReturn)
+}
+
+const DisableTeacher = async (idTeacher) => {
+    let responseToReturn
+    api.defaults.headers.common["Content-Type"] = "application/json"
+    await api.put(`api/v1/user/disable-teacher/${idTeacher}`)
+        .then((response) => {
+            responseToReturn = response
+        }).catch((error) => {
+            responseToReturn = error
+        });
+    return getInformation(responseToReturn)
+}
+
+const EnableTeacher = async (idTeacher) => {
+    let responseToReturn
+    api.defaults.headers.common["Content-Type"] = "application/json"
+    await api.put(`api/v1/user/enable-teacher/${idTeacher}`)
+        .then((response) => {
+            responseToReturn = response
+        }).catch((error) => {
+            responseToReturn = error
+        });
+    return getInformation(responseToReturn)
+
+}
 
 export {
-    getAllTeachers, getUserByID, disableTeacher, enableTeacher, updateRol, getAllStudents, getStudentsByGrade, getStudentByID, createStudent, updateStudent, disableStudent,
+    EnableTeacher, DisableTeacher, GetOneTeacherByID, getAllTeachers, getUserByID, disableTeacher, enableTeacher, updateRol, getAllStudents, getStudentsByGrade, getStudentByID, createStudent, updateStudent, disableStudent,
     enableStudent, getAllBoletines, getEnabledTeachers, getdisableTeachers, getAllGrades, createGrade, updateGrade, deleteGrade
 }

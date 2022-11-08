@@ -4,11 +4,14 @@ import SearchBar from "../components/SearchBar";
 import Retroceder from "../components/Retroceder";
 
 import { getAllStudents } from "../services/controllerDirector";
+import { searchByStudentName } from "../utils/FunctionUtils";
 
 const AllAlumnos = () => {
   let gradoJSON = localStorage.getItem("seteargrado");
   let seteargrado = JSON.parse(gradoJSON);
   const [actual, setActual] = useState([]);
+  const [hidden, setHidden] = useState("");
+  let [allStudents, setAllStudents] = useState([]);
 
   // Similar to componentDidMount and componentDidUpdate:
   useEffect(() => {
@@ -57,36 +60,69 @@ const AllAlumnos = () => {
     handleGetAllStudents();
   }, []);
 
+  const handleSearchAlumno = (e) => {
+    console.log(allStudents)
+    if (e.target.value === "") {
+      setHidden("");
+      setAllStudents([]);
+    } else {
+      setHidden("hidden");
+      // let arrayAux = actual;
+      // setAllStudents(arrayAux);
+      // console.log("Concatenados", arrayAux);
+      console.log("AllStudents", allStudents);
+      allStudents = searchByStudentName(actual, e.target.value);
+      setAllStudents(allStudents);
+      console.log("AllStudents", allStudents);
+    }
+  };
+
   return (
-    <div className="contenedor contenedor-admin mb-[80px]">
-      <Retroceder text={seteargrado.grado} />
+    <>
+      <div className="contenedor contenedor-admin mb-[80px]">
+        <Retroceder text={seteargrado.grado} />
 
-      <div className="my-2">
-        <SearchBar />
-      </div>
-
-      <div className="text-start m-5">
-        <label className="font-sans text-[16px]">
-          Número de alumnos en{" "}
-          <label className="font-semibold text-[16px] text-[#4D3483]">
-            {seteargrado.grado}:{" "}
-            <label className="font-semibold text-[16px]">
-              {seteargrado.total}
-            </label>
-          </label>{" "}
-        </label>
-      </div>
-
-      <div className="my-[30px]">
-        {actual.map((estudiante) => (
-          <Alumno
-            nombre={estudiante.name}
-            uid={estudiante.uid}
-            key={estudiante.uid}
+        <div className="my-2">
+          <SearchBar
+            onChange={handleSearchAlumno}
+            placeholder="Buscar un Alumno"
           />
-        ))}
+        </div>
+        <div className={hidden}>
+          <div className="text-start m-5">
+            <label className="font-sans text-[16px]">
+              Número de alumnos en{" "}
+              <label className="font-semibold text-[16px] text-[#4D3483]">
+                {seteargrado.grado}:{" "}
+                <label className="font-semibold text-[16px]">
+                  {seteargrado.total}
+                </label>
+              </label>{" "}
+            </label>
+          </div>
+
+          <div className="my-[30px]">
+            {actual.map((estudiante) => (
+              <Alumno
+                nombre={estudiante.name}
+                uid={estudiante.uid}
+                key={estudiante.uid}
+              />
+            ))}
+          </div>
+        </div>
+        <div className="">
+          {allStudents.map((estudiante) => (
+            <Alumno
+              nombre={estudiante.name}
+              uid={estudiante.uid}
+              key={estudiante.uid}
+            />
+          ))}
+        </div>
       </div>
-    </div>
+
+    </>
   );
 };
 
