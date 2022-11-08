@@ -17,7 +17,6 @@ const NameAsistencia = ({ id, name_student }) => {
 
     asistencia.push({ student: id, attendence: true });
 
-
     const AsistenciaJSON = JSON.stringify(asistencia);
     localStorage.setItem("asistencia", AsistenciaJSON);
 
@@ -34,7 +33,6 @@ const NameAsistencia = ({ id, name_student }) => {
 
     asistencia.push({ student: id, attendence: false });
 
-
     const AsistenciaJSON = JSON.stringify(asistencia);
     localStorage.setItem("asistencia", AsistenciaJSON);
   };
@@ -45,9 +43,10 @@ const NameAsistencia = ({ id, name_student }) => {
     <>
       <div className="contenedor-admin">
         <div className="container-asistencia">
-          <div className="grid grid-cols-3">
+          <p className="text-center ">Está presente</p>
+          <div className="grid grid-cols-3 mt-4">
             <p className="text-[28px] font-[1100]">¿</p>
-            <p className="text-center ">{name_student}</p>
+            <p className="text-center font-bold">{name_student}</p>
             <p className="text-[28px] text-end  font-[1100]">?</p>
           </div>
 
