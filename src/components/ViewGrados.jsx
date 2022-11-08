@@ -8,9 +8,6 @@ const ViewGrados = (props) => {
     localStorage.setItem('students', gradeJSON)
 
   }
-
-  console.log(props.students)
-  console.log(props.id)
   return (
     <>
       <div className="flex justify-between">
