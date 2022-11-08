@@ -5,11 +5,14 @@ import { ReactComponent as Grades } from "../assets/images/grades.svg";
 import { ReactComponent as Attendance } from "../assets/images/students.svg";
 import { ReactComponent as MenuImage } from "../assets/images/menu.svg";
 import Menu from "../components/Menu";
+import Spinner from "../components/Spinner";
 import { useEffect } from "react";
+import { getAreas, getGrades } from "../services/controllerDocentes";
 
 export default function GradesAssigned() {
   const [hidden, setHidden] = useState("hidden");
   const [animation, setAnimation] = useState("");
+  const [info, setInfo] = useState({ grados: "", estudiantes: "" });
   const ref = useRef(null);
 
   function handleClick(e) {
@@ -40,11 +43,70 @@ export default function GradesAssigned() {
       document.removeEventListener("click", handleClickOutside);
     };
   }, [ref]);
+
+  useEffect(() => {
+    grades();
+  }, []);
+
+  const grades = async () => {
+    const getLocalInfo = localStorage.getItem("grados");
+    if (!getLocalInfo) {
+      const getItem = localStorage.getItem("usuario");
+      const { uid } = JSON.parse(getItem);
+      const response = await getGrades(uid);
+      if (response.status === 201) {
+        const infoGrados = response.body.map(({ grade_name, id }) => [
+          grade_name,
+          id,
+        ]);
+        const response2 = await Promise.all(
+          infoGrados.map(async (item) => await getAreas(item[1]))
+        );
+        const areas = response2.map((item) => item.body.areas[0]?.area_name);
+        localStorage.setItem("areas", JSON.stringify(areas));
+        const actividades = response2.map(
+          (item) => item.body.areas[0]?.activities
+        );
+        localStorage.setItem("actividades", JSON.stringify(actividades));
+        const estudiantes = response.body.map(({ students }) => students);
+        localStorage.setItem("grados", JSON.stringify(infoGrados));
+        localStorage.setItem("estudiantes", JSON.stringify(estudiantes));
+        setInfo({ ...info, grados: infoGrados, estudiantes: estudiantes });
+      } else {
+        console.log("error", response.body);
+      }
+    } else {
+      const getGrados = localStorage.getItem("grados");
+      const getEstudiantes = localStorage.getItem("estudiantes");
+      const grados = JSON.parse(getGrados);
+      const estudiantes = JSON.parse(getEstudiantes);
+      setInfo({ ...info, grados: grados, estudiantes: estudiantes });
+    }
+  };
+
   return (
     <div className="relative">
-      <div className="contenedor contenedor-admin">
+      {/* <div className="contenedor contenedor-admin">
         <h1 className="h1-administracion">Mis Grados</h1>
-        <GradeAssigned grade="Primero Primaria" alumnos={2} id={1} />
+        <GradeAssigned grade="Primero Primaria" alumnos={2} id={1} url=''courses'/>
+      </div> */}
+      <div className="contenedor contenedor-admin">
+        <h1 className="h1-administracion">Calificar a</h1>
+        {!!info.grados ? (
+          info.grados.map((item, index) => {
+            return (
+              <GradeAssigned
+                grade={item[0]}
+                alumnos={info.estudiantes[index].length}
+                id={item[1]}
+                url={`qualify/${index}`}
+                key={item[1]}
+              />
+            );
+          })
+        ) : (
+          <Spinner />
+        )}
       </div>
       <div className="fixed z-0 bottom-0 h-[70px] w-full flex justify-around items-center text-centers shadow">
         <div className="w-[90px] h-full">

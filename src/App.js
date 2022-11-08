@@ -35,7 +35,7 @@ import AccountPage from "./components/AccountPage";
 import NuevosDocentes from "./pages/NewTeachers";
 import DocentesActivos from "./pages/DocentesActivos";
 import DocentesInactivos from "./pages/DocentesInactivos";
-
+import Qualify from "./pages/Qualify";
 
 function App() {
   return (
@@ -74,7 +74,7 @@ function App() {
           <Route path="/nuevos-docentes" element={<NuevosDocentes />} />
           <Route path="/docentes-activos" element={<DocentesActivos />} />
           <Route path="/docentes-inactivos" element={<DocentesInactivos />} />
-        </ Route >
+        </Route>
 
         <Route element={<PrivateRouteDocente />}>
           {/* rutas para la S03 - Área para docente */}
@@ -104,6 +104,10 @@ function App() {
           <Route
             path="/grades/teacher/:id/courses/:courseId/activity/edit"
             element={<EditActividy />}
+          />
+          <Route
+            path="/grades/teacher/:id/qualify/:student"
+            element={<Qualify />}
           />
           <Route path="/backend" element={<ControllerProving />} />
           {/* Aquí termina la ruta para la S03 - Área para docente */}
