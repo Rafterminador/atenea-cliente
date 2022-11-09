@@ -1,19 +1,30 @@
 <!DOCTYPE html>
 <html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%PUBLIC_URL%/logo.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#332E6F" />
+    <meta
+      name="description"
+      content="Atenεa aplicación pwa, para registro académico"
+    />
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo512.png" />
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <title>Atenea</title>
+  </head>
 
-<head>
-  <meta charset="utf-8" />
-  <link rel="icon" href="%PUBLIC_URL%/logo.ico" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="theme-color" content="#332E6F" />
-  <meta name="description" content="Atenεa aplicación pwa, para registro académico" />
-  <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo512.png" />
-  <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-  <title>Atenea</title>
-</head>
-
-<body>
-  <div id="root"></div>
-</body>
-
+  <body>
+    <div id="root"></div>
+    <script>
+      const isProduction = "%NODE_ENV%" === "production";
+      if (isProduction && "serviceWorker" in navigator) {
+        navigator.serviceWorker.register("%PUBLIC_URL%/sw.js");
+      } else {
+        console.log(
+          "Your browser, or browser version, does not support offline applications."
+        );
+      }
+    </script>
+  </body>
 </html>
