@@ -302,7 +302,20 @@ const EnableTeacher = async (idTeacher) => {
 
 }
 
+
+const getStudentScores = async (idTeacher) => {
+    let responseToReturn
+    await api.get(`api/v1/student/get-student-scores/${idTeacher}`)
+        .then((response) => {
+            responseToReturn = response
+        }).catch((error) => {
+            responseToReturn = error
+        });
+    return getInformation(responseToReturn)
+
+}
+
 export {
-    EnableTeacher, DisableTeacher, GetOneTeacherByID, getAllTeachers, getUserByID, disableTeacher, enableTeacher, updateRol, getAllStudents, getStudentsByGrade, getStudentByID, createStudent, updateStudent, disableStudent,
+    getStudentScores, EnableTeacher, DisableTeacher, GetOneTeacherByID, getAllTeachers, getUserByID, disableTeacher, enableTeacher, updateRol, getAllStudents, getStudentsByGrade, getStudentByID, createStudent, updateStudent, disableStudent,
     enableStudent, getAllBoletines, getEnabledTeachers, getdisableTeachers, getAllGrades, createGrade, updateGrade, deleteGrade
 }
