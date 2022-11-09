@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import ComboBox from '../components/ComboBox';
 import { AlertButton } from "../utils/AlertButton";
-import Retroceder from '../components/Retroceder';
+import TopBar from '../components/TopBar';
 import { updateGrade, getAllGrades } from "../services/controllerDirector";
 import { searchReferenceId } from '../utils/FunctionUtils';
 import Input from "../components/Input";
@@ -59,7 +59,7 @@ const EditGrade = () => {
     }
     return (
         <>
-            <Retroceder text="Editar datos" />
+            <TopBar text="Editar datos" />
             <form className='contenedor-admin' onSubmit={handleEdit}>
                 <label htmlFor="grade" className='label-purple'>Nombre del grado<span className='span-field'>*</span></label>
                 <Input id="grade" type="text" name="grade" onChange={handleChangeGradeName} placeholder="Ingresar nombre del grado" required={1} className="w-full" defaultValue={grade.curso} />

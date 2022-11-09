@@ -1,11 +1,11 @@
-import Retroceder from "../components/Retroceder";
+import TopBar from "../components/TopBar";
 import SearchBar from "../components/SearchBar";
 import StudentCourse from "../components/StudentCourse";
 
 export default function Students() {
   return (
     <div>
-      <Retroceder text="Alumnos" />
+      <TopBar text="Alumnos" />
       <div className="contenedor-admin">
         <SearchBar />
         <p className="mt-5 mb-7">

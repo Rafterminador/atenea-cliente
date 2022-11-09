@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import CardAlumno from "../components/CardAlumno";
 import { useNavigate } from "react-router-dom";
 import Button from "../components/Button";
-import Retroceder from "../components/Retroceder";
+import TopBar from "../components/TopBar";
 
 import { getStudentByID } from "../services/controllerDirector";
 import { disableStudent } from "../services/controllerDirector";
@@ -60,7 +60,7 @@ const AlumnoProfile = () => {
 
   return (
     <div className="flex flex-col justify-between">
-      <Retroceder text={alumn.nombre} />
+      <TopBar text={alumn.nombre} />
       <div className="bg-[#DBD8FF] h-[1px] my-0"></div>
       <div className="">
         <CardAlumno

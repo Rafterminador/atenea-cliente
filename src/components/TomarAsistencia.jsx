@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 //import Button from "./Button";
-import Retroceder from "./Retroceder";
+import TopBar from "./TopBar";
 import { AlertButton } from "../utils/AlertButton";
 import DeleteConfirmation from "../assets/images/confirmarAlumno.svg";
 import { newAttendence } from "../services/controllerDocentes";
@@ -172,7 +172,7 @@ const TomarAsistencia = () => {
   return (
     <>
       <section className="h-screen">
-        <Retroceder text="Toma de asistencia" />
+        <TopBar text="Toma de asistencia" />
 
         <div className=" flex items-center justify-center mt-6">
           <p className="mr-2 text-[16px]">Asistencia de: </p>

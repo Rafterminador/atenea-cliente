@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import ComboBox from '../components/ComboBox';
 import { AlertButton } from "../utils/AlertButton";
-import Retroceder from '../components/Retroceder';
+import TopBar from '../components/TopBar';
 import Button from "../components/Button";
 import Input from "../components/Input";
 import { createGrade, getAllGrades } from "../services/controllerDirector";
@@ -74,7 +74,7 @@ const NewGrade = () => {
     }
     return (
         <>
-            <Retroceder text="Nuevo grado" />
+            <TopBar text="Nuevo grado" />
             <form className='contenedor-admin' onSubmit={handleGrade}>
                 <label htmlFor="grade" className='label-purple'>Nombre del grado<span className='span-field'>*</span></label>
                 <Input id="grade" type="text" name="grade" onChange={handleChangeGradeName} placeholder="Ingresar nombre del grado" required={1} className="w-full" />

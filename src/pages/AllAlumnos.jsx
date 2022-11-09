@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Alumno from "../components/Alumno";
 import SearchBar from "../components/SearchBar";
-import Retroceder from "../components/Retroceder";
+import TopBar from "../components/TopBar";
 
 import { getAllStudents } from "../services/controllerDirector";
 import { searchByStudentName } from "../utils/FunctionUtils";
@@ -80,7 +80,7 @@ const AllAlumnos = () => {
   return (
     <>
       <div className="contenedor contenedor-admin mb-[80px]">
-        <Retroceder text={seteargrado.grado} />
+        <TopBar text={seteargrado.grado} />
 
         <div className="my-2">
           <SearchBar

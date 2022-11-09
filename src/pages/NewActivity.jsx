@@ -3,7 +3,7 @@ import Swal from "sweetalert2";
 import Button from "../components/Button";
 import ComboBox from "../components/ComboBox";
 import Input from "../components/Input";
-import Retroceder from "../components/Retroceder";
+import TopBar from "../components/TopBar";
 import { AlertButton } from "../utils/AlertButton";
 
 export default function NewActivity() {
@@ -16,7 +16,7 @@ export default function NewActivity() {
   }
   return (
     <div>
-      <Retroceder text="Nueva actividad" />
+      <TopBar text="Nueva actividad" />
       <div className="h-full">
         <form>
           <div className="contenedor-admin flex flex-col gap-3">

@@ -1,6 +1,6 @@
 import Button from "../components/Button";
 import Units from "../components/Units";
-import Retroceder from "../components/Retroceder";
+import TopBar from "../components/TopBar";
 import { useNavigate } from "react-router-dom";
 
 export default function Course() {
@@ -10,7 +10,7 @@ export default function Course() {
   }
   return (
     <div>
-      <Retroceder text="Matematicas" />
+      <TopBar text="Matematicas" />
 
       <div className="m-5">
         <Units unidad={"Primera unidad"} />

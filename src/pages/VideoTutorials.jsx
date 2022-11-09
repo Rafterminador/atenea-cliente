@@ -1,11 +1,11 @@
-import Retroceder from "../components/Retroceder";
+import TopBar from "../components/TopBar";
 import SearchBar from "../components/SearchBar";
 // import Video from "../assets/youtube2.mp4";
 
 export default function VideoTutorials() {
   return (
     <div>
-      <Retroceder text={"Videotutoriales"} />
+      <TopBar variant="primary" text={"Videotutoriales"} />
       <div className="mx-5 mt-4">
         <SearchBar />
         <div className="mt-6 text-center font-semibold text-base">

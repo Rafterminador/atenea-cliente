@@ -7,7 +7,7 @@ import { useEffect } from "react";
 import { AlertButton } from "../utils/AlertButton";
 import { GetOneTeacherByID, updateRol, DisableTeacher, EnableTeacher, getAllTeachers } from "../services/controllerDirector";
 import { useState } from "react";
-import Retroceder from "./Retroceder";
+import TopBar from "./TopBar";
 import Grades from "./Grades";
 //import Button from "./Button";
 import Spinner from "./Spinner";
@@ -178,7 +178,7 @@ const AccountPage = () => {
 
   return (
     <>
-      <Retroceder text={teacher.displayName} />
+      <TopBar text={teacher.displayName} />
       {!cargando ? (
         <>
           <div className={`m-6 flex space-x-2 ${rol}`}>

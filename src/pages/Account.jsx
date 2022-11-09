@@ -2,7 +2,7 @@ import { useState } from "react";
 import EditProfile from "../components/EditProfile";
 // import EditProfile from "../components/EditProfile";
 import Profile from "../components/Profile";
-import Retroceder from "../components/Retroceder";
+import TopBar from "../components/TopBar";
 
 export default function Account() {
   const [change, setChange] = useState(true);
@@ -12,7 +12,7 @@ export default function Account() {
   return (
     <div className="h-screen">
       {change ? (
-        <Retroceder text={"Cuenta"} />
+        <TopBar variant="primary" text={"Cuenta"} />
       ) : (
         <>
           <div className="flex ml-5 mt-[21px] mb-[13px] items-center">

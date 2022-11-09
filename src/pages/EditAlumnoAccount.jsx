@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import ComboBox from "../components/ComboBox";
 import Button from "../components/Button";
 import Input from "../components/Input";
-import Retroceder from "../components/Retroceder";
+import TopBar from "../components/TopBar";
 import { useNavigate } from "react-router-dom";
 
 import { updateStudent } from "../services/controllerDirector";
@@ -126,7 +126,7 @@ const EditAlumnoAccount = () => {
 
   return (
     <div>
-      <Retroceder text="Editar datos" />
+      <TopBar text="Editar datos" />
       <form onSubmit={handleSubmit} id="edit-form">
         <div className="flex flex-col text gap-2 text-[#4D3483] font-semibold text-start text-[16px] m-5">
           <label htmlFor="username">Nombre completo</label>

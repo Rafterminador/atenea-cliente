@@ -38,13 +38,14 @@ import DocentesInactivos from "./pages/DocentesInactivos";
 import BottomNavbarDirector from "./utils/BottomNavbarDirector";
 import Asistencia from "./pages/Asistencia";
 import TomarAsistencia from "./components/TomarAsistencia";
-
+import TestComponents from "./pages/TestComponents";
 function App() {
   return (
     <BrowserRouter>
       <Routes>
         {/* rutas para la S01 - Autenticacion */}
         <Route path="/" element={<LandingPage />} />
+        <Route path="/test-components" element={<TestComponents />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<RegistroUsuario />} />
         <Route path="/restore/password" element={<OlvidePassword />} />
@@ -60,14 +61,12 @@ function App() {
             <Route path="/docentes" element={<Teachers />} />
           </Route>
 
-
           <Route path="/grades/create" element={<NewGrade />} />
           <Route path="/grades/update/:id" element={<UpdateGrade />} />
           <Route path="/grades/update/:id/edit" element={<EditGrade />} />
 
           <Route path="/cuenta" element={<Account />} />
           <Route path="/tutoriales" element={<VideoTutorials />} />
-
 
           <Route path="/cuenta/alumno" element={<AlumnoAccount />} />
           <Route path="/editar/alumno" element={<EditAlumnoAccount />} />
@@ -77,13 +76,10 @@ function App() {
 
           {/* Docentes */}
 
-
           <Route path="/cuenta/docente/:id" element={<AccountPage />} />
           <Route path="/nuevos-docentes" element={<NuevosDocentes />} />
           <Route path="/docentes-activos" element={<DocentesActivos />} />
           <Route path="/docentes-inactivos" element={<DocentesInactivos />} />
-
-
 
           <Route path="/backend" element={<ControllerProving />} />
           <Route path="/grades/teacher/:id" element={<GradesAssigned />} />
@@ -96,11 +92,9 @@ function App() {
             path="/grades/teacher/:id/courses/:courseId"
             element={<Course />}
           />
-        </ Route >
+        </Route>
 
         <Route element={<PrivateRouteDocente />}>
-
-
           {/* rutas para la S03 - Área para docente */}
           <Route element={<BottomNavbarDirector />}>
             <Route path="/home/docente" element={<Home />} />
@@ -136,7 +130,10 @@ function App() {
 
           {/* Pagina asistencia */}
           <Route path="/asistencia" element={<Asistencia />} />
-          <Route path="/asistencia/tomar-asistencia/:id" element={<TomarAsistencia />} />
+          <Route
+            path="/asistencia/tomar-asistencia/:id"
+            element={<TomarAsistencia />}
+          />
         </Route>
       </Routes>
     </BrowserRouter>

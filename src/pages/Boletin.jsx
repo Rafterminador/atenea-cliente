@@ -2,12 +2,12 @@ import React from "react";
 import Notes from "../components/Notes";
 // import BoletinCard from "../components/BoletinCard";
 import Button from "../components/Button";
-import Retroceder from "../components/Retroceder";
+import TopBar from "../components/TopBar";
 
 const Boletin = (props) => {
   return (
     <div className="flex flex-col">
-      <Retroceder text="José Fernando Arredondo Aparicio" />
+      <TopBar text="José Fernando Arredondo Aparicio" />
 
       <div className="bg-[#DBD8FF] h-[1px] my-0"></div>
 

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import ComboBox from "../components/ComboBox";
 import Input from "../components/Input";
 import Button from "../components/Button";
-import Retroceder from "../components/Retroceder";
+import TopBar from "../components/TopBar";
 import { useNavigate } from "react-router-dom";
 
 import { createStudent } from "../services/controllerDirector";
@@ -100,7 +100,7 @@ const AlumnoAccount = () => {
   }
   return (
     <div>
-      <Retroceder text="Nuevo alumno" />
+      <TopBar text="Nuevo alumno" />
       <form onSubmit={handleSubmit} id="register-form">
         <div className="flex flex-col text gap-2 text-[#4D3483] font-semibold text-start text-[16px] m-5">
           <label htmlFor="username">Nombre completo</label>

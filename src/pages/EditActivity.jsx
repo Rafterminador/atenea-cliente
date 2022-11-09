@@ -4,7 +4,7 @@ import Swal from "sweetalert2";
 import Button from "../components/Button";
 import ComboBox from "../components/ComboBox";
 import Input from "../components/Input";
-import Retroceder from "../components/Retroceder";
+import TopBar from "../components/TopBar";
 import { AlertButton } from "../utils/AlertButton";
 import Delete from "../assets/images/delete.svg";
 
@@ -39,7 +39,7 @@ export default function EditActividy() {
   }
   return (
     <div>
-      <Retroceder text="Lectura #1" />
+      <TopBar text="Lectura #1" />
       {change ? (
         <div className="h-full">
           <div className="contenedor-admin flex flex-col gap-3">

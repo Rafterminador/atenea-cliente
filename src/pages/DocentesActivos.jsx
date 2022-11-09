@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Spinner from "../components/Spinner";
 import ActiveTeachers from "../components/ActiveTeachers";
-import Retroceder from "../components/Retroceder";
+import TopBar from "../components/TopBar";
 import SearchBar from "../components/SearchBar";
 import { useEffect } from "react";
 import { getAllTeachers } from "../services/controllerDirector";
@@ -48,7 +48,7 @@ const DocentesActivos = () => {
 
   return (
     <>
-      <Retroceder text={"Docentes activos"} />
+      <TopBar text={"Docentes activos"} />
       <div className="contenedor-admin">
         <SearchBar onChange={handleSearchTeacher} placeholder="Buscar a un docente" />
         <section className={`${mostrar} mt-4 mb-[80px]`}>

@@ -1,6 +1,6 @@
 import Badge from "../components/Badge";
 import Button from "../components/Button";
-import Retroceder from "../components/Retroceder";
+import TopBar from "../components/TopBar";
 import StudentCourse from "../components/StudentCourse";
 import { AlertButton } from "../utils/AlertButton";
 import Exportacion from "../assets/images/exportacion.svg";
@@ -26,7 +26,7 @@ export default function Courses() {
   }
   return (
     <div>
-      <Retroceder text={grade.grade} />
+      <TopBar text={grade.grade} />
       <div className="contenedor-admin">
         <div className=" flex items-center">
           <p className="font-bold text-[21.33px] text-[#4D3483]">Alumnos</p>

@@ -1,11 +1,11 @@
 import Button from "../components/Button";
 import CursoNote from "../components/CursoNote";
-import Retroceder from "../components/Retroceder";
+import TopBar from "../components/TopBar";
 
 export default function Notes(props) {
   return (
     <div>
-      <Retroceder text={"Notas"} />
+      <TopBar text={"Notas"} />
       <div className="contenedor-admin">
         <div className="text-center">
           <p className="mb-4">

@@ -1,10 +1,10 @@
 import CardAlumno from "../components/CardAlumno";
-import Retroceder from "../components/Retroceder";
+import TopBar from "../components/TopBar";
 
 export default function Student() {
   return (
     <div>
-      <Retroceder text="Student Name" />
+      <TopBar text="Student Name" />
       <div className="bg-[#DBD8FF] h-[1px] my-0"></div>
 
       <div className="">

@@ -4,7 +4,7 @@ import Student from "../assets/images/student.svg";
 import Grade from "../assets/images/grade.svg";
 import Teacher from "../assets/images/teacher.svg";
 import DeleteConfirmation from "../assets/images/delete-confirmation.svg";
-import Retroceder from '../components/Retroceder';
+import TopBar from '../components/TopBar';
 import { AlertButton } from "../utils/AlertButton";
 import { getEnabledTeachers, getAllGrades, deleteGrade } from "../services/controllerDirector";
 
@@ -62,7 +62,7 @@ const UpdateGrade = () => {
     }, []);
     return (
         <>
-            <Retroceder text={grade.curso} />
+            <TopBar text={grade.curso} />
             <div className='contenedor-admin'>
                 <div className='container-grade'>
                     <h2 className='h2-administracion' style={{ marginBottom: '16px' }}>

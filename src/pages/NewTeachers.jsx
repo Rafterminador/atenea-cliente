@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
 import NewTeachers from "../components/NuevoTeachers";
-import Retroceder from "../components/Retroceder";
+import TopBar from "../components/TopBar";
 import SearchBar from "../components/SearchBar";
 import Spinner from "../components/Spinner";
 import { getAllTeachers } from "../services/controllerDirector";
@@ -48,7 +48,7 @@ const NuevosDocentes = () => {
   }, []);
   return (
     <>
-      <Retroceder text={"Nuevos docentes"} />
+      <TopBar text={"Nuevos docentes"} />
 
       <div className="contenedor-admin">
         <SearchBar onChange={handleSearchTeacher} placeholder="Buscar a un docente" />
