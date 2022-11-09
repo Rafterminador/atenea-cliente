@@ -1,6 +1,3 @@
-/* eslint-disable no-restricted-globals */
-/* eslint-disable no-undef */
-
 importScripts(
   "https://storage.googleapis.com/workbox-cdn/releases/6.4.1/workbox-sw.js"
 );
@@ -12,9 +9,9 @@ const { registerRoute, NavigationRoute } = workbox.routing;
 const { NetworkFirst, NetworkOnly } = workbox.strategies;
 const { BackgroundSyncPlugin } = workbox.backgroundSync;
 
-if (!location.origin.includes("localhost")) {
-  workbox.setConfig({ debug: false });
-}
+// if (!location.origin.includes("localhost")) {
+//   workbox.setConfig({ debug: false });
+// }
 
 // precache all assets, images, txt, js, css and index.html
 precacheAndRoute(self.__WB_MANIFEST);
