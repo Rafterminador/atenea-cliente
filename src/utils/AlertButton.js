@@ -1,4 +1,5 @@
 import Success from "../assets/images/success.svg";
+import Warning from "../assets/images/warning.svg";
 const AlertButton = {
   dataAlertSuccess: function (texto) {
     const data = {
@@ -10,6 +11,38 @@ const AlertButton = {
         icon: "no-border",
       },
       showConfirmButton: false,
+    };
+    return data;
+  },
+  dataAlertSuccessOneButton: function (titulo, texto, img) {
+    const data = {
+      icon: "question",
+      title: titulo,
+      text: texto,
+      iconHtml: `<img src=${img}>`,
+      customClass: {
+        icon: "no-border",
+      },
+      showConfirmButton: true,
+    };
+    return data;
+  },
+  dataAlertWarning: function (titulo, texto) {
+    const data = {
+      icon: "question",
+      title: titulo,
+      iconHtml: `<img src=${Warning}>`,
+      customClass: {
+        icon: "no-border",
+        title: "",
+
+        confirmButton: "sweet-confirmation-button",
+      },
+      buttonsStyling: false,
+      titleStyling: false,
+      showCancelButton: false,
+
+      confirmButtonText: texto,
     };
     return data;
   },
@@ -31,18 +64,6 @@ const AlertButton = {
     };
     return data;
   },
-  dataAlertSuccessOneButton: function (titulo, texto, img) {
-    const data = {
-      icon: "question",
-      title: titulo,
-      text: texto,
-      iconHtml: `<img src=${img}>`,
-      customClass: {
-        icon: "no-border",
-      },
-      showConfirmButton: true,
-    };
-    return data;
-  },
 };
+
 export { AlertButton };

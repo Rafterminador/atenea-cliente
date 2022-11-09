@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import ImageRegistro from "../assets/images/img-register-register.svg";
 import IconShowPassword from "../assets/images/icon-showpassword.svg";
 import IconHidePassword from "../assets/images/icon-hidepassword.svg";
+import { AlertButton } from "../utils/AlertButton";
 import { Link } from "react-router-dom";
 import Image from "../components/Image";
 import Button from "../components/Button";
@@ -18,15 +19,19 @@ const RegistroUsuario = () => {
   const [passwordVisibility, setPasswordVisibility] = useState(false);
   const [iconPassword, setIconPassword] = useState(IconShowPassword);
   const navigate = useNavigate();
+  const Swal = require('sweetalert2')
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     let response = await registrarUsuario(email, password, displayName)
     console.log(response)
-    if (response.status === 201) {
+    if (response.status === 200) {
       console.log(response.body)
-      alert("Usuario guardado correctamente")
-      navigate("/login");
+      Swal.fire(
+        AlertButton.dataAlertSuccess('Usuario guardado correctamente')
+      ).then(() => {
+        navigate("/login");
+      })
     } else {
       console.log(response.body)
       alert(response.body)

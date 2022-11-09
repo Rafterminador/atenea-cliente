@@ -1,4 +1,4 @@
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { signInWithEmailAndPassword, getAuth } from "firebase/auth";
 import axios from "axios";
 
 const api = axios.create({
@@ -14,6 +14,16 @@ const login = async (auth, email, password) => {
             response = userCredential.user;
             let roleObject = JSON.parse(response.reloadUserInfo.customAttributes)
             response = { uid: response.uid, email: response.email, name: response.displayName, role: roleObject.rol }
+            const auth = getAuth();
+            const currentUser = auth.currentUser;
+            currentUser.getIdTokenResult()
+                .then((idTokenResult) => {
+                    response.role = idTokenResult.claims.rol
+                    console.log(idTokenResult);
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
             return response
         })
         .catch((error) => {

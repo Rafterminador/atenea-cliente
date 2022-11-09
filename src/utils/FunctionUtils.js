@@ -19,6 +19,21 @@ const searchGrades = (array, filter) => {
     })
     return filterLevelNames
 }
+
+// const searchTeacher = (array, filter) => {
+//      console.log(array)
+//     filter = filter.toLowerCase()
+//     const filterLevelNames = array.filter((docente) => {
+//        // console.log(searchByTeacherName(docente, filter))
+//         // const levelNames = grade.level_name.toLowerCase().includes(filter)
+//         // return levelNames
+
+//         //remplazamos los valores de cada nivel por defecto por los que filtramos dos veces
+//         docente = searchByTeacherName(docente, filter)
+//         return docente
+//     })
+//     return filterLevelNames
+// }
 // array.filter((grade) => {
 //     console.log(array)
 //     // const teacherName = array.grades.teacherRef.includes(filter)
@@ -36,4 +51,25 @@ const searchByGradeName = (array, filter) => {
     })
     return filterGradeNames
 }
-export { searchReferenceId, searchGrades }
+
+const searchByTeacherName = (array, filter) => {
+    // console.log(array)
+    filter = filter.toLowerCase()
+    const filterGradeNames = array.filter((docente) => {
+        const gradeNames = docente.displayName.toLowerCase().includes(filter)
+        return gradeNames
+    })
+    return filterGradeNames
+}
+
+const searchByStudentName = (array, filter) => {
+    // console.log(array)
+    filter = filter.toLowerCase()
+    const filterAlumnNames = array.filter((estudiante) => {
+        const AlumnNames = estudiante.name.toLowerCase().includes(filter)
+        return AlumnNames
+    })
+    return filterAlumnNames
+}
+
+export { searchReferenceId, searchGrades, searchByTeacherName, searchByStudentName}
