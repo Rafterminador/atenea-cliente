@@ -73,14 +73,14 @@ const BottomNavbar = () => {
       document
         .getElementById("grade")
         .children[0].children[0].classList.add("fill-white");
-    } else if (location.pathname === "/ver/alumno") {
+    } else if (location.pathname === "/ver/alumno" || location.pathname === "/calificar") {
       document
         .getElementById("students")
         .children[0].classList.add("bg-[#A954FF]");
       document
         .getElementById("students")
         .children[0].children[0].classList.add("fill-white");
-    } else if (location.pathname === "/docentes") {
+    } else if (location.pathname === "/docentes" || location.pathname === "/asistencia") {
       document
         .getElementById("teachers")
         .children[0].classList.add("bg-[#A954FF]");
