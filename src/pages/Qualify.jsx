@@ -48,7 +48,7 @@ export default function Qualify() {
       informacion.students.map(({ id }) => ({ studentRef: id, score: "" }))
     );
     actividades = actividad;
-  }, []);
+  }, [student]);
 
   function handleChange(e, key) {
     const nota = e.target.value;
