@@ -1,10 +1,10 @@
 import React from "react";
-import Spinner from "../components/Spinner";
+import Menu from "../components/Menu";
 
 const TestComponents = () => {
   return (
     <>
-      <Spinner />
+     <Menu hidden={""}  animation={""} />
     </>
   );
 };

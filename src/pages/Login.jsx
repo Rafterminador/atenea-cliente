@@ -140,7 +140,6 @@ const Login = () => {
   function handleChangeUsername(e) {
     setEmail(e.target.value);
   }
-
   function handleChangePassword(e) {
     setPassword(e.target.value);
   }
@@ -157,9 +156,7 @@ const Login = () => {
               type={1}
             />
           </div>
-          <div className="flex justify-center flex-none self-stretch flex-grow order-1 ">
-            <Spinner />
-          </div>
+          <Spinner />
         </div>
       ) : (
         <div className="min-h-screen flex flex-col justify-between gap-10">
