@@ -1,7 +1,6 @@
 import Retroceder from "../components/Retroceder";
 import ComboBox from "../components/ComboBox";
 import Button from "../components/Button";
-import Spinner from "../components/Spinner";
 import Input from "../components/Input";
 import Swal from "sweetalert2";
 import { AlertButton } from "../utils/AlertButton";
@@ -11,8 +10,6 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { postScores } from "../services/controllerDocentes";
 import uuid from "react-uuid";
-
-// let grado;
 
 const unidades = [
   "Primera unidad",
