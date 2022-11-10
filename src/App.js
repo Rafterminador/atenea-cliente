@@ -104,6 +104,7 @@ function App() {
           {/* rutas para la S03 - Área para docente */}
           <Route element={<BottomNavbarDirector />}>
             <Route path="/home/docente" element={<Home />} />
+            <Route path="/asistencia" element={<Asistencia />} />
           </Route>
           <Route path="/grades/teacher/:id" element={<GradesAssigned />} />
           <Route path="/grades/teacher/:id/courses" element={<Courses />} />
@@ -135,7 +136,6 @@ function App() {
           {/* Aquí termina la ruta para la S03 - Área para docente */}
 
           {/* Pagina asistencia */}
-          <Route path="/asistencia" element={<Asistencia />} />
           <Route path="/asistencia/tomar-asistencia/:id" element={<TomarAsistencia />} />
         </Route>
       </Routes>
