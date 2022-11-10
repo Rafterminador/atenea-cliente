@@ -10,8 +10,9 @@ import Sign from "../assets/images/sign.svg";
 import { useState } from "react";
 import { useEffect } from "react";
 import { postScores } from "../services/controllerDocentes";
+import uuid from "react-uuid";
 
-let grado;
+// let grado;
 
 const unidades = [
   "Primera unidad",
@@ -23,10 +24,11 @@ const unidades = [
 let actividades = [];
 
 export default function Qualify() {
-  const [estudiantes, setEstudiantes] = useState([]);
+  const [estudiantes, setEstudiantes] = useState([{}]);
   const [areas, setAreas] = useState([]);
   const [indice, setIndice] = useState("");
   const [calificados, setCalificados] = useState([]);
+  const [grado, setGrado] = useState({});
   const [seleccionados, setSeleccionados] = useState({
     curso: "",
     unidad: "",
@@ -36,18 +38,17 @@ export default function Qualify() {
   const { student } = useParams();
 
   useEffect(() => {
-    const getEstudiantes = localStorage.getItem("estudiantes");
     const getGrados = localStorage.getItem("grados");
     const getArea = localStorage.getItem("areas");
     const getActividad = localStorage.getItem("actividades");
-    const students = JSON.parse(getEstudiantes);
     const area = JSON.parse(getArea)[student];
     const actividad = JSON.parse(getActividad)[student];
-    grado = JSON.parse(getGrados)[student][0];
-    setEstudiantes(students[student]);
+    const informacion = JSON.parse(getGrados)[student];
+    setGrado(informacion);
+    setEstudiantes(informacion.students);
     setAreas(area);
     setCalificados(
-      students[student].map(({ id }) => ({ studentRef: id, score: "" }))
+      informacion.students.map(({ id }) => ({ studentRef: id, score: "" }))
     );
     actividades = actividad;
   }, []);
@@ -70,12 +71,10 @@ export default function Qualify() {
   }
 
   function cursoSeleccionado(data) {
-    console.log(data);
     setSeleccionados({ ...seleccionados, curso: data });
   }
 
   function actividadSeleccionada(data) {
-    console.log(data);
     setSeleccionados({ ...seleccionados, actividad: data });
   }
 
@@ -122,18 +121,36 @@ export default function Qualify() {
     }
   }
 
+  const displayStudents = estudiantes.map((item) => (
+    <div key={uuid()} className="flex justify-between text-start">
+      <p key={uuid()}>{item.name_student}</p>
+      <Input
+        className={
+          "font-normal border-solid border-2 border-[#DBD8FF] rounded-[10px] py-2.5 px-2 w-1/3"
+        }
+        onChange={(e) => handleChange(e, item.id)}
+        id={"qualify"}
+        type={"number"}
+        name={"qualify"}
+        disabled={false}
+        required={true}
+        key={uuid()}
+      />
+    </div>
+  ));
+
   return (
     <div>
-      {console.log(actividades[indice])}
       <Retroceder text="Calificar actividad" />
       <div className="contenedor-admin text-center">
         <p>
-          Calificaciones de: <span className="font-bold">{grado}</span>
+          Calificaciones de:{" "}
+          <span className="font-bold">{grado.grade_name}</span>
         </p>
         <div className="flex flex-col gap-3 text-start mt-5">
           <label htmlFor="teacher">Curso</label>
           <ComboBox
-            teachers={areas}
+            teachers={!!areas ? areas.map((item) => item?.activity_name) : [""]}
             valueByDefault={"Seleccionar curso"}
             function={cursoSeleccionado}
           />
@@ -146,36 +163,15 @@ export default function Qualify() {
           <label htmlFor="score">Actividad</label>
           <ComboBox
             teachers={
-              !!indice
-                ? actividades[indice].map((item) => item?.activity_name)
+              !!actividades[0]
+                ? actividades.map((item) => item?.activity_name)
                 : [""]
             }
             valueByDefault={"Seleccionar actividad"}
             function={actividadSeleccionada}
           />
         </div>
-        <div className="flex flex-col gap-5 mt-10">
-          {!!estudiantes ? (
-            estudiantes.map((item) => (
-              <div key={item.id} className="flex justify-between text-start">
-                <p>{item.name_student}</p>
-                <Input
-                  className={
-                    "font-normal border-solid border-2 border-[#DBD8FF] rounded-[10px] py-2.5 px-2 w-1/3"
-                  }
-                  onChange={(e) => handleChange(e, item.id)}
-                  id={"qualify"}
-                  type={"number"}
-                  name={"qualify"}
-                  disabled={false}
-                  required={true}
-                />
-              </div>
-            ))
-          ) : (
-            <Spinner />
-          )}
-        </div>
+        <div className="flex flex-col gap-5 mt-10">{displayStudents}</div>
       </div>
       <div className="contenedor-admin w-screen mb-5 fixed bottom-0 flex flex-col gap-5">
         <Button

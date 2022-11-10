@@ -14,20 +14,6 @@ const getInformation = (responseToReturn) => {
   return responseToReturn;
 };
 
-const getGrades = async (id) => {
-  let responseToReturn;
-  api.defaults.headers.common["Content-Type"] = "application/json";
-  await api
-    .get(`api/v1/attendence/get-mystudents/${id}`)
-    .then((response) => {
-      responseToReturn = response;
-    })
-    .catch((error) => {
-      responseToReturn = error;
-    });
-  return getInformation(responseToReturn);
-};
-
 const getAreas = async (id) => {
   let responseToReturn;
   api.defaults.headers.common["Content-Type"] = "application/json";
@@ -84,4 +70,4 @@ const newAttendence = async (data) => {
   return getInformation(responseToReturn);
 };
 
-export { GetMyStudents, newAttendence, getGrades, getAreas, postScores };
+export { GetMyStudents, newAttendence, getAreas, postScores };

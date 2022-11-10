@@ -39,6 +39,7 @@ import Qualify from "./pages/Qualify";
 import BottomNavbarDirector from "./utils/BottomNavbarDirector";
 import Asistencia from "./pages/Asistencia";
 import TomarAsistencia from "./components/TomarAsistencia";
+import Calificar from "./pages/Calificar";
 
 function App() {
   return (
@@ -88,6 +89,7 @@ function App() {
           {/* rutas para la S03 - Área para docente */}
           <Route element={<BottomNavbarDirector />}>
             <Route path="/home/docente" element={<Home />} />
+            <Route path="/calificar" element={<Calificar />} />
           </Route>
           <Route path="/grades/teacher/:id" element={<GradesAssigned />} />
           <Route path="/grades/teacher/:id/courses" element={<Courses />} />
