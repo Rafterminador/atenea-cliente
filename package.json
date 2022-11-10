@@ -23,7 +23,7 @@
     "build": "react-scripts build && npm run pwa",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "pwa": "workbox injectManifest"
+    "pwa": "npm install workbox-cli --global && workbox injectManifest"
   },
   "eslintConfig": {
     "extends": [

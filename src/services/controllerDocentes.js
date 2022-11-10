@@ -32,11 +32,7 @@ const postScores = async (info) => {
   let responseToReturn;
   api.defaults.headers.common["Content-Type"] = "application/json";
   await api
-<<<<<<< HEAD
     .put("api/v1/activity/update-all-students-scores", info)
-=======
-    .post("api/v1/activity/update-all-students-scores", info)
->>>>>>> develop
     .then((response) => {
       responseToReturn = response;
     })
