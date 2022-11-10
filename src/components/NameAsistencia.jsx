@@ -41,8 +41,8 @@ const NameAsistencia = ({ id, name_student }) => {
 
   return (
     <>
-      <div className="contenedor-admin">
-        <div className="container-asistencia">
+      <div className="">
+        <div className="container-asistencia pr-[20px] m-[20px] w-auto h-[288px]">
           <p className="text-center ">Está presente</p>
           <div className="grid grid-cols-3 mt-4">
             <p className="text-[28px] font-[1100]">¿</p>
@@ -50,44 +50,46 @@ const NameAsistencia = ({ id, name_student }) => {
             <p className="text-[28px] text-end  font-[1100]">?</p>
           </div>
 
-          <div className={`flex justify-between mt-10 ${presente}`}>
-            <div>
-              <Button
-                onClick={hladleHidden}
-                text="Presente"
-                typeButton={"button-type-2"}
-                className="my-5"
-                type="button"
-              />
-            </div>
+          <div className={`justify-between mt-10 ${presente}`}>
+            <div className="grid grid-cols-5 gap-4">
+              <div className="col-span-3">
+                <Button
+                  onClick={hladleHidden}
+                  text={`Presente  `}
+                  typeButton={"button-type-2"}
+                  className="my-5 mt-10"
+                  type="button" 
+                />
+              </div>
 
-            <div>
-              <Button
-                onClick={handleEliminar}
-                text="No"
-                typeButton={"button-type-1"}
-                className="my-5"
-                type="button"
-              />
+              <div className="col-span-2">
+                <Button
+                  onClick={handleEliminar}
+                  text="No"
+                  typeButton={"button-type-1"}
+                  className="my-5 mt-10"
+                  type="button"
+                />
+              </div>
             </div>
           </div>
 
-          <div className={`${hidden}`}>
+          <div className={`${hidden} `}>
             <Button
               // onClick={handleEliminar}
               text="Presente"
               typeButton={"button-type-4"}
-              className="my-5"
+              className="my-5 mt-20"
               type="button"
             />
           </div>
 
-          <div className={`${ausente}`}>
+          <div className={`${ausente} `}>
             <Button
               // onClick={handleEliminar}
               text="Ausente"
               typeButton={"button-type-5"}
-              className="my-5"
+              className="my-5 mt-10"
               type="button"
             />
           </div>
