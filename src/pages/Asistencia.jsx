@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import ViewGrados from "../components/ViewGrados";
-import BottomNavbar from "../components/BottomNavbar";
 const Asistencia = () => {
 
   const [grades, setGrades] = useState([]);
@@ -19,7 +18,7 @@ const Asistencia = () => {
     } else {
       setVacio(true)
     }
-    
+
   }, [])
 
 
@@ -42,7 +41,6 @@ const Asistencia = () => {
       </div>
 
       {/* NabBAR initial */}
-      <BottomNavbar />
     </>
   );
 };

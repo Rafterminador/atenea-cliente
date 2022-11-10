@@ -65,7 +65,7 @@ const Teachers = () => {
 
   return (
     <>
-      <div className="contenedor contenedor-admin mb-[50px]">
+      <div className="contenedor contenedor-admin mb-[80px]">
         <SearchBar
           onChange={handleSearchTeacher}
           placeholder="Buscar a un docente"

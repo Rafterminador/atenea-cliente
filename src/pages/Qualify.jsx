@@ -77,6 +77,7 @@ export default function Qualify() {
 
   async function handleClick(e) {
     e.preventDefault();
+<<<<<<< HEAD
 
     const post = {
       activityRef: "uNR4mFMLQgtT41vO6tlM",
@@ -107,6 +108,9 @@ export default function Qualify() {
     }
     const sinCalificar = calificados.some((item) => item.score === "");
 
+=======
+    const sinCalificar = calificados.some((item) => item.score === "");
+>>>>>>> develop
     if (
       sinCalificar ||
       seleccionados.curso === "" ||
