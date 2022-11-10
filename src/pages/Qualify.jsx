@@ -106,7 +106,6 @@ export default function Qualify() {
       );
     }
     const sinCalificar = calificados.some((item) => item.score === "");
-
     if (
       sinCalificar ||
       seleccionados.curso === "" ||
