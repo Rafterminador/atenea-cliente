@@ -3,6 +3,7 @@ import CardAlumno from "../components/CardAlumno";
 import { useNavigate } from "react-router-dom";
 import Button from "../components/Button";
 import Retroceder from "../components/Retroceder";
+import Spinner from "../components/Spinner";
 
 import { getStudentByID } from "../services/controllerDirector";
 import { disableStudent } from "../services/controllerDirector";
@@ -10,6 +11,7 @@ import { getStudentScores } from "../services/controllerDirector";
 const AlumnoProfile = () => {
   let alumnJSON = localStorage.getItem("alumno");
   let alumn = JSON.parse(alumnJSON);
+  const [cargando, setCargando] = useState(false);
 
   const navigate = useNavigate();
 
@@ -19,7 +21,7 @@ const AlumnoProfile = () => {
 
   const handleEliminar = async () => {
     let response = await disableStudent(alumn.uid);
-  
+
     if (response.status === 201) {
       console.log(response.body);
     } else {
@@ -44,10 +46,18 @@ const AlumnoProfile = () => {
     const handleGetStudentData = async () => {
       let response = await getStudentByID(alumn.uid);
 
-
       let response2 = await getStudentScores(alumn.uid);
 
-      console.log(response2)
+      console.log(response2);
+
+      if (response2.status === 200 || response2.status === 400) {
+        console.log(response2.body);
+        const boletinJSON = JSON.stringify(response2.body);
+        localStorage.setItem("boletin", boletinJSON);
+      } else {
+        console.log(response.body);
+      }
+
       if (response.status === 200) {
         console.log(response.body);
 
@@ -59,6 +69,7 @@ const AlumnoProfile = () => {
       } else {
         console.log(response.body);
       }
+      setCargando(true);
     };
 
     handleGetStudentData();
@@ -67,35 +78,41 @@ const AlumnoProfile = () => {
   return (
     <div className="flex flex-col justify-between">
       <Retroceder text={alumn.nombre} />
-      <div className="bg-[#DBD8FF] h-[1px] my-0"></div>
-      <div className="">
-        <CardAlumno
-          nombre={alumn.nombre}
-          cumpleanios={datebirth}
-          direccion={direction}
-          grado={grade}
-          nombre_encargado={nameencargado}
-          telefono={celencargado}
-        />
-      </div>
 
-      <div className="fixed top-[620px] left-5 right-5">
-        <Button
-          onClick={handleEliminar}
-          text="Eliminar alumno"
-          typeButton={"button-type-3"}
-          className="my-5"
-          type="button"
-        />
-        <Button
-          onClick={handleEdit}
-          text="Editar datos"
-          typeButton={"button-type-2"}
-          className="my-5"
-          type="click"
-          form="register-form"
-        />
-      </div>
+      {cargando ? (
+        <>
+          <div className="">
+            <CardAlumno
+              nombre={alumn.nombre}
+              cumpleanios={datebirth}
+              direccion={direction}
+              grado={grade}
+              nombre_encargado={nameencargado}
+              telefono={celencargado}
+            />
+          </div>
+
+          <div className="fixed top-[620px] left-5 right-5">
+            <Button
+              onClick={handleEliminar}
+              text="Eliminar alumno"
+              typeButton={"button-type-3"}
+              className="my-5"
+              type="button"
+            />
+            <Button
+              onClick={handleEdit}
+              text="Editar datos"
+              typeButton={"button-type-2"}
+              className="my-5"
+              type="click"
+              form="register-form"
+            />
+          </div>
+        </>
+      ) : (
+        <Spinner />
+      )}
     </div>
   );
 };
