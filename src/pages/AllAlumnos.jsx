@@ -5,12 +5,14 @@ import Retroceder from "../components/Retroceder";
 
 import { getAllStudents } from "../services/controllerDirector";
 import { searchByStudentName } from "../utils/FunctionUtils";
+import { GetGradesByID } from "../services/controllerDocentes";
 
 const AllAlumnos = () => {
   let gradoJSON = localStorage.getItem("seteargrado");
   let seteargrado = JSON.parse(gradoJSON);
   const [actual, setActual] = useState([]);
   const [hidden, setHidden] = useState("");
+  const [myStudents, setMyStudents] = useState([]);
   let [allStudents, setAllStudents] = useState([]);
 
   // Similar to componentDidMount and componentDidUpdate:
@@ -77,6 +79,26 @@ const AllAlumnos = () => {
     }
   };
 
+  useEffect(() => {
+    // Update the document title using the browser API
+    let uidgradeJSON = localStorage.getItem("seteargrado");
+    let useGrade = JSON.parse(uidgradeJSON);
+
+    const handleMyStudents = async () => {
+      let response = await GetGradesByID(useGrade.uidgrade);
+      if (response.status === 200) {
+        console.log(response.body);
+        setMyStudents(response.body.students);
+        console.log(myStudents)
+      } else {
+        console.log(response);
+
+      }
+    };
+
+    handleMyStudents();
+  }, []);
+
   return (
     <>
       <div className="contenedor contenedor-admin mb-[80px]">
@@ -117,6 +139,13 @@ const AllAlumnos = () => {
               nombre={estudiante.name}
               uid={estudiante.uid}
               key={estudiante.uid}
+            />
+          ))}
+             {myStudents.map((estudiante) => (
+            <Alumno
+              nombre={estudiante.name_student}
+              uid={estudiante.id}
+              key={estudiante.id}
             />
           ))}
         </div>

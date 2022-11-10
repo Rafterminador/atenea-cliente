@@ -9,6 +9,8 @@ import { AlertButton } from "../utils/AlertButton";
 import Delete from "../assets/images/delete.svg";
 
 export default function EditActividy() {
+  let ActivityInfoJSON = localStorage.getItem("activityInfo");
+  let useActivity = JSON.parse(ActivityInfoJSON);
   const [change, setChange] = useState(true);
   const navigate = useNavigate();
   function handleCancel(e) {
@@ -39,7 +41,7 @@ export default function EditActividy() {
   }
   return (
     <div>
-      <Retroceder text="Lectura #1" />
+      <Retroceder text={useActivity.name} />
       {change ? (
         <div className="h-full">
           <div className="contenedor-admin flex flex-col gap-3">
@@ -61,6 +63,7 @@ export default function EditActividy() {
               name={"name"}
               disabled={true}
               required={true}
+              defaultValue={useActivity.name}
             />
             <label htmlFor="score">Puntaje</label>
             <Input
@@ -71,6 +74,7 @@ export default function EditActividy() {
               disabled={true}
               required={true}
               placeholder={"hola"}
+              defaultValue={useActivity.note}
             />
           </div>
           <div className="contenedor-admin w-screen mb-5 fixed bottom-0 flex flex-col gap-5">

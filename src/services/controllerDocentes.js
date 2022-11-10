@@ -13,10 +13,10 @@ const getInformation = (responseToReturn) => {
 }
 
 
-const GetOneTeacherByID = async (idTeacher) => {
+const GetTeacherGradesByID = async (idTeacher) => {
     let responseToReturn
     api.defaults.headers.common["Content-Type"] = "application/json"
-    await api.get(`api/v1/user/get-teacher/${idTeacher}`)
+    await api.get(`api/v1/attendence/get-mystudents/${idTeacher}`)
         .then((response) => {
             responseToReturn = response
         }).catch((error) => {
@@ -24,4 +24,40 @@ const GetOneTeacherByID = async (idTeacher) => {
         });
     return getInformation(responseToReturn)
 }
-export { }
+
+const GetGradesByID = async (idGrade) => {
+    let responseToReturn
+    api.defaults.headers.common["Content-Type"] = "application/json"
+    await api.get(`api/v1/student/getone-bygrade/${idGrade}`)
+        .then((response) => {
+            responseToReturn = response
+        }).catch((error) => {
+            responseToReturn = error
+        });
+    return getInformation(responseToReturn)
+}
+
+const GetGradesAreas = async (idGrade) => {
+    let responseToReturn
+    api.defaults.headers.common["Content-Type"] = "application/json"
+    await api.get(`api/v1/grade/getone-grade/${idGrade}`)
+        .then((response) => {
+            responseToReturn = response
+        }).catch((error) => {
+            responseToReturn = error
+        });
+    return getInformation(responseToReturn)
+}
+
+const GetUnityActivities = async (idArea) => {
+    let responseToReturn
+    api.defaults.headers.common["Content-Type"] = "application/json"
+    await api.get(`api/v1/area/getone-area/${idArea}`)
+        .then((response) => {
+            responseToReturn = response
+        }).catch((error) => {
+            responseToReturn = error
+        });
+    return getInformation(responseToReturn)
+}
+export {GetTeacherGradesByID, GetGradesByID, GetGradesAreas, GetUnityActivities}

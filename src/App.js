@@ -87,8 +87,8 @@ function App() {
           <Route path="/todos/alumnos" element={<AllAlumnos />} />
           <Route path="/profile/alumno" element={<AlumnoProfile />} />
           <Route path="/boletin/docentes" element={<Boletin />} />
-          <Route path="/grades/teacher/:id" element={<GradesAssigned />} />
-          <Route path="/grades/teacher/:id/courses" element={<Courses />} />
+          <Route path="/grades/teacher" element={<GradesAssigned />} />
+          <Route path="/grades/teacher/courses" element={<Courses />} />
           <Route
             path="/grades/teacher/:id/courses/students"
             element={<Students />}
@@ -102,7 +102,7 @@ function App() {
             element={<Notes />}
           />
           <Route
-            path="/grades/teacher/:id/courses/:courseId"
+            path="/grades/teacher/unidades"
             element={<Course />}
           />
           <Route
@@ -110,7 +110,7 @@ function App() {
             element={<NewActivity />}
           />
           <Route
-            path="/grades/teacher/:id/courses/:courseId/activity/edit"
+            path="/grades/teacher/courses/activity/edit"
             element={<EditActividy />}
           />
           <Route path="/backend" element={<ControllerProving />} />

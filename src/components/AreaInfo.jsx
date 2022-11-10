@@ -1,10 +1,14 @@
 import React from "react";
 import Arrow from "../assets/images/arrow.svg";
 import { useNavigate } from "react-router-dom";
-function StudentCourse(props) {
+
+
+function AreaInfo(props) {
   const navigate = useNavigate();
   function handleMore() {
-    navigate("/todos/alumnos");
+    const areadataJSON = JSON.stringify(props);
+    localStorage.setItem("areainfo", areadataJSON);
+    navigate("/grades/teacher/unidades");
   }
   return (
     <div className="grade-container">
@@ -17,4 +21,4 @@ function StudentCourse(props) {
   );
 };
 
-export default StudentCourse;
+export default AreaInfo;
