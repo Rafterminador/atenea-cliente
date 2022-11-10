@@ -1,3 +1,5 @@
+/* eslint-disable no-restricted-globals */
+/* eslint-disable no-undef */
 importScripts(
   "https://storage.googleapis.com/workbox-cdn/releases/6.4.1/workbox-sw.js"
 );
@@ -19,7 +21,12 @@ precacheAndRoute(self.__WB_MANIFEST);
 //register allow offline navigation routes
 const handler = createHandlerBoundToURL("/index.html");
 const navigationRoute = new NavigationRoute(handler, {
-  allowlist: [new RegExp("/home/docente"), new RegExp("/asistencia/*")],
+  allowlist: [
+    new RegExp("/home/docente"),
+    new RegExp("/asistencia/*"),
+    new RegExp("/calificar/*"),
+    new RegExp("/grades/teacher/*"),
+  ],
 });
 registerRoute(navigationRoute);
 
@@ -30,11 +37,16 @@ registerRoute(navigationRoute);
 // ];
 
 // registerRoute(({ request, url }) => {
-//   // console.log({request, url})
-//   if (cacheNetworkFirst.includes(url.pathname)) return true;
+// console.log("URL: " + url.pathname);
+// if (cacheNetworkFirst.includes(url.pathname)) return true;
 
-//   return false;
+// return false;
 // }, new NetworkFirst());
+
+registerRoute(
+  new RegExp(API_URL + "api/v1/grade/getone-grade-detailed/*"),
+  new NetworkFirst()
+);
 
 // Posts Offline
 const bgSyncPlugin = new BackgroundSyncPlugin("offline-posts", {
@@ -47,4 +59,12 @@ registerRoute(
     plugins: [bgSyncPlugin],
   }),
   "POST"
+);
+
+registerRoute(
+  new RegExp(API_URL + "api/v1/activity/update-all-students-scores"),
+  new NetworkOnly({
+    plugins: [bgSyncPlugin],
+  }),
+  "PUT"
 );
