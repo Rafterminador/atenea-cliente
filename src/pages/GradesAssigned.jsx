@@ -1,11 +1,11 @@
 import { useRef, useState } from "react";
-import GradeAssigned from "../components/GradeAssigned";
 import { ReactComponent as Grade } from "../assets/images/grade.svg";
 import { ReactComponent as Grades } from "../assets/images/grades.svg";
 import { ReactComponent as Attendance } from "../assets/images/students.svg";
 import { ReactComponent as MenuImage } from "../assets/images/menu.svg";
 import Menu from "../components/Menu";
 import { useEffect } from "react";
+import GradeAssigned from "../components/GradeAssigned";
 
 export default function GradesAssigned() {
   const [hidden, setHidden] = useState("hidden");
@@ -40,11 +40,17 @@ export default function GradesAssigned() {
       document.removeEventListener("click", handleClickOutside);
     };
   }, [ref]);
+
   return (
     <div className="relative">
       <div className="contenedor contenedor-admin">
         <h1 className="h1-administracion">Mis Grados</h1>
-        <GradeAssigned grade="Primero Primaria" alumnos={2} id={1} />
+        <GradeAssigned
+          grade="Primero Primaria"
+          alumnos={2}
+          id={1}
+          url="courses"
+        />
       </div>
       <div className="fixed z-0 bottom-0 h-[70px] w-full flex justify-around items-center text-centers shadow">
         <div className="w-[90px] h-full">
