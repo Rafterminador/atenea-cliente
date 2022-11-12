@@ -1,4 +1,4 @@
-import Retroceder from "../components/Retroceder";
+import TopBar from "../components/TopBar";
 import ComboBox from "../components/ComboBox";
 import Button from "../components/Button";
 import Input from "../components/Input";
@@ -166,7 +166,7 @@ export default function Qualify() {
 
   return (
     <div>
-      <Retroceder text="Calificar actividad" />
+      <TopBar text="Calificar actividad" />
       <div className="contenedor-admin text-center">
         <p>
           Calificaciones de:{" "}
