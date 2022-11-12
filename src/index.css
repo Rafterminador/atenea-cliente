@@ -76,7 +76,7 @@ p {
   border-radius: 20px 20px 20px 20px;
 }
 
-.effect-drpshddw{
+.effect-drpshddw {
   box-shadow: 0px 0px 8px rgba(112, 100, 255, 0.25);
 }
 
@@ -302,15 +302,18 @@ hr.administracion {
 }
 
 .sweet-cancel-button {
-  background: #ffffff;
-
-  border: 2px solid #7064ff;
-  border-radius: 10px;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  width: 122px;
+  padding: 10px 16px;
+  width: 110px;
+  font-family: Open-Sans-600;
+  font-size: 1rem;
+  line-height: 140%;
+  color: #7064ff;
+  border: 2px solid #dbd8ff;
+  border-radius: 20px;
 }
 
 .sweet-confirmation-button {
@@ -318,10 +321,13 @@ hr.administracion {
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  font-family: Open-Sans-600;
+  font-size: 1rem;
+  line-height: 140%;
   color: white;
   background: #7064ff;
-  border-radius: 10px;
-  width: 98px;
+  border-radius: 20px;
+  width: 150px;
   margin-right: 20px;
 }
 

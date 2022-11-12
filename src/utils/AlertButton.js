@@ -35,7 +35,6 @@ const AlertButton = {
       customClass: {
         icon: "no-border",
         title: "",
-
         confirmButton: "sweet-confirmation-button",
       },
       buttonsStyling: false,

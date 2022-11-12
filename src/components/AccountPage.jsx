@@ -5,7 +5,13 @@ import Confirmation from "../assets/images/confirmar-docente.svg";
 import Deshabilitar from "../assets/images/deshabilitar-docente.svg";
 import { useEffect } from "react";
 import { AlertButton } from "../utils/AlertButton";
-import { GetOneTeacherByID, updateRol, DisableTeacher, EnableTeacher, getAllTeachers } from "../services/controllerDirector";
+import {
+  GetOneTeacherByID,
+  updateRol,
+  DisableTeacher,
+  EnableTeacher,
+  getAllTeachers,
+} from "../services/controllerDirector";
 import { useState } from "react";
 import TopBar from "./TopBar";
 import Grades from "./Grades";
@@ -21,13 +27,11 @@ const AccountPage = () => {
   const [visibleButtom, setVisibleButtom] = useState("");
   const [id, setId] = useState({});
 
-
-
   useEffect(() => {
     let gradoJSON = localStorage.getItem("docente");
     let seteargrado = JSON.parse(gradoJSON);
-    console.log(seteargrado)
-    setId(seteargrado)
+    console.log(seteargrado);
+    setId(seteargrado);
     const getOneTeacherByID = async () => {
       try {
         let response = await GetOneTeacherByID(seteargrado);
@@ -44,8 +48,7 @@ const AccountPage = () => {
     };
 
     getOneTeacherByID();
-  
-  },[id]);
+  }, [id]);
 
   const getOneTeacherByID = async () => {
     try {
@@ -65,11 +68,10 @@ const AccountPage = () => {
   const handleEdit = async (e) => {
     e.preventDefault();
 
-    
     Swal.fire(
       AlertButton.dataAlertUnBotonMorado(
         "¿Confirmar docente?",
-        "Sí",
+        "Sí, hacerlo",
         "Cancelar",
         Confirmation
       )
@@ -90,15 +92,13 @@ const AccountPage = () => {
 
     if (response.status === 200) {
       console.log(response.body);
-      const teacherJSON = JSON.stringify(response.body)
-      localStorage.setItem('docentes', teacherJSON)
+      const teacherJSON = JSON.stringify(response.body);
+      localStorage.setItem("docentes", teacherJSON);
       Swal.fire(AlertButton.dataAlertSuccess("docente confirmado"));
       getOneTeacherByID();
     } else {
       console.log(response.body);
     }
-
-    
   };
 
   const EnableDocente = async (e) => {
@@ -128,15 +128,13 @@ const AccountPage = () => {
 
     if (response.status === 200) {
       console.log(response.body);
-      const teacherJSON = JSON.stringify(response.body)
-      localStorage.setItem('docentes', teacherJSON)
+      const teacherJSON = JSON.stringify(response.body);
+      localStorage.setItem("docentes", teacherJSON);
       Swal.fire(AlertButton.dataAlertSuccess("docente deshabilitado"));
       getOneTeacherByID();
     } else {
       console.log(response.body);
     }
-
-    
   };
 
   const InableDocente = async (e) => {
@@ -165,15 +163,13 @@ const AccountPage = () => {
 
     if (response.status === 200) {
       console.log(response.body);
-      const teacherJSON = JSON.stringify(response.body)
-      localStorage.setItem('docentes', teacherJSON)
+      const teacherJSON = JSON.stringify(response.body);
+      localStorage.setItem("docentes", teacherJSON);
       Swal.fire(AlertButton.dataAlertSuccess("docente habilitado"));
       getOneTeacherByID();
     } else {
       console.log(response.body);
     }
-
-    
   };
 
   return (
@@ -228,9 +224,19 @@ const AccountPage = () => {
               //   form="register-form"
               // />
 
-              <button className='button-purple' style={{ position: 'absolute', left: '0px', marginLeft: '20px', width: 'calc(100% - 40px)', bottom: '20px' }} onClick={handleEdit}>
-                  Confirmar docente
-                </button>
+              <button
+                className="button-purple"
+                style={{
+                  position: "absolute",
+                  left: "0px",
+                  marginLeft: "20px",
+                  width: "calc(100% - 40px)",
+                  bottom: "20px",
+                }}
+                onClick={handleEdit}
+              >
+                Confirmar docente
+              </button>
             ) : (
               ""
             )}
@@ -245,7 +251,17 @@ const AccountPage = () => {
                 //   type="click"
                 //   form="register-form"
                 // />
-                <button className='delete-button' style={{ position: 'absolute', left: '0px', marginLeft: '20px', width: 'calc(100% - 40px)', bottom: '20px' }} onClick={EnableDocente}>
+                <button
+                  className="delete-button"
+                  style={{
+                    position: "absolute",
+                    left: "0px",
+                    marginLeft: "20px",
+                    width: "calc(100% - 40px)",
+                    bottom: "20px",
+                  }}
+                  onClick={EnableDocente}
+                >
                   Deshabilitar docente
                 </button>
               ) : (
@@ -257,7 +273,17 @@ const AccountPage = () => {
                 //   type="click"
                 //   form="register-form"
                 // />
-                <button className='button-purple' style={{ position: 'absolute', left: '0px', marginLeft: '20px', width: 'calc(100% - 40px)', bottom: '20px' }} onClick={InableDocente}>
+                <button
+                  className="button-purple"
+                  style={{
+                    position: "absolute",
+                    left: "0px",
+                    marginLeft: "20px",
+                    width: "calc(100% - 40px)",
+                    bottom: "20px",
+                  }}
+                  onClick={InableDocente}
+                >
                   Habilitar docente
                 </button>
               )}
