@@ -216,7 +216,7 @@ const TomarAsistencia = () => {
               </SwiperSlide>
             ))}
           </Swiper>
-          <div className="flex justify-center">
+          <div className="flex justify-center mt-4">
             <p className="mr-2 font-bold">1</p>
             <p className="">{`de ${students.lengtAlumnos}`}</p>
           </div>

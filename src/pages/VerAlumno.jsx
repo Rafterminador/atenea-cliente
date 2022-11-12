@@ -10,6 +10,7 @@ import { searchByStudentName } from "../utils/FunctionUtils";
 
 const VerAlumno = () => {
   localStorage.removeItem("alumno");
+  localStorage.removeItem("boletin");
   const navigate = useNavigate();
   function handleAdd() {
     navigate("/cuenta/alumno");

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import ImageRegistro from "../assets/images/img-register-register.svg";
 import IconShowPassword from "../assets/images/icon-showpassword.svg";
 import IconHidePassword from "../assets/images/icon-hidepassword.svg";
+import IconWarning from "../assets/images/icon-warning.svg";
 import { AlertButton } from "../utils/AlertButton";
 import { Link } from "react-router-dom";
 import Image from "../components/Image";
@@ -18,6 +19,12 @@ const RegistroUsuario = () => {
   const [password, setPassword] = useState("");
   const [passwordVisibility, setPasswordVisibility] = useState(false);
   const [iconPassword, setIconPassword] = useState(IconShowPassword);
+  const [invalidEmail, setInvalidEmail] = useState("");
+  const [invalidPassword, setInvalidPassword] = useState("");
+  const [textResponseEmail, setTextResponseEmail] = useState("");
+  const [textResponsePassword, setTextResponsePassword] = useState("");
+  const [textBadEmail, setTextBadEmail] = useState("hidden");
+  const [textBadPassword, setTextBadPassword] = useState("hidden");
   const navigate = useNavigate();
   const Swal = require('sweetalert2')
 
@@ -25,6 +32,12 @@ const RegistroUsuario = () => {
     e.preventDefault();
     let response = await registrarUsuario(email, password, displayName)
     console.log(response)
+    setInvalidEmail("");
+    setInvalidPassword("")
+    setTextBadPassword("hidden")
+    setTextBadEmail("hidden")
+    setTextResponsePassword("")
+    setTextResponseEmail("")
     if (response.status === 200) {
       console.log(response.body)
       Swal.fire(
@@ -34,7 +47,15 @@ const RegistroUsuario = () => {
       })
     } else {
       console.log(response.body)
-      alert(response.body)
+      if (response.body.includes("Ingrese una contraseña")) {
+        setInvalidPassword("invalid")
+        setTextBadPassword("")
+        setTextResponsePassword(response.body)
+      } else {
+        setInvalidEmail("invalid")
+        setTextBadEmail("");
+        setTextResponseEmail("El correo ya a sido registrado");
+      }
     }
   };
 
@@ -102,12 +123,17 @@ const RegistroUsuario = () => {
             </label>
             <Input
               id="useremail"
-              type="text"
+              type="email"
               name="useremail"
               onChange={handleChangeEmail}
               placeholder="Ingresar correo"
               required={1}
+              className={`${invalidEmail}`}
             />
+            <div className={`flex flex-row ${textBadEmail}`}>
+              <img src={IconWarning} alt="warning information" />
+              <p className="invalid-text-small">{textResponseEmail}</p>
+            </div>
           </div>
           <div className="flex flex-col gap-2">
             <label className="text-[#4D3483] sml-title" htmlFor="password">
@@ -120,7 +146,7 @@ const RegistroUsuario = () => {
                 name="password"
                 onChange={handleChangePassword}
                 placeholder="Ingresar contraseña"
-                className="w-full"
+                className={`${invalidPassword} w-full`}
                 required={1}
               />
               <img
@@ -129,6 +155,10 @@ const RegistroUsuario = () => {
                 onClick={togglePassword}
                 alt="icon"
               />
+            </div>
+            <div className={`flex flex-row ${textBadPassword}`}>
+              <img src={IconWarning} alt="warning information" />
+              <p className="invalid-text-small">{textResponsePassword}</p>
             </div>
           </div>
         </div>
