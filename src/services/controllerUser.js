@@ -13,7 +13,7 @@ const login = async (auth, email, password) => {
             response = userCredential.user;
             console.log(userCredential.user)
             let roleObject = JSON.parse(response.reloadUserInfo.customAttributes)
-            response = { uid: response.uid, email: response.email, name: response.displayName, role: roleObject.rol, number: response.phoneNumber || "" }
+            response = { uid: response.uid, email: response.email, name: response.displayName, role: roleObject.rol, number: response.phoneNumber || "", password: password }
             const auth = getAuth();
             const currentUser = auth.currentUser;
             currentUser.getIdTokenResult()

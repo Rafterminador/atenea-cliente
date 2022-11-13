@@ -1,97 +1,80 @@
-import Eye from "../assets/images/eye.svg";
+import React, { useState } from "react";
 import Input from "../components/Input";
 import Button from "../components/Button";
-import Image from "../components/Image";
+import IconShowPassword from "../assets/images/icon-showpassword.svg";
+import IconHidePassword from "../assets/images/icon-hidepassword.svg";
 
 export default function EditProfile({ handle }) {
-  function handleEye(e) {
-    e.preventDefault();
-    let type = e.currentTarget.parentNode.previousElementSibling.type;
-    if (type === "password") {
-      e.currentTarget.parentNode.previousElementSibling.type = "text";
+  const [password, setPassword] = useState("");
+  const [passwordVisibility, setPasswordVisibility] = useState(false);
+  const [iconPassword, setIconPassword] = useState(IconShowPassword);
+  const userJSON = localStorage.getItem('usuario')
+  const usuario = JSON.parse(userJSON)
+
+  const togglePassword = () => {
+    setPasswordVisibility(!passwordVisibility);
+    if (iconPassword === IconShowPassword) {
+      setIconPassword(IconHidePassword);
     } else {
-      e.currentTarget.parentNode.previousElementSibling.type = "password";
+      setIconPassword(IconShowPassword);
     }
+  };
+  function handleChangePassword(e) {
+    setPassword(e.target.value);
   }
   return (
     <div className={`account mx-5 pt-6 flex flex-col justify-between`}>
       <div>
         <form>
-          <div className="flex flex-col gap-5">
-            <label
-              htmlFor="user"
-              className="text-[#4D3483] font-semibold text-base"
-            >
-              Usuario
-            </label>
-            <Input
-              className={
-                "flex justify-between font-normal border-solid border-2 border-[#DBD8FF] rounded-[10px] py-2.5 px-2"
-              }
-              id={"user"}
-              type={"text"}
-              name={"user"}
-              disabled={false}
-              required={true}
+          <label
+            htmlFor="email"
+            className="text-[#4D3483] font-semibold text-base"
+          >
+            Correo
+          </label>
+          <Input
+            className={
+              "flex justify-between font-normal border-solid border-2 border-[#DBD8FF] rounded-[10px] py-2.5 px-2 w-full mt-[8px] mb-[16px]"
+            }
+            id={"email"}
+            type={"email"}
+            name={"email"}
+            disabled={false}
+            required={true}
+            defaultValue={usuario.email}
+          />
+          <label
+            htmlFor="password"
+            className="text-[#4D3483] font-semibold text-base"
+          >
+            Contraseña
+          </label>
+          <div className="relative">
+            <Input id="password" type={passwordVisibility ? "text" : "password"} name="password" onChange={handleChangePassword} placeholder="Ingresar contraseña" className={"w-full mt-[8px] mb-[16px]"} required={1} defaultValue={usuario.password} />
+            <img
+              className="shw-pass bg-white"
+              src={iconPassword}
+              onClick={togglePassword}
+              alt="icon"
             />
-            <label
-              htmlFor="email"
-              className="text-[#4D3483] font-semibold text-base"
-            >
-              Correo
-            </label>
-            <Input
-              className={
-                "flex justify-between font-normal border-solid border-2 border-[#DBD8FF] rounded-[10px] py-2.5 px-2"
-              }
-              id={"email"}
-              type={"email"}
-              name={"email"}
-              disabled={false}
-              required={true}
-            />
-            <label
-              htmlFor="password"
-              className="text-[#4D3483] font-semibold text-base"
-            >
-              Contraseña
-            </label>
-            <div className="relative h-12">
-              <Input
-                className={
-                  "w-full flex justify-between font-normal border-solid border-2 border-[#DBD8FF] rounded-[10px] py-2.5 px-2"
-                }
-                id={"password"}
-                type={"password"}
-                name={"password"}
-                disabled={false}
-                required={true}
-              />
-              <div className="absolute right-2 top-1/2 -translate-y-1/2">
-                <button onClick={handleEye}>
-                  <Image type={0} image={Eye} alt={"Eye"} />
-                </button>
-              </div>
-            </div>
-            <label
-              htmlFor="password"
-              className="text-[#4D3483] font-semibold text-base"
-            >
-              Repetir contraseña
-            </label>
-            <div className="h-12">
-              <Input
-                className={
-                  "w-full flex justify-between font-normal border-solid border-2 border-[#DBD8FF] rounded-[10px] py-2.5 px-2"
-                }
-                id={"repeatPassword"}
-                type={"password"}
-                name={"repeatPassword"}
-                disabled={false}
-                required={true}
-              />
-            </div>
           </div>
+          <label
+            htmlFor="phone"
+            className="text-[#4D3483] font-semibold text-base"
+          >
+            Número telefónico
+          </label>
+          <Input
+            className={
+              "flex justify-between font-normal border-solid border-2 border-[#DBD8FF] rounded-[10px] py-2.5 px-2 w-full mt-[8px] mb-[16px]"
+            }
+            id={"user"}
+            type={"text"}
+            name={"phone"}
+            disabled={false}
+            required={true}
+            defaultValue={usuario.number}
+          />
         </form>
       </div>
       <div className="mb-5">
