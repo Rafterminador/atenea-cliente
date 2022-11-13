@@ -274,7 +274,17 @@ const AccountPage = () => {
                 //   type="click"
                 //   form="register-form"
                 // />
-                <button className="button-purple" onClick={InableDocente}>
+                <button
+                  className="button-purple"
+                  style={{
+                    position: "absolute",
+                    left: "0px",
+                    marginLeft: "20px",
+                    width: "calc(100% - 40px)",
+                    bottom: "20px",
+                  }}
+                  onClick={InableDocente}
+                >
                   Habilitar docente
                 </button>
               )}

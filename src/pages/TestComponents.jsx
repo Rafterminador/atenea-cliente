@@ -1,10 +1,11 @@
 import React from "react";
-import Menu from "../components/Menu";
+// import RowCPN from "../components/RowCPN";
+// import iconArrow from "../assets/images/icon-arrow-right.svg";
 // import ButtonA from "../components/Button";
 const TestComponents = () => {
   return (
     <>
-      <Menu hidden={""} animation={""} />
+     
     </>
   );
 };

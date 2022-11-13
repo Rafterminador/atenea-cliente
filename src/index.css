@@ -172,7 +172,8 @@ p {
 .h1-administracion {
   color: #4d3483;
   font-size: 22px;
-  font-family: Poppins-700;
+  line-height: 150%;
+  font-family: Poppins-600;
   font-weight: 600;
   @apply mt-0;
   margin-top: 16px;
@@ -378,7 +379,7 @@ hr.administracion {
   /* Bold */
   font-size: 2.369rem;
   /* 37.90px */
-  line-height: 57px;
+  line-height: 150%;
 }
 
 .med-title {
@@ -402,7 +403,7 @@ hr.administracion {
   /* Regular */
   font-size: 1rem;
   /* 16px */
-  line-height: 22px;
+  line-height: 140%;
 }
 
 .sml-text {
@@ -410,7 +411,7 @@ hr.administracion {
   /* Regular */
   font-size: 0.75rem;
   /* 12px */
-  line-height: 17px;
+  line-height: 140%;
 }
 
 .sml-text-2 {
@@ -418,7 +419,7 @@ hr.administracion {
   /* Regular */
   font-size: 0.8rem;
   /* 12.8px */
-  line-height: 17px;
+  line-height: 140%;
 }
 
 .nrm-button {

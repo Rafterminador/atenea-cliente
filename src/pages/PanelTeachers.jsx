@@ -52,7 +52,7 @@ const Teachers = () => {
     // };
 
     //handlegetAllTeacher();
-    const teacherJSON = localStorage.getItem('docentes');
+    const teacherJSON = localStorage.getItem("docentes");
     const docente = JSON.parse(teacherJSON);
     console.log(docente);
     setNewUsers(docente.newUsers.data);
@@ -191,7 +191,6 @@ const Teachers = () => {
           </section>
         </section>
       </div>
-
     </>
   );
 };
