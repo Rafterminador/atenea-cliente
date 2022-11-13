@@ -173,34 +173,33 @@ const AccountPage = () => {
   };
 
   return (
-    <>
-      <TopBar text={teacher.displayName} />
+    <div className="md:hidden">
       {!cargando ? (
         <>
-          <div className={`m-6 flex space-x-2 ${rol}`}>
-            <p className=" text-[16px]">Se unió el:</p>
-            <p className="font-bold text-[16px]">{teacher.createdAt}</p>
-          </div>
-
-          <div className="m-6 rounded-xl bordeblurd">
-            <div className="p-8">
-              <p className="font-bold text-[#4D3483] text-lg mb-2">Contacto</p>
-              <div className="flex space-x-5 mb-2">
+          <TopBar text={teacher.displayName} />
+          <div className="mx-5 flex flex-col gap-6 mt-6">
+            <p className="nrm-text">
+              Se unió el:{" "}
+              <span className="opensansbold">{teacher.createdAt}</span>
+            </p>
+            <div className="effect-drpshddw rounded-[10px] flex flex-col items-center p-4 gap-2">
+              <p className="sml-title text-[#4D3483] self-stretch">Contacto</p>
+              <div className="flex flex-row items-center p-0 gap-4 self-stretch">
                 <img src={Email} alt="correo" />
                 <p>{teacher.email}</p>
               </div>
-
-              <div className="flex space-x-5">
+              <div className="flex flex-row items-center p-0 gap-4 self-stretch">
                 <img src={Tel} alt="telefono" />
-                <p>{teacher.phoneNumber}</p>
+                {teacher.phoneNumber ? (
+                  <p>{teacher.phoneNumber}</p>
+                ) : (
+                  <p className="text-[#7B7B7B]">Ninguno</p>
+                )}
               </div>
             </div>
-          </div>
-
-          <div className="m-6 rounded-xl bordeblurd">
-            <div className="p-8">
-              <p className="font-bold text-[#4D3483] text-lg mb-2">
-                Grados a Cargo
+            <div className="effect-drpshddw rounded-[10px] flex flex-col items-center p-4 gap-2">
+              <p className="sml-title text-[#4D3483] self-stretch">
+                Grados a cargo
               </p>
 
               {grades.length ? (
@@ -208,7 +207,9 @@ const AccountPage = () => {
                   <Grades key={grado.id} name={grado.grade_name} />
                 ))
               ) : (
-                <p className="text-[#7B7B7B]">Ninguno</p>
+                <div className="flex flex-row items-center p-0 gap-4 self-stretch">
+                  <p className="text-[#7B7B7B]">Ninguno</p>
+                </div>
               )}
             </div>
           </div>
@@ -273,17 +274,7 @@ const AccountPage = () => {
                 //   type="click"
                 //   form="register-form"
                 // />
-                <button
-                  className="button-purple"
-                  style={{
-                    position: "absolute",
-                    left: "0px",
-                    marginLeft: "20px",
-                    width: "calc(100% - 40px)",
-                    bottom: "20px",
-                  }}
-                  onClick={InableDocente}
-                >
+                <button className="button-purple" onClick={InableDocente}>
                   Habilitar docente
                 </button>
               )}
@@ -291,9 +282,12 @@ const AccountPage = () => {
           </div>
         </>
       ) : (
-        <Spinner />
+        <div className="flex flex-col min-h-screen md:hidden">
+          <TopBar text={teacher.displayName} />
+          <Spinner />
+        </div>
       )}
-    </>
+    </div>
   );
 };
 
