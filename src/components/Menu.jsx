@@ -6,6 +6,8 @@ import { useNavigate } from "react-router-dom";
 
 export default function Menu({ hidden, keyValue, animation }) {
   const navigate = useNavigate();
+  const userJSON = localStorage.getItem('usuario')
+  const usuario = JSON.parse(userJSON)
   const handleLogOut = () => {
     navigate("/")
   }
@@ -18,7 +20,7 @@ export default function Menu({ hidden, keyValue, animation }) {
       <div className="w-full flex flex-col items-center rounded-t-[20px] bg-white pb-4">
         <div className="border-2 border-[#776694] rounded-[10px] w-24 mt-3"></div>
         <div className="w-full mt-4 flex flex-col gap-3 px-5">
-          <Link to="/cuenta">
+          <Link to={usuario.role === "director" ? "/cuenta" : "/cuenta/docente"}>
             <div className="flex justify-between items-center shadow h-12 px-8">
               <p className="text-base font-semibold">Datos de la Cuenta</p>
               <img
