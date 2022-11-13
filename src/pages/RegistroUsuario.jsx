@@ -54,7 +54,7 @@ const RegistroUsuario = () => {
       } else {
         setInvalidEmail("invalid")
         setTextBadEmail("");
-        setTextResponseEmail("El correo ya a sido registrado");
+        setTextResponseEmail("El correo ya ha sido registrado");
       }
     }
   };

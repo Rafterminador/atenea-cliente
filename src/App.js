@@ -92,6 +92,7 @@ function App() {
             <Route path="/asistencia" element={<Asistencia />} />
             <Route path="/calificar" element={<Calificar />} />
           </Route>
+          <Route path="/cuenta/docente" element={<Account />} />
           <Route path="/grades/teacher/:id" element={<GradesAssigned />} />
           <Route path="/grades/teacher/:id/courses" element={<Courses />} />
           <Route
