@@ -18,6 +18,7 @@ const login = async (auth, email, password) => {
             const currentUser = auth.currentUser;
             currentUser.getIdTokenResult()
                 .then((idTokenResult) => {
+                    console.log(idTokenResult)
                     response.role = idTokenResult.claims.rol
                 })
                 .catch((error) => {
