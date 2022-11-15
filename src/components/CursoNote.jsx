@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 
 const CursoNote = (props) => {
   const navigate = useNavigate();
-  console.log("En cursos Note",props.idactivity)
   function handleClick(e) {
     const activityInfoJSON = JSON.stringify(props);
     localStorage.setItem("activityInfo", activityInfoJSON);

@@ -5,6 +5,7 @@ import CursoNote from "./CursoNote";
 
 const BoletinCard = (props) => {
   const navigate = useNavigate();
+  const unidad = props.unidad
   // const [myUnity, setMyUnitys] = useState([]);
   // const [myUnityOne, setMyUnityOne] = useState([]);
   // const [myUnityTwo, setMyUnityTwo] = useState([]);
@@ -63,6 +64,7 @@ const BoletinCard = (props) => {
               name={actividad.activity_name}
               note={actividad.activity_value}
               idactivity={actividad.id}
+              unidad={unidad}
               key={actividad.id}
               // onClick={handleClick}
             />

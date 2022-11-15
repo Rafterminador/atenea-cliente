@@ -60,7 +60,7 @@ const Units = (props) => {
       </div>
       <div className={`${hidden}`}>
         <div className="combo-box-container-notes">
-          {<Activities data={props.data} />}
+          {<Activities data={props.data} unidad={props.unidad}/>}
         </div>
       </div>
     </>

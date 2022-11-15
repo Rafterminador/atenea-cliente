@@ -60,4 +60,17 @@ const GetUnityActivities = async (idArea) => {
         });
     return getInformation(responseToReturn)
 }
-export {GetTeacherGradesByID, GetGradesByID, GetGradesAreas, GetUnityActivities}
+
+const updateActivity = async (activityObject, idActivity) => {
+    let responseToReturn
+    api.defaults.headers.common["Content-Type"] = "application/json"
+    await api.put(`api/v1/activity/update-activity/${idActivity}`, activityObject)
+        .then((response) => {
+            responseToReturn = response
+        }).catch((error) => {
+            responseToReturn = error
+        });
+    return getInformation(responseToReturn)
+}
+
+export {GetTeacherGradesByID, GetGradesByID, GetGradesAreas, GetUnityActivities, updateActivity}
