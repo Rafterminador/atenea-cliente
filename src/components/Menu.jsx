@@ -4,6 +4,8 @@ import Download from "../assets/images/icon-download.svg";
 import Logout from "../assets/images/icon-logout.svg";
 
 export default function Menu({ hidden, keyValue, animation }) {
+  const userJSON = localStorage.getItem("usuario");
+  const usuario = JSON.parse(userJSON);
   return (
     <div
       ref={keyValue}
@@ -15,7 +17,10 @@ export default function Menu({ hidden, keyValue, animation }) {
           <div className="w-20 h-[6px] bg-[#776694] rounded-[10px]"></div>
         </div>
         <div className="flex flex-col items-center p-0 gap-6 self-stretch">
-          <Link to="/cuenta" className="menu-button effect-drpshddw">
+          <Link
+            to={usuario.role === "director" ? "/cuenta" : "/cuenta/docente"}
+            className="menu-button effect-drpshddw"
+          >
             <p className="sml-title">Datos de la cuenta</p>
             <img className="" src={ArrowRight} alt="Arrow Right" />
           </Link>

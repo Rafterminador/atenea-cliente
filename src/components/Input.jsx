@@ -3,7 +3,11 @@ import React from "react";
 const Input = (props) => {
   return (
     <input
-      className={`input ${props.className} h-[42px] placeholder:text-[#7B7B7B] nrm-text nrm-txtfld-border focus:outline-2 focus:outline-[#A954FF]`}
+      className={`input ${
+        props.className
+      } h-[42px] placeholder:text-[#7B7B7B] nrm-text nrm-txtfld-border focus:outline-2 focus:outline-[#A954FF] ${
+        props.disabled ? " input-inactive" : ""
+      }`}
       id={props.id}
       type={props.type}
       name={props.name}

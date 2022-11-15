@@ -328,15 +328,10 @@ const getStudentBoletin = async (idStudent, nameStudent) => {
         link.href = url;
         link.target = '_blank'
         link.download = `${nameStudent}_Boletin.pdf`
-     
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
     })
-
-   
-     
-
 }
 
 export {

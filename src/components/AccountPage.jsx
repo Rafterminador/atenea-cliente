@@ -15,7 +15,7 @@ import {
 import { useState } from "react";
 import TopBar from "./TopBar";
 import Grades from "./Grades";
-//import Button from "./Button";
+import Button from "./Button";
 import Spinner from "./Spinner";
 const Swal = require("sweetalert2");
 
@@ -216,17 +216,10 @@ const AccountPage = () => {
 
           <div className="">
             {!teacher.rol ? (
-              // <Button
-              //   onClick={handleEdit}
-              //   text="Confirmar docente"
-              //   typeButton={"button-type-2"}
-              //   className="my-5"
-              //   type="click"
-              //   form="register-form"
-              // />
-
-              <button
-                className="button-purple"
+              <Button
+                text="Confirmar docente"
+                typeButton={"button-type-2"}
+                className=""
                 style={{
                   position: "absolute",
                   left: "0px",
@@ -235,25 +228,17 @@ const AccountPage = () => {
                   bottom: "20px",
                 }}
                 onClick={handleEdit}
-              >
-                Confirmar docente
-              </button>
+              />
             ) : (
               ""
             )}
 
             <div className={`${visibleButtom}`}>
               {teacher.enable ? (
-                // <Button
-                //   onClick={EnableDocente}
-                //   text="Deshabilitar docente"
-                //   typeButton={"button-type-3"}
-                //   className="my-5 "
-                //   type="click"
-                //   form="register-form"
-                // />
-                <button
-                  className="delete-button"
+                <Button
+                  text="Deshabilitar docente"
+                  typeButton={"button-type-3"}
+                  className=""
                   style={{
                     position: "absolute",
                     left: "0px",
@@ -262,20 +247,12 @@ const AccountPage = () => {
                     bottom: "20px",
                   }}
                   onClick={EnableDocente}
-                >
-                  Deshabilitar docente
-                </button>
+                />
               ) : (
-                // <Button
-                //   onClick={InableDocente}
-                //   text="Habilitar docente"
-                //   typeButton={"button-type-2"}
-                //   className="my-5"
-                //   type="click"
-                //   form="register-form"
-                // />
-                <button
-                  className="button-purple"
+                <Button
+                  text="Habilitar docente"
+                  typeButton={"button-type-2"}
+                  className=""
                   style={{
                     position: "absolute",
                     left: "0px",
@@ -284,9 +261,7 @@ const AccountPage = () => {
                     bottom: "20px",
                   }}
                   onClick={InableDocente}
-                >
-                  Habilitar docente
-                </button>
+                />
               )}
             </div>
           </div>
