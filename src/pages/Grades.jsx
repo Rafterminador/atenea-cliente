@@ -55,6 +55,7 @@ const Grades = () => {
           id={grade.id}
           alumnos={grade.totalStudents}
           levelRef={levelGrade.id}
+          for="Grades"
         />
         <div className="mb-2"></div>
       </div>

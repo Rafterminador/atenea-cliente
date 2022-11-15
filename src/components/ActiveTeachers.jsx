@@ -3,12 +3,10 @@ import Arrow from "../../src/assets/images/arrow_right.svg";
 import { Link } from "react-router-dom";
 
 const ActiveTeachers = ({ uid, name, grado }) => {
-
   const handleClick = () => {
-    const gradeJSON = JSON.stringify(uid)
-    localStorage.setItem('docente', gradeJSON)
-
-  }
+    const gradeJSON = JSON.stringify(uid);
+    localStorage.setItem("docente", gradeJSON);
+  };
 
   return (
     <>

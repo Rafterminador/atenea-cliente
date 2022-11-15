@@ -3,15 +3,27 @@ import iconArrow from "../assets/images/icon-arrow-right.svg";
 import { useNavigate } from "react-router-dom";
 const RowCPN = (props) => {
   const navigate = useNavigate();
-  const handleClick = () => {
+  const handleClickGrades = () => {
     const gradeJSON = JSON.stringify(props);
     localStorage.setItem("grade", gradeJSON);
     navigate("/grades/update/" + props.id);
   };
+
+  const handleClickTeacher = () => {
+    const gradeJSON = JSON.stringify(props.uid);
+    localStorage.setItem("docente", gradeJSON);
+    navigate("/cuenta/docente/" + props.uid);
+  };
   return (
     <div
       className="box-border flex justify-between items-center p-0 border-b-[1.5px] border-[#DBD8FF]"
-      onClick={handleClick}
+      onClick={
+        props.for === "Grades"
+          ? handleClickGrades
+          : props.for === "Teachers"
+          ? handleClickTeacher
+          : handleClickTeacher
+      }
     >
       <div className="flex flex-col justify-center items-start p-0 gap-[2px] truncate">
         <h3 className="sml-title">{props.curso}</h3>
