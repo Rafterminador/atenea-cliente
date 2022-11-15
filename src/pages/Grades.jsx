@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import SearchBar from "../components/SearchBar";
 // import Grade from "../components/Grade";
 import AddButton from "../components/AddButton";
-import RowCPN from "../components/RowCPN";
+import RowComponent from "../components/RowComponent";
 import { useNavigate } from "react-router-dom";
 import { getEnabledTeachers } from "../services/controllerDirector";
 import uuid from "react-uuid";
@@ -47,11 +47,11 @@ const Grades = () => {
           ""
         )}
 
-        <RowCPN
+        <RowComponent
           key={grade.id}
-          curso={grade.grade_name}
-          text="A cargo de"
-          encargado={grade.teacherRef.displayName}
+          title={grade.grade_name}
+          subtitle="A cargo de"
+          content={grade.teacherRef.displayName}
           id={grade.id}
           alumnos={grade.totalStudents}
           levelRef={levelGrade.id}

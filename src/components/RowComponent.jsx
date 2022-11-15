@@ -1,7 +1,7 @@
 import React from "react";
 import iconArrow from "../assets/images/icon-arrow-right.svg";
 import { useNavigate } from "react-router-dom";
-const RowCPN = (props) => {
+const RowComponent = (props) => {
   const navigate = useNavigate();
   const handleClickGrades = () => {
     const gradeJSON = JSON.stringify(props);
@@ -10,9 +10,9 @@ const RowCPN = (props) => {
   };
 
   const handleClickTeacher = () => {
-    const gradeJSON = JSON.stringify(props.uid);
+    const gradeJSON = JSON.stringify(props.id);
     localStorage.setItem("docente", gradeJSON);
-    navigate("/cuenta/docente/" + props.uid);
+    navigate("/cuenta/docente/" + props.id);
   };
   return (
     <div
@@ -26,10 +26,10 @@ const RowCPN = (props) => {
       }
     >
       <div className="flex flex-col justify-center items-start p-0 gap-[2px] truncate">
-        <h3 className="sml-title">{props.curso}</h3>
+        <h3 className="sml-title">{props.title}</h3>
         <p className="sml-text text-[#9695A2] pb-[9px]">
-          {props.text}:{" "}
-          <span className="text-[#9695A2] opensansbold">{props.encargado}</span>
+          {props.subtitle}:{" "}
+          <span className="text-[#9695A2] opensansbold">{props.content}</span>
         </p>
       </div>
       <img src={iconArrow} alt="icon right arrow" />
@@ -37,4 +37,4 @@ const RowCPN = (props) => {
   );
 };
 
-export default RowCPN;
+export default RowComponent;

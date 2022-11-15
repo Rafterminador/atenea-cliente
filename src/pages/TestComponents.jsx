@@ -1,5 +1,5 @@
 import React from "react";
-// import RowCPN from "../components/RowCPN";
+// import RowComponent from "../components/RowComponent";
 // import iconArrow from "../assets/images/icon-arrow-right.svg";
 // import ButtonA from "../components/Button";
 const TestComponents = () => {

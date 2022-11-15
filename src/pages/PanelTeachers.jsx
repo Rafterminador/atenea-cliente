@@ -1,13 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import NewTeachers from "../components/NuevoTeachers";
-import ActiveTeachers from "../components/ActiveTeachers";
-import InactiveTeachers from "../components/InactiveTeachers";
 import SearchBar from "../components/SearchBar";
 import { useEffect } from "react";
 import { useState } from "react";
 import Spinner from "../components/Spinner";
 import { searchByTeacherName } from "../utils/FunctionUtils";
+import RowComponent from "../components/RowComponent";
 const Teachers = () => {
   const [newUsers, setNewUsers] = useState([]);
   const [enableTeacher, setenableTeacher] = useState([]);
@@ -73,17 +71,19 @@ const Teachers = () => {
 
         <section className={`${mostrar} my-[10px] mb-[80px]`}>
           <div className="flex space-x-5 text-center font-bold ">
-            <p className="text-xl text-[#A954FF]">Búsqueda</p>
+            <p className="text-xl text-[#A954FF]">BúAsqueda</p>
             <p className="bg-[#DBD8FF] rounded-xl px-3 py-1 text-sm">
               {filtrado.length}
             </p>
           </div>
           {filtrado.map((docente) => (
-            <NewTeachers
-              id={docente.uid}
+            <RowComponent
               key={docente.uid}
-              name={docente.displayName}
-              date={docente.date}
+              title={docente.displayName}
+              subtitle="Se unió el"
+              content={docente.date.substring(0, docente.date.indexOf("a las"))}
+              id={docente.uid}
+              for="Teachers"
             />
           ))}
         </section>
@@ -111,11 +111,13 @@ const Teachers = () => {
               newUsers
                 .slice(0, 4)
                 .map((user) => (
-                  <NewTeachers
-                    id={user.uid}
+                  <RowComponent
                     key={user.uid}
-                    name={user.displayName}
-                    date={user.date}
+                    title={user.displayName}
+                    subtitle="Se unió el"
+                    content={user.date.substring(0, user.date.indexOf("a las"))}
+                    id={user.uid}
+                    for="Teachers"
                   />
                 ))
             ) : (
@@ -144,11 +146,17 @@ const Teachers = () => {
               enableTeacher
                 .slice(0, 4)
                 .map((docente) => (
-                  <ActiveTeachers
+                  <RowComponent
                     key={docente.uid}
-                    name={docente.displayName}
-                    uid={docente.uid}
-                    grado={docente?.grade.grade_name}
+                    title={docente.displayName}
+                    subtitle="Docente de"
+                    content={
+                      docente?.grade.grade_name
+                        ? docente?.grade.grade_name
+                        : "Ningún grado"
+                    }
+                    id={docente.uid}
+                    for="Teachers"
                   />
                 ))
             ) : (
@@ -178,11 +186,13 @@ const Teachers = () => {
               disabledTeacher
                 .slice(0, 4)
                 .map((docente) => (
-                  <InactiveTeachers
+                  <RowComponent
                     key={docente.uid}
-                    uid={docente.uid}
-                    name={docente.displayName}
-                    grado={docente?.grade.grade_name}
+                    title={docente.displayName}
+                    subtitle="Docente de"
+                    content={"Ningún grado"}
+                    id={docente.uid}
+                    for="Teachers"
                   />
                 ))
             ) : (
