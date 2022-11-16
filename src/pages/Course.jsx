@@ -16,7 +16,7 @@ export default function Course() {
   let useAreaInfo = JSON.parse(infoareaJSON);
   const navigate = useNavigate();
   function handleClick() {
-    navigate("/grades/teacher/:id/courses/:courseId/new/activity");
+    navigate("/grades/teacher/courses/new/activity");
   }
 
   useEffect(() => {

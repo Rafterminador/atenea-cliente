@@ -106,7 +106,7 @@ function App() {
             element={<Course />}
           />
           <Route
-            path="/grades/teacher/:id/courses/:courseId/new/activity"
+            path="/grades/teacher/courses/new/activity"
             element={<NewActivity />}
           />
           <Route

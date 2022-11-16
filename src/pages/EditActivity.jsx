@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from 'react-router-dom'
 import Swal from "sweetalert2";
 import Button from "../components/Button";
 import ComboBox from "../components/ComboBox";
@@ -8,7 +8,10 @@ import Retroceder from "../components/Retroceder";
 import { AlertButton } from "../utils/AlertButton";
 import Delete from "../assets/images/delete.svg";
 import { updateActivity } from "../services/controllerDocentes";
+import { deleteActivity } from "../services/controllerDocentes";
 import Spinner from "../components/Spinner";
+import DeleteConfirmation from "../assets/images/delete-confirmation.svg";
+import { isCompositeComponent } from "react-dom/test-utils";
 
 export default function EditActividy() {
   let ActivityInfoJSON = localStorage.getItem("activityInfo");
@@ -25,28 +28,66 @@ export default function EditActividy() {
     "Cuarta unidad",
   ]);
   const [cargando, setCargando] = useState(false);
+  const params = useParams()
+  const Swal = require('sweetalert2')
   
   function handleCancel(e) {
     e.preventDefault();
     setChange(!change);
   }
 
-  function handleDelete(e) {
-    e.preventDefault();
-    Swal.fire(
-      AlertButton.dataAlertUnBotonMorado(
-        "¿Eliminar actividad?",
-        "Sí, hacerlo",
-        "No",
-        Delete
-      )
-    ).then((result) => {
+  // function handleDelete(e) {
+  //   e.preventDefault();
+  //   Swal.fire(
+  //     AlertButton.dataAlertUnBotonMorado(
+  //       "¿Eliminar actividad?",
+  //       "Sí, hacerlo",
+  //       "No",
+  //       Delete
+  //     )
+  //   ).then((result) => {
+  //     if (result.isConfirmed) {
+  //       handleDeleteActivity();
+  //       navigate(-1);
+        
+  //     }
+  //   });
+  // }
+
+//   const handleDeleteActivity = async () => {
+//     let response = await deleteActivity(useActivity.idactivity)
+//     if (response.status === 200) {
+//         console.log(response.body)
+//     } else {
+//         console.log(response.body)
+//     }
+// }
+
+const handleDelete = (e) => {
+  e.preventDefault();
+  console.log("entrando a delete");
+  Swal.fire(
+      AlertButton.dataAlertUnBotonMorado('¿Eliminar grado?', 'Sí', 'Cancelar', DeleteConfirmation)
+  ).then(async (result) => {
       if (result.isConfirmed) {
-        navigate(-1);
-        // Swal.fire('Saved!', '', 'success')
+        console.log("enviando id", useActivity.idactivity )
+          let response = await deleteActivity(useActivity.idactivity);
+          if (response.status === 200) {
+              console.log(response.body);
+              Swal.fire(
+                  AlertButton.dataAlertSuccess('Se ha eliminado correctamente')
+                  
+              ).then(async () => {
+              })
+              navigate(-1);
+          } else {
+              console.log(response.body);
+          }
       }
-    });
-  }
+  })
+
+
+}
 
 
   const handleSubmit = async (e) => {

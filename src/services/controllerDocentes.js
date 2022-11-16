@@ -73,4 +73,28 @@ const updateActivity = async (activityObject, idActivity) => {
     return getInformation(responseToReturn)
 }
 
-export {GetTeacherGradesByID, GetGradesByID, GetGradesAreas, GetUnityActivities, updateActivity}
+const createActivity = async (newactivityObject) => {
+    let responseToReturn
+    api.defaults.headers.common["Content-Type"] = "application/json"
+    await api.post("api/v1/activity/add-activity", newactivityObject)
+        .then((response) => {
+            responseToReturn = response
+        }).catch((error) => {
+            responseToReturn = error
+        });
+    return getInformation(responseToReturn)
+}
+
+const deleteActivity = async (idActivityd) => {
+    let responseToReturn
+    api.defaults.headers.common["Content-Type"] = "application/json"
+    await api.put(`api/v1/activity/delete-activity/${idActivityd}`)
+        .then((response) => {
+            responseToReturn = response
+        }).catch((error) => {
+            responseToReturn = error
+        });
+    return getInformation(responseToReturn)
+}
+
+export {GetTeacherGradesByID, GetGradesByID, GetGradesAreas, GetUnityActivities, updateActivity, createActivity, deleteActivity }

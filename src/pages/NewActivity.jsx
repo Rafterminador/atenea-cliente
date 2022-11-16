@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import Button from "../components/Button";
@@ -5,8 +6,23 @@ import ComboBox from "../components/ComboBox";
 import Input from "../components/Input";
 import Retroceder from "../components/Retroceder";
 import { AlertButton } from "../utils/AlertButton";
+import { createActivity, deleteActivity } from "../services/controllerDocentes";
 
 export default function NewActivity() {
+  let AreaInfoJSON = localStorage.getItem("areainfo");
+  let useArea = JSON.parse(AreaInfoJSON);
+
+  const [unitis, setUnitis] = useState([
+    "Primera unidad",
+    "Segunda unidad",
+    "Tercera unidad",
+    "Cuarta unidad",
+  ]);
+  const [activityName, setActivityName] = useState();
+  const [activityValue, setActivityValue] = useState();
+  const [getUnit, setGetUnit] = useState();
+  const [areauid, setAreaUid] = useState(useArea.uid);
+
   const navigate = useNavigate();
   function handleClick(e) {
     e.preventDefault();
@@ -14,21 +30,71 @@ export default function NewActivity() {
       navigate(-1);
     });
   }
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    let numberunidad = 0;
+
+    if (getUnit === "Primera unidad") {
+      numberunidad = 1;
+    }
+    if (getUnit === "Segunda unidad") {
+      numberunidad = 2;
+    }
+    if (getUnit === "Tercera unidad") {
+      numberunidad = 3;
+    }
+    if (getUnit === "Cuarta unidad") {
+      numberunidad = 4;
+    }
+
+    let Activity = {
+      activity_name: activityName,
+      activity_value: activityValue,
+      unit: numberunidad,
+      areaRef: areauid
+    };
+
+    console.log(Activity);
+
+    let response = await createActivity(Activity);
+    if (response.status === 200) {
+      console.log(response.body);
+    } else {
+      console.log(response.body);
+    }
+    alert("Actividad añadida correctamente");
+    navigate(-1);
+  };
+
+  function handleActivityName(e) {
+    setActivityName(e.target.value);
+    console.log(e.target.value);
+  }
+
+  function handleActivityValue(e) {
+    setActivityValue(e.target.value);
+    console.log(e.target.value);
+  }
+
+  const handleGetUnit = (e) => {
+    console.log(e);
+    setGetUnit(e);
+    console.log("ver unidad aqui", getUnit);
+  };
+
   return (
     <div>
       <Retroceder text="Nueva actividad" />
       <div className="h-full">
-        <form>
+        <form onSubmit={handleSubmit} id="new-form">
           <div className="contenedor-admin flex flex-col gap-3">
             <label htmlFor="teacher">Unidad</label>
             <ComboBox
-              teachers={[
-                "Primera unidad",
-                "Segunda unidad",
-                "Tercera unidad",
-                "Cuarta unidad",
-              ]}
-              placeholder={"Seleccionar Grado"}
+              teachers={unitis}
+              function={handleGetUnit}
+              placeholder="Seleccionar Unidad"
             />
             <label htmlFor="name">Nombre</label>
             <Input
@@ -38,6 +104,7 @@ export default function NewActivity() {
               name={"name"}
               disabled={false}
               required={true}
+              onChange={handleActivityName}
             />
             <label htmlFor="score">Puntaje</label>
             <Input
@@ -47,17 +114,18 @@ export default function NewActivity() {
               name={"score"}
               disabled={false}
               required={true}
-            />
-          </div>
-          <div className="contenedor-admin w-screen mb-5 fixed bottom-0">
-            <Button
-              typeButton={"button-type-2"}
-              type={"submit"}
-              text={"Confirmar actividad"}
-              onClick={handleClick}
+              onChange={handleActivityValue}
             />
           </div>
         </form>
+        <div className="contenedor-admin w-screen mb-5 fixed bottom-0">
+          <Button
+            typeButton={"button-type-2"}
+            type={"submit"}
+            text={"Confirmar actividad"}
+            form="new-form"
+          />
+        </div>
       </div>
     </div>
   );
