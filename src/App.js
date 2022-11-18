@@ -18,6 +18,7 @@ import AlumnoAccount from "./pages/AlumnoAccount";
 import EditAlumnoAccount from "./pages/EditAlumnoAccount";
 import AlumnoProfile from "./pages/AlumnoProfile";
 import AllAlumnos from "./pages/AllAlumnos";
+import AllAlumnosGrades from "./pages/AllAlumnosGrades";
 import Boletin from "./pages/Boletin";
 import ControllerProving from "./pages/ControllerProving";
 import GradesAssigned from "./pages/GradesAssigned";
@@ -84,7 +85,7 @@ function App() {
           <Route element={<BottomNavbarDirector />}>
             <Route path="/home/docente" element={<Home />} />
           </Route>
-          <Route path="/todos/alumnos" element={<AllAlumnos />} />
+          <Route path="/todos/alumnos" element={<AllAlumnosGrades />} />
           <Route path="/profile/alumno" element={<AlumnoProfile />} />
           <Route path="/boletin/docentes" element={<Boletin />} />
           <Route path="/grades/teacher" element={<GradesAssigned />} />
