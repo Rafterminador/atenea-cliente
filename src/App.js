@@ -13,7 +13,7 @@ import Grades from "./pages/Grades";
 import NewGrade from "./pages/NewGrade";
 import UpdateGrade from "./pages/UpdateGrade";
 import EditGrade from "./pages/EditGrade";
-import VerAlumno from "./pages/VerAlumno";
+// import VerAlumno from "./pages/VerAlumno";
 import AlumnoAccount from "./pages/AlumnoAccount";
 import EditAlumnoAccount from "./pages/EditAlumnoAccount";
 import AlumnoProfile from "./pages/AlumnoProfile";
@@ -59,7 +59,8 @@ function App() {
           <Route element={<BottomNavbarDirector />}>
             <Route path="/home" element={<Home />} />
             <Route path="/grades/" element={<Grades />} />
-            <Route path="/ver/alumno" element={<VerAlumno />} />
+            {/* <Route path="/ver/alumno" element={<VerAlumno />} /> */}
+            <Route path="/alumnos/completos" element={<AllAlumnosGrades />} />
             <Route path="/docentes" element={<Teachers />} />
           </Route>
 
@@ -73,7 +74,6 @@ function App() {
           <Route path="/cuenta/alumno" element={<AlumnoAccount />} />
           <Route path="/editar/alumno" element={<EditAlumnoAccount />} />
           <Route path="/perfil/alumno" element={<AlumnoProfile />} />
-          <Route path="/alumnos/completos" element={<AllAlumnosGrades />} />
           <Route path="/boletin" element={<Boletin />} />
 
           {/* Docentes */}
@@ -92,8 +92,8 @@ function App() {
             <Route path="/home/docente" element={<Home />} />
             <Route path="/asistencia" element={<Asistencia />} />
             <Route path="/calificar" element={<Calificar />} />
+            <Route path="/todos/alumnos" element={<AllAlumnosGrades />} />
           </Route>
-          <Route path="/todos/alumnos" element={<AllAlumnosGrades />} />
           <Route path="/profile/alumno" element={<AlumnoProfile />} />
           <Route path="/boletin/docentes" element={<Boletin />} />
           <Route path="/grades/teacher" element={<GradesAssigned />} />
