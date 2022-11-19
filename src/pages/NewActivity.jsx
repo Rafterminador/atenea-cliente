@@ -1,18 +1,18 @@
-import { useEffect, useState } from "react";
+import {useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Swal from "sweetalert2";
+// import Swal from "sweetalert2";
 import Button from "../components/Button";
 import ComboBox from "../components/ComboBox";
 import Input from "../components/Input";
 import Retroceder from "../components/Retroceder";
-import { AlertButton } from "../utils/AlertButton";
-import { createActivity, deleteActivity } from "../services/controllerDocentes";
+// import { AlertButton } from "../utils/AlertButton";
+import { createActivity} from "../services/controllerDocentes";
 
 export default function NewActivity() {
   let AreaInfoJSON = localStorage.getItem("areainfo");
   let useArea = JSON.parse(AreaInfoJSON);
 
-  const [unitis, setUnitis] = useState([
+  const [unitis] = useState([
     "Primera unidad",
     "Segunda unidad",
     "Tercera unidad",
@@ -21,15 +21,15 @@ export default function NewActivity() {
   const [activityName, setActivityName] = useState();
   const [activityValue, setActivityValue] = useState();
   const [getUnit, setGetUnit] = useState();
-  const [areauid, setAreaUid] = useState(useArea.uid);
+  const [areauid] = useState(useArea.uid);
 
   const navigate = useNavigate();
-  function handleClick(e) {
-    e.preventDefault();
-    Swal.fire(AlertButton.dataAlertSuccess("Actividad añadida")).then(() => {
-      navigate(-1);
-    });
-  }
+  // function handleClick(e) {
+  //   e.preventDefault();
+  //   Swal.fire(AlertButton.dataAlertSuccess("Actividad añadida")).then(() => {
+  //     navigate(-1);
+  //   });
+  // }
 
   const handleSubmit = async (e) => {
     e.preventDefault();

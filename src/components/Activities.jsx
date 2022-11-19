@@ -1,50 +1,7 @@
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import CursoNote from "./CursoNote";
-// import { GetUnityActivities } from "../services/controllerDocentes";
 
 const BoletinCard = (props) => {
-  const navigate = useNavigate();
-  const unidad = props.unidad
-  // const [myUnity, setMyUnitys] = useState([]);
-  // const [myUnityOne, setMyUnityOne] = useState([]);
-  // const [myUnityTwo, setMyUnityTwo] = useState([]);
-  // const [myUnityTrhee, setMyUnityThree] = useState([]);
-  // const [myUnityFour, setMyUnityFour] = useState([]);
-  // setMyUnitys(props.data)
-  // console.log("ver estos datos", props.data)
-
-  function handleClick(e) {
-    const activityInfoJSON = JSON.stringify(props);
-    localStorage.setItem("activityInfo", activityInfoJSON);
-    navigate("/grades/teacher/courses/activity/edit");
-  }
-
-  // useEffect(() => {
-  //   // Update the document title using the browser API
-  //   let areaUnityJSON = localStorage.getItem("areainfo");
-  //   let useUnity = JSON.parse(areaUnityJSON);
-
-  //   const handleMyGrades = async () => {
-  //     let response = await GetUnityActivities(useUnity.uid);
-  //     if (response.status === 200) {
-  //       console.log(response.body);
-  //       setMyUnitys(response.body.activities.unit1);
-  //       setMyUnityOne(response.body.activities.unit1);
-  //       setMyUnityTwo(response.body.activities.unit2);
-  //       setMyUnityThree(response.body.activities.unit3);
-  //       setMyUnityFour(response.body.activities.unit4);
-
-  //       console.log(myUnityOne);
-  //       console.log(myUnityTwo);
-  //       console.log(myUnityTrhee);
-  //       console.log(myUnityFour);
-  //     } else {
-  //       console.log(response);
-  //           }
-  //   };
-  //   handleMyGrades();
-  // }, []);
+  const unidad = props.unidad;
 
   return (
     <div>
@@ -66,7 +23,6 @@ const BoletinCard = (props) => {
               idactivity={actividad.id}
               unidad={unidad}
               key={actividad.id}
-              // onClick={handleClick}
             />
           ))}
         </div>

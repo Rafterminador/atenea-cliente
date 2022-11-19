@@ -46,7 +46,6 @@ export default function Courses() {
       if (response.status === 200) {
         console.log(response.body);
         setMyAreas(response.body.areas);
-        console.log("estas areas", myAreas);
       } else {
         console.log(response.body);
       }

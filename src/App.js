@@ -17,7 +17,7 @@ import VerAlumno from "./pages/VerAlumno";
 import AlumnoAccount from "./pages/AlumnoAccount";
 import EditAlumnoAccount from "./pages/EditAlumnoAccount";
 import AlumnoProfile from "./pages/AlumnoProfile";
-import AllAlumnos from "./pages/AllAlumnos";
+// import AllAlumnos from "./pages/AllAlumnos";
 import AllAlumnosGrades from "./pages/AllAlumnosGrades";
 import Boletin from "./pages/Boletin";
 import ControllerProving from "./pages/ControllerProving";

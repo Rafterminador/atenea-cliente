@@ -8,13 +8,12 @@ import { GetGradesByID } from "../services/controllerDocentes";
 const AllAlumnosGrades = () => {
   let gradoJSON = localStorage.getItem("seteargrado");
   let seteargrado = JSON.parse(gradoJSON);
-  const [actual, setActual] = useState([]);
   const [hidden, setHidden] = useState("");
   const [myStudents, setMyStudents] = useState([]);
   let [allStudents, setAllStudents] = useState([]);
 
   const handleSearchAlumno = (e) => {
-    console.log(allStudents)
+    console.log(allStudents);
     if (e.target.value === "") {
       setHidden("");
       setAllStudents([]);
@@ -24,7 +23,7 @@ const AllAlumnosGrades = () => {
       // setAllStudents(arrayAux);
       // console.log("Concatenados", arrayAux);
       console.log("AllStudents", allStudents);
-      console.log("ver arreglo", myStudents)
+      console.log("ver arreglo", myStudents);
       allStudents = searchByStudentName2(myStudents, e.target.value);
       setAllStudents(allStudents);
       console.log("AllStudents", allStudents);
@@ -32,7 +31,6 @@ const AllAlumnosGrades = () => {
   };
 
   useEffect(() => {
-    // Update the document title using the browser API
     let uidgradeJSON = localStorage.getItem("seteargrado");
     let useGrade = JSON.parse(uidgradeJSON);
 
@@ -41,11 +39,8 @@ const AllAlumnosGrades = () => {
       if (response.status === 200) {
         console.log(response.body);
         setMyStudents(response.body.students);
-        // setAllStudents(response.body.students);
-        console.log("ver 43", myStudents)
       } else {
         console.log(response);
-
       }
     };
 
@@ -78,16 +73,16 @@ const AllAlumnosGrades = () => {
 
           <div className="my-[30px]">
             {myStudents.map((estudiante) => (
-            <Alumno
-              nombre={estudiante.name_student}
-              uid={estudiante.id}
-              key={estudiante.id}
-            />
-          ))}
+              <Alumno
+                nombre={estudiante.name_student}
+                uid={estudiante.id}
+                key={estudiante.id}
+              />
+            ))}
           </div>
         </div>
         <div className="">
-        {allStudents.map((estudiante) => (
+          {allStudents.map((estudiante) => (
             <Alumno
               nombre={estudiante.name_student}
               uid={estudiante.id}
@@ -96,7 +91,6 @@ const AllAlumnosGrades = () => {
           ))}
         </div>
       </div>
-
     </>
   );
 };

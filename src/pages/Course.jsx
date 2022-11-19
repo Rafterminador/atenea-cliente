@@ -7,7 +7,6 @@ import { GetUnityActivities } from "../services/controllerDocentes";
 
 export default function Course() {
   localStorage.removeItem("activityInfo");
-  const [myUnity, setMyUnitys] = useState([]);
   const [myUnityOne, setMyUnityOne] = useState([]);
   const [myUnityTwo, setMyUnityTwo] = useState([]);
   const [myUnityTrhee, setMyUnityThree] = useState([]);
@@ -28,7 +27,6 @@ export default function Course() {
       let response = await GetUnityActivities(useUnity.uid);
       if (response.status === 200) {
         console.log(response.body);
-        setMyUnitys(response.body.activities.unit1);
         setMyUnityOne(response.body.activities.unit1);
         setMyUnityTwo(response.body.activities.unit2);
         setMyUnityThree(response.body.activities.unit3);

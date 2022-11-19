@@ -1,6 +1,5 @@
 import { useState } from "react";
-import { useNavigate, useParams } from 'react-router-dom'
-import Swal from "sweetalert2";
+import { useNavigate} from 'react-router-dom'
 import Button from "../components/Button";
 import ComboBox from "../components/ComboBox";
 import Input from "../components/Input";
@@ -10,8 +9,6 @@ import Delete from "../assets/images/delete.svg";
 import { updateActivity } from "../services/controllerDocentes";
 import { deleteActivity } from "../services/controllerDocentes";
 import Spinner from "../components/Spinner";
-import DeleteConfirmation from "../assets/images/delete-confirmation.svg";
-import { isCompositeComponent } from "react-dom/test-utils";
 
 export default function EditActividy() {
   let ActivityInfoJSON = localStorage.getItem("activityInfo");
@@ -21,14 +18,14 @@ export default function EditActividy() {
   const [activityName, setActivityName] = useState(useActivity.name);
   const [activityValue, setActivityValue] = useState(useActivity.note);
   const [getUnit, setGetUnit] = useState(useActivity.unidad);
-  const [unitis, setUnitis] = useState([
+  const [unitis] = useState([
     "Primera unidad",
     "Segunda unidad",
     "Tercera unidad",
     "Cuarta unidad",
   ]);
   const [cargando, setCargando] = useState(false);
-  const params = useParams()
+  // const params = useParams()
   const Swal = require('sweetalert2')
   
   function handleCancel(e) {
@@ -67,7 +64,7 @@ const handleDelete = (e) => {
   e.preventDefault();
   console.log("entrando a delete");
   Swal.fire(
-      AlertButton.dataAlertUnBotonMorado('¿Eliminar actividad?', 'Sí', 'Cancelar', DeleteConfirmation)
+      AlertButton.dataAlertUnBotonMorado('¿Eliminar actividad?', 'Sí', 'Cancelar', Delete)
   ).then(async (result) => {
       if (result.isConfirmed) {
         console.log("enviando id", useActivity.idactivity )
