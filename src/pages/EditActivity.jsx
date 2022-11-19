@@ -67,7 +67,7 @@ const handleDelete = (e) => {
   e.preventDefault();
   console.log("entrando a delete");
   Swal.fire(
-      AlertButton.dataAlertUnBotonMorado('¿Eliminar grado?', 'Sí', 'Cancelar', DeleteConfirmation)
+      AlertButton.dataAlertUnBotonMorado('¿Eliminar actividad?', 'Sí', 'Cancelar', DeleteConfirmation)
   ).then(async (result) => {
       if (result.isConfirmed) {
         console.log("enviando id", useActivity.idactivity )
