@@ -13,7 +13,7 @@ import Grades from "./pages/Grades";
 import NewGrade from "./pages/NewGrade";
 import UpdateGrade from "./pages/UpdateGrade";
 import EditGrade from "./pages/EditGrade";
-import VerAlumno from "./pages/VerAlumno";
+// import VerAlumno from "./pages/VerAlumno";
 import AlumnoAccount from "./pages/AlumnoAccount";
 import EditAlumnoAccount from "./pages/EditAlumnoAccount";
 import AlumnoProfile from "./pages/AlumnoProfile";
