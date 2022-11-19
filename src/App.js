@@ -17,7 +17,8 @@ import VerAlumno from "./pages/VerAlumno";
 import AlumnoAccount from "./pages/AlumnoAccount";
 import EditAlumnoAccount from "./pages/EditAlumnoAccount";
 import AlumnoProfile from "./pages/AlumnoProfile";
-import AllAlumnos from "./pages/AllAlumnos";
+// import AllAlumnos from "./pages/AllAlumnos";
+import AllAlumnosGrades from "./pages/AllAlumnosGrades";
 import Boletin from "./pages/Boletin";
 import ControllerProving from "./pages/ControllerProving";
 import GradesAssigned from "./pages/GradesAssigned";
@@ -72,7 +73,7 @@ function App() {
           <Route path="/cuenta/alumno" element={<AlumnoAccount />} />
           <Route path="/editar/alumno" element={<EditAlumnoAccount />} />
           <Route path="/perfil/alumno" element={<AlumnoProfile />} />
-          <Route path="/alumnos/completos" element={<AllAlumnos />} />
+          <Route path="/alumnos/completos" element={<AllAlumnosGrades />} />
           <Route path="/boletin" element={<Boletin />} />
 
           {/* Docentes */}
@@ -92,9 +93,12 @@ function App() {
             <Route path="/asistencia" element={<Asistencia />} />
             <Route path="/calificar" element={<Calificar />} />
           </Route>
+          <Route path="/todos/alumnos" element={<AllAlumnosGrades />} />
+          <Route path="/profile/alumno" element={<AlumnoProfile />} />
+          <Route path="/boletin/docentes" element={<Boletin />} />
+          <Route path="/grades/teacher" element={<GradesAssigned />} />
+          <Route path="/grades/teacher/courses" element={<Courses />} />
           <Route path="/cuenta/docente" element={<Account />} />
-          <Route path="/grades/teacher/:id" element={<GradesAssigned />} />
-          <Route path="/grades/teacher/:id/courses" element={<Courses />} />
           <Route
             path="/grades/teacher/:id/courses/students"
             element={<Students />}
@@ -108,15 +112,15 @@ function App() {
             element={<Notes />}
           />
           <Route
-            path="/grades/teacher/:id/courses/:courseId"
+            path="/grades/teacher/unidades"
             element={<Course />}
           />
           <Route
-            path="/grades/teacher/:id/courses/:courseId/new/activity"
+            path="/grades/teacher/courses/new/activity"
             element={<NewActivity />}
           />
           <Route
-            path="/grades/teacher/:id/courses/:courseId/activity/edit"
+            path="/grades/teacher/courses/activity/edit"
             element={<EditActividy />}
           />
           <Route

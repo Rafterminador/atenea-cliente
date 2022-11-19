@@ -36,6 +36,21 @@ const AlumnoProfile = () => {
   const [datebirth, setDate_Brith] = useState();
   const [direction, setDirection] = useState();
   const [grade, setGrade] = useState();
+  const [hidden, setHidden] = useState("");
+
+
+  useEffect(() => {
+    let userJSON = localStorage.getItem("usuario");
+    let useUser = JSON.parse(userJSON);
+    
+    if (useUser.role === "docente") {
+      setHidden("hidden fixed top-[620px] left-5 right-5");
+    }
+
+    if (useUser.role === "director") {
+      setHidden("fixed top-[620px] left-5 right-5");
+    }
+  }, []);
 
   // Similar to componentDidMount and componentDidUpdate:
   useEffect(() => {
@@ -79,6 +94,23 @@ const AlumnoProfile = () => {
     <div className="flex flex-col justify-between">
       <Retroceder text={alumn.nombre} />
 
+      <div className={hidden}>
+        <Button
+          onClick={handleEliminar}
+          text="Eliminar alumno"
+          typeButton={"button-type-3"}
+          className="my-5"
+          type="button"
+        />
+        <Button
+          onClick={handleEdit}
+          text="Editar datos"
+          typeButton={"button-type-2"}
+          className="my-5"
+          type="click"
+          form="register-form"
+        />
+      </div>
       {cargando ? (
         <>
           <div className="">
