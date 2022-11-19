@@ -40,6 +40,20 @@
     color: #FF54B0;
 }
 
+.button-type-4 {
+    border: 2px solid #DEFFE4;
+    background-color: #DEFFE4;
+    border-radius: 20px;
+    color: #0B7F14;
+}
+
+.button-type-5 {
+    border: 2px solid #FFF0DE;
+    background-color: #FFF0DE;
+    border-radius: 20px;
+    color: #B74D00;
+}
+
 .input {
     box-sizing: border-box;
     background: #FFFFFF;
@@ -70,4 +84,9 @@ input[data-readonly] {
 
 .grade-props-data {
     color: #615F6D;
+}
+
+.input-inactive {
+    background: #F6F6F6;
+    color: #696262;
 }

@@ -11,7 +11,9 @@ import { searchByStudentName3 } from "../utils/FunctionUtils";
 
 const VerAlumno = () => {
   localStorage.removeItem("alumno");
+  localStorage.removeItem("boletin");
   const navigate = useNavigate();
+  const [cargando, setCargando] = useState(false);
   function handleAdd() {
     navigate("/cuenta/alumno");
   }
@@ -28,6 +30,7 @@ const VerAlumno = () => {
       } else {
         console.log(response.body);
       }
+      setCargando(false);
     };
 
     handleGetAllStudents();

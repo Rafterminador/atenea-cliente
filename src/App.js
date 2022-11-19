@@ -36,7 +36,11 @@ import AccountPage from "./components/AccountPage";
 import NuevosDocentes from "./pages/NewTeachers";
 import DocentesActivos from "./pages/DocentesActivos";
 import DocentesInactivos from "./pages/DocentesInactivos";
+import Qualify from "./pages/Qualify";
 import BottomNavbarDirector from "./utils/BottomNavbarDirector";
+import Asistencia from "./pages/Asistencia";
+import TomarAsistencia from "./components/TomarAsistencia";
+import Calificar from "./pages/Calificar";
 
 function App() {
   return (
@@ -78,18 +82,23 @@ function App() {
           <Route path="/nuevos-docentes" element={<NuevosDocentes />} />
           <Route path="/docentes-activos" element={<DocentesActivos />} />
           <Route path="/docentes-inactivos" element={<DocentesInactivos />} />
+
+          <Route path="/backend" element={<ControllerProving />} />
         </Route>
 
         <Route element={<PrivateRouteDocente />}>
           {/* rutas para la S03 - Área para docente */}
           <Route element={<BottomNavbarDirector />}>
             <Route path="/home/docente" element={<Home />} />
+            <Route path="/asistencia" element={<Asistencia />} />
+            <Route path="/calificar" element={<Calificar />} />
           </Route>
           <Route path="/todos/alumnos" element={<AllAlumnosGrades />} />
           <Route path="/profile/alumno" element={<AlumnoProfile />} />
           <Route path="/boletin/docentes" element={<Boletin />} />
           <Route path="/grades/teacher" element={<GradesAssigned />} />
           <Route path="/grades/teacher/courses" element={<Courses />} />
+          <Route path="/cuenta/docente" element={<Account />} />
           <Route
             path="/grades/teacher/:id/courses/students"
             element={<Students />}
@@ -114,8 +123,19 @@ function App() {
             path="/grades/teacher/courses/activity/edit"
             element={<EditActividy />}
           />
+          <Route
+            path="/grades/teacher/:id/qualify/:student"
+            element={<Qualify />}
+          />
           <Route path="/backend" element={<ControllerProving />} />
           {/* Aquí termina la ruta para la S03 - Área para docente */}
+
+          {/* Pagina asistencia */}
+          <Route path="/asistencia/tomar-asistencia/:id" element={<TomarAsistencia />} />
+          <Route
+            path="/asistencia/tomar-asistencia/:id"
+            element={<TomarAsistencia />}
+          />
         </Route>
       </Routes>
     </BrowserRouter>

@@ -18,6 +18,7 @@ import Input from "../components/Input";
 //backend 
 import { login } from "../services/controllerUser"
 import { getAllGrades, getAllTeachers } from "../services/controllerDirector";
+import { GetMyStudents } from "../services/controllerDocentes";
 
 const Login = () => {
   const firebase = new Firebase();
@@ -100,6 +101,24 @@ const Login = () => {
         setCargando(false);
         navigate("/home");
       } else if (response?.role === "docente") {
+
+        const usuarioJSON = localStorage.getItem('usuario')
+        const usuario = JSON.parse(usuarioJSON)
+        const getMystudents = async () => {
+          try {
+            let response = await GetMyStudents(usuario.uid);
+            console.log(response)
+            const mystudentsJSON = JSON.stringify(response.body)
+            localStorage.setItem('grados', mystudentsJSON)
+          } catch (error) {
+            console.log(error);
+          }
+        };
+
+        await getMystudents();
+
+
+
         setCargando(false);
         navigate("/home/docente")
       } else {

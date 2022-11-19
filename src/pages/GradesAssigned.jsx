@@ -1,11 +1,11 @@
 import { useRef, useState } from "react";
-import GradeAssigned from "../components/GradeAssigned";
 import { ReactComponent as Grade } from "../assets/images/grade.svg";
 import { ReactComponent as Grades } from "../assets/images/grades.svg";
 import { ReactComponent as Attendance } from "../assets/images/students.svg";
 import { ReactComponent as MenuImage } from "../assets/images/menu.svg";
 import Menu from "../components/Menu";
 import { useEffect } from "react";
+import GradeAssigned from "../components/GradeAssigned";
 
 import { GetTeacherGradesByID } from "../services/controllerDocentes";
 
