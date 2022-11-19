@@ -97,4 +97,17 @@ const deleteActivity = async (idActivityd) => {
     return getInformation(responseToReturn)
 }
 
-export {GetTeacherGradesByID, GetGradesByID, GetGradesAreas, GetUnityActivities, updateActivity, createActivity, deleteActivity }
+const getAllGrades = async () => {
+    let responseToReturn
+    api.defaults.headers.common["Content-Type"] = "application/json"
+    await api.get("api/v1/student/getall-students-aux")
+        .then((response) => {
+            responseToReturn = response
+        }).catch((error) => {
+            responseToReturn = error
+        });
+    return getInformation(responseToReturn)
+}
+
+
+export {GetTeacherGradesByID, GetGradesByID, GetGradesAreas, GetUnityActivities, updateActivity, createActivity, deleteActivity, getAllGrades}

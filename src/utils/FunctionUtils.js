@@ -82,4 +82,14 @@ const searchByStudentName2 = (array, filter) => {
     return filterAlumnNames
 }
 
-export { searchReferenceId, searchGrades, searchByTeacherName, searchByStudentName, searchByStudentName2}
+const searchByStudentName3 = (array, filter) => {
+    console.log(array)
+    filter = filter.toLowerCase()
+    const filterAlumnNames = array.filter((estudiante) => {
+        const AlumnNames = estudiante.name_complete.toLowerCase().includes(filter)
+        return AlumnNames
+    })
+    return filterAlumnNames
+}
+
+export { searchReferenceId, searchGrades, searchByTeacherName, searchByStudentName, searchByStudentName2, searchByStudentName3}

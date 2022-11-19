@@ -5,6 +5,9 @@ import {
     getAllTeachers, getUserByID, disableTeacher, enableTeacher, updateRol, getAllStudents, getStudentsByGrade, getStudentByID, createStudent,
     updateStudent, disableStudent, enableStudent, getAllBoletines
 } from "../services/controllerDirector"
+import {
+    getAllGrades
+} from "../services/controllerDocentes"
 const ControllerProving = () => {
     const handleGetAllUsers = async () => {
         let response = await getAllTeachers()
@@ -130,13 +133,22 @@ const ControllerProving = () => {
             console.log(response.body)
         }
     }
+
+    const handlesgetAllGrades = async () => {
+        let response = await getAllGrades()
+        if (response.status === 200) {
+            console.log(response.body)
+        } else {
+            console.log(response.body)
+        }
+    }
     return (
         <div>
             <Button
                 text="obtener todos los usuarios"
                 typeButton={"button-type-2"}
                 className=""
-                onClick={handleGetAllUsers}
+                onClick={handlesgetAllGrades}
             />
             <Button
                 text="obtener un usuario por ID"

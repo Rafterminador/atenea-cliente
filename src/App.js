@@ -69,7 +69,7 @@ function App() {
           <Route path="/cuenta/alumno" element={<AlumnoAccount />} />
           <Route path="/editar/alumno" element={<EditAlumnoAccount />} />
           <Route path="/perfil/alumno" element={<AlumnoProfile />} />
-          <Route path="/alumnos/completos" element={<AllAlumnos />} />
+          <Route path="/alumnos/completos" element={<AllAlumnosGrades />} />
           <Route path="/boletin" element={<Boletin />} />
 
           {/* Docentes */}
