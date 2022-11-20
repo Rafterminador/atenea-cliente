@@ -11,7 +11,6 @@ import { useNavigate } from "react-router-dom";
 import { GetTeacherGradesByID } from "../services/controllerDocentes";
 
 export default function GradesAssigned() {
-  const navigate = useNavigate();
   const [hidden, setHidden] = useState("hidden");
   const [animation, setAnimation] = useState("");
   const [myGrades, setMyGrades] = useState([]);
@@ -47,6 +46,7 @@ export default function GradesAssigned() {
   }, [ref]);
 
   useEffect(() => {
+    const navigate = useNavigate();
     // Update the document title using the browser API
     let userJSON = localStorage.getItem("usuario");
     let useUser = JSON.parse(userJSON);
