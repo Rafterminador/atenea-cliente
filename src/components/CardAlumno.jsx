@@ -12,7 +12,16 @@ const CardAlumno = (props) => {
   console.log(props.ruta);
   const navigate = useNavigate();
   function handleBoletin() {
-    navigate("/boletin");
+    let userJSON = localStorage.getItem("usuario");
+    let useUser = JSON.parse(userJSON);
+    
+    if (useUser.role === "director"){
+      navigate("/boletin");
+    }
+    
+    if (useUser.role === "docente"){
+      navigate("/boletin/docentes");
+    }
   }
 
   return (

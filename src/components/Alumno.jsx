@@ -8,17 +8,21 @@ const Alumno = (props) => {
   const navigate = useNavigate();
 
   function handleProfile() {
-    const alumnJSON = JSON.stringify(props)
-    localStorage.setItem('alumno', alumnJSON)
-    navigate("/perfil/alumno");
+    const alumnJSON = JSON.stringify(props);
+    localStorage.setItem("alumno", alumnJSON);
+    let userJSON = localStorage.getItem("usuario");
+    let useUser = JSON.parse(userJSON);
 
+    if (useUser.role === "director") {
+      navigate("/perfil/alumno");
+    }
 
-
-
+    if (useUser.role === "docente") {
+      navigate("/profile/alumno");
+    }
   }
   return (
     <div className="min-w-min my-1">
-
       <div className="grid grid-cols-2 items-center">
         <div className="w-[296px] h-[24px]">
           <p className="font-sans text-[16px]">{props.nombre}</p>

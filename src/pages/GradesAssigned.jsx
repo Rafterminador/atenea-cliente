@@ -7,9 +7,12 @@ import Menu from "../components/Menu";
 import { useEffect } from "react";
 import GradeAssigned from "../components/GradeAssigned";
 
+import { GetTeacherGradesByID } from "../services/controllerDocentes";
+
 export default function GradesAssigned() {
   const [hidden, setHidden] = useState("hidden");
   const [animation, setAnimation] = useState("");
+  const [myGrades, setMyGrades] = useState([]);
   const ref = useRef(null);
 
   function handleClick(e) {
@@ -29,6 +32,8 @@ export default function GradesAssigned() {
   }
 
   useEffect(() => {
+
+    
     function handleClickOutside(event) {
       if (event.target.id === "menu") {
         setHidden("hidden");
@@ -41,16 +46,39 @@ export default function GradesAssigned() {
     };
   }, [ref]);
 
+
+  useEffect(() => {
+    // Update the document title using the browser API
+    let userJSON = localStorage.getItem("usuario");
+    let useUser = JSON.parse(userJSON);
+
+    const handleMyGrades = async () => {
+      let response = await GetTeacherGradesByID(useUser.uid);
+      if (response.status === 201) {
+        console.log(response.body);
+        setMyGrades(response.body);
+      } else {
+        console.log(response);
+
+      }
+    };
+
+    handleMyGrades();
+  }, []);
+
   return (
     <div className="relative">
       <div className="contenedor contenedor-admin">
         <h1 className="h1-administracion">Mis Grados</h1>
-        <GradeAssigned
-          grade="Primero Primaria"
-          alumnos={2}
-          id={1}
-          url="courses"
-        />
+          {myGrades.map((estudiante) => (
+            <GradeAssigned
+              grado={estudiante.grade_name}
+              alumnos={estudiante.size}
+              id={1}
+              key={estudiante.id_grade}
+              uidgrade={estudiante.id_grade}
+            />
+          ))}
       </div>
       <div className="fixed z-0 bottom-0 h-[70px] w-full flex justify-around items-center text-centers shadow">
         <div className="w-[90px] h-full">

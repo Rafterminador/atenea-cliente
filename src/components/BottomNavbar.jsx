@@ -23,8 +23,9 @@ const BottomNavbar = () => {
   };
   const [urls] = useState(() => {
     return valueByDefault(
-      ["/grades", "/ver/alumno", "/docentes"],
-      ["#", "/calificar", "/asistencia"]
+      // ["/grades", "/ver/alumno", "/docentes"],
+      ["/grades", "/alumnos/completos", "/docentes"],
+      ["/todos/alumnos", "/calificar", "/asistencia"]
     );
   });
   function handleClick(e) {
