@@ -74,7 +74,7 @@ const NameAsistencia = ({ id, name_student }) => {
             </div>
           </div>
 
-          <div className={`${hidden} `}>
+          <div className={` ${hidden} `}>
             <Button
               // onClick={handleEliminar}
               text="Presente"
@@ -89,12 +89,15 @@ const NameAsistencia = ({ id, name_student }) => {
               // onClick={handleEliminar}
               text="Ausente"
               typeButton={"button-type-5"}
-              className="my-5 mt-10"
+              className="my-5 mt-20"
               type="button"
             />
           </div>
         </div>
       </div>
+
+      <br />
+      <br />
     </>
   );
 };
