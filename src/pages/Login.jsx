@@ -107,9 +107,7 @@ const Login = () => {
         await handlegetAllTeacher();
         setCargando(false);
         navigate("/home");
-      } 
-      
-     else {
+      } else if (response?.role === "docente") {
         const usuarioJSON = localStorage.getItem("usuario");
         const usuario = JSON.parse(usuarioJSON);
         const getMystudents = async () => {
@@ -127,17 +125,16 @@ const Login = () => {
 
         setCargando(false);
         navigate("/home/docente");
+      } else {
+        setCargando(false);
+        setBadEmailMessage("El docente no a sido confirmado");
+        setInvalid("invalid");
+        setTextBadEmail("");
+        setInvalidText("invalid-text");
+        setImageLogin(ImageLoginError);
+        setTitleLoginH1("hidden");
+        setTitleLoginH2("");
       }
-      // } else {
-      //   setCargando(false);
-      //   setBadEmailMessage("El docente no a sido confirmado")
-      //   setInvalid("invalid");
-      //   setTextBadEmail("");
-      //   setInvalidText("invalid-text");
-      //   setImageLogin(ImageLoginError);
-      //   setTitleLoginH1("hidden");
-      //   setTitleLoginH2("");
-      // }
     }
   }
   function handleChangeUsername(e) {
