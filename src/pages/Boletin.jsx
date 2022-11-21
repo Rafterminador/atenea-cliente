@@ -4,8 +4,8 @@ import Notes from "../components/Notes";
 import Button from "../components/Button";
 import Retroceder from "../components/Retroceder";
 import { useState } from "react";
-import { getStudentBoletin } from "../services/controllerDirector";
-
+import usePdfExport from "../hook/usePdfExport";
+import Spinner from "../components/Spinner";
 const Boletin = () => {
   const [alumno, setAlumno] = useState({});
   const [firstUnit, setFirstUnit] = useState({});
@@ -18,6 +18,8 @@ const Boletin = () => {
   const [areasFourth, setareasFourth] = useState([]);
   const [msg, setMsg] = useState("");
   const [estado, setEstado] = useState(true);
+
+  const { getStudentBoletin, cargando } = usePdfExport();
 
   useEffect(() => {
     let alumnJSON = localStorage.getItem("alumno");
@@ -48,11 +50,8 @@ const Boletin = () => {
   }, []);
 
   const handleExportarPdf = async () => {
-
-     await getStudentBoletin(alumno.uid, alumno.nombre);
-
-
-  }
+    await getStudentBoletin(alumno.uid, alumno.nombre);
+  };
 
   return (
     <div className="flex flex-col">
@@ -66,25 +65,21 @@ const Boletin = () => {
             firstUnit={firstUnit}
             areas={areasFirstUnit}
             unidad={"Primera unidad"}
-            //  link={"/grades/teacher/:id/courses/students/:id/notes"}
           />
           <Notes
             firstUnit={second}
             unidad={"Segunda unidad"}
             areas={areasSecond}
-            link={"/grades/teacher/:id/courses/students/:id/notes"}
           />
           <Notes
             firstUnit={third}
             areas={areasThird}
             unidad={"Tercera unidad"}
-            link={"/grades/teacher/:id/courses/students/:id/notes"}
           />
           <Notes
             firstUnit={fourth}
             areas={areasFourth}
             unidad={"Cuarta unidad"}
-            link={"/grades/teacher/:id/courses/students/:id/notes"}
           />
         </div>
       ) : (
@@ -95,20 +90,30 @@ const Boletin = () => {
         {/* <BoletinCard
         /> */}
       </div>
-
-      {estado ? (
-        <div className="fixed top-[720px] left-5 right-5">
-          <Button
-          onClick={handleExportarPdf}
-            text="Exportar a PDF"
-            typeButton={"button-type-2"}
-            className=""
-            type="submit"
-            form="register-form"
-          />
-        </div>
+      {cargando ? (
+        <>
+          {estado ? (
+            <div className="fixed top-[720px] left-5 right-5">
+              <Button
+                onClick={handleExportarPdf}
+                text="Exportar a PDF"
+                typeButton={"button-type-2"}
+                className=""
+                type="submit"
+                form="register-form"
+              />
+            </div>
+          ) : (
+            ""
+          )}
+        </>
       ) : (
-        ""
+        <>
+          <Spinner className="contenedor-admin w-full mb-5 fixed bottom-0" />
+          <p className="contenedor-admin w-full text-center justify-center font-extrabold">
+            Exportando Notas
+          </p>
+        </>
       )}
     </div>
   );

@@ -4,12 +4,16 @@ import Button from "../components/Button";
 import Retroceder from "../components/Retroceder";
 import StudentCourse from "../components/StudentCourse";
 import AreaInfo from "../components/AreaInfo";
-import { AlertButton } from "../utils/AlertButton";
-import Exportacion from "../assets/images/exportacion.svg";
+// import { AlertButton } from "../utils/AlertButton";
+// import Exportacion from "../assets/images/exportacion.svg";
+import Spinner from "../components/Spinner";
+import usePdfExport from "../hook/usePdfExport";
 
-import { GetGradesAreas } from "../services/controllerDocentes";
+import {
+  GetGradesAreas,
+} from "../services/controllerDocentes";
 
-const Swal = require("sweetalert2");
+// const Swal = require("sweetalert2");
 
 export default function Courses() {
   const [myAreas, setMyAreas] = useState([]);
@@ -18,22 +22,38 @@ export default function Courses() {
   let gradoJSON = localStorage.getItem("seteargrado");
   let seteargrado = JSON.parse(gradoJSON);
   const url = `/grades/teacher/courses/`;
+ 
 
-  
+  const { getStudentAllBoletinByGrade, cargando } = usePdfExport();
 
-  function handleClick(e) {
-    e.preventDefault();
-    Swal.fire(
-      AlertButton.dataAlertUnBotonMorado(
-        "Exportación masiva",
-        "Boletines",
-        "Notas",
-        Exportacion
-      )
-    ).then(() => {
-      console.log("successfully");
-    });
-  }
+  // function handleClick(e) {
+  //   e.preventDefault();
+  //   Swal.fire(
+  //     AlertButton.dataAlertUnBotonMorado(
+  //       "Exportación masiva",
+  //       "Boletines",
+  //       "Notas",
+  //       Exportacion
+  //     )
+  //   ).then(() => {
+  //     console.log("successfully");
+  //   });
+  // }
+
+  const handleExportarPdf = async () => {
+
+
+    try {
+      await getStudentAllBoletinByGrade(
+        seteargrado.uidgrade,
+        seteargrado.grado
+      );
+    } catch (error) {
+      console.log(error);
+    } 
+
+    
+  };
 
   useEffect(() => {
     // Update the document title using the browser API
@@ -64,22 +84,27 @@ export default function Courses() {
         </div>
         <StudentCourse value={"Ver todos los alumnos"} url={`${url}students`} />
         <p className="h1-administracion">Materias</p>
-            {myAreas.map((areas) => (
-            <AreaInfo
-            value={areas.area_name}
-              uid={areas.id}
-              key={areas.id}
-            />
-          ))}
+        {myAreas.map((areas) => (
+          <AreaInfo value={areas.area_name} uid={areas.id} key={areas.id} />
+        ))}
       </div>
-      <div className="contenedor-admin w-full mb-5 fixed bottom-0">
-        <Button
-          typeButton={"button-type-2"}
-          type={"button"}
-          onClick={handleClick}
-          text={"Exportación masiva"}
-        />
-      </div>
+
+      {cargando ? (
+        <div className="contenedor-admin w-full mb-5 fixed bottom-0">
+          <Button
+            typeButton={"button-type-2"}
+            type={"button"}
+            onClick={handleExportarPdf}
+            text={"Exportación masiva"}
+          />
+        </div>
+      ) : (
+        <>
+        
+        <Spinner  className="contenedor-admin w-full mb-5 fixed bottom-0" />
+        <p className="contenedor-admin w-full text-center justify-center font-extrabold">Exportando Boletines</p>
+        </>
+      )}
     </div>
   );
 }

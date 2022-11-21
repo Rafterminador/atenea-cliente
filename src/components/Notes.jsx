@@ -48,7 +48,7 @@ const Notes = (props) => {
       </div>
       <div className={`${hidden}`}>
         <div className="combo-box-container-notes">
-          {<BoletinCard link={props.link} firstUnit= {props.firstUnit} areas={props.areas}  />}
+          {<BoletinCard link={props.link} firstUnit= {props.firstUnit} areas={props.areas} unidad={props.unidad}  />}
         </div>
       </div>
     </>

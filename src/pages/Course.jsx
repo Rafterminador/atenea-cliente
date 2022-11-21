@@ -4,7 +4,8 @@ import Units from "../components/Units";
 import Retroceder from "../components/Retroceder";
 import { useNavigate } from "react-router-dom";
 import { GetUnityActivities } from "../services/controllerDocentes";
-
+import usePdfExport from "../hook/usePdfExport";
+import Spinner from "../components/Spinner";
 export default function Course() {
   localStorage.removeItem("activityInfo");
   const [myUnityOne, setMyUnityOne] = useState([]);
@@ -13,10 +14,20 @@ export default function Course() {
   const [myUnityFour, setMyUnityFour] = useState([]);
   let infoareaJSON = localStorage.getItem("areainfo");
   let useAreaInfo = JSON.parse(infoareaJSON);
+
+  const { getAreaDownloadNotes, cargando } = usePdfExport();
+
   const navigate = useNavigate();
   function handleClick() {
     navigate("/grades/teacher/courses/new/activity");
   }
+
+  const handleExportarPdf = async () => {
+
+    await getAreaDownloadNotes(useAreaInfo.uid, useAreaInfo.value);
+
+
+ }
 
   useEffect(() => {
     // Update the document title using the browser API
@@ -56,13 +67,28 @@ export default function Course() {
         <Units unidad={"Cuarta unidad"} data={myUnityFour} count={myUnityFour.length}/>
       </div>
 
-      <div className=" top-[720px] left-5 right-5 mt-[100px] m-5">
+      {cargando ? (
+        <div className=" top-[720px] left-5 right-5 mt-[100px] m-5">
         <Button
           text="Añadir actividad"
           typeButton={"button-type-2"}
           onClick={handleClick}
         />
+        <Button
+        className="mt-4"
+          text="Exportar notas"
+          typeButton={"button-type-2"}
+          onClick={handleExportarPdf}
+        />
       </div>
+      ) : (
+        <>
+        <Spinner  className="contenedor-admin w-full mb-5 fixed bottom-0" />
+        <p className="contenedor-admin w-full text-center justify-center font-extrabold">Exportando Notas</p>
+        </>
+      )}
+
+      
     </div>
   );
 }

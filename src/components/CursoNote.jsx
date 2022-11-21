@@ -1,12 +1,28 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const CursoNote = (props) => {
+  const location = useLocation();
+
+  
+
   const navigate = useNavigate();
   function handleClick(e) {
     const activityInfoJSON = JSON.stringify(props);
     localStorage.setItem("activityInfo", activityInfoJSON);
-    navigate("/grades/teacher/courses/activity/edit");
+
+    console.log("desde curso note" , props.activities)
+    const activityAreaJSON = JSON.stringify(props.activities);
+    localStorage.setItem("activityArea", activityAreaJSON);
+
+    if (location.pathname === "/boletin/docentes") {
+      navigate("/grades/teacher/:id/courses/students/:id/notes")
+    } else if (location.pathname === "/grades/teacher/unidades") {
+      navigate("/grades/teacher/courses/activity/edit");
+    } else {
+      navigate("#")
+    }
+   
   }
 
   return (
