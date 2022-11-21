@@ -12,7 +12,7 @@ export default function Calificaciones({ info }) {
               grade={item.grade_name}
               alumnos={item.size}
               id={item.id}
-              url={`qualify/${index}`}
+              url={index}
               key={item.id}
             />
           );

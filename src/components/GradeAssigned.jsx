@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 const GradeAssigned = (props) => {
   const navigate = useNavigate();
   const handleClick = () => {
-    navigate("/grades/teacher/" + props.id + "/" + props.url);
+    navigate(`/calificar/${props.url}`);
   };
   return (
     <div className="grade-container" onClick={handleClick}>
