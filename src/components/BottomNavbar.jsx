@@ -25,7 +25,7 @@ const BottomNavbar = () => {
     return valueByDefault(
       // ["/grades", "/ver/alumno", "/docentes"],
       ["/grades", "/alumnos/completos", "/docentes"],
-      ["/todos/alumnos", "/calificar", "/asistencia"]
+      ["/grades/teacher", "/calificar", "/asistencia"]
     );
   });
   function handleClick(e) {
