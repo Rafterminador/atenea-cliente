@@ -6,12 +6,13 @@ import { ReactComponent as MenuImage } from "../assets/images/menu.svg";
 import Menu from "../components/Menu";
 import { useEffect } from "react";
 import GradeAssigned from "../components/GradeAssigned";
-import { useNavigate } from "react-router-dom";
 
 import { GetTeacherGradesByID } from "../services/controllerDocentes";
 
 export default function GradesAssigned() {
   const [hidden, setHidden] = useState("hidden");
+  const [vacio, setVacio] = useState(false);
+  const [info, setInfo] = useState();
   const [animation, setAnimation] = useState("");
   const [myGrades, setMyGrades] = useState([]);
   const ref = useRef(null);
@@ -46,7 +47,6 @@ export default function GradesAssigned() {
   }, [ref]);
 
   useEffect(() => {
-    const navigate = useNavigate();
     // Update the document title using the browser API
     let userJSON = localStorage.getItem("usuario");
     let useUser = JSON.parse(userJSON);
@@ -56,11 +56,12 @@ export default function GradesAssigned() {
       if (response.status === 201) {
         console.log(response.body);
         setMyGrades(response.body);
+        setVacio(false);
         if (
           response.body === "No hay grados a cargo del docente por el momento"
         ) {
-          alert("No hay grados asignados, volviendo atrás");
-          navigate("/home/docente");
+          setVacio(true);
+          setInfo("No hay grados asignados por el momento");
         }
       } else {
         console.log(response);
@@ -72,7 +73,7 @@ export default function GradesAssigned() {
 
   return (
     <div className="relative">
-      <div className="contenedor contenedor-admin">
+       {!vacio ? <>  <div className="contenedor contenedor-admin">
         <h1 className="h1-administracion">Mis Grados</h1>
         {myGrades.map((estudiante) => (
           <GradeAssigned
@@ -137,6 +138,10 @@ export default function GradesAssigned() {
         className={`${hidden} animation3 absolute h-screen w-full bg-black opacity-30 top-0 flex items-end`}
       ></div>
       <Menu hidden={hidden} keyValue={ref} animation={animation} />
+      </> : <>
+      <p>{info}</p>   
+      </>}
+     
     </div>
   );
 }
