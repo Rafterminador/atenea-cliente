@@ -23,8 +23,9 @@ const BottomNavbar = () => {
   };
   const [urls] = useState(() => {
     return valueByDefault(
-      ["/grades", "/ver/alumno", "/docentes"],
-      ["#", "/calificar", "/asistencia"]
+      // ["/grades", "/ver/alumno", "/docentes"],
+      ["/grades", "/alumnos/completos", "/docentes"],
+      ["/grades/teacher", "/calificar", "/asistencia"]
     );
   });
   function handleClick(e) {
@@ -73,14 +74,14 @@ const BottomNavbar = () => {
       document
         .getElementById("grade")
         .children[0].children[0].classList.add("fill-white");
-    } else if (location.pathname === "/ver/alumno") {
+    } else if (location.pathname === "/ver/alumno" || location.pathname === "/calificar") {
       document
         .getElementById("students")
         .children[0].classList.add("bg-[#A954FF]");
       document
         .getElementById("students")
         .children[0].children[0].classList.add("fill-white");
-    } else if (location.pathname === "/docentes") {
+    } else if (location.pathname === "/docentes" || location.pathname === "/asistencia") {
       document
         .getElementById("teachers")
         .children[0].classList.add("bg-[#A954FF]");

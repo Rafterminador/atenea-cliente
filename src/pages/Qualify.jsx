@@ -86,6 +86,34 @@ export default function Qualify() {
 
   async function handleClick(e) {
     e.preventDefault();
+
+    const post = {
+      activityRef: "uNR4mFMLQgtT41vO6tlM",
+      scores: [
+        {
+          score: 66,
+          studentRef: "QQPy6YLIuUvGMbeKwDOB",
+        },
+        {
+          score: 81,
+          studentRef: "9UHwTtDTw8VWtXMEF8Wt",
+        },
+      ],
+    };
+    const response = await postScores(post);
+    if (response.status === 200) {
+      Swal.fire(AlertButton.dataAlertSuccess("Datos actualizados")).then(() => {
+        navigate(-1);
+      });
+    } else {
+      Swal.fire(
+        AlertButton.dataAlertSuccessOneButton(
+          "Algo salio mal!",
+          "Intente de nuevo",
+          Sign
+        )
+      );
+    }
     const sinCalificar = calificados.some((item) => item.score === "");
     console.log(calificados);
     if (

@@ -6,20 +6,20 @@ const api = axios.create({
     headers: { 'Accept': '*/*' }
 })
 const login = async (auth, email, password) => {
-    console.log(auth, email, password)
+    // console.log(auth, email, password)
     let response = null
     response = await signInWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
-            console.log(userCredential)
             response = userCredential.user;
+            console.log(userCredential.user)
             let roleObject = JSON.parse(response.reloadUserInfo.customAttributes)
-            response = { uid: response.uid, email: response.email, name: response.displayName, role: roleObject.rol }
+            response = { uid: response.uid, email: response.email, name: response.displayName, role: roleObject.rol, number: response.phoneNumber === null || response.phoneNumber === "" ? "" : response.phoneNumber.slice(4), password: password }
             const auth = getAuth();
             const currentUser = auth.currentUser;
             currentUser.getIdTokenResult()
                 .then((idTokenResult) => {
+                    console.log(idTokenResult)
                     response.role = idTokenResult.claims.rol
-                    console.log(idTokenResult);
                 })
                 .catch((error) => {
                     console.log(error);
@@ -48,12 +48,7 @@ const registrarUsuario = async (email, password, name) => {
     }).catch((error) => {
         responseToReturn = error
     });
-    if (responseToReturn.status === undefined) {
-        responseToReturn = responseToReturn.response.data
-    } else {
-        responseToReturn = responseToReturn.data
-    }
-    return responseToReturn
+    return getInformation(responseToReturn)
 }
 
 const forgotPassword = async (email) => {
@@ -65,6 +60,27 @@ const forgotPassword = async (email) => {
         }).catch((error) => {
             responseToReturn = error
         });
+    return getInformation(responseToReturn)
+}
+
+const updateUserProfile = async (idUser, emailInput, passwordInput, phoneNumberInput, displayNameInput) => {
+    let responseToReturn
+    await api.put(`api/v1/user/update-user/${idUser}`, {
+        email: emailInput,
+        password: passwordInput,
+        phoneNumber: phoneNumberInput,
+        displayName: displayNameInput
+    })
+        .then((response) => {
+            responseToReturn = response
+        }).catch((error) => {
+            responseToReturn = error
+        });
+    return getInformation(responseToReturn)
+
+}
+
+const getInformation = (responseToReturn) => {
     if (responseToReturn.status === undefined) {
         responseToReturn = responseToReturn.response.data
     } else {
@@ -72,4 +88,5 @@ const forgotPassword = async (email) => {
     }
     return responseToReturn
 }
-export { login, registrarUsuario, forgotPassword }
+
+export { login, registrarUsuario, forgotPassword, updateUserProfile }

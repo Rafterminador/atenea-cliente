@@ -1,12 +1,8 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
 import CursoNote from "./CursoNote";
 
 const BoletinCard = (props) => {
-  const navigate = useNavigate();
-  function handleClick(e) {
-    navigate("/grades/teacher/:id/courses/:courseId/activity/edit");
-  }
+  const unidad = props.unidad;
+
   return (
     <div>
       <div className="bg-[#FFFFFF] bordercard my-6 mt-5 mb-5 ml-5 mr-5 pb-4 pt-4 pl-4 pr-4">
@@ -19,8 +15,16 @@ const BoletinCard = (props) => {
           </p>
         </div>
 
-        <div onClick={handleClick}>
-          <CursoNote name={"Actividad #1"} note={"5"} />
+        <div>
+          {props.data.map((actividad) => (
+            <CursoNote
+              name={actividad.activity_name}
+              note={actividad.activity_value}
+              idactivity={actividad.id}
+              unidad={unidad}
+              key={actividad.id}
+            />
+          ))}
         </div>
       </div>
     </div>

@@ -9,7 +9,7 @@ import { GetOneTeacherByID, updateRol, DisableTeacher, EnableTeacher, getAllTeac
 import { useState } from "react";
 import Retroceder from "./Retroceder";
 import Grades from "./Grades";
-//import Button from "./Button";
+import Button from "./Button";
 import Spinner from "./Spinner";
 const Swal = require("sweetalert2");
 
@@ -44,8 +44,8 @@ const AccountPage = () => {
     };
 
     getOneTeacherByID();
-  
-  },[id]);
+
+  }, [id]);
 
   const getOneTeacherByID = async () => {
     try {
@@ -65,7 +65,7 @@ const AccountPage = () => {
   const handleEdit = async (e) => {
     e.preventDefault();
 
-    
+
     Swal.fire(
       AlertButton.dataAlertUnBotonMorado(
         "¿Confirmar docente?",
@@ -98,7 +98,7 @@ const AccountPage = () => {
       console.log(response.body);
     }
 
-    
+
   };
 
   const EnableDocente = async (e) => {
@@ -136,7 +136,7 @@ const AccountPage = () => {
       console.log(response.body);
     }
 
-    
+
   };
 
   const InableDocente = async (e) => {
@@ -173,20 +173,20 @@ const AccountPage = () => {
       console.log(response.body);
     }
 
-    
+
   };
 
   return (
     <>
       <Retroceder text={teacher.displayName} />
       {!cargando ? (
-        <>
-          <div className={`m-6 flex space-x-2 ${rol}`}>
+        <div className="mx-[20px]">
+          <div className={`my-6 flex space-x-2 ${rol}`}>
             <p className=" text-[16px]">Se unió el:</p>
             <p className="font-bold text-[16px]">{teacher.createdAt}</p>
           </div>
 
-          <div className="m-6 rounded-xl bordeblurd">
+          <div className="my-6 rounded-xl bordeblurd">
             <div className="p-8">
               <p className="font-bold text-[#4D3483] text-lg mb-2">Contacto</p>
               <div className="flex space-x-5 mb-2">
@@ -201,7 +201,7 @@ const AccountPage = () => {
             </div>
           </div>
 
-          <div className="m-6 rounded-xl bordeblurd">
+          <div className="my-6 rounded-xl bordeblurd">
             <div className="p-8">
               <p className="font-bold text-[#4D3483] text-lg mb-2">
                 Grados a Cargo
@@ -219,51 +219,21 @@ const AccountPage = () => {
 
           <div className="">
             {!teacher.rol ? (
-              // <Button
-              //   onClick={handleEdit}
-              //   text="Confirmar docente"
-              //   typeButton={"button-type-2"}
-              //   className="my-5"
-              //   type="click"
-              //   form="register-form"
-              // />
 
-              <button className='button-purple' style={{ position: 'absolute', left: '0px', marginLeft: '20px', width: 'calc(100% - 40px)', bottom: '20px' }} onClick={handleEdit}>
-                  Confirmar docente
-                </button>
+              <Button text="Confirmar docente" typeButton={"button-type-2"} className="" style={{ position: 'absolute', left: '0px', marginLeft: '20px', width: 'calc(100% - 40px)', bottom: '20px' }} onClick={handleEdit} />
             ) : (
               ""
             )}
 
             <div className={`${visibleButtom}`}>
               {teacher.enable ? (
-                // <Button
-                //   onClick={EnableDocente}
-                //   text="Deshabilitar docente"
-                //   typeButton={"button-type-3"}
-                //   className="my-5 "
-                //   type="click"
-                //   form="register-form"
-                // />
-                <button className='delete-button' style={{ position: 'absolute', left: '0px', marginLeft: '20px', width: 'calc(100% - 40px)', bottom: '20px' }} onClick={EnableDocente}>
-                  Deshabilitar docente
-                </button>
+                <Button text="Deshabilitar docente" typeButton={"button-type-3"} className="" style={{ position: 'absolute', left: '0px', marginLeft: '20px', width: 'calc(100% - 40px)', bottom: '20px' }} onClick={EnableDocente} />
               ) : (
-                // <Button
-                //   onClick={InableDocente}
-                //   text="Habilitar docente"
-                //   typeButton={"button-type-2"}
-                //   className="my-5"
-                //   type="click"
-                //   form="register-form"
-                // />
-                <button className='button-purple' style={{ position: 'absolute', left: '0px', marginLeft: '20px', width: 'calc(100% - 40px)', bottom: '20px' }} onClick={InableDocente}>
-                  Habilitar docente
-                </button>
+                <Button text="Habilitar docente" typeButton={"button-type-2"} className="" style={{ position: 'absolute', left: '0px', marginLeft: '20px', width: 'calc(100% - 40px)', bottom: '20px' }} onClick={InableDocente} />
               )}
             </div>
           </div>
-        </>
+        </div>
       ) : (
         <Spinner />
       )}

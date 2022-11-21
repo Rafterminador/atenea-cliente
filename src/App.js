@@ -13,11 +13,12 @@ import Grades from "./pages/Grades";
 import NewGrade from "./pages/NewGrade";
 import UpdateGrade from "./pages/UpdateGrade";
 import EditGrade from "./pages/EditGrade";
-import VerAlumno from "./pages/VerAlumno";
+// import VerAlumno from "./pages/VerAlumno";
 import AlumnoAccount from "./pages/AlumnoAccount";
 import EditAlumnoAccount from "./pages/EditAlumnoAccount";
 import AlumnoProfile from "./pages/AlumnoProfile";
-import AllAlumnos from "./pages/AllAlumnos";
+// import AllAlumnos from "./pages/AllAlumnos";
+import AllAlumnosGrades from "./pages/AllAlumnosGrades";
 import Boletin from "./pages/Boletin";
 import ControllerProving from "./pages/ControllerProving";
 import GradesAssigned from "./pages/GradesAssigned";
@@ -58,7 +59,8 @@ function App() {
           <Route element={<BottomNavbarDirector />}>
             <Route path="/home" element={<Home />} />
             <Route path="/grades/" element={<Grades />} />
-            <Route path="/ver/alumno" element={<VerAlumno />} />
+            {/* <Route path="/ver/alumno" element={<VerAlumno />} /> */}
+            <Route path="/alumnos/completos" element={<AllAlumnosGrades />} />
             <Route path="/docentes" element={<Teachers />} />
           </Route>
 
@@ -72,7 +74,6 @@ function App() {
           <Route path="/cuenta/alumno" element={<AlumnoAccount />} />
           <Route path="/editar/alumno" element={<EditAlumnoAccount />} />
           <Route path="/perfil/alumno" element={<AlumnoProfile />} />
-          <Route path="/alumnos/completos" element={<AllAlumnos />} />
           <Route path="/boletin" element={<Boletin />} />
 
           {/* Docentes */}
@@ -89,10 +90,15 @@ function App() {
           {/* rutas para la S03 - Área para docente */}
           <Route element={<BottomNavbarDirector />}>
             <Route path="/home/docente" element={<Home />} />
+            <Route path="/asistencia" element={<Asistencia />} />
             <Route path="/calificar" element={<Calificar />} />
+            <Route path="/todos/alumnos" element={<AllAlumnosGrades />} />
           </Route>
-          <Route path="/grades/teacher/:id" element={<GradesAssigned />} />
-          <Route path="/grades/teacher/:id/courses" element={<Courses />} />
+          <Route path="/profile/alumno" element={<AlumnoProfile />} />
+          <Route path="/boletin/docentes" element={<Boletin />} />
+          <Route path="/grades/teacher" element={<GradesAssigned />} />
+          <Route path="/grades/teacher/courses" element={<Courses />} />
+          <Route path="/cuenta/docente" element={<Account />} />
           <Route
             path="/grades/teacher/:id/courses/students"
             element={<Students />}
@@ -106,15 +112,15 @@ function App() {
             element={<Notes />}
           />
           <Route
-            path="/grades/teacher/:id/courses/:courseId"
+            path="/grades/teacher/unidades"
             element={<Course />}
           />
           <Route
-            path="/grades/teacher/:id/courses/:courseId/new/activity"
+            path="/grades/teacher/courses/new/activity"
             element={<NewActivity />}
           />
           <Route
-            path="/grades/teacher/:id/courses/:courseId/activity/edit"
+            path="/grades/teacher/courses/activity/edit"
             element={<EditActividy />}
           />
           <Route path="/calificar/:student" element={<Qualify />} />
@@ -122,7 +128,7 @@ function App() {
           {/* Aquí termina la ruta para la S03 - Área para docente */}
 
           {/* Pagina asistencia */}
-          <Route path="/asistencia" element={<Asistencia />} />
+          <Route path="/asistencia/tomar-asistencia/:id" element={<TomarAsistencia />} />
           <Route
             path="/asistencia/tomar-asistencia/:id"
             element={<TomarAsistencia />}
