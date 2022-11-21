@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
 import Calificaciones from "../components/Calificaciones";
+import Spinner from "../components/Spinner";
 import { getAreas } from "../services/controllerDocentes";
 
 export default function Calificar() {
   const [info, setInfo] = useState();
   const [vacio, setVacio] = useState(false);
+  const [verify, setVerify] = useState(false);
 
   useEffect(() => {
     grades();
@@ -34,6 +36,7 @@ export default function Calificar() {
 
         localStorage.setItem("actividades", JSON.stringify(actividades));
       }
+      setVerify(true);
       setVacio(false);
     } else {
       setVacio(true);
@@ -41,7 +44,15 @@ export default function Calificar() {
   };
   return (
     <div className="contenedor contenedor-admin">
-      {!vacio ? <Calificaciones info={info} /> : <p>{info}</p>}
+      {!vacio ? (
+        verify ? (
+          <Calificaciones info={info} />
+        ) : (
+          <Spinner />
+        )
+      ) : (
+        <p>{info}</p>
+      )}
     </div>
   );
 }
