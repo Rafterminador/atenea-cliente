@@ -5,7 +5,7 @@ import Retroceder from "./Retroceder";
 import { AlertButton } from "../utils/AlertButton";
 import DeleteConfirmation from "../assets/images/confirmarAlumno.svg";
 import { newAttendence } from "../services/controllerDocentes";
- import { Pagination, Scrollbar, A11y, Navigation } from "swiper";
+ import { Pagination, Navigation } from "swiper";
 import ComboBox from "./ComboBox";
 
 import { Swiper, SwiperSlide,  } from "swiper/react";
