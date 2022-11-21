@@ -125,10 +125,7 @@ function App() {
             path="/grades/teacher/courses/activity/edit"
             element={<EditActividy />}
           />
-          <Route
-            path="/grades/teacher/:id/qualify/:student"
-            element={<Qualify />}
-          />
+          <Route path="/calificar/:student" element={<Qualify />} />
           <Route path="/backend" element={<ControllerProving />} />
           {/* Aquí termina la ruta para la S03 - Área para docente */}
 
