@@ -168,4 +168,8 @@ const getAllGrades = async () => {
     return getInformation(responseToReturn)
 }
 
-export {GetTeacherGradesByID, GetGradesByID, GetGradesAreas, GetUnityActivities, updateActivity, createActivity, deleteActivity, getAllGrades, GetMyStudents, newAttendence, getAreas, postScores};
+
+
+
+
+export { GetTeacherGradesByID, GetGradesByID, GetGradesAreas, GetUnityActivities, updateActivity, createActivity, deleteActivity, getAllGrades, GetMyStudents, newAttendence, getAreas, postScores};

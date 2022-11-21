@@ -41,11 +41,13 @@ import BottomNavbarDirector from "./utils/BottomNavbarDirector";
 import Asistencia from "./pages/Asistencia";
 import TomarAsistencia from "./components/TomarAsistencia";
 import Calificar from "./pages/Calificar";
+import { PdfExportProvider } from "./context/PdfExportProvider";
 
 function App() {
   return (
     <BrowserRouter>
-      <Routes>
+      <PdfExportProvider>
+            <Routes>
         {/* rutas para la S01 - Autenticacion */}
         <Route path="/" element={<LandingPage />} />
         <Route path="/login" element={<Login />} />
@@ -135,6 +137,7 @@ function App() {
           />
         </Route>
       </Routes>
+      </PdfExportProvider>
     </BrowserRouter>
   );
 }

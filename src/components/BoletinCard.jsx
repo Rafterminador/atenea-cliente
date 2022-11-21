@@ -1,7 +1,9 @@
 import CursoNote from "./CursoNote";
 
-const BoletinCard = ({ firstUnit, areas }) => {
+const BoletinCard = ({ firstUnit, areas, unidad }) => {
   // console.log("desde boletein",props.firstUnit.areas
+
+  console.log("desde boletin card ",areas)
 
   return (
     <div className="">
@@ -19,9 +21,12 @@ const BoletinCard = ({ firstUnit, areas }) => {
           <div className="">
             {areas.map((area) => (
               <CursoNote
-                key={area.area_name}
+                key={area.area_id}
                 name={area.area_name}
                 note={area.score}
+                area_id={area.area_id}
+                unidad={unidad}
+                activities = {area.activities}
               />
             ))}
           </div>
