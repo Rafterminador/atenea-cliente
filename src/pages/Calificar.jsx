@@ -17,6 +17,7 @@ export default function Calificar() {
     if (localInfo !== "No hay grados a cargo del docente por el momento") {
       const getActividades = localStorage.getItem("actividades");
       const localActividades = JSON.parse(getActividades);
+      console.log(localActividades);
       if (localActividades === null) {
         const response = await Promise.all(
           localInfo.map(async (item) => await getAreas(item.id))

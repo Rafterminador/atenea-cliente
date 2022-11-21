@@ -9,10 +9,10 @@ export default function Calificaciones({ info }) {
         info.map((item, index) => {
           return (
             <GradeAssigned
-              grade={item.grade_name}
+              grado={item.grade_name}
               alumnos={item.size}
               id={item.id}
-              url={index}
+              url={`${index}`}
               key={item.id}
             />
           );

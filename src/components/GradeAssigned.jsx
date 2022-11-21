@@ -9,7 +9,7 @@ const GradeAssigned = (props) => {
   function handleClick() {
     const gradeJSON = JSON.stringify(props);
     localStorage.setItem("seteargrado", gradeJSON);
-    navigate("/grades/teacher/courses");
+    navigate(props.url);
   }
 
   return (

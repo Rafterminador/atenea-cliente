@@ -73,75 +73,81 @@ export default function GradesAssigned() {
 
   return (
     <div className="relative">
-       {!vacio ? <>  <div className="contenedor contenedor-admin">
-        <h1 className="h1-administracion">Mis Grados</h1>
-        {myGrades.map((estudiante) => (
-          <GradeAssigned
-            grado={estudiante.grade_name}
-            alumnos={estudiante.size}
-            id={1}
-            key={estudiante.id_grade}
-            uidgrade={estudiante.id_grade}
-          />
-        ))}
-      </div>
-      <div className="fixed z-0 bottom-0 h-[70px] w-full flex justify-around items-center text-centers shadow">
-        <div className="w-[90px] h-full">
-          <button
-            id="grade"
-            onClick={handleBtns}
-            className="h-full rounded-none flex flex-col justify-center items-center gap-1"
-          >
-            <div className="w-16 h-8 flex justify-center items-center rounded-[20px] py-2">
-              <Grade />
+      {!vacio ? (
+        <>
+          {" "}
+          <div className="contenedor contenedor-admin">
+            <h1 className="h1-administracion">Mis Grados</h1>
+            {myGrades.map((estudiante) => (
+              <GradeAssigned
+                grado={estudiante.grade_name}
+                alumnos={estudiante.size}
+                id={1}
+                url="/grades/teacher/courses"
+                key={estudiante.id_grade}
+                uidgrade={estudiante.id_grade}
+              />
+            ))}
+          </div>
+          <div className="fixed z-0 bottom-0 h-[70px] w-full flex justify-around items-center text-centers shadow">
+            <div className="w-[90px] h-full">
+              <button
+                id="grade"
+                onClick={handleBtns}
+                className="h-full rounded-none flex flex-col justify-center items-center gap-1"
+              >
+                <div className="w-16 h-8 flex justify-center items-center rounded-[20px] py-2">
+                  <Grade />
+                </div>
+                <p className="text-[12.8px] font-semibold">Mis Grados</p>
+              </button>
             </div>
-            <p className="text-[12.8px] font-semibold">Mis Grados</p>
-          </button>
-        </div>
-        <div className="w-[90px] h-full">
-          <button
-            id="students"
-            onClick={handleBtns}
-            className="h-full rounded-none flex flex-col justify-center items-center gap-1"
-          >
-            <div className="w-16 h-8 flex justify-center items-center rounded-[20px] py-2">
-              <Grades />
+            <div className="w-[90px] h-full">
+              <button
+                id="students"
+                onClick={handleBtns}
+                className="h-full rounded-none flex flex-col justify-center items-center gap-1"
+              >
+                <div className="w-16 h-8 flex justify-center items-center rounded-[20px] py-2">
+                  <Grades />
+                </div>
+                <p className="text-[12.8px] font-semibold">Calificar</p>
+              </button>
             </div>
-            <p className="text-[12.8px] font-semibold">Calificar</p>
-          </button>
-        </div>
-        <div className="w-[90px] h-full">
-          <button
-            id="teachers"
-            onClick={handleBtns}
-            className="h-full rounded-none flex flex-col justify-center items-center gap-1"
-          >
-            <div className="w-16 h-8 flex justify-center items-center rounded-[20px] py-2">
-              <Attendance />
+            <div className="w-[90px] h-full">
+              <button
+                id="teachers"
+                onClick={handleBtns}
+                className="h-full rounded-none flex flex-col justify-center items-center gap-1"
+              >
+                <div className="w-16 h-8 flex justify-center items-center rounded-[20px] py-2">
+                  <Attendance />
+                </div>
+                <p className="text-[12.8px] font-semibold">Asistencia</p>
+              </button>
             </div>
-            <p className="text-[12.8px] font-semibold">Asistencia</p>
-          </button>
-        </div>
-        <div className="w-[90px] h-full">
-          <button
-            onClick={handleClick}
-            className="h-full rounded-none flex flex-col justify-center items-center gap-1"
-          >
-            <div className="w-6 h-6 flex justify-center items-center">
-              <MenuImage className="" />
+            <div className="w-[90px] h-full">
+              <button
+                onClick={handleClick}
+                className="h-full rounded-none flex flex-col justify-center items-center gap-1"
+              >
+                <div className="w-6 h-6 flex justify-center items-center">
+                  <MenuImage className="" />
+                </div>
+                <p className="text-[12.8px] font-semibold">Más</p>
+              </button>
             </div>
-            <p className="text-[12.8px] font-semibold">Más</p>
-          </button>
-        </div>
-      </div>
-      <div
-        className={`${hidden} animation3 absolute h-screen w-full bg-black opacity-30 top-0 flex items-end`}
-      ></div>
-      <Menu hidden={hidden} keyValue={ref} animation={animation} />
-      </> : <>
-      <p>{info}</p>   
-      </>}
-     
+          </div>
+          <div
+            className={`${hidden} animation3 absolute h-screen w-full bg-black opacity-30 top-0 flex items-end`}
+          ></div>
+          <Menu hidden={hidden} keyValue={ref} animation={animation} />
+        </>
+      ) : (
+        <>
+          <p>{info}</p>
+        </>
+      )}
     </div>
   );
 }
