@@ -3,6 +3,7 @@ import EditProfile from "../components/EditProfile";
 // import EditProfile from "../components/EditProfile";
 import Profile from "../components/Profile";
 import Retroceder from "../components/Retroceder";
+import Regresar from "../assets/images/regresar.svg";
 
 export default function Account() {
   const [change, setChange] = useState(true);
@@ -15,10 +16,12 @@ export default function Account() {
         <Retroceder text={"Cuenta"} />
       ) : (
         <>
-          <div className="flex ml-5 mt-[21px] mb-[13px] items-center">
-            <h1 className="font-semibold text-2xl">Cuenta</h1>
-          </div>
-          <hr className="administracion" />
+          <div className="flex ml-5 mt-[21px] mb-[13px] items-cente" onClick={handleChange}>
+            <img src={Regresar} alt="backleft" />
+            <p className="text-[13px] ml-[5px] mt-[2px] font-sans text-[#7064FF]"> Atrás</p>
+            <p className="ml-[16px] p-bold-administracion ">Cuenta</p>
+          </div >
+          <hr className='administracion' />
         </>
       )}
       {change ? (

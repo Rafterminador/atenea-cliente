@@ -15,8 +15,8 @@ import Image from "../components/Image";
 import Button from "../components/Button";
 import Input from "../components/Input";
 
-//backend 
-import { login } from "../services/controllerUser"
+//backend
+import { login } from "../services/controllerUser";
 import { getAllGrades, getAllTeachers } from "../services/controllerDirector";
 import { GetMyStudents } from "../services/controllerDocentes";
 
@@ -37,7 +37,9 @@ const Login = () => {
   const [passwordVisibility, setPasswordVisibility] = useState(false);
   const [iconPassword, setIconPassword] = useState(IconShowPassword);
   const [cargando, setCargando] = useState(false);
-  const [badEmailMessage, setBadEmailMessage] = useState("Cuenta no encontrada, porfavor intentelo de nuevo");
+  const [badEmailMessage, setBadEmailMessage] = useState(
+    "Cuenta no encontrada, porfavor intentelo de nuevo"
+  );
 
   const togglePassword = () => {
     setPasswordVisibility(!passwordVisibility);
@@ -52,30 +54,36 @@ const Login = () => {
     setTextBadPassword("hidden");
     e.preventDefault();
     setCargando(true);
-    let response = {}
-    response = await login(auth, email, password)
+    let response = {};
+    response = await login(auth, email, password);
     if (response?.errorCode != null) {
       setInvalid("invalid");
       setInvalidText("invalid-text");
       setImageLogin(ImageLoginError);
       setTitleLoginH1("hidden");
       setTitleLoginH2("");
-      if (response.errorCode !== null && response.errorCode === "auth/user-not-found") {
+      if (
+        response.errorCode !== null &&
+        response.errorCode === "auth/user-not-found"
+      ) {
         setTextBadEmail("");
-      } else if (response.errorCode !== null && response.errorCode === "auth/wrong-password") {
+      } else if (
+        response.errorCode !== null &&
+        response.errorCode === "auth/wrong-password"
+      ) {
         setTextBadPassword("");
       }
       setCargando(false);
     } else {
-      const userJSON = JSON.stringify(response)
-      localStorage.setItem('usuario', userJSON)
+      const userJSON = JSON.stringify(response);
+      localStorage.setItem("usuario", userJSON);
       if (response?.role === "director" || response?.role === "admin") {
         const getAllGradesBackend = async () => {
           let response = await getAllGrades();
           if (response.status === 200) {
             console.log(response.body);
-            const userJSON = JSON.stringify(response.body)
-            localStorage.setItem('grades', userJSON)
+            const userJSON = JSON.stringify(response.body);
+            localStorage.setItem("grades", userJSON);
           } else {
             console.log(response.body);
           }
@@ -86,14 +94,13 @@ const Login = () => {
 
             if (response.status === 200) {
               console.log(response.body);
-              const teacherJSON = JSON.stringify(response.body)
-              localStorage.setItem('docentes', teacherJSON)
+              const teacherJSON = JSON.stringify(response.body);
+              localStorage.setItem("docentes", teacherJSON);
             } else {
               console.log(response.body);
             }
-
           } catch (error) {
-            console.log(error)
+            console.log(error);
           }
         };
         await getAllGradesBackend();
@@ -101,15 +108,14 @@ const Login = () => {
         setCargando(false);
         navigate("/home");
       } else if (response?.role === "docente") {
-
-        const usuarioJSON = localStorage.getItem('usuario')
-        const usuario = JSON.parse(usuarioJSON)
+        const usuarioJSON = localStorage.getItem("usuario");
+        const usuario = JSON.parse(usuarioJSON);
         const getMystudents = async () => {
           try {
             let response = await GetMyStudents(usuario.uid);
-            console.log(response)
-            const mystudentsJSON = JSON.stringify(response.body)
-            localStorage.setItem('grados', mystudentsJSON)
+            console.log(response);
+            const mystudentsJSON = JSON.stringify(response.body);
+            localStorage.setItem("grados", mystudentsJSON);
           } catch (error) {
             console.log(error);
           }
@@ -117,13 +123,11 @@ const Login = () => {
 
         await getMystudents();
 
-
-
         setCargando(false);
-        navigate("/home/docente")
+        navigate("/home/docente");
       } else {
         setCargando(false);
-        setBadEmailMessage("El docente no a sido confirmado")
+        setBadEmailMessage("El docente no a sido confirmado");
         setInvalid("invalid");
         setTextBadEmail("");
         setInvalidText("invalid-text");
@@ -171,12 +175,18 @@ const Login = () => {
                   >
                     Correo
                   </label>
-                  <Input id="email" type="email" name="email" onChange={handleChangeUsername} placeholder="Ingresar correo" className={`${invalid}`} required={1} />
+                  <Input
+                    id="email"
+                    type="email"
+                    name="email"
+                    onChange={handleChangeUsername}
+                    placeholder="Ingresar correo"
+                    className={`${invalid}`}
+                    required={1}
+                  />
                   <div className={`flex flex-row ${textBadEmail}`}>
                     <img src={IconWarning} alt="warning information" />
-                    <p className="invalid-text-small">
-                      {badEmailMessage}
-                    </p>
+                    <p className="invalid-text-small">{badEmailMessage}</p>
                   </div>
                 </div>
 
@@ -188,7 +198,15 @@ const Login = () => {
                     Contraseña
                   </label>
                   <div className="relative">
-                    <Input id="password" type={passwordVisibility ? "text" : "password"} name="password" onChange={handleChangePassword} placeholder="Ingresar contraseña" className={`w-full ${invalid}`} required={1} />
+                    <Input
+                      id="password"
+                      type={passwordVisibility ? "text" : "password"}
+                      name="password"
+                      onChange={handleChangePassword}
+                      placeholder="Ingresar contraseña"
+                      className={`w-full ${invalid}`}
+                      required={1}
+                    />
                     <img
                       className="shw-pass bg-white"
                       src={iconPassword}
@@ -199,8 +217,8 @@ const Login = () => {
                   <div className={`flex flex-row ${textBadPassword}`}>
                     <img src={IconWarning} alt="warning information" />
                     <p className="invalid-text-small">
-                      Contraseña incorrecta, por favor intentelo de nuevo o recupere
-                      su contraseña
+                      Contraseña incorrecta, por favor intentelo de nuevo o
+                      recupere su contraseña
                     </p>
                   </div>
                 </div>
@@ -215,7 +233,13 @@ const Login = () => {
           </div>
           {/* div de los botones */}
           <div className="flex flex-col gap-4 mb-5">
-            <Button text="Ingresar" typeButton={"button-type-2"} className="" type="submit" form="login-form" />
+            <Button
+              text="Ingresar"
+              typeButton={"button-type-2"}
+              className=""
+              type="submit"
+              form="login-form"
+            />
             <button className="sml-button p-0">
               <span className="sml-text-2">¿No tiene una cuenta?</span>{" "}
               <Link to="/register">

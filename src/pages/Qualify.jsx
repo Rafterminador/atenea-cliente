@@ -9,7 +9,12 @@ import Sign from "../assets/images/sign.svg";
 import { useState } from "react";
 import { useEffect } from "react";
 import { postScores } from "../services/controllerDocentes";
-import uuid from "react-uuid";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Pagination, Navigation } from "swiper";
+
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/scrollbar";
 
 const unidades = [
   "Primera unidad",
@@ -18,12 +23,14 @@ const unidades = [
   "Cuarta unidad",
 ];
 
-let actividades = [];
+// let actividades = [];
 
 export default function Qualify() {
   const [estudiantes, setEstudiantes] = useState([{}]);
   const [areas, setAreas] = useState([]);
-  const [indice, setIndice] = useState("");
+  const [actividades, setActividades] = useState([]);
+  const [indiceUnidad, setIndiceUnidad] = useState();
+  const [indiceCurso, setIndiceCurso] = useState();
   const [calificados, setCalificados] = useState([]);
   const [grado, setGrado] = useState({});
   const [seleccionados, setSeleccionados] = useState({
@@ -45,9 +52,9 @@ export default function Qualify() {
     setEstudiantes(informacion.students);
     setAreas(area);
     setCalificados(
-      informacion.students.map(({ id }) => ({ studentRef: id, score: "" }))
+      informacion.students.map(({ id }) => ({ studentRef: id, score: "1" }))
     );
-    actividades = actividad;
+    setActividades(actividad);
   }, [student]);
 
   function handleChange(e, key) {
@@ -63,11 +70,13 @@ export default function Qualify() {
 
   function unidadSeleccionada(data) {
     const id = unidades.indexOf(data);
-    setIndice(`unit${id + 1}`);
+    setIndiceUnidad(`unit${id + 1}`);
     setSeleccionados({ ...seleccionados, unidad: data });
   }
 
   function cursoSeleccionado(data) {
+    const id = areas.indexOf(data);
+    setIndiceCurso(id);
     setSeleccionados({ ...seleccionados, curso: data });
   }
 
@@ -77,35 +86,8 @@ export default function Qualify() {
 
   async function handleClick(e) {
     e.preventDefault();
-
-    const post = {
-      activityRef: "uNR4mFMLQgtT41vO6tlM",
-      scores: [
-        {
-          score: 66,
-          studentRef: "QQPy6YLIuUvGMbeKwDOB",
-        },
-        {
-          score: 81,
-          studentRef: "9UHwTtDTw8VWtXMEF8Wt",
-        },
-      ],
-    };
-    const response = await postScores(post);
-    if (response.status === 200) {
-      Swal.fire(AlertButton.dataAlertSuccess("Datos actualizados")).then(() => {
-        navigate(-1);
-      });
-    } else {
-      Swal.fire(
-        AlertButton.dataAlertSuccessOneButton(
-          "Algo salio mal!",
-          "Intente de nuevo",
-          Sign
-        )
-      );
-    }
     const sinCalificar = calificados.some((item) => item.score === "");
+    console.log("calificados", calificados);
     if (
       sinCalificar ||
       seleccionados.curso === "" ||
@@ -115,12 +97,12 @@ export default function Qualify() {
       Swal.fire(
         AlertButton.dataAlertSuccessOneButton(
           "¡Cuidado!",
-          "Aún quedan alumnos por chequear",
+          "Aún quedan campos vacios",
           Sign
         )
       );
     } else {
-      const idActivity = actividades[indice].find(
+      const idActivity = actividades[indiceCurso][indiceUnidad].find(
         (item) => item.activity_name === seleccionados.actividad
       );
       const post = {
@@ -128,6 +110,7 @@ export default function Qualify() {
         scores: calificados,
       };
       const response = await postScores(post);
+      console.log("post", post);
       if (response.status === 200) {
         Swal.fire(AlertButton.dataAlertSuccess("Datos actualizados")).then(
           () => {
@@ -146,26 +129,9 @@ export default function Qualify() {
     }
   }
 
-  const displayStudents = estudiantes.map((item) => (
-    <div key={uuid()} className="flex justify-between text-start">
-      <p key={uuid()}>{item.name_student}</p>
-      <Input
-        className={
-          "font-normal border-solid border-2 border-[#DBD8FF] rounded-[10px] py-2.5 px-2 w-1/3"
-        }
-        onChange={(e) => handleChange(e, item.id)}
-        id={"qualify"}
-        type={"number"}
-        name={"qualify"}
-        disabled={false}
-        required={true}
-        key={uuid()}
-      />
-    </div>
-  ));
-
   return (
     <div>
+      {/* {actividades[0]["unit1"].map((item) => console.log(item.activity_name))} */}
       <Retroceder text="Calificar actividad" />
       <div className="contenedor-admin text-center">
         <p>
@@ -175,7 +141,7 @@ export default function Qualify() {
         <div className="flex flex-col gap-3 text-start mt-5">
           <label htmlFor="teacher">Curso</label>
           <ComboBox
-            teachers={!!areas ? areas.map((item) => item?.activity_name) : [""]}
+            teachers={areas}
             valueByDefault={"Seleccionar curso"}
             function={cursoSeleccionado}
           />
@@ -187,16 +153,54 @@ export default function Qualify() {
           />
           <label htmlFor="score">Actividad</label>
           <ComboBox
+            // teachers={[]}
             teachers={
-              !!actividades[0]
-                ? actividades.map((item) => item?.activity_name)
-                : [""]
+              indiceCurso !== undefined && indiceUnidad
+                ? actividades[indiceCurso][indiceUnidad].map(
+                  (item) => item.activity_name
+                )
+                : []
             }
             valueByDefault={"Seleccionar actividad"}
             function={actividadSeleccionada}
           />
         </div>
-        <div className="flex flex-col gap-5 mt-10">{displayStudents}</div>
+        <Swiper
+          // install Swiper modules
+          // modules={[Pagination, Scrollbar, A11y]}
+          // pagination
+          spaceBetween={0}
+          slidesPerView={1}
+          // pagination={{ clickable: true }}
+          // scrollbar={{ draggable: true }}
+          onSwiper={(swiper) => console.log(swiper)}
+          onSlideChange={() => console.log("slide change")}
+          pagination={{
+            type: "fraction",
+            clickable: true,
+          }}
+          //navigation={true}
+          modules={[Pagination, Navigation]}
+        >
+          {estudiantes.map((item) => (
+            <SwiperSlide key={item.id}>
+              <div className="flex flex-col items-center gap-10 border-2 border-grey border-solid py-8 px-5 mt-10 mb-14 rounded-xl">
+                <p className=" font-normal text-2xl">{item.name_student}</p>
+                <Input
+                  className={"w-full"}
+                  onChange={(e) => handleChange(e, item.id)}
+                  id={"qualify"}
+                  type={"number"}
+                  name={"qualify"}
+                  disabled={false}
+                  required={true}
+                  placeholder="Ingresar calificación"
+                  key={item.id}
+                />
+              </div>
+            </SwiperSlide>
+          ))}
+        </Swiper>
       </div>
       <div className="contenedor-admin w-screen mb-5 fixed bottom-0 flex flex-col gap-5">
         <Button

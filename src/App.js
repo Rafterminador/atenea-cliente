@@ -17,7 +17,8 @@ import VerAlumno from "./pages/VerAlumno";
 import AlumnoAccount from "./pages/AlumnoAccount";
 import EditAlumnoAccount from "./pages/EditAlumnoAccount";
 import AlumnoProfile from "./pages/AlumnoProfile";
-import AllAlumnos from "./pages/AllAlumnos";
+// import AllAlumnos from "./pages/AllAlumnos";
+import AllAlumnosGrades from "./pages/AllAlumnosGrades";
 import Boletin from "./pages/Boletin";
 import ControllerProving from "./pages/ControllerProving";
 import GradesAssigned from "./pages/GradesAssigned";
@@ -40,99 +41,103 @@ import BottomNavbarDirector from "./utils/BottomNavbarDirector";
 import Asistencia from "./pages/Asistencia";
 import TomarAsistencia from "./components/TomarAsistencia";
 import Calificar from "./pages/Calificar";
+import { PdfExportProvider } from "./context/PdfExportProvider";
 
 function App() {
   return (
     <BrowserRouter>
-      <Routes>
-        {/* rutas para la S01 - Autenticacion */}
-        <Route path="/" element={<LandingPage />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<RegistroUsuario />} />
-        <Route path="/restore/password" element={<OlvidePassword />} />
-        <Route path="/restore/check/email" element={<Check />} />
-        <Route path="/reset/password/*" element={<ResetPassword />} />
+      <PdfExportProvider>
+        <Routes>
+          {/* rutas para la S01 - Autenticacion */}
+          <Route path="/" element={<LandingPage />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<RegistroUsuario />} />
+          <Route path="/restore/password" element={<OlvidePassword />} />
+          <Route path="/restore/check/email" element={<Check />} />
+          <Route path="/reset/password/*" element={<ResetPassword />} />
 
-        <Route element={<PrivateRouteDirector />}>
-          {/* rutas para la S02 - Administrativo */}
-          <Route element={<BottomNavbarDirector />}>
-            <Route path="/home" element={<Home />} />
-            <Route path="/grades/" element={<Grades />} />
-            <Route path="/ver/alumno" element={<VerAlumno />} />
-            <Route path="/docentes" element={<Teachers />} />
+          <Route element={<PrivateRouteDirector />}>
+            {/* rutas para la S02 - Administrativo */}
+            <Route element={<BottomNavbarDirector />}>
+              <Route path="/home" element={<Home />} />
+              <Route path="/grades/" element={<Grades />} />
+              <Route path="/ver/alumno" element={<VerAlumno />} />
+              <Route path="/alumnos/completos" element={<AllAlumnosGrades />} />
+              <Route path="/docentes" element={<Teachers />} />
+            </Route>
+
+            <Route path="/grades/create" element={<NewGrade />} />
+            <Route path="/grades/update/:id" element={<UpdateGrade />} />
+            <Route path="/grades/update/:id/edit" element={<EditGrade />} />
+
+            <Route path="/cuenta" element={<Account />} />
+            <Route path="/tutoriales" element={<VideoTutorials />} />
+
+            <Route path="/cuenta/alumno" element={<AlumnoAccount />} />
+            <Route path="/editar/alumno" element={<EditAlumnoAccount />} />
+            <Route path="/perfil/alumno" element={<AlumnoProfile />} />
+            <Route path="/boletin" element={<Boletin />} />
+
+            {/* Docentes */}
+
+            <Route path="/cuenta/docente/:id" element={<AccountPage />} />
+            <Route path="/nuevos-docentes" element={<NuevosDocentes />} />
+            <Route path="/docentes-activos" element={<DocentesActivos />} />
+            <Route path="/docentes-inactivos" element={<DocentesInactivos />} />
+
+            <Route path="/backend" element={<ControllerProving />} />
           </Route>
 
-          <Route path="/grades/create" element={<NewGrade />} />
-          <Route path="/grades/update/:id" element={<UpdateGrade />} />
-          <Route path="/grades/update/:id/edit" element={<EditGrade />} />
+          <Route element={<PrivateRouteDocente />}>
+            {/* rutas para la S03 - Área para docente */}
+            <Route element={<BottomNavbarDirector />}>
+              <Route path="/home/docente" element={<Home />} />
+              <Route path="/asistencia" element={<Asistencia />} />
+              <Route path="/calificar" element={<Calificar />} />
+              <Route path="/todos/alumnos" element={<AllAlumnosGrades />} />
+              <Route path="/grades/teacher" element={<GradesAssigned />} />
+            </Route>
+            <Route path="/profile/alumno" element={<AlumnoProfile />} />
+            <Route path="/boletin/docentes" element={<Boletin />} />
+            <Route path="/grades/teacher/courses" element={<Courses />} />
+            <Route path="/cuenta/docente" element={<Account />} />
+            <Route
+              path="/grades/teacher/:id/courses/students"
+              element={<Students />}
+            />
+            <Route
+              path="/grades/teacher/:id/courses/students/:id"
+              element={<Student />}
+            />
+            <Route
+              path="/grades/teacher/:id/courses/students/:id/notes"
+              element={<Notes />}
+            />
+            <Route
+              path="/grades/teacher/unidades"
+              element={<Course />}
+            />
+            <Route
+              path="/grades/teacher/courses/new/activity"
+              element={<NewActivity />}
+            />
+            <Route
+              path="/grades/teacher/courses/activity/edit"
+              element={<EditActividy />}
+            />
+            <Route path="/calificar/:student" element={<Qualify />} />
+            <Route path="/backend" element={<ControllerProving />} />
+            {/* Aquí termina la ruta para la S03 - Área para docente */}
 
-          <Route path="/cuenta" element={<Account />} />
-          <Route path="/tutoriales" element={<VideoTutorials />} />
-
-          <Route path="/cuenta/alumno" element={<AlumnoAccount />} />
-          <Route path="/editar/alumno" element={<EditAlumnoAccount />} />
-          <Route path="/perfil/alumno" element={<AlumnoProfile />} />
-          <Route path="/alumnos/completos" element={<AllAlumnos />} />
-          <Route path="/boletin" element={<Boletin />} />
-
-          {/* Docentes */}
-
-          <Route path="/cuenta/docente/:id" element={<AccountPage />} />
-          <Route path="/nuevos-docentes" element={<NuevosDocentes />} />
-          <Route path="/docentes-activos" element={<DocentesActivos />} />
-          <Route path="/docentes-inactivos" element={<DocentesInactivos />} />
-
-          <Route path="/backend" element={<ControllerProving />} />
-        </Route>
-
-        <Route element={<PrivateRouteDocente />}>
-          {/* rutas para la S03 - Área para docente */}
-          <Route element={<BottomNavbarDirector />}>
-            <Route path="/home/docente" element={<Home />} />
-            <Route path="/asistencia" element={<Asistencia />} />
-            <Route path="/calificar" element={<Calificar />} />
+            {/* Pagina asistencia */}
+            <Route path="/asistencia/tomar-asistencia/:id" element={<TomarAsistencia />} />
+            <Route
+              path="/asistencia/tomar-asistencia/:id"
+              element={<TomarAsistencia />}
+            />
           </Route>
-          <Route path="/grades/teacher/:id" element={<GradesAssigned />} />
-          <Route path="/grades/teacher/:id/courses" element={<Courses />} />
-          <Route
-            path="/grades/teacher/:id/courses/students"
-            element={<Students />}
-          />
-          <Route
-            path="/grades/teacher/:id/courses/students/:id"
-            element={<Student />}
-          />
-          <Route
-            path="/grades/teacher/:id/courses/students/:id/notes"
-            element={<Notes />}
-          />
-          <Route
-            path="/grades/teacher/:id/courses/:courseId"
-            element={<Course />}
-          />
-          <Route
-            path="/grades/teacher/:id/courses/:courseId/new/activity"
-            element={<NewActivity />}
-          />
-          <Route
-            path="/grades/teacher/:id/courses/:courseId/activity/edit"
-            element={<EditActividy />}
-          />
-          <Route
-            path="/grades/teacher/:id/qualify/:student"
-            element={<Qualify />}
-          />
-          <Route path="/backend" element={<ControllerProving />} />
-          {/* Aquí termina la ruta para la S03 - Área para docente */}
-
-          {/* Pagina asistencia */}
-          <Route path="/asistencia/tomar-asistencia/:id" element={<TomarAsistencia />} />
-          <Route
-            path="/asistencia/tomar-asistencia/:id"
-            element={<TomarAsistencia />}
-          />
-        </Route>
-      </Routes>
+        </Routes>
+      </PdfExportProvider>
     </BrowserRouter>
   );
 }

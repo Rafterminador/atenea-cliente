@@ -5,11 +5,11 @@ import Retroceder from "./Retroceder";
 import { AlertButton } from "../utils/AlertButton";
 import DeleteConfirmation from "../assets/images/confirmarAlumno.svg";
 import { newAttendence } from "../services/controllerDocentes";
-// import { Pagination, Scrollbar, A11y } from "swiper";
+import { Pagination, Navigation } from "swiper";
 import ComboBox from "./ComboBox";
 
-import { Swiper, SwiperSlide } from "swiper/react";
-
+import { Swiper, SwiperSlide, } from "swiper/react";
+//comentaroo
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
@@ -169,6 +169,10 @@ const TomarAsistencia = () => {
     localStorage.setItem("asistencia", asistenciaJSON);
   }, [students.id]);
 
+  const handlAvanzar = () => {
+    console.log(Pagination)
+  }
+
   return (
     <>
       <section className="h-screen">
@@ -199,27 +203,40 @@ const TomarAsistencia = () => {
             // install Swiper modules
             // modules={[Pagination, Scrollbar, A11y]}
             // pagination
-            spaceBetween={0}
+            //spaceBetween={0}
             slidesPerView={1}
-            pagination={{ clickable: true }}
+            // pagination={{ clickable: true }}
             // scrollbar={{ draggable: true }}
             onSwiper={(swiper) => console.log(swiper)}
             onSlideChange={() => console.log("slide change")}
+
+            pagination={{
+              type: "fraction",
+              clickable: true,
+
+
+
+            }}
+            //navigation={true}
+            modules={[Pagination, Navigation,]}
+
           >
             {estudiantes.map((estudiante) => (
-              <SwiperSlide key={estudiante.id}>
+              <SwiperSlide onClick={handlAvanzar} key={estudiante.id}>
                 <NameAsistencia
                   key={estudiante.id}
                   id={estudiante.id}
                   name_student={estudiante.name_student}
+
                 />
               </SwiperSlide>
+
             ))}
           </Swiper>
-          <div className="flex justify-center mt-4">
+          {/* <div className="flex justify-center mt-4">
             <p className="mr-2 font-bold">1</p>
             <p className="">{`de ${students.lengtAlumnos}`}</p>
-          </div>
+          </div> */}
         </div>
         <div>
           <button

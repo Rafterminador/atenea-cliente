@@ -315,31 +315,9 @@ const getStudentScores = async (idTeacher) => {
 
 }
 
-const getStudentBoletin = async (idStudent, nameStudent) => {
-    // let responseToReturn =  await api.get(`api/v1/student/get-student-boletin/${idStudent}`)
-    // return responseToReturn
-    axios({
-        url: `https://atenea-app-ud23b.ondigitalocean.app/api/v1/student/get-student-boletin/${idStudent}`,
-        method: 'GET',
-        responseType: 'blob',
-    }).then((response) => {
-        const url = window.URL.createObjectURL(new Blob([response.data]));
-        const link = document.createElement('a');
-        link.href = url;
-        link.target = '_blank'
-        link.download = `${nameStudent}_Boletin.pdf`
-     
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-    })
 
-   
-     
-
-}
 
 export {
-    getStudentBoletin, getStudentScores, EnableTeacher, DisableTeacher, GetOneTeacherByID, getAllTeachers, getUserByID, disableTeacher, enableTeacher, updateRol, getAllStudents, getStudentsByGrade, getStudentByID, createStudent, updateStudent, disableStudent,
+    getStudentScores, EnableTeacher, DisableTeacher, GetOneTeacherByID, getAllTeachers, getUserByID, disableTeacher, enableTeacher, updateRol, getAllStudents, getStudentsByGrade, getStudentByID, createStudent, updateStudent, disableStudent,
     enableStudent, getAllBoletines, getEnabledTeachers, getdisableTeachers, getAllGrades, createGrade, updateGrade, deleteGrade
 }

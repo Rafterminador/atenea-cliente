@@ -23,8 +23,9 @@ const BottomNavbar = () => {
   };
   const [urls] = useState(() => {
     return valueByDefault(
+      // ["/grades", "/ver/alumno", "/docentes"],
       ["/grades", "/ver/alumno", "/docentes"],
-      ["#", "/calificar", "/asistencia"]
+      ["/grades/teacher", "/calificar", "/asistencia"]
     );
   });
   function handleClick(e) {
@@ -65,8 +66,7 @@ const BottomNavbar = () => {
   };
 
   useEffect(() => {
-    console.log("pathname", location.pathname);
-    if (location.pathname === "/grades") {
+    if (location.pathname === "/grades" || location.pathname === "/grades/teacher") {
       document
         .getElementById("grade")
         .children[0].classList.add("bg-[#A954FF]");
@@ -125,7 +125,6 @@ const BottomNavbar = () => {
             className="h-full rounded-none flex flex-col justify-center items-center gap-1"
           >
             <div className="w-16 h-8 flex justify-center items-center rounded-[20px] py-2">
-              {/* <Students /> */}
               {valueByDefault(<Students />, <Qualify />)}
             </div>
             <p className="text-[12.8px] font-semibold">
@@ -140,7 +139,6 @@ const BottomNavbar = () => {
             className="h-full rounded-none flex flex-col justify-center items-center gap-1"
           >
             <div className="w-16 h-8 flex justify-center items-center rounded-[20px] py-2">
-              {/* <Teachers /> */}
               {valueByDefault(<Teachers />, <Attendance />)}
             </div>
             <p className="text-[12.8px] font-semibold">

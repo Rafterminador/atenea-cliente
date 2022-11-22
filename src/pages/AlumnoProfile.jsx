@@ -8,11 +8,12 @@ import Spinner from "../components/Spinner";
 import { getStudentByID } from "../services/controllerDirector";
 import { disableStudent } from "../services/controllerDirector";
 import { getStudentScores } from "../services/controllerDirector";
+import { AlertButton } from "../utils/AlertButton";
 const AlumnoProfile = () => {
   let alumnJSON = localStorage.getItem("alumno");
   let alumn = JSON.parse(alumnJSON);
   const [cargando, setCargando] = useState(false);
-
+  const Swal = require('sweetalert2')
   const navigate = useNavigate();
 
   function handleEdit() {
@@ -20,6 +21,7 @@ const AlumnoProfile = () => {
   }
 
   const handleEliminar = async () => {
+    setCargando(true);
     let response = await disableStudent(alumn.uid);
 
     if (response.status === 201) {
@@ -27,8 +29,12 @@ const AlumnoProfile = () => {
     } else {
       console.log(response.body);
     }
-    alert("eliminandoo");
-    navigate("/ver/alumno");
+    setCargando(false);
+    Swal.fire(
+      AlertButton.dataAlertSuccess('Estudiante eliminado exitosamente')
+    ).then(() => {
+      navigate("/ver/alumno");
+    })
   };
 
   const [nameencargado, setManager_Name] = useState();
@@ -36,6 +42,21 @@ const AlumnoProfile = () => {
   const [datebirth, setDate_Brith] = useState();
   const [direction, setDirection] = useState();
   const [grade, setGrade] = useState();
+  const [hidden, setHidden] = useState("");
+
+
+  useEffect(() => {
+    let userJSON = localStorage.getItem("usuario");
+    let useUser = JSON.parse(userJSON);
+
+    if (useUser.role === "docente") {
+      setHidden("hidden fixed top-[620px] left-5 right-5");
+    }
+
+    if (useUser.role === "director") {
+      setHidden("fixed top-[620px] left-5 right-5");
+    }
+  }, []);
 
   // Similar to componentDidMount and componentDidUpdate:
   useEffect(() => {
@@ -79,6 +100,23 @@ const AlumnoProfile = () => {
     <div className="flex flex-col justify-between">
       <Retroceder text={alumn.nombre} />
 
+      <div className={hidden}>
+        <Button
+          onClick={handleEliminar}
+          text="Eliminar alumno"
+          typeButton={"button-type-3"}
+          className="my-5"
+          type="button"
+        />
+        <Button
+          onClick={handleEdit}
+          text="Editar datos"
+          typeButton={"button-type-2"}
+          className="my-5"
+          type="click"
+          form="register-form"
+        />
+      </div>
       {cargando ? (
         <>
           <div className="">

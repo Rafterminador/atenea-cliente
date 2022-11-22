@@ -4,74 +4,84 @@ import Grado from "../components/Grado";
 import SearchBar from "../components/SearchBar";
 import { useNavigate } from "react-router-dom";
 import AddButton from "../components/AddButton";
-
-import { getAllStudents } from "../services/controllerDirector";
-import { searchByStudentName } from "../utils/FunctionUtils";
+import uuid from "react-uuid";
+import Spinner from "../components/Spinner";
+import { getAllGrades } from "../services/controllerDocentes";
+import { searchByStudentName3 } from "../utils/FunctionUtils";
 
 const VerAlumno = () => {
   localStorage.removeItem("alumno");
   localStorage.removeItem("boletin");
   const navigate = useNavigate();
+
   function handleAdd() {
     navigate("/cuenta/alumno");
   }
 
-  const [prePrimariaPreKinder, setPrePrimariaPreKinder] = useState([]);
-  const [prePrimariaKinder, setPrePrimariaKinder] = useState([]);
-  const [prePrimariaParvulos, setPrePrimariaParvulos] = useState([]);
-  const [primariaPrimero, setPrimariaPrimero] = useState([]);
-  const [primariaSegundo, setPrimariaSegundo] = useState([]);
-  const [primariaTercero, setPrimariaTerecero] = useState([]);
-  const [primariaCuarto, setPrimariaCuarto] = useState([]);
-  const [primariaQuinto, setPrimariaQuinto] = useState([]);
-  const [primariaSexto, setPrimariaSexto] = useState([]);
   const [hidden, setHidden] = useState("my-[10px]");
+  const [Students, setStudents] = useState([]);
   let [allStudents, setAllStudents] = useState([]);
+  const [cargando, setCargando] = useState(false);
 
-  // Similar to componentDidMount and componentDidUpdate:
   useEffect(() => {
-    // Update the document title using the browser API
-
     const handleGetAllStudents = async () => {
-      let response = await getAllStudents();
+      setCargando(true);
+      let response = await getAllGrades();
       if (response.status === 200) {
         console.log(response.body);
-
-        setPrePrimariaPreKinder(response.body.prePrimaria.preKinder.data);
-        setPrePrimariaKinder(response.body.prePrimaria.kinder.data);
-        setPrePrimariaParvulos(response.body.prePrimaria.parvulos.data);
-        setPrimariaPrimero(response.body.primaria.primero.data);
-        setPrimariaSegundo(response.body.primaria.segundo.data);
-        setPrimariaTerecero(response.body.primaria.tercero.data);
-        setPrimariaCuarto(response.body.primaria.cuarto.data);
-        setPrimariaQuinto(response.body.primaria.quinto.data);
-        setPrimariaSexto(response.body.primaria.sexto.data);
+        setStudents(response.body);
       } else {
         console.log(response.body);
       }
+      setCargando(false);
     };
 
     handleGetAllStudents();
   }, []);
+
+  const getStudents = Students.map((levelGrade) =>
+    levelGrade.grades.map((grade, index) =>
+      grade.students.map((student, index2) => (
+        <div key={uuid()}>
+          {index2 === 0 ? (
+            <Grado
+              grado={grade.grade_name}
+              total={grade.students.length}
+              uidgrade={grade.id}
+            />
+          ) : (
+            ""
+          )}
+          {index2 < 4 ? (
+            <Alumno
+              nombre={student.name_complete}
+              uid={student.id}
+              key={uuid()}
+            />
+          ) : (
+            ""
+          )}
+        </div>
+      ))
+    )
+  );
 
   const handleSearchAlumno = (e) => {
     if (e.target.value === "") {
       setHidden("my-[10px]");
     } else {
       setHidden("my-[10px] hidden");
-      let arrayAux = prePrimariaPreKinder
-        .concat(prePrimariaKinder)
-        .concat(prePrimariaParvulos)
-        .concat(primariaPrimero)
-        .concat(primariaSegundo)
-        .concat(primariaTercero)
-        .concat(primariaCuarto)
-        .concat(primariaQuinto)
-        .concat(primariaSexto);
+      let arrayAux = [];
+      Students.map((levelGrade) =>
+        levelGrade.grades.map((grade, index) =>
+          grade.students.map((student, index2) => (
+            arrayAux.push(student)
+          ))
+        )
+      );
       setAllStudents(arrayAux);
-      // console.log("Concatenados", arrayAux);
       console.log("AllStudents", allStudents);
-      allStudents = searchByStudentName(arrayAux, e.target.value);
+      allStudents = searchByStudentName3(arrayAux, e.target.value);
       setAllStudents(allStudents);
       console.log("AllStudents", allStudents);
     }
@@ -84,95 +94,25 @@ const VerAlumno = () => {
           onChange={handleSearchAlumno}
           placeholder="Buscar un Alumno"
         />
-        <div className={hidden}>
-          <Grado grado={"PreKinder"} total={prePrimariaPreKinder.length} />
-
-          {prePrimariaPreKinder.slice(0, 4).map((estudiante) => (
-            <Alumno
-              nombre={estudiante.name}
-              uid={estudiante.uid}
-              key={estudiante.uid}
-            />
-          ))}
-
-          <Grado grado={"Kinder"} total={prePrimariaKinder.length} />
-          {prePrimariaKinder.slice(0, 4).map((estudiante) => (
-            <Alumno
-              nombre={estudiante.name}
-              uid={estudiante.uid}
-              key={estudiante.uid}
-            />
-          ))}
-
-          <Grado grado={"Parvulos"} total={prePrimariaParvulos.length} />
-          {prePrimariaParvulos.slice(0, 4).map((estudiante) => (
-            <Alumno
-              nombre={estudiante.name}
-              uid={estudiante.uid}
-              key={estudiante.uid}
-            />
-          ))}
-
-          <Grado grado={"Primero primaria"} total={primariaPrimero.length} />
-          {primariaPrimero.slice(0, 4).map((estudiante) => (
-            <Alumno
-              nombre={estudiante.name}
-              uid={estudiante.uid}
-              key={estudiante.uid}
-            />
-          ))}
-          <Grado grado={"Segundo primaria"} total={primariaSegundo.length} />
-          {primariaSegundo.slice(0, 4).map((estudiante) => (
-            <Alumno
-              nombre={estudiante.name}
-              uid={estudiante.uid}
-              key={estudiante.uid}
-            />
-          ))}
-          <Grado grado={"Tercero primaria"} total={primariaTercero.length} />
-          {primariaTercero.slice(0, 4).map((estudiante) => (
-            <Alumno
-              nombre={estudiante.name}
-              uid={estudiante.uid}
-              key={estudiante.uid}
-            />
-          ))}
-          <Grado grado={"Cuarto primaria"} total={primariaCuarto.length} />
-          {primariaCuarto.slice(0, 4).map((estudiante) => (
-            <Alumno
-              nombre={estudiante.name}
-              uid={estudiante.uid}
-              key={estudiante.uid}
-            />
-          ))}
-          <Grado grado={"Quinto primaria"} total={primariaQuinto.length} />
-          {primariaQuinto.slice(0, 4).map((estudiante) => (
-            <Alumno
-              nombre={estudiante.name}
-              uid={estudiante.uid}
-              key={estudiante.uid}
-            />
-          ))}
-
-          <Grado grado={"Sexto primaria"} total={primariaSexto.length} />
-          {primariaSexto.slice(0, 4).map((estudiante) => (
-            <Alumno
-              nombre={estudiante.name}
-              uid={estudiante.uid}
-              key={estudiante.uid}
-            />
-          ))}
-        </div>
-        <div className="my-[10px]">
-          {allStudents.map((estudiante) => (
-            <Alumno
-              nombre={estudiante.name}
-              uid={estudiante.uid}
-              key={estudiante.uid}
-            />
-          ))}
-        </div>
-        <AddButton function={handleAdd} />
+        {cargando ? (
+          <Spinner />
+        ) : (
+          <>
+            <div className={hidden}>
+              {getStudents}
+            </div>
+            <div className="my-[10px]">
+              {allStudents.map((estudiante) => (
+                <Alumno
+                  nombre={estudiante.name_complete}
+                  uid={estudiante.id}
+                  key={estudiante.id}
+                />
+              ))}
+            </div>
+            <AddButton function={handleAdd} />
+          </>
+        )}
       </div>
     </>
   );

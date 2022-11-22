@@ -1,62 +1,77 @@
-import Button from "../components/Button";
+import { useEffect, useState } from "react";
 import CursoNote from "../components/CursoNote";
 import Retroceder from "../components/Retroceder";
+import Spinner from "../components/Spinner";
 
-export default function Notes(props) {
+export default function Notes() {
+  const [UnitActivity, setUnitActivity] = useState([]);
+  const [cargando] = useState(true);
+
+  let activityInfo = localStorage.getItem("activityInfo");
+  let activityInfor = JSON.parse(activityInfo);
+
+  let nameAlumno = localStorage.getItem("alumno");
+  let NameAlumno = JSON.parse(nameAlumno);
+  useEffect(() => {
+    let activityAreaJSON = localStorage.getItem("activityArea");
+    let activityArea = JSON.parse(activityAreaJSON);
+    setUnitActivity(activityArea);
+    //  const {activities} = boletin;
+  }, []);
+
   return (
     <div>
       <Retroceder text={"Notas"} />
-      <div className="contenedor-admin">
-        <div className="text-center">
-          <p className="mb-4">
-            Notas de la Primera unidad de:{" "}
-            <span className="font-bold">Comunicacion y lenguaje L2</span>
-          </p>
-          <p>
-            Del estudiante:{" "}
-            <span className="font-bold">
-              Brandon Celeste Maldonado Gallardo
-            </span>
-          </p>
-        </div>
-        <div className="">
-          <div className="bg-[#FFFFFF] bordercard my-6 mt-5 mb-5 ml-5 mr-5 pb-4 pt-4 pl-4 pr-4">
+      {cargando ? (
+        <>
+          <div className="contenedor-admin">
+            <div className="text-center">
+              <p className="mb-4">
+                Notas de la Primera unidad de:{" "}
+                <span className="font-bold">{activityInfor.name}</span>
+              </p>
+              <p>
+                Del estudiante:{" "}
+                <span className="font-bold">{NameAlumno.nombre}</span>
+              </p>
+            </div>
             <div className="">
-              <div className="grid grid-cols-2 text-center">
-                <p className="text-[#FFB55F] font-sans text-[12px] .sml-title">
-                  Actividad
-                </p>
-                <p className="text-[#FFB55F] font-sans text-[12px] .sml-title ml-[75px]">
-                  Nota
-                </p>
-              </div>
-              <div className="">
-                <CursoNote name={"Comunicacion y lenguaje L1"} note={"92"} />
-                <CursoNote name={"Comunicación y lenguaje L2"} note={"38"} />
-                <CursoNote name={"Comunicación y lenguaje L3"} note={"27"} />
-                <CursoNote name={"Matemáticas"} note={"73"} />
-                <CursoNote name={"Medio Social y Natural"} note={"98"} />
-                <CursoNote name={"Formación Ciudadana"} note={"13"} />
-                <CursoNote name={"Expresión Artística"} note={"100"} />
-                <CursoNote name={"Educación Física"} note={"36"} />
-              </div>
-              <div className="flex justify-end">
-                <p className="text-[16px] opensansbold">Total</p>
-                <p className="ml-[40px]">100pts</p>
+              <div className="bg-[#FFFFFF] bordercard my-6 mt-5 mb-5 ml-5 mr-5 pb-4 pt-4 pl-4 pr-4">
+                <div className="">
+                  <div className="grid grid-cols-2 text-center">
+                    <p className="text-[#FFB55F] font-sans text-[12px] .sml-title">
+                      Actividad
+                    </p>
+                    <p className="text-[#FFB55F] font-sans text-[12px] .sml-title ml-[75px]">
+                      Nota
+                    </p>
+                  </div>
+                  <div className="">
+                    {UnitActivity?.map((activity) => (
+                      <CursoNote
+                        key={activity.id}
+                        name={activity.activity_name}
+                        note={activity.score}
+                      />
+                    ))}
+                  </div>
+                  <div className="flex justify-end">
+                    <p className="text-[16px] opensansbold">Total</p>
+                    <p className="ml-[40px]">
+                      {UnitActivity?.map((item) => item.score).reduce(
+                        (prev, curr) => prev + curr,
+                        0
+                      )}
+                    </p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </div>
-      <div className="fixed top-[720px] left-5 right-5">
-        <Button
-          text="Exportar a PDF"
-          typeButton={"button-type-2"}
-          className=""
-          type="submit"
-          form="register-form"
-        />
-      </div>
+        </>
+      ) : (
+        <Spinner />
+      )}
     </div>
   );
 }
