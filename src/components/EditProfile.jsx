@@ -41,12 +41,11 @@ export default function EditProfile({ handle }) {
 
   const handleUpdateUser = async (e) => {
     e.preventDefault();
-    console.log("datos a actualizar ", usuario.uid, email, password, number.toString(), usuario.name)
     let response = await updateUserProfile(usuario.uid, email, password, "+502 " + number.toString(), usuario.name);
     setCargando(true);
     if (response.status === 200) {
       const userJSON = JSON.stringify(
-        { uid: usuario.uid, email: email, name: response.displayName, role: usuario.role, number: usuario.number, password: password }
+        { uid: usuario.uid, email: email, name: response.displayName, role: usuario.role, number: number, password: password }
       )
       localStorage.setItem('usuario', userJSON)
       setCargando(false);

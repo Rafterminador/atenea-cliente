@@ -3,7 +3,6 @@ import { ReactComponent as Grade } from "../assets/images/grade.svg";
 import { ReactComponent as Grades } from "../assets/images/grades.svg";
 import { ReactComponent as Attendance } from "../assets/images/students.svg";
 import { ReactComponent as MenuImage } from "../assets/images/menu.svg";
-import Menu from "../components/Menu";
 import { useEffect } from "react";
 import GradeAssigned from "../components/GradeAssigned";
 
@@ -13,13 +12,11 @@ export default function GradesAssigned() {
   const [hidden, setHidden] = useState("hidden");
   const [vacio, setVacio] = useState(false);
   const [info, setInfo] = useState();
-  const [animation, setAnimation] = useState("");
   const [myGrades, setMyGrades] = useState([]);
   const ref = useRef(null);
 
   function handleClick(e) {
     setHidden("");
-    setAnimation("animation1");
   }
 
   function handleBtns(e) {
@@ -37,7 +34,6 @@ export default function GradesAssigned() {
     function handleClickOutside(event) {
       if (event.target.id === "menu") {
         setHidden("hidden");
-        setAnimation("animation2");
       }
     }
     document.addEventListener("click", handleClickOutside);
@@ -141,7 +137,6 @@ export default function GradesAssigned() {
           <div
             className={`${hidden} animation3 absolute h-screen w-full bg-black opacity-30 top-0 flex items-end`}
           ></div>
-          <Menu hidden={hidden} keyValue={ref} animation={animation} />
         </>
       ) : (
         <>
