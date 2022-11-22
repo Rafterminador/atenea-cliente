@@ -7,6 +7,7 @@ import Button from "../components/Button";
 import Input from "../components/Input";
 import { createGrade, getAllGrades } from "../services/controllerDirector";
 import { searchReferenceId } from '../utils/FunctionUtils';
+import Spinner from "../components/Spinner";
 
 const NewGrade = () => {
     const navigate = useNavigate()
@@ -14,6 +15,7 @@ const NewGrade = () => {
     const [levelGrade, setLevelGrade] = useState("")
     const [teacher, setTeacher] = useState("")
     const [gradeName, setGradeName] = useState("");
+    const [cargando, setCargando] = useState(false);
     const teachersJSON = localStorage.getItem('teachers')
     const teachers = JSON.parse(teachersJSON)
     const gradesJSON = localStorage.getItem('grades')
@@ -46,6 +48,7 @@ const NewGrade = () => {
     }
     const handleGrade = async (e) => {
         e.preventDefault();
+        setCargando(true);
         document.getElementById('grade').value = ''
         console.log("creado con: ", levelGrade, teacher, gradeName)
         let indexTeacherReference = searchReferenceId(teachers, teacher, "displayName")
@@ -71,25 +74,32 @@ const NewGrade = () => {
         } else {
             console.log(response.body);
         }
+        setCargando(false);
     }
     return (
         <>
             <Retroceder text="Nuevo grado" />
-            <form className='contenedor-admin' onSubmit={handleGrade}>
-                <label htmlFor="grade" className='label-purple'>Nombre del grado<span className='span-field'>*</span></label>
-                <Input id="grade" type="text" name="grade" onChange={handleChangeGradeName} placeholder="Ingresar nombre del grado" required={1} className="w-full" />
-                <label htmlFor="grade" className='label-purple'>Nivel del grado<span className='span-field'>*</span></label>
-                <ComboBox teachers={levelNames} placeholder='Seleccionar docente' function={handleGetLevelName} />
-                <label htmlFor="grade" className='label-purple'>Docente a cargo<span className='span-field'>*</span></label>
-                <ComboBox teachers={teachersNames} placeholder="seleccionar nivel" function={handleGetTeacher} />
-                <Button
-                    text=" Crear nuevo grado"
-                    typeButton={"button-type-2"}
-                    className=""
-                    type="submit"
-                    style={{ position: 'absolute', left: '0px', marginLeft: '20px', width: 'calc(100% - 40px)', bottom: '20px' }}
-                />
-            </form>
+            {cargando ? (
+                <Spinner />
+            ) : (
+                <>
+                    <form className='contenedor-admin' onSubmit={handleGrade}>
+                        <label htmlFor="grade" className='label-purple'>Nombre del grado<span className='span-field'>*</span></label>
+                        <Input id="grade" type="text" name="grade" onChange={handleChangeGradeName} placeholder="Ingresar nombre del grado" required={1} className="w-full" />
+                        <label htmlFor="grade" className='label-purple'>Nivel del grado<span className='span-field'>*</span></label>
+                        <ComboBox teachers={levelNames} placeholder='Seleccionar docente' function={handleGetLevelName} />
+                        <label htmlFor="grade" className='label-purple'>Docente a cargo<span className='span-field'>*</span></label>
+                        <ComboBox teachers={teachersNames} placeholder="seleccionar nivel" function={handleGetTeacher} />
+                        <Button
+                            text=" Crear nuevo grado"
+                            typeButton={"button-type-2"}
+                            className=""
+                            type="submit"
+                            style={{ position: 'absolute', left: '0px', marginLeft: '20px', width: 'calc(100% - 40px)', bottom: '20px' }}
+                        />
+                    </form>
+                </>
+            )}
         </>
     )
 }

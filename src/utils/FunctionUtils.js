@@ -9,7 +9,7 @@ const searchGrades = (array, filter) => {
     // console.log(array)
     filter = filter.toLowerCase()
     const filterLevelNames = array.filter((grade) => {
-        console.log(searchByGradeName(grade.grades, filter))
+        // console.log(searchByGradeName(grade.grades, filter))
         // const levelNames = grade.level_name.toLowerCase().includes(filter)
         // return levelNames
 
@@ -20,29 +20,6 @@ const searchGrades = (array, filter) => {
     return filterLevelNames
 }
 
-// const searchTeacher = (array, filter) => {
-//      console.log(array)
-//     filter = filter.toLowerCase()
-//     const filterLevelNames = array.filter((docente) => {
-//        // console.log(searchByTeacherName(docente, filter))
-//         // const levelNames = grade.level_name.toLowerCase().includes(filter)
-//         // return levelNames
-
-//         //remplazamos los valores de cada nivel por defecto por los que filtramos dos veces
-//         docente = searchByTeacherName(docente, filter)
-//         return docente
-//     })
-//     return filterLevelNames
-// }
-// array.filter((grade) => {
-//     console.log(array)
-//     // const teacherName = array.grades.teacherRef.includes(filter)
-//     // const gradeName = array.grades.grade_name.includes(filter)
-//     const levelGrade = array.level_name.includes(filter)
-//     // console.log(teacherName)
-//     // console.log(gradeName)
-//     console.log(levelGrade)
-// })
 const searchByGradeName = (array, filter) => {
     // console.log(array)
     const filterGradeNames = array.filter((grade) => {
@@ -92,4 +69,4 @@ const searchByStudentName3 = (array, filter) => {
     return filterAlumnNames
 }
 
-export { searchReferenceId, searchGrades, searchByTeacherName, searchByStudentName, searchByStudentName2, searchByStudentName3}
+export { searchReferenceId, searchGrades, searchByTeacherName, searchByStudentName, searchByStudentName2, searchByStudentName3 }
