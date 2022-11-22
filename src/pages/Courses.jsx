@@ -22,23 +22,9 @@ export default function Courses() {
   let gradoJSON = localStorage.getItem("seteargrado");
   let seteargrado = JSON.parse(gradoJSON);
   const url = `/grades/teacher/courses/`;
- 
+
 
   const { getStudentAllBoletinByGrade, cargando } = usePdfExport();
-
-  // function handleClick(e) {
-  //   e.preventDefault();
-  //   Swal.fire(
-  //     AlertButton.dataAlertUnBotonMorado(
-  //       "Exportación masiva",
-  //       "Boletines",
-  //       "Notas",
-  //       Exportacion
-  //     )
-  //   ).then(() => {
-  //     console.log("successfully");
-  //   });
-  // }
 
   const handleExportarPdf = async () => {
 
@@ -50,9 +36,9 @@ export default function Courses() {
       );
     } catch (error) {
       console.log(error);
-    } 
+    }
 
-    
+
   };
 
   useEffect(() => {
@@ -100,9 +86,9 @@ export default function Courses() {
         </div>
       ) : (
         <>
-        
-        <Spinner  className="contenedor-admin w-full mb-5 fixed bottom-0" />
-        <p className="contenedor-admin w-full text-center justify-center font-extrabold">Exportando Boletines</p>
+
+          <Spinner className="contenedor-admin w-full mb-5 fixed bottom-0" />
+          <p className="contenedor-admin w-full text-center justify-center font-extrabold">Exportando Boletines</p>
         </>
       )}
     </div>

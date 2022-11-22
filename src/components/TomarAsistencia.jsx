@@ -5,10 +5,10 @@ import Retroceder from "./Retroceder";
 import { AlertButton } from "../utils/AlertButton";
 import DeleteConfirmation from "../assets/images/confirmarAlumno.svg";
 import { newAttendence } from "../services/controllerDocentes";
- import { Pagination, Navigation } from "swiper";
+import { Pagination, Navigation } from "swiper";
 import ComboBox from "./ComboBox";
 
-import { Swiper, SwiperSlide,  } from "swiper/react";
+import { Swiper, SwiperSlide, } from "swiper/react";
 //comentaroo
 // Import Swiper styles
 import "swiper/css";
@@ -170,7 +170,6 @@ const TomarAsistencia = () => {
   }, [students.id]);
 
   const handlAvanzar = () => {
-    console.log("xd")
     console.log(Pagination)
   }
 
@@ -205,22 +204,22 @@ const TomarAsistencia = () => {
             // modules={[Pagination, Scrollbar, A11y]}
             // pagination
             //spaceBetween={0}
-             slidesPerView={1}
-           // pagination={{ clickable: true }}
-          // scrollbar={{ draggable: true }}
+            slidesPerView={1}
+            // pagination={{ clickable: true }}
+            // scrollbar={{ draggable: true }}
             onSwiper={(swiper) => console.log(swiper)}
             onSlideChange={() => console.log("slide change")}
 
             pagination={{
               type: "fraction",
               clickable: true,
-          
 
-              
+
+
             }}
             //navigation={true}
             modules={[Pagination, Navigation,]}
-        
+
           >
             {estudiantes.map((estudiante) => (
               <SwiperSlide onClick={handlAvanzar} key={estudiante.id}>
@@ -228,10 +227,10 @@ const TomarAsistencia = () => {
                   key={estudiante.id}
                   id={estudiante.id}
                   name_student={estudiante.name_student}
-                  
+
                 />
               </SwiperSlide>
-              
+
             ))}
           </Swiper>
           {/* <div className="flex justify-center mt-4">
