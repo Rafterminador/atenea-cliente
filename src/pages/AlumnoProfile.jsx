@@ -8,11 +8,12 @@ import Spinner from "../components/Spinner";
 import { getStudentByID } from "../services/controllerDirector";
 import { disableStudent } from "../services/controllerDirector";
 import { getStudentScores } from "../services/controllerDirector";
+import { AlertButton } from "../utils/AlertButton";
 const AlumnoProfile = () => {
   let alumnJSON = localStorage.getItem("alumno");
   let alumn = JSON.parse(alumnJSON);
   const [cargando, setCargando] = useState(false);
-
+  const Swal = require('sweetalert2')
   const navigate = useNavigate();
 
   function handleEdit() {
@@ -20,6 +21,7 @@ const AlumnoProfile = () => {
   }
 
   const handleEliminar = async () => {
+    setCargando(true);
     let response = await disableStudent(alumn.uid);
 
     if (response.status === 201) {
@@ -27,8 +29,12 @@ const AlumnoProfile = () => {
     } else {
       console.log(response.body);
     }
-    alert("eliminandoo");
-    navigate("/ver/alumno");
+    setCargando(false);
+    Swal.fire(
+      AlertButton.dataAlertSuccess('Estudiante eliminado exitosamente')
+    ).then(() => {
+      navigate("/ver/alumno");
+    })
   };
 
   const [nameencargado, setManager_Name] = useState();
@@ -42,7 +48,7 @@ const AlumnoProfile = () => {
   useEffect(() => {
     let userJSON = localStorage.getItem("usuario");
     let useUser = JSON.parse(userJSON);
-    
+
     if (useUser.role === "docente") {
       setHidden("hidden fixed top-[620px] left-5 right-5");
     }
