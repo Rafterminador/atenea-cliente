@@ -66,7 +66,6 @@ const BottomNavbar = () => {
   };
 
   useEffect(() => {
-    console.log("pathname", location.pathname);
     if (location.pathname === "/grades" || location.pathname === "/grades/teacher") {
       document
         .getElementById("grade")

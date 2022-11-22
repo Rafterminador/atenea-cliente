@@ -5,7 +5,7 @@ import SearchBar from "../components/SearchBar";
 import { useNavigate } from "react-router-dom";
 import AddButton from "../components/AddButton";
 import uuid from "react-uuid";
-
+import Spinner from "../components/Spinner";
 import { getAllGrades } from "../services/controllerDocentes";
 import { searchByStudentName3 } from "../utils/FunctionUtils";
 
@@ -13,16 +13,19 @@ const VerAlumno = () => {
   localStorage.removeItem("alumno");
   localStorage.removeItem("boletin");
   const navigate = useNavigate();
-  // const [cargando, setCargando] = useState(false);
+
   function handleAdd() {
     navigate("/cuenta/alumno");
   }
+
   const [hidden, setHidden] = useState("my-[10px]");
   const [Students, setStudents] = useState([]);
   let [allStudents, setAllStudents] = useState([]);
+  const [cargando, setCargando] = useState(false);
 
   useEffect(() => {
     const handleGetAllStudents = async () => {
+      setCargando(true);
       let response = await getAllGrades();
       if (response.status === 200) {
         console.log(response.body);
@@ -30,7 +33,7 @@ const VerAlumno = () => {
       } else {
         console.log(response.body);
       }
-      // setCargando(false);
+      setCargando(false);
     };
 
     handleGetAllStudents();
@@ -70,12 +73,12 @@ const VerAlumno = () => {
       setHidden("my-[10px] hidden");
       let arrayAux = [];
       Students.map((levelGrade) =>
-      levelGrade.grades.map((grade, index) =>
-        grade.students.map((student, index2) => (
-          arrayAux.push(student)
-        ))
-      )
-    );
+        levelGrade.grades.map((grade, index) =>
+          grade.students.map((student, index2) => (
+            arrayAux.push(student)
+          ))
+        )
+      );
       setAllStudents(arrayAux);
       console.log("AllStudents", allStudents);
       allStudents = searchByStudentName3(arrayAux, e.target.value);
@@ -91,19 +94,25 @@ const VerAlumno = () => {
           onChange={handleSearchAlumno}
           placeholder="Buscar un Alumno"
         />
-        <div className={hidden}>
-          {getStudents}
-        </div>
-        <div className="my-[10px]">
-          {allStudents.map((estudiante) => (
-            <Alumno
-              nombre={estudiante.name_complete}
-              uid={estudiante.id}
-              key={estudiante.id}
-            />
-          ))}
-        </div>
-        <AddButton function={handleAdd} />
+        {cargando ? (
+          <Spinner />
+        ) : (
+          <>
+            <div className={hidden}>
+              {getStudents}
+            </div>
+            <div className="my-[10px]">
+              {allStudents.map((estudiante) => (
+                <Alumno
+                  nombre={estudiante.name_complete}
+                  uid={estudiante.id}
+                  key={estudiante.id}
+                />
+              ))}
+            </div>
+            <AddButton function={handleAdd} />
+          </>
+        )}
       </div>
     </>
   );

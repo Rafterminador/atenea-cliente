@@ -6,19 +6,18 @@ const api = axios.create({
     headers: { 'Accept': '*/*' }
 })
 const login = async (auth, email, password) => {
-    // console.log(auth, email, password)
     let response = null
     response = await signInWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
             response = userCredential.user;
-            console.log(userCredential.user)
+            // console.log(userCredential.user)
             let roleObject = JSON.parse(response.reloadUserInfo.customAttributes)
             response = { uid: response.uid, email: response.email, name: response.displayName, role: roleObject.rol, number: response.phoneNumber === null || response.phoneNumber === "" ? "" : response.phoneNumber.slice(4), password: password }
             const auth = getAuth();
             const currentUser = auth.currentUser;
             currentUser.getIdTokenResult()
                 .then((idTokenResult) => {
-                    console.log(idTokenResult)
+                    // console.log(idTokenResult)
                     response.role = idTokenResult.claims.rol
                 })
                 .catch((error) => {

@@ -3,11 +3,13 @@ import { useEffect } from "react";
 import GradeAssigned from "../components/GradeAssigned";
 
 import { GetTeacherGradesByID } from "../services/controllerDocentes";
+import Spinner from "../components/Spinner";
 
 export default function GradesAssigned() {
   const [vacio, setVacio] = useState(false);
   const [info, setInfo] = useState();
   const [myGrades, setMyGrades] = useState([]);
+  const [cargando, setCargando] = useState(false);
 
   useEffect(() => {
     // Update the document title using the browser API
@@ -15,6 +17,7 @@ export default function GradesAssigned() {
     let useUser = JSON.parse(userJSON);
 
     const handleMyGrades = async () => {
+      setCargando(true);
       let response = await GetTeacherGradesByID(useUser.uid);
       if (response.status === 201) {
         console.log(response.body);
@@ -29,6 +32,7 @@ export default function GradesAssigned() {
       } else {
         console.log(response);
       }
+      setCargando(false);
     };
 
     handleMyGrades();
@@ -41,16 +45,22 @@ export default function GradesAssigned() {
           {" "}
           <div className="contenedor contenedor-admin">
             <h1 className="h1-administracion">Mis Grados</h1>
-            {myGrades.map((estudiante) => (
-              <GradeAssigned
-                grado={estudiante.grade_name}
-                alumnos={estudiante.size}
-                id={1}
-                url="/grades/teacher/courses"
-                key={estudiante.id_grade}
-                uidgrade={estudiante.id_grade}
-              />
-            ))}
+            {cargando ? (
+              <Spinner />
+            ) : (
+              <>
+                {myGrades.map((estudiante) => (
+                  <GradeAssigned
+                    grado={estudiante.grade_name}
+                    alumnos={estudiante.size}
+                    id={1}
+                    url="/grades/teacher/courses"
+                    key={estudiante.id_grade}
+                    uidgrade={estudiante.id_grade}
+                  />
+                ))}
+              </>
+            )}
           </div>
         </>
       ) : (
