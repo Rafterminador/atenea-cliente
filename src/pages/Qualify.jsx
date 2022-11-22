@@ -157,8 +157,8 @@ export default function Qualify() {
             teachers={
               indiceCurso !== undefined && indiceUnidad
                 ? actividades[indiceCurso][indiceUnidad].map(
-                    (item) => item.activity_name
-                  )
+                  (item) => item.activity_name
+                )
                 : []
             }
             valueByDefault={"Seleccionar actividad"}

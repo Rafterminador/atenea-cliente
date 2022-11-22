@@ -42,21 +42,17 @@ export default function Menu({ hidden, keyValue, animation }) {
               />
             </div>
           </Link>
-          <button>
-            <div className="flex justify-between items-center shadow h-12 px-8">
-              <p className="text-base font-semibold col-start-2 col-span-5">
-                Descargar manual
-              </p>
-              <img className="col-start-11" src={Download} alt="Download" />
-            </div>
+          <button className="flex justify-between items-center shadow h-12 px-8">
+            <p className="text-base font-semibold col-start-2 col-span-5">
+              Descargar manual
+            </p>
+            <img className="col-start-11" src={Download} alt="Download" />
           </button>
-          <button onClick={handleLogOut}>
-            <div className="flex justify-between items-center shadow h-12 px-8">
-              <p className="text-base font-semibold col-start-2 col-span-4 text-[#FF54B0]">
-                Cerrar sesion
-              </p>
-              <img className="col-start-11" src={Logout} alt="Logout" />
-            </div>
+          <button onClick={handleLogOut} className="flex justify-between items-center shadow h-12 px-8">
+            <p className="text-base font-semibold col-start-2 col-span-4 text-[#FF54B0]">
+              Cerrar sesion
+            </p>
+            <img className="col-start-11" src={Logout} alt="Logout" />
           </button>
         </div>
       </div>
